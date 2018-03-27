@@ -33,7 +33,7 @@
   border: 1px solid #9bcaba;
   color: #fff;
   display: inline-block;
-  font-family: open sans;
+  font-family: 'NanumGothicBold', 'serif';
   font-weight: 700;
   padding: 10px 20px;
   text-transform: uppercase;
@@ -536,9 +536,24 @@
   padding-left: 0;
   padding-right: 0;
 }
-.instragam-single a img{
+
+.instragam-single .tag-text {
+  position: absolute;
+  height: 100%;
+  padding-top: 108px;
+  top: 0;
   width: 100%;
+  text-align: center;
+  font-family: 'NanumBarunGothic', 'serif';
+  color:white;
+  
 }
+
+.instragam-single a img{
+  position:relative;
+  width: 100%;
+} 
+
 .instragam-main a{
   display: block;
   position: relative;
@@ -553,22 +568,14 @@
   opacity:0;
   transition:.4s;
 }
-.instragam-single:hover .instragam-content{opacity:1;}
+ .instragam-single:hover .instragam-content{opacity:1;} 
 .instragam-content a i {
   display: block;
   font-size: 40px;
   overflow: hidden;
   color:#fff;
 }
-.instragam-content > span {
-  color: #9bcaba;
-  display: block;
-  font-family: open sans;
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
+
 .instragam-content > h3 {
   font-weight: 800;
   margin-bottom: 112px;
@@ -579,7 +586,6 @@
   font-size: 14px;
 }
 .instragam-content > a:hover{color:#fff;}
-.instragam-content a i:hover{color:#9bcaba;}
 
 /* ============= 10. Blog Area ============= */
 .blog-left-single > img{
@@ -745,13 +751,13 @@ span.date {
 /* ============= 11. Service Area ============= */
 .service-top > h6 {
   color: #9bcaba;
-  font-family: open sans;
+  font-family: 'NanumBarunGothic', 'serif';
   font-size: 12pt;
   font-weight: normal;
   margin: 0 0 25px;
 }
 .service-top > h4 {
-  font-family: open sans;
+  font-family: 'NanumBarunGothic', 'serif';
   font-size: 20pt;
   font-weight: 700;
   margin: 0;
@@ -1000,6 +1006,7 @@ span.date {
   overflow: hidden;
   padding: 8px 0;
   transition: .3s;
+  font-family: 'NanumBarunGothic', 'serif';
 }
 .footer-menu ul li:last-child a{
   padding:0;
@@ -1043,7 +1050,8 @@ span.date {
 .banner-content h1 {
   font-family: "Lobster Two",cursive;
   font-size: 60pt;
-  margin-bottom: 50px;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 .banner-content ul li {
   font-family: open sans;
@@ -1653,8 +1661,8 @@ ul.size-widget li:last-child a {
 .pro-info ul li {
   color: #666666;
   display: block;
-  font-size: 14pt;
-  margin-bottom: 8px;
+  font-size: 10pt;
+  margin-bottom: 3px;
 }
 .input-content label {
   color: #333333;
@@ -3027,9 +3035,10 @@ url('/resources/fonts/NanumGothicBold.woff') format('woff');}
 
 /* 어떤 케이크가 필요하세요? */
 #ensign-nivoslider > div.nivo-caption > div > div > h2 {
-	font-size: 30px;
-	margin: 1% auto;
+	font-size: 2em;
+	margin: 1% 0 2% 0;
 	font-family: 'NanumBarunGothic', 'serif';
+	
 }
 
 /* 메인 검색창 감싸는 곳  */
@@ -3038,16 +3047,16 @@ url('/resources/fonts/NanumGothicBold.woff') format('woff');}
     display: inline-block;
     width: 50%;
     border-bottom: #9bcaba solid 5px;
+    margin-bottom: 1%;
 }
 
 /* 메인 검색창  */
 #input_search._query {
-    height: 50px;
     padding: 2px 45px 0 0;
     background-color: transparent;
     border-color: transparent;
     font-family: 'NanumBarunGothic', 'serif';
-    font-size: 30px;
+    font-size: 2em;
     color: #fff;
     width:95%;
 }
@@ -3058,13 +3067,539 @@ url('/resources/fonts/NanumGothicBold.woff') format('woff');}
 	font-weight: bold;
 }
 
+/* 나눔 고딕체 */
+.NanumGothic {
+	font-family: 'NanumBarunGothic', 'serif';
+}
+
 /* Explerer 10이상에 적용 */
 input:-ms-input-placeholder { color: #d7d7d7; }
 /* webkit, blink, Edge에 적용 */
 input::-webkit-input-placeholder { color: #d7d7d7; } 
 
-
+/* 검색 버튼 아이콘 */
 .fa.fa-search {
 	font-size: 1.5em;
 	color:#9bcaba;
 }
+
+/* 케이크 종류, 브랜드명을 검색해보세요 */
+.main_info.NanumGothic{
+	margin-bottom: 3%;
+	color : white;
+	font-size: 1em;
+}
+
+/* 로그인, 회원가입 / 마이페이지, 로그아웃 wrapper */
+.sign-wrapper {
+	width:98%;
+	display:inline-block;
+	text-align: right;
+	margin: 0 0 1% 0;
+	clear:right;
+}
+
+/* 로그인, 회원가입 / 마이페이지, 로그아웃 */
+.sign-button {
+	color: white;
+	margin-right: 1%;
+	font-size: 1em;
+}
+
+.margin-top {
+	margin: 5% 0 2% 0;
+}
+
+.rating-box i {
+	font-size:1.5em;
+}
+
+/* detailView - 문구 추가 input-text */
+.detail-text {
+	
+	background: #fff none repeat scroll 0 0;
+    border: 1px solid #ddd;
+    font-size: 0.9em;
+    font-weight: 600;
+    height: 40px;
+ 
+}
+
+/* body태그 클래스 .other-page 전체 글꼴 설정 */
+.other-page {
+	font-family: 'NanumBarunGothic', 'serif';
+}
+
+/* body태그 클래스 .other-page 전체 버튼 설정 */
+.other-page button {
+background: #9bcaba none repeat scroll 0 0;
+    border: medium none;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    height: 40px;
+    margin-top: 12px;
+    padding: 0 40px;
+    text-transform: capitalize;
+    transition: all 0.3s ease 0s;
+    text-transform: uppercase;
+	
+}
+
+
+/* ＊＊＊＊＊ detailView ＊＊＊＊＊  */
+
+
+/* 제목 */
+
+.detail-text-box li{
+	position: relative;
+    padding: 10px 0 8px;
+    border-top: 1px solid #ebebeb;
+	display:list-item;
+	padding: 10px 0 8px 76px;
+    font-size: 16px;
+}
+.detail-text-box li:first-child {
+	border-top: 0;
+}
+
+.detail-text-box li .tit {
+position: absolute;
+    left: 0;
+	
+}
+
+.detail-text-box .data {
+	color: #656565;
+    line-height: 28px;
+}
+
+.detail-title {
+	padding: 50px 100px 0 0;
+    font-size: 38px;
+    line-height: 60px;
+}
+
+.detail-intro {
+	font-weight:bold;
+	position: relative;
+    padding-bottom: 1%;
+    color: #000;
+    font-size: 1.3em;
+    line-height: 2em;
+}
+
+.detail-intro:after {
+	
+	position:absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    height: 4px;
+    width: 20px;
+    background-color: #9bcaba;
+} 
+
+.detail-contents {
+	font-size: 16px;
+    line-height: 28px;
+}
+
+.detail-h6 {
+	font-weight:normal;
+	line-height: 25px;
+	font-size: 15px;
+	color:#777474;
+}
+
+/* detail-view 전체 배경색 */
+.page-content-wrapper {
+	background-color: white;
+}
+
+
+/* shop 정보 */
+.page-content-wrapper .inner {
+	padding: 33px 30px 38px;
+	display: block;
+	background-color: #f6f6f6;
+	width: 80%
+}
+
+
+
+/* -------- shop 관련 버튼 -------- */
+
+.btn-inner {
+	border: 1px solid #9bcaba;
+	display: inline-block;
+    text-align: center;
+    font-size: 20px;
+    height: 50px;
+    color: #9bcaba;
+    line-height: 50px;
+    width: 49%;
+    background: white;
+}
+
+.shop-location {
+	border-bottom: 1px solid #ebebeb;
+	color: #656565;
+    padding-bottom: 2%;
+    margin-bottom: 2%;
+    font-size: 1em;
+}
+
+.shop-name {
+	font-size: 1.5em;
+    line-height: 2em;
+    color: #000;
+    font-weight: bold;
+}
+
+.shop-address {
+	
+}
+
+/* -------- shop 관련 버튼 끝 ---------- */
+
+
+/* 질문글 작성하기 */
+.btn_qna_write {
+	padding: 5px 17px 3px;
+    font-size: 0.8em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+    background-color: #9bcaba;
+}
+
+/* 등록된 질문 */
+.qna_result {
+	text-align: center;
+	font-size: 1.5em;
+}
+
+/* 민트색 적용 */
+.detail-text-box strong.mint {
+	color: #9bcaba;
+}
+
+/* 상품설명 - strong */
+.detail-text-box strong {
+	color: #777474;
+}
+
+/* likes */
+.detail-likes-wrap {
+	text-align: right;
+}
+
+.detail-likes {
+	color: #999999;
+	font-size: 1.1em;
+}
+
+/* 상품 개수 ~ 버튼 까지 wrap */
+.detail-input {
+	width:80%;
+}
+
+/* 구매하기, 장바구니 담기 버튼 */
+.detail-btn {
+	width:49.5%;
+}
+
+
+/* ------- 리뷰 -------- */
+
+.review_list{
+	list-style: none;
+	margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: middle;
+    display: block;
+}
+
+.review_list li {
+	display: list-item;
+	padding: 3% 0 0 0;
+    font-size: 1em;
+}
+
+.rbox_mine {
+	    padding: 0 0 3% 10%;
+	    position: relative;
+}
+
+/* 호스트 댓글 */
+.rlist .rbox_reply {
+	 padding: 0 0 3% 10%;
+}
+
+/* 호스트 댓글 이름 */
+.rlist .p_tit_reply {
+	font-size: 1.4em;
+	color: #9bcaba;
+	font-weight: bold;
+}
+
+.rlist .p_tit_reply em {
+	font-style: normal;
+}
+
+/* 프로필 사진 */
+.rlist .pf_img {
+	top: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    position: absolute;
+    left: 0;
+    background-size: cover;
+    background-position: center center;
+}
+
+/* 손님 이름 */
+.rlist .guest_name {
+    margin-right: 10%;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    font-family: "NanumBarunGothic",sans-serif;
+}
+
+/* 리뷰 내용 */
+.rlist .p_review {
+	font-size: 1.1em;
+	margin-top: 2%;
+    line-height: 1.7em;
+    color: #656565;
+    vertical-align: middle;
+}
+
+/* 리뷰 별점 영역 */
+.rlist .rate_area {
+	position: absolute;
+	top: 1%;
+	right: 0;
+	margin-left: 1%;
+	display: inline-block;
+	color: #c0c0c0;
+	font-size: 1.2em;
+}
+
+.rlist .rate_area .rate.active {
+	color :  #9bcaba;
+}
+
+/* 포토 리뷰*/
+
+.photo_review.swiper_list {
+    margin: 1% -0.5%;
+    overflow: hidden;
+    position: relative;
+}
+/* 
+.swiper_list .flex_wrap {
+	display: block;
+	position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+} */
+
+
+.flex_wrap.fluid .box {
+    width: 33.333%;
+    float:left;
+    position: relative;
+    display: block;
+}
+
+/* .box_space .inner>a {
+	display: block;
+    color: #000;
+} */
+
+.photo_review.swiper_list .box_space .img_box {
+	padding-top: 100%;
+	display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.box_space .img_box .img {
+	background-size: cover;
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    
+}
+
+.space_list .inner {
+	background-color: white;
+}
+
+
+/* 시간 */
+.rlist .rbox_info_base .time_info {
+ 	font-size: 0.8em;
+ 	color: #c0c0c0;
+
+}
+
+/* 페이지네이션 */
+.paging {
+	font-size: 1.2em;
+	vertical-align: middle;
+}
+
+.paging a {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 0.3%;
+	color : #767676;
+}
+
+.paging a.active {
+	color:#9bcaba;
+	font-weight: bold;
+	
+}
+
+.paging .fa{
+	font-size: 2em;
+	color: #d4d4d4;
+}
+
+/* 호스트 페이지로 이동 */
+
+.host_profile {
+	display: table;
+    position: relative;
+    width: 80%;
+    vertical-align: middle;
+}
+
+.host_profile .host_area {
+	vertical-align: middle;
+	display: table;
+    position: relative;
+	padding-left: 20%;
+    min-height: 100px;
+}
+
+.host_profile .pf_left {
+	width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    border-radius: 110px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    background-size: cover;
+    background-position: center center;
+    vertical-align: middle;
+}
+
+.host_profile .btn-inner {
+	width: 45%;
+    margin: 1% 0 0 20%;
+}
+
+.host_profile .pf_host {
+	margin-top: 0.5%;
+    font-size: 1em;
+    color: #9bcaba;
+}
+
+.host_profile .pf_name {
+	display: block;
+	margin-top: 0.2%;
+    font-size: 1.5em;
+    line-height: 2em;
+    font-weight: bold;
+}
+
+.host_profile .inner {
+	padding : 5% 4%;
+}
+
+/* 홈 배경 흰색 */
+.page-content-wrapper.wrapper-white {
+	background-color: white;
+}
+
+.story_list {
+    width: 80%;
+    position: relative;
+}
+
+.story_list .lst_wrap {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.story_list .lst_story {
+	overflow: hidden;
+    position: relative;
+    padding: 0;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.story_list .lst_story .inner {
+    border: 0;
+    background-color: transparent;
+    padding: 5% 1% 5% 30%;
+    height: 20%;
+    float: left;
+    width: 100%;
+}
+
+.story_list .img_story {
+    top: 40px;
+    width: 234px;
+    height: 132px;
+    position: absolute;
+    left: 0;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.story_list .tit_story {
+    display: block;
+    font-size: 20px;
+    height: 22px;
+    line-height: 22px;
+    font-family: "NanumBarunGothicBold",sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.story_list .lst_story .inner {
+    float: left;
+    width: 100%;
+}
+
+.story_list .editor_story {
+    position: relative;
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #656565;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+ 

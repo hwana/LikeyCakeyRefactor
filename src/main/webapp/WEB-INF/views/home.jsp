@@ -63,6 +63,7 @@
 									<ul id="nav">
 										<li><a href="index.html">Home</a></li>
 									
+<<<<<<< HEAD
 										<li><a href="cakelist.ca">CAKE</a>
 											<ul>
 												<li><a href="shop.html"><i class="arrow_carrot-right"></i> 모든 케이크</a></li>
@@ -91,6 +92,36 @@
 										</ul>
 									</li>
 										<li><a href="memberMypage.ca">MY PAGE</a></li>
+=======
+										<li><a href="shop.html">CAKE</a>
+											<ul>
+												<li><a href="shop.html"><i class="arrow_carrot-right"></i> 모든 케이크</a></li>
+												<li><a href="shop-grid.html"><i class="arrow_carrot-right"></i> 빵 케이크</a></li>
+												<li><a href="shop-list.html"><i class="arrow_carrot-right"></i> 떡 케이크</a></li>
+												<li><a href="single-product.html"><i class="arrow_carrot-right"></i> 아이스크림 케이크</a></li>
+											</ul>
+										</li>
+										
+									<!-- 	<li><a href="blog.html">BLOG</a>
+											<ul>
+												<li><a href="blog.html"><i class="arrow_carrot-right"></i>Blog</a></li>
+												<li><a href="blog-details.html"><i class="arrow_carrot-right"></i>Blog Details</a></li>
+											</ul>
+										</li> -->
+								
+									<li><a href="#">SHOP</a>
+										<ul>
+											<li><a href="shop.html"><i class="arrow_carrot-right"></i> 케이크 가게 모아보기</a></li>
+										</ul>
+									</li>
+										
+									<li><a href="#">CUSTOMIZING</a>
+										<ul>
+											<li><a href="shop.html"><i class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
+										</ul>
+									</li>
+										<li><a href="contact.html">MY PAGE</a></li>
+>>>>>>> branch 'master' of https://github.com/cadaldal/LikeyCakey.git
 										<li><a href="contact.html">NOTICE</a></li>
 										<li><a href="contact.html">CONTACT</a></li>
 									</ul>
@@ -255,7 +286,7 @@
 		</header>
         <!-- Header Area End -->
         <!-- Page Content Wraper Area Start -->
-		<div class="page-content-wrapper">
+		<div class="page-content-wrapper wrapper-white">
 			<!-- Category Banner Area Start -->
 			<div class="section-titel style-two text-center text-uppercase margin-top">
 					<h3 style="font-family: 'Open Sans', sans-serif;">TOP 3</h3>
@@ -389,6 +420,7 @@
 								</div>
 								<!-- Single Product End -->
 								<!-- Single Product Start -->
+								
 								<div class="col-md-4 col-sm-6">
 									<div class="single-product style-two mb-50">
 										<div class="single-img">
@@ -420,6 +452,7 @@
 											</div>
 							</div>
 								</div>
+								
 								<!-- Single Product End -->
 								<!-- Single Product Start -->
 								<div class="col-md-4 col-sm-6">

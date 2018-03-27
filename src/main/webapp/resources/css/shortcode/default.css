@@ -54,7 +54,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'NanumGothic', sans-serif;
+    font-family: 'NanumBarunGothic', sans-serif;
     font-weight: normal;
     color: #444444;
     margin-top: 0px;
@@ -93,7 +93,7 @@ h6 {
 }
 span.titel {
   color: #9bcaba;
-  font-family: "Open Sans",sans-serif;
+  font-family: 'NanumBarunGothic', 'serif';
   font-size: 14px;
   font-style: italic;
 }
@@ -104,7 +104,7 @@ ul {
 li { list-style: none;display:inline-block; }
 p {
   color: #444444;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'NanumBarunGothic', 'serif';
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;

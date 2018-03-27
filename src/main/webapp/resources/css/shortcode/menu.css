@@ -26,7 +26,7 @@
 .main-menu ul > li > a {
   color: #fff;
   display: block;
-  font-family: "Open Sans",sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   font-weight: 600;
   padding: 30px 15px;
@@ -68,8 +68,9 @@
   padding: 10px;
   text-transform: uppercase;
   transition: all 0.3s ease 0s;
+  font-family: 'NanumBarunGothic', 'serif';
 }
-.main-menu ul li ul li a:hover{color:#8bc34a;padding-left: 14px;}
+.main-menu ul li ul li a:hover{color:#9bcaba;padding-left: 14px;}
 .main-menu ul li:hover ul {
   opacity: 1;
   top: 80px;
