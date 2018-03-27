@@ -3,13 +3,13 @@
 	@import url('https://fonts.googleapis.com/css?family=Lobster|Lobster+Two:400,400i,700,700i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Roboto:100,300,400,500,700,900');
 	@import url('https://fonts.googleapis.com/css?family=Exo+2:100,200,300,400,500,600,800,900');
 /* ============= 2. Category Banner ============= */
-.sorting {
+.young-sorting {
   float: right;
   width: 30%;
   min-width : 285px;
 }
 
-.sorting a {
+.young-sorting a {
   width : 100%;
   border: 2px solid #9bcaba;
   border-radius : 30px;
@@ -21,21 +21,21 @@
   text-transform: capitalize;
 
 }
-.sorting a i {
+.young-sorting a i {
   color: #9bcaba;
   font-size: 18pt;
   margin-left: -30px;
   position: absolute;
 }
 
-.single-img img {
+.young-single-img img {
   backface-visibility: hidden;
   transition: opacity 1s ease 0s, transform 1s ease 0s;
-  height: 370px;
+  height: 280px;
   width: 370px;
 }
 
-.notice-area{
+.young-notice-area{
 	margin-top: 0px;
 	width: 100%;
 	min-height: 103px;
@@ -45,7 +45,7 @@
 	display: block;
 }
 
-.page-content-wrapper {
+.young-page-content-wrapper {
 	background:#f9f9f9;
 }
 
@@ -155,4 +155,143 @@
   margin-right : 1px;
   padding-right : 2px;
   color : #9bcaba;
+}
+
+/*여기까지 cakelist.jsp*/ 
+/* 여기부터 hostpage.jsp */
+
+.young-host-profile-box {
+	border-top : 1px solid #e0e0e0;
+	background-color : #ffffff;
+	margin-top : -35px;
+	position : relative;
+}
+
+.young-host-profile-box img {
+	display : block;
+	margin : 25px auto 0px;
+	height : 200px;
+	width : 200px;
+	position : relative;
+}
+
+.young-host-profile-box div {
+	display : block;
+	margin : -10px auto;
+	padding-top : 5px;
+	width : 100px;
+	height : 30px;
+	border-radius : 30px;
+	text-align : center;
+	background-color : #9bcaba;
+	color : white;
+	font-weight : bold;
+	position : relative;
+}
+
+.young-host-profile-box-name {
+	display : block;
+	margin : 20px auto;
+	margin-bottom : 0px;
+	width : 100px;
+	height : 30px;
+	text-align : center;
+	color : black;
+	font-size : 20px;
+	font-weight : bolder;
+}
+
+.young-host-profile-box-exp {
+	display : block;
+	margin : 0 auto;
+	width : 300px;
+	height : 50px;
+	text-align : center;
+	color : #777777;
+	font-size : 15px;
+	font-weight : bold;
+}
+
+.h_intro em {
+	color : #9bcaba;
+	font-style : normal;
+}
+
+.icon-left {
+	color : #C1C1C1;
+}
+
+.young_blank {
+	height : 80px;
+}
+
+.young-rlist {
+	width : 100%;
+	text-align : left;
+	margin-top : 20px;
+}
+
+.young-review-mine {
+	border-bottom: 1px solid #e0e0e0;
+	padding-left:110px;
+	position : relative;
+}
+
+.young-pfimage {
+	position : absolute;	
+}
+
+.young-pfimage img{
+	width:80px;
+	height:80px;
+}
+
+.young-guestname{
+	margin-top:3px;
+}
+
+.young-preview{
+	margin-top:11px;
+	color : #696969;
+	font-size : 18px;
+}
+
+.young-extraimg{
+	margin-top:15px;
+}
+
+.young-infobase {
+	margin-top:13px;
+}
+
+.young-review-wrap ul li div div a {
+	color : #9bcaba;
+	font-size : 12px;
+	font-weight : bold;
+}
+
+.young-infobase-time {
+	color : #C7C7C7;
+	font-size : 12px;
+}
+
+.young-ratearea {
+	position : absolute;
+	right : 0;
+	top : 0;
+}
+
+.young-ratearea i {
+	margin-top : 3px;
+	margin-right : 7px;
+	color : #9bcaba;
+	font-size : 17px;
+}
+
+.young-getridofpaddingtop {
+	padding-top : 0px;
+}
+
+.young-lesspadding {
+	padding-top : 10px;
 }

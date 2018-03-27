@@ -27,4 +27,9 @@ public class HomeController {
 		return "list/cakelist";
 	}
 	
+	@RequestMapping(value = "/hostpage.ca", method = RequestMethod.GET)
+	public String hostPage() {
+		return "list/hostpage";
+	}
+	
 }
