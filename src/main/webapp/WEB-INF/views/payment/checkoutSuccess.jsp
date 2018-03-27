@@ -20,6 +20,7 @@
 
 
 <!-- all css here -->
+<link rel="stylesheet" href="/resources/css/eunsong.css">
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="/resources/css/elegant-font.css">
@@ -40,38 +41,6 @@
 </head>
 
 <style>
-.eceff8 {
-	background-color: #eceff8; /* #9bcaba */
-	border-bottom-color: #eceff8;
-	border-right-color: #eceff8;
-}
-
-
-
-
-.pink_button > input{
-background-color: #f6c6c9;
-border:#f6c6c9;
-color:#fff;
-font-weight:700;
-}
-
-.pink_button > input:hover {
-    background: #444444;
-    color:white;
-}
-.pink_button>a {
-	background-color: #f6c6c9;
-	border: #f6c6c9;
-}
-
-.pink_button>a:hover {
-	background: #444444;
-}
-
-.text_right{
-float:right; text-align:right; display: inline-block; font-weight:500;
-}
 
 </style>
 <body class="other-page">
@@ -198,27 +167,24 @@ float:right; text-align:right; display: inline-block; font-weight:500;
 	자세한 구매 내역 확인 및 배송지 변경 등의 서비스는 사이트 우측 상단의 마이페이지>구매내역에서 이용 가능합니다.						
 	
 							<br> <br> <br>
-							<!-- 버튼 시작 -->
+								<!-- 버튼 시작 -->
 							<div class="row">
-								<div class="col-md-4" style="margin-left: 20%">
+								<div class="col-md-4" style="margin-left: 15%">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
-										<div class="buttons-cart">
+
 										<div class="pink_button">
-													 <a href="#" style="width:200px; text-align:center">쇼핑 계속하기</a>
-											</div>
-											</div>
+											<input type="button" value="쇼핑 계속하기">
+										</div>
 									</div>
 								</div>
 
 								<div class="col-md-4" style="margin-right: 10%">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
-										<div class="buttons-cart">
 										<div class="pink_button">
-										<a href="#" style="width:200px; text-align:center">구매 내역 보기</a>
-											</div>
-											</div>
+											<input type="button" value="구매내역보기">
+										</div>
 									</div>
 
 								</div>
@@ -227,7 +193,6 @@ float:right; text-align:right; display: inline-block; font-weight:500;
 
 
 							<!-- 버튼 끝 -->
-
 						</div>
 
 					</form>

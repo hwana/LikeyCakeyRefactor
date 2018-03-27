@@ -20,6 +20,7 @@
 
 
 <!-- all css here -->
+<link rel="stylesheet" href="/resources/css/eunsong.css">
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="/resources/css/elegant-font.css">
@@ -40,6 +41,7 @@
 </head>
 
 <style>
+
 .th {
 	padding: 10px 2px;
 }
@@ -52,58 +54,6 @@ td{
 }
 
 
-input.text{
-	height: 30px !important;
-	width: 100% !important;
-	background-color: #eceff8 !important;
-}
-
-input.s_text{
-width:30px !important;
-	height: 30px !important;
-	background-color: #eceff8 !important;
-}
-
-
-.eceff8 {
-	background-color: #eceff8; /* #9bcaba */
-	border-bottom-color: #eceff8;
-	border-right-color: #eceff8;
-}
-
-.small_button{
-text-align: center; margin: 0 auto; width: 50px;
-}
-.pink_button>input {
-	background-color: #f6c6c9;
-	border: #f6c6c9;
-	color: #fff;
-	font-weight: 700;
-}
-
-.pink_button>input:hover {
-	background: #444444;
-	color: white;
-}
-
-.pink_button>a{
-text-align: center; height:30px; line-height: 30px;
-background-color: #f6c6c9;
-	border: #f6c6c9;
-	width:50px;
-	margin:0 auto;
-}
-
-.pink_button>a:hover {
-	background: #444444;
-}
-
-.text_right {
-	float: right;
-	text-align: right;
-	display: inline-block;
-	font-weight: 500;
-}
 </style>
 <body class="other-page">
 

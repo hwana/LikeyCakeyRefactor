@@ -19,6 +19,9 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="img/icon/favicon.ico">
 
+
+
+<link rel="stylesheet" href="/resources/css/eunsong.css">
 <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="/resources/css/elegant-font.css">
 <link rel="stylesheet"
@@ -32,7 +35,6 @@
 <link rel="stylesheet" href="/resources/css/jquery-ui.css">
 <link rel="stylesheet" href="/resources/css/shortcode/shortcodes.css">
 <link rel="stylesheet" href="/resources/css/style.css">
-<link rel="stylesheet" href="/resources/css/responsive.css">
 <script src="js/vendor/modernizr-2.8.3.min.js">
 	
 </script>
@@ -41,34 +43,10 @@ body {
 	text-align: center; /* Quirks Mode 를 위한 가운데 정렬 */
 }
 
-.derivery-area {
-	text-align: center;
-	margin-left: 10%;
-	margin-right: 10%;
-}
-
-.delivery-img {
-	margin-left: 0;
-	margin-right: 0;
-}
 
 th:first-child {
 	background-color: #eceff8; /* #f6c6c9; */
 	width: 20%;
-}
-
-
-
-.pink_button>input {
-	background-color: #f6c6c9;
-	border: #f6c6c9;
-	color: #fff;
-	font-weight: 700;
-}
-
-.pink_button>input:hover {
-	background: #444444;
-	color: white;
 }
 
 </style>

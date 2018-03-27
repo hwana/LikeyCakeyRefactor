@@ -20,6 +20,7 @@
 
 
 <!-- all css here -->
+<link rel="stylesheet" href="/resources/css/eunsong.css">
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="/resources/css/elegant-font.css">
@@ -40,30 +41,7 @@
 </head>
 
 <style>
-.eceff8 {
-	background-color: #eceff8; /* #9bcaba */
-	border-bottom-color: #eceff8;
-	border-right-color: #eceff8;
-}
 
-.pink_button>input {
-	background-color: #f6c6c9;
-	border: #f6c6c9;
-	color: #fff;
-	font-weight: 700;
-}
-
-.pink_button>input:hover {
-	background: #444444;
-	color: white;
-}
-
-.text_right {
-	float: right;
-	text-align: right;
-	display: inline-block;
-	font-weight: 500;
-}
 </style>
 <body class="other-page">
 
