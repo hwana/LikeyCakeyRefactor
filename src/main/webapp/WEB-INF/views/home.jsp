@@ -63,7 +63,7 @@
 									<ul id="nav">
 										<li><a href="index.html">Home</a></li>
 									
-										<li><a href="shop.html">CAKE</a>
+										<li><a href="cakelist.ca">CAKE</a>
 											<ul>
 												<li><a href="shop.html"><i class="arrow_carrot-right"></i> 모든 케이크</a></li>
 												<li><a href="shop-grid.html"><i class="arrow_carrot-right"></i> 빵 케이크</a></li>
