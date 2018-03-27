@@ -86,11 +86,11 @@ margin-top:10px;}
 								<label class="col-sm-3 control-label" for="inputCakeInfo">시트</label>
 								<div class="col-sm-6">
 									<input class="form-control" id="inputtag" type="text"
-										placeholder="태그입력">
+										placeholder="시트입력">
 										<input class="form-control" id="inputtag" type="text"
-										placeholder="태그입력">
+										placeholder="시트입력">
 										<input class="form-control" id="inputtag" type="text"
-										placeholder="태그입력">
+										placeholder="시트입력">
 									<button class="btn btn-success" type="button" id="search" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
 								</div>
 							</div>
@@ -99,11 +99,11 @@ margin-top:10px;}
 								<label class="col-sm-3 control-label" for="inputCakeInfo">토핑</label>
 								<div class="col-sm-6">
 									<input class="form-control" id="inputtag" type="text"
-										placeholder="태그입력">
+										placeholder="토핑입력">
 										<input class="form-control" id="inputtag" type="text"
-										placeholder="태그입력">
+										placeholder="토핑입력">
 										<input class="form-control" id="inputtag" type="text"
-										placeholder="태그입력">
+										placeholder="토핑입력">
 									<button class="btn btn-success" type="button" id="search" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
 								</div>
 							</div>
@@ -112,11 +112,37 @@ margin-top:10px;}
 								<label class="col-sm-3 control-label" for="inputCakeInfo">크림</label>
 								<div class="col-sm-6">
 									<input class="form-control" id="inputtag" type="text"
-										placeholder="태그입력">
+										placeholder="크림입력">
 										<input class="form-control" id="inputtag" type="text"
-										placeholder="태그입력">
+										placeholder="크림입력">
 										<input class="form-control" id="inputtag" type="text"
-										placeholder="태그입력">
+										placeholder="크림입력">
+									<button class="btn btn-success" type="button" id="search" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="inputCakeInfo">규격</label>
+								<div class="col-sm-6">
+									<input class="form-control" id="inputtag" type="text"
+										placeholder="케이크 호수를 입력해주세요 ex)1호">
+										<input class="form-control" id="inputtag" type="text"
+										placeholder="케이크 호수를 입력해주세요 ex)2호">
+										<input class="form-control" id="inputtag" type="text"
+										placeholder="케이크 호수를 입력해주세요 ex)3호">
+									<button class="btn btn-success" type="button" id="search" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="inputCakeInfo">사이즈</label>
+								<div class="col-sm-6">
+									<input class="form-control" id="inputtag" type="text"
+										placeholder="케이크 사이즈를 입력해주세요 ex)30*30*10(cm)">
+										<input class="form-control" id="inputtag" type="text"
+										placeholder="케이크 사이즈를 입력해주세요 ex)30*30*10(cm)">
+										<input class="form-control" id="inputtag" type="text"
+										placeholder="케이크 사이즈를 입력해주세요 ex)30*30*10(cm)">
 									<button class="btn btn-success" type="button" id="search" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
 								</div>
 							</div>

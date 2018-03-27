@@ -64,12 +64,28 @@ hr{
 				</h1>
 			</div>
 			<form class="form-horizontal">
+			
+			<div class="form-group">
+					<label class="col-sm-3 control-label" for="inputPhoto">업체사진</label>
+					<div class="col-sm-4">
+						<input class="form-control" id="inputPhoto" type="text"
+							placeholder="업체사진">
+							
+							</div>
+							<button class="btn btn-success" type="button" id="search">
+									사진등록</button>
+					
+				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label" for="inputID">아이디</label>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<input class="form-control" id="inputID" type="text"
 							placeholder="아이디">
-					</div>
+							
+							</div>
+							<button class="btn btn-success" type="button" id="search">
+									중복검사</button>
+					
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
