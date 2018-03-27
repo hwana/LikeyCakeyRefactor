@@ -118,12 +118,28 @@
 														2018.03.24 18:00</td>
 														<td class="product-price"><span class="amount">
 														<a href="#">배송 상태(택배 현황과 연결하기)</a></span></td>
-														<td class="product-subtotal">구매 취소</td>
+														<td class="product-subtotal">
+														
+														<!-- 배송지 수정 버튼 시작 -->
+														<div class="pink_button">
+															<input type="button" value="구매취소" style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
+														</div>
+														<!-- 배송지 수정 버튼 끝 -->
+														
+														</td>
 													</tr>
 													<tr>
 														<td class="product-thumbnail">주문번호<br>2032626747</td>
 														<td colspan="6">배송지 정보 : 김은송, (444-222)경기도 수원시 영통구 삼대 한보아파트
-														<br> 배송지 수정 버튼
+														<br>
+														<!-- 배송지 수정 버튼 시작 -->
+														<div class="pink_button">
+															<input type="button" value="배송지 수정" style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
+														</div>
+														<!-- 배송지 수정 버튼 끝 -->
+												
+												</div>
+												
 														</td>
 													</tr>
 												</tbody>

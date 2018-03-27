@@ -41,7 +41,6 @@
 </head>
 
 <style>
-
 </style>
 <body class="other-page">
 
@@ -80,8 +79,7 @@
 
 							</div>
 							<!-- 장바구니 창 -->
-							<br>
-							<br>
+							<br> <br>
 							<!-- 장바구니 시작 -->
 							<div class="row">
 								<h3>주문 상품 정보</h3>
@@ -135,20 +133,29 @@
 												</tbody>
 											</table>
 										</div>
-<!-- 장바구니 끝 -->
-<!-- 버튼, 총 금액 시작 -->
+										<!-- 장바구니 끝 -->
+										<!-- 버튼, 총 금액 시작 -->
 
 
 										<div class="row">
 											<div class="col-md-8 col-sm-7 col-xs-12">
-														<br><br><br><br><br><br>	
+												<br>
+												<br>
+												<br>
+												<br>
+												<br>
+												<br>
 												<div class="buttons-cart">
-												<div class="pink_button">
-													<input type="submit" value="구매하기" style="width:200px;">
-													 <a href="#" style="width:200px; text-align:center">쇼핑 계속하기</a>
+												
+														<div class="pink_button">
+															<input type="button" value="구매하기" style="width: 200px;">
+															<input type="button" value="쇼핑 계속하기"
+																style="width: 200px;">
+															<!--  <a href="#" style="width:200px; text-align:center">쇼핑 계속하기</a> -->
+														</div>
+												
 												</div>
-												</div>
-											
+
 											</div>
 											<div class="col-md-4 col-sm-5 col-xs-12">
 												<div class="cart_totals">

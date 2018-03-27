@@ -45,7 +45,7 @@ body {
 
 
 th:first-child {
-	background-color: #eceff8; /* #f6c6c9; */
+	background-color: #9bcaba; /* #f6c6c9; */
 	width: 20%;
 }
 

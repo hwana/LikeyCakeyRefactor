@@ -5,9 +5,9 @@
 /* ============= 2. Category Banner ============= */
 
 .eceff8 {
-	background-color: #eceff8; /* #9bcaba */
-	border-bottom-color: #eceff8;
-	border-right-color: #eceff8;
+	background-color: #9bcaba; /* #9bcaba */
+	border-bottom-color: #9bcaba;
+	border-right-color: #9bcaba;
 }
 
 
@@ -39,21 +39,14 @@ width:30px;
 	background-color: #eceff8 !important;
 }
 
-
-.eceff8 {
-	background-color: #eceff8; /* #9bcaba */
-	border-bottom-color: #eceff8;
-	border-right-color: #eceff8;
-}
-
 .small_button{
 text-align: center; margin: 0 auto; width: 50px;
 }
 .pink_button>input {
-	background-color: #f6c6c9;
-	border: #f6c6c9;
-	color: #fff;
-	font-weight: 700;
+	background-color: #f6c6c9 !important;
+	border: #f6c6c9 !important;
+	color: #fff !important;
+	font-weight: 700 !important;
 }
 .pink_button>a{
 text-align: center; 
@@ -66,8 +59,8 @@ background-color: #f6c6c9 !important;
 }
 
 .pink_button>input:hover {
-	background: #444444;
-	color: white;
+	background: #444444 !important;
+	color: white !important;
 }
 
 
