@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
@@ -16,7 +16,6 @@
 	</bean>
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- DataSource 등록은 서버연동과 같이 이루어져야 하므로, root에서 하는 것이 옳다. -->
-	<!-- 데이터베이스 연동을 위한 자바 객체 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<!-- destroy-method 는 주어진 세션을 자동으로 close 하라는 뜻 -->
@@ -51,7 +50,7 @@
 	<!-- AOP 추가 // xmlns:aop="http://www.springframework.org/schema/aop" -->
 	<aop:config proxy-target-class="true">
 		<aop:pointcut id="serviceMethod"
-			expression="execution(* com.dal.likeycakey.finalPractice..*ServiceImpl.*(..)))" />
+			expression="execution(* com.dal.likeycakey..*ServiceImpl.*(..)))" />
 		<aop:advisor id="transactionAdvisor" pointcut-ref="serviceMethod"
 			advice-ref="txAdvice" />
 	</aop:config>
