@@ -51,36 +51,7 @@
 			<div class="row">
 				<div class="content-full ptb-50 fix">
 					<!-- Left Side Start -->
-					<div class="col-md-2">
-						<div class="right-area">
-							<div class="product-filter">
-								<!-- Category Product -->
-								<div class="category">
-									<h4>MY PAGE</h4>
-									<div class="category-list mt-20">
-										<ul>
-											<!-- li style="border-bottom:0px;" << 라인 없애기 -->
-											<li style="border-bottom: 0px;"><a href="#"><i
-													class="zmdi zmdi-chevron-right"></i>구입내역</a></li>
-											<li style="border-bottom: 0px;"><a
-												href="memberMypage.ca"><i
-													class="zmdi zmdi-chevron-right"></i>회원정보수정</a></li>
-											<li style="border-bottom: 0px;"><a href="m_home_qna.ca"><i
-													class="zmdi zmdi-chevron-right"></i>내 문의글</a></li>
-											<li style="border-bottom: 0px;"><a
-												href="m_product_qna.ca"><i
-													class="zmdi zmdi-chevron-right"></i>내 Q&A</a></li>
-											<li style="border-bottom: 0px;"><a href="m_like_list.ca"><i
-													class="zmdi zmdi-chevron-right"></i>좋아요 목록</a></li>
-											<li style="border-bottom: 0px;"><a
-												href="m_my_postscript.ca"><i
-													class="zmdi zmdi-chevron-right"></i>내가 쓴 후기</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<%@ include file = "leftside.jsp" %>
 					<!-- Left Side End -->
 
 
@@ -99,593 +70,341 @@
 									<!-- Right Side Start -->
 									<div class="col-md-10">
 										<div class="tab-content">
-												<div class="shop-tab-area">
-													<div class="row">
-														<!-- Single Product Start -->
-														<div class="col-md-4 col-sm-6">
-															<div class="single-product style-two mb-50">
-																<div class="single-img">
-																	<a href="#"><img src="/resources/img/shop-grid/1.jpg" alt="" /></a>
-																	<span class="pro-level">Sale</span>
-																	<div class="hover-content text-center">
-																		<ul>
-																			<li><a href="#" class="icon_refresh"></a></li>
-																			<li><a href="#" class="icon_cart_alt "></a></li>
-																			<li><a href="#" class="icon_heart_alt"></a></li>
-																			<li><a title="Quick View" href="#"
-																				data-toggle="modal" data-target="#productModal"
-																				class="icon_search"></a></li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="product-details mt-20">
-																	<h4>
-																		<a href="single-product.html">Sun Skin</a><span>kajol
-																			& eyeliner</span>
-																	</h4>
-																	<div class="rating-box">
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																	</div>
-																	<div class="price-box">
-																		<span class="old-price">$40.00</span> <span
-																			class="new-price"> - $80.00</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- Single Product End -->
-														<!-- Single Product Start -->
-														<div class="col-md-4 col-sm-6">
-															<div class="single-product style-two mb-50">
-																<div class="single-img">
-																	<a href="#"><img src="/resources/img/shop-grid/2.jpg" alt="" /></a>
-																	<div class="hover-content text-center">
-																		<ul>
-																			<li><a href="#" class="icon_refresh"></a></li>
-																			<li><a href="#" class="icon_cart_alt "></a></li>
-																			<li><a href="#" class="icon_heart_alt"></a></li>
-																			<li><a title="Quick View" href="#"
-																				data-toggle="modal" data-target="#productModal"
-																				class="icon_search"></a></li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="product-details mt-20">
-																	<h4>
-																		<a href="single-product.html">Double site Mirror</a><span>Blashan
-																			Brush</span>
-																	</h4>
-																	<div class="rating-box">
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																	</div>
-																	<div class="price-box">
-																		<span class="new-price">$70.00</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- Single Product End -->
-														<!-- Single Product Start -->
-														<div class="col-md-4 col-sm-6">
-															<div class="single-product style-two mb-50">
-																<div class="single-img">
-																	<a href="#"><img
-																		src="/resources/img/shop-grid/3.jpg" alt="" /></a>
-																	<div class="hover-content text-center">
-																		<ul>
-																			<li><a href="#" class="icon_refresh"></a></li>
-																			<li><a href="#" class="icon_cart_alt "></a></li>
-																			<li><a href="#" class="icon_heart_alt"></a></li>
-																			<li><a title="Quick View" href="#"
-																				data-toggle="modal" data-target="#productModal"
-																				class="icon_search"></a></li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="product-details mt-20">
-																	<h4>
-																		<a href="single-product.html">Punch Clip</a><span>kajol
-																			& eyeliner</span>
-																	</h4>
-																	<div class="rating-box">
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																	</div>
-																	<div class="price-box">
-																		<span class="new-price">$15.00</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- Single Product End -->
-														<!-- Single Product Start -->
-														<div class="col-md-4 col-sm-6">
-															<div class="single-product style-two mb-50">
-																<div class="single-img">
-																	<a href="#"><img
-																		src="/resources/img/shop-grid/4.jpg" alt="" /></a>
-																	<div class="hover-content text-center">
-																		<ul>
-																			<li><a href="#" class="icon_refresh"></a></li>
-																			<li><a href="#" class="icon_cart_alt "></a></li>
-																			<li><a href="#" class="icon_heart_alt"></a></li>
-																			<li><a title="Quick View" href="#"
-																				data-toggle="modal" data-target="#productModal"
-																				class="icon_search"></a></li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="product-details mt-20">
-																	<h4>
-																		<a href="single-product.html">Beauty Brush</a><span>Blashan
-																			Brush</span>
-																	</h4>
-																	<div class="rating-box">
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																	</div>
-																	<div class="price-box">
-																		<span class="new-price">$40.00</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- Single Product End -->
-														<!-- Single Product Start -->
-														<div class="col-md-4 col-sm-6">
-															<div class="single-product style-two mb-50">
-																<div class="single-img">
-																	<a href="#"><img
-																		src="/resources/img/shop-grid/5.jpg" alt="" /></a>
-																	<div class="hover-content text-center">
-																		<ul>
-																			<li><a href="#" class="icon_refresh"></a></li>
-																			<li><a href="#" class="icon_cart_alt "></a></li>
-																			<li><a href="#" class="icon_heart_alt"></a></li>
-																			<li><a title="Quick View" href="#"
-																				data-toggle="modal" data-target="#productModal"
-																				class="icon_search"></a></li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="product-details mt-20">
-																	<h4>
-																		<a href="single-product.html">Beauty Brush</a><span>kajol
-																			& eyeliner</span>
-																	</h4>
-																	<div class="rating-box">
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																	</div>
-																	<div class="price-box">
-																		<span class="new-price"> $50.00</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- Single Product End -->
-														<!-- Single Product Start -->
-														<div class="col-md-4 col-sm-6">
-															<div class="single-product style-two mb-50">
-																<div class="single-img">
-																	<a href="#"><img
-																		src="/resources/img/shop-grid/6.jpg" alt="" /></a> <span
-																		class="pro-level">New</span>
-																	<div class="hover-content text-center">
-																		<ul>
-																			<li><a href="#" class="icon_refresh"></a></li>
-																			<li><a href="#" class="icon_cart_alt "></a></li>
-																			<li><a href="#" class="icon_heart_alt"></a></li>
-																			<li><a title="Quick View" href="#"
-																				data-toggle="modal" data-target="#productModal"
-																				class="icon_search"></a></li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="product-details mt-20">
-																	<h4>
-																		<a href="single-product.html">Beauty Brush</a><span>Blashan
-																			Brush</span>
-																	</h4>
-																	<div class="rating-box">
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																	</div>
-																	<div class="price-box">
-																		<span class="old-price">$90.00</span> <span
-																			class="new-price"> - $80.00</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- Single Product End -->
-														<!-- Single Product Start -->
-														<div class="col-md-4 col-sm-6">
-															<div class="single-product style-two mb-50 res-mb-0">
-																<div class="single-img">
-																	<a href="#"><img
-																		src="/resources/img/shop-grid/7.jpg" alt="" /></a> <span
-																		class="pro-level">New</span>
-																	<div class="hover-content text-center">
-																		<ul>
-																			<li><a href="#" class="icon_refresh"></a></li>
-																			<li><a href="#" class="icon_cart_alt "></a></li>
-																			<li><a href="#" class="icon_heart_alt"></a></li>
-																			<li><a title="Quick View" href="#"
-																				data-toggle="modal" data-target="#productModal"
-																				class="icon_search"></a></li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="product-details mt-20">
-																	<h4>
-																		<a href="single-product.html">Beauty Brush</a><span>Blashan
-																			Brush</span>
-																	</h4>
-																	<div class="rating-box">
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																	</div>
-																	<div class="price-box">
-																		<span class="old-price">$90.00</span> <span
-																			class="new-price"> - $80.00</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- Single Product End -->
-														<!-- Single Product Start -->
-														<div class="col-md-4 col-sm-6">
-															<div class="single-product style-two mb-50 res-mb-0">
-																<div class="single-img">
-																	<a href="#"><img
-																		src="/resources/img/shop-grid/8.jpg" alt="" /></a> <span
-																		class="pro-level">New</span>
-																	<div class="hover-content text-center">
-																		<ul>
-																			<li><a href="#" class="icon_refresh"></a></li>
-																			<li><a href="#" class="icon_cart_alt "></a></li>
-																			<li><a href="#" class="icon_heart_alt"></a></li>
-																			<li><a title="Quick View" href="#"
-																				data-toggle="modal" data-target="#productModal"
-																				class="icon_search"></a></li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="product-details mt-20">
-																	<h4>
-																		<a href="single-product.html">Beauty Brush</a><span>Blashan
-																			Brush</span>
-																	</h4>
-																	<div class="rating-box">
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																	</div>
-																	<div class="price-box">
-																		<span class="old-price">$90.00</span> <span
-																			class="new-price"> - $80.00</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- Single Product End -->
-														<!-- Single Product Start -->
-														<div class="col-md-4 col-sm-6 hidden-sm">
-															<div class="single-product style-two mb-50 sm-m-0">
-																<div class="single-img">
-																	<a href="#"><img
-																		src="/resources/img/shop-grid/9.jpg" alt="" /></a> <span
-																		class="pro-level">New</span>
-																	<div class="hover-content text-center">
-																		<ul>
-																			<li><a href="#" class="icon_refresh"></a></li>
-																			<li><a href="#" class="icon_cart_alt "></a></li>
-																			<li><a href="#" class="icon_heart_alt"></a></li>
-																			<li><a title="Quick View" href="#"
-																				data-toggle="modal" data-target="#productModal"
-																				class="icon_search"></a></li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="product-details mt-20">
-																	<h4>
-																		<a href="single-product.html">Beauty Brush</a><span>Blashan
-																			Brush</span>
-																	</h4>
-																	<div class="rating-box">
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																	</div>
-																	<div class="price-box">
-																		<span class="old-price">$90.00</span> <span
-																			class="new-price"> - $80.00</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<!-- Single Product End -->
-													</div>
-												</div>
-											</div>
-											<div id="list" class="shop-right pt-35 tab-pane fade">
+											<div class="shop-tab-area">
 												<div class="row">
-													<!-- Single product -->
-													<div class="col-md-12">
-														<div class="blog-single mb-50">
-															<div class="blog-img">
-																<img src="/resources/img/shop-list/1.jpg" alt="" /> <a
-																	href="#" class="icon_link"></a> <span class="pro-level">New</span>
-															</div>
-															<div class="product-contnt">
-																<div class="product-info">
-																	<div class="pro-titel">
-																		<span>cream & body care</span>
-																		<h4>
-																			<a href="single-product.html">Sun Skin</a>
-																		</h4>
-																	</div>
-																	<div class="pro-rate text-right">
-																		<div class="rating-box">
-																			<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																			<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																			<i class="fa fa-star"></i>
-																		</div>
-																		<div class="price-box">
-																			<span class="old-price">$40.00</span> <span
-																				class="new-price"> - $80.00</span>
-																		</div>
-																	</div>
-																</div>
-																<div class="pro-text">
-																	<p>Lorem ipsum dolor tempor incididunt ut labore et
-																		dolore magna aliqua. Ut enim ad minim veniam, quis
-																		nostrud exerc tation ullamco labori ut aliquip ex ea
-																		commodo consequat.</p>
-																</div>
-																<div class="pro-social-cart">
+													<!-- Single Product Start -->
+													<div class="col-md-4 col-sm-6">
+														<div class="single-product style-two mb-50">
+															<div class="single-img">
+																<a href="#"><img
+																	src="/resources/img/shop-grid/1.jpg" alt="" /></a> <span
+																	class="pro-level">Sale</span>
+																<div class="hover-content text-center">
 																	<ul>
 																		<li><a href="#" class="icon_refresh"></a></li>
+																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
 																			class="icon_search"></a></li>
 																	</ul>
-																	<div class="pro-cart">
-																		<a href="#">Add To Cart <span class="icon-left"
-																			data-icon="&#x24;"></span></a>
-																	</div>
+																</div>
+															</div>
+															<div class="product-details mt-20">
+																<h4>
+																	<a href="single-product.html">Sun Skin</a><span>kajol
+																		& eyeliner</span>
+																</h4>
+																<div class="rating-box">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i>
+																</div>
+																<div class="price-box">
+																	<span class="old-price">$40.00</span> <span
+																		class="new-price"> - $80.00</span>
 																</div>
 															</div>
 														</div>
 													</div>
-													<!-- Single product -->
-													<!-- Single product -->
-													<div class="col-md-12">
-														<div class="blog-single mb-50">
-															<div class="blog-img">
-																<img src="/resources/img/shop-list/2.jpg" alt="" /> <a
-																	href="#" class="icon_link"></a>
-															</div>
-															<div class="product-contnt">
-																<div class="product-info">
-																	<div class="pro-titel">
-																		<span>cream & body care</span>
-																		<h4>
-																			<a href="single-product.html">Sun Skin</a>
-																		</h4>
-																	</div>
-																	<div class="pro-rate text-right">
-																		<div class="rating-box">
-																			<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																			<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																			<i class="fa fa-star"></i>
-																		</div>
-																		<div class="price-box">
-																			<span class="old-price">$40.00</span> <span
-																				class="new-price"> - $80.00</span>
-																		</div>
-																	</div>
-																</div>
-																<div class="pro-text">
-																	<p>Lorem ipsum dolor tempor incididunt ut labore et
-																		dolore magna aliqua. Ut enim ad minim veniam, quis
-																		nostrud exerc tation ullamco labori ut aliquip ex ea
-																		commodo consequat.</p>
-																</div>
-																<div class="pro-social-cart">
+													<!-- Single Product End -->
+													<!-- Single Product Start -->
+													<div class="col-md-4 col-sm-6">
+														<div class="single-product style-two mb-50">
+															<div class="single-img">
+																<a href="#"><img
+																	src="/resources/img/shop-grid/2.jpg" alt="" /></a>
+																<div class="hover-content text-center">
 																	<ul>
 																		<li><a href="#" class="icon_refresh"></a></li>
+																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
 																			class="icon_search"></a></li>
 																	</ul>
-																	<div class="pro-cart">
-																		<a href="#">Add To Cart <span class="icon-left"
-																			data-icon="&#x24;"></span></a>
-																	</div>
+																</div>
+															</div>
+															<div class="product-details mt-20">
+																<h4>
+																	<a href="single-product.html">Double site Mirror</a><span>Blashan
+																		Brush</span>
+																</h4>
+																<div class="rating-box">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i>
+																</div>
+																<div class="price-box">
+																	<span class="new-price">$70.00</span>
 																</div>
 															</div>
 														</div>
 													</div>
-													<!-- Single product -->
-													<!-- Single product -->
-													<div class="col-md-12">
-														<div class="blog-single mb-50">
-															<div class="blog-img">
-																<img src="/resources/img/shop-list/3.jpg" alt="" /> <a
-																	href="#" class="icon_link"></a>
-															</div>
-															<div class="product-contnt">
-																<div class="product-info">
-																	<div class="pro-titel">
-																		<span>cream & body care</span>
-																		<h4>
-																			<a href="single-product.html">Sun Skin</a>
-																		</h4>
-																	</div>
-																	<div class="pro-rate text-right">
-																		<div class="rating-box">
-																			<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																			<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																			<i class="fa fa-star"></i>
-																		</div>
-																		<div class="price-box">
-																			<span class="old-price">$40.00</span> <span
-																				class="new-price"> - $80.00</span>
-																		</div>
-																	</div>
-																</div>
-																<div class="pro-text">
-																	<p>Lorem ipsum dolor tempor incididunt ut labore et
-																		dolore magna aliqua. Ut enim ad minim veniam, quis
-																		nostrud exerc tation ullamco labori ut aliquip ex ea
-																		commodo consequat.</p>
-																</div>
-																<div class="pro-social-cart">
+													<!-- Single Product End -->
+													<!-- Single Product Start -->
+													<div class="col-md-4 col-sm-6">
+														<div class="single-product style-two mb-50">
+															<div class="single-img">
+																<a href="#"><img
+																	src="/resources/img/shop-grid/3.jpg" alt="" /></a>
+																<div class="hover-content text-center">
 																	<ul>
 																		<li><a href="#" class="icon_refresh"></a></li>
+																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
 																			class="icon_search"></a></li>
 																	</ul>
-																	<div class="pro-cart">
-																		<a href="#">Add To Cart <span class="icon-left"
-																			data-icon="&#x24;"></span></a>
-																	</div>
+																</div>
+															</div>
+															<div class="product-details mt-20">
+																<h4>
+																	<a href="single-product.html">Punch Clip</a><span>kajol
+																		& eyeliner</span>
+																</h4>
+																<div class="rating-box">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i>
+																</div>
+																<div class="price-box">
+																	<span class="new-price">$15.00</span>
 																</div>
 															</div>
 														</div>
 													</div>
-													<!-- Single product -->
-													<!-- Single product -->
-													<div class="col-md-12">
-														<div class="blog-single mb-50">
-															<div class="blog-img">
-																<img src="/resources/img/shop-list/4.jpg" alt="" /> <a
-																	href="#" class="icon_link"></a> <span class="pro-level">New</span>
-															</div>
-															<div class="product-contnt">
-																<div class="product-info">
-																	<div class="pro-titel">
-																		<span>cream & body care</span>
-																		<h4>
-																			<a href="single-product.html">Sun Skin</a>
-																		</h4>
-																	</div>
-																	<div class="pro-rate text-right">
-																		<div class="rating-box">
-																			<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																			<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																			<i class="fa fa-star"></i>
-																		</div>
-																		<div class="price-box">
-																			<span class="old-price">$40.00</span> <span
-																				class="new-price"> - $80.00</span>
-																		</div>
-																	</div>
-																</div>
-																<div class="pro-text">
-																	<p>Lorem ipsum dolor tempor incididunt ut labore et
-																		dolore magna aliqua. Ut enim ad minim veniam, quis
-																		nostrud exerc tation ullamco labori ut aliquip ex ea
-																		commodo consequat.</p>
-																</div>
-																<div class="pro-social-cart">
+													<!-- Single Product End -->
+													<!-- Single Product Start -->
+													<div class="col-md-4 col-sm-6">
+														<div class="single-product style-two mb-50">
+															<div class="single-img">
+																<a href="#"><img
+																	src="/resources/img/shop-grid/4.jpg" alt="" /></a>
+																<div class="hover-content text-center">
 																	<ul>
 																		<li><a href="#" class="icon_refresh"></a></li>
+																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
 																			class="icon_search"></a></li>
 																	</ul>
-																	<div class="pro-cart">
-																		<a href="#">Add To Cart <span class="icon-left"
-																			data-icon="&#x24;"></span></a>
-																	</div>
+																</div>
+															</div>
+															<div class="product-details mt-20">
+																<h4>
+																	<a href="single-product.html">Beauty Brush</a><span>Blashan
+																		Brush</span>
+																</h4>
+																<div class="rating-box">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i>
+																</div>
+																<div class="price-box">
+																	<span class="new-price">$40.00</span>
 																</div>
 															</div>
 														</div>
 													</div>
-													<!-- Single product -->
-													<!-- Single product -->
-													<div class="col-md-12">
-														<div class="blog-single mb-50">
-															<div class="blog-img">
-																<img src="/resources/img/shop-list/5.jpg" alt="" /> <a
-																	href="#" class="icon_link"></a> <span class="pro-level">New</span>
-															</div>
-															<div class="product-contnt">
-																<div class="product-info">
-																	<div class="pro-titel">
-																		<span>cream & body care</span>
-																		<h4>
-																			<a href="single-product.html">Sun Skin</a>
-																		</h4>
-																	</div>
-																	<div class="pro-rate text-right">
-																		<div class="rating-box">
-																			<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																			<i class="fa fa-star"></i> <i class="fa fa-star"></i>
-																			<i class="fa fa-star"></i>
-																		</div>
-																		<div class="price-box">
-																			<span class="old-price">$40.00</span> <span
-																				class="new-price"> - $80.00</span>
-																		</div>
-																	</div>
-																</div>
-																<div class="pro-text">
-																	<p>Lorem ipsum dolor tempor incididunt ut labore et
-																		dolore magna aliqua. Ut enim ad minim veniam, quis
-																		nostrud exerc tation ullamco labori ut aliquip ex ea
-																		commodo consequat.</p>
-																</div>
-																<div class="pro-social-cart">
+													<!-- Single Product End -->
+													<!-- Single Product Start -->
+													<div class="col-md-4 col-sm-6">
+														<div class="single-product style-two mb-50">
+															<div class="single-img">
+																<a href="#"><img
+																	src="/resources/img/shop-grid/5.jpg" alt="" /></a>
+																<div class="hover-content text-center">
 																	<ul>
 																		<li><a href="#" class="icon_refresh"></a></li>
+																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
 																			class="icon_search"></a></li>
 																	</ul>
-																	<div class="pro-cart">
-																		<a href="#">Add To Cart <span class="icon-left"
-																			data-icon="&#x24;"></span></a>
-																	</div>
+																</div>
+															</div>
+															<div class="product-details mt-20">
+																<h4>
+																	<a href="single-product.html">Beauty Brush</a><span>kajol
+																		& eyeliner</span>
+																</h4>
+																<div class="rating-box">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i>
+																</div>
+																<div class="price-box">
+																	<span class="new-price"> $50.00</span>
 																</div>
 															</div>
 														</div>
 													</div>
-													<!-- Single product -->
+													<!-- Single Product End -->
+													<!-- Single Product Start -->
+													<div class="col-md-4 col-sm-6">
+														<div class="single-product style-two mb-50">
+															<div class="single-img">
+																<a href="#"><img
+																	src="/resources/img/shop-grid/6.jpg" alt="" /></a> <span
+																	class="pro-level">New</span>
+																<div class="hover-content text-center">
+																	<ul>
+																		<li><a href="#" class="icon_refresh"></a></li>
+																		<li><a href="#" class="icon_cart_alt "></a></li>
+																		<li><a href="#" class="icon_heart_alt"></a></li>
+																		<li><a title="Quick View" href="#"
+																			data-toggle="modal" data-target="#productModal"
+																			class="icon_search"></a></li>
+																	</ul>
+																</div>
+															</div>
+															<div class="product-details mt-20">
+																<h4>
+																	<a href="single-product.html">Beauty Brush</a><span>Blashan
+																		Brush</span>
+																</h4>
+																<div class="rating-box">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i>
+																</div>
+																<div class="price-box">
+																	<span class="old-price">$90.00</span> <span
+																		class="new-price"> - $80.00</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- Single Product End -->
+													<!-- Single Product Start -->
+													<div class="col-md-4 col-sm-6">
+														<div class="single-product style-two mb-50 res-mb-0">
+															<div class="single-img">
+																<a href="#"><img
+																	src="/resources/img/shop-grid/7.jpg" alt="" /></a> <span
+																	class="pro-level">New</span>
+																<div class="hover-content text-center">
+																	<ul>
+																		<li><a href="#" class="icon_refresh"></a></li>
+																		<li><a href="#" class="icon_cart_alt "></a></li>
+																		<li><a href="#" class="icon_heart_alt"></a></li>
+																		<li><a title="Quick View" href="#"
+																			data-toggle="modal" data-target="#productModal"
+																			class="icon_search"></a></li>
+																	</ul>
+																</div>
+															</div>
+															<div class="product-details mt-20">
+																<h4>
+																	<a href="single-product.html">Beauty Brush</a><span>Blashan
+																		Brush</span>
+																</h4>
+																<div class="rating-box">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i>
+																</div>
+																<div class="price-box">
+																	<span class="old-price">$90.00</span> <span
+																		class="new-price"> - $80.00</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- Single Product End -->
+													<!-- Single Product Start -->
+													<div class="col-md-4 col-sm-6">
+														<div class="single-product style-two mb-50 res-mb-0">
+															<div class="single-img">
+																<a href="#"><img
+																	src="/resources/img/shop-grid/8.jpg" alt="" /></a> <span
+																	class="pro-level">New</span>
+																<div class="hover-content text-center">
+																	<ul>
+																		<li><a href="#" class="icon_refresh"></a></li>
+																		<li><a href="#" class="icon_cart_alt "></a></li>
+																		<li><a href="#" class="icon_heart_alt"></a></li>
+																		<li><a title="Quick View" href="#"
+																			data-toggle="modal" data-target="#productModal"
+																			class="icon_search"></a></li>
+																	</ul>
+																</div>
+															</div>
+															<div class="product-details mt-20">
+																<h4>
+																	<a href="single-product.html">Beauty Brush</a><span>Blashan
+																		Brush</span>
+																</h4>
+																<div class="rating-box">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i>
+																</div>
+																<div class="price-box">
+																	<span class="old-price">$90.00</span> <span
+																		class="new-price"> - $80.00</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- Single Product End -->
+													<!-- Single Product Start -->
+													<div class="col-md-4 col-sm-6 hidden-sm">
+														<div class="single-product style-two mb-50 sm-m-0">
+															<div class="single-img">
+																<a href="#"><img
+																	src="/resources/img/shop-grid/9.jpg" alt="" /></a> <span
+																	class="pro-level">New</span>
+																<div class="hover-content text-center">
+																	<ul>
+																		<li><a href="#" class="icon_refresh"></a></li>
+																		<li><a href="#" class="icon_cart_alt "></a></li>
+																		<li><a href="#" class="icon_heart_alt"></a></li>
+																		<li><a title="Quick View" href="#"
+																			data-toggle="modal" data-target="#productModal"
+																			class="icon_search"></a></li>
+																	</ul>
+																</div>
+															</div>
+															<div class="product-details mt-20">
+																<h4>
+																	<a href="single-product.html">Beauty Brush</a><span>Blashan
+																		Brush</span>
+																</h4>
+																<div class="rating-box">
+																	<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+																		class="fa fa-star"></i>
+																</div>
+																<div class="price-box">
+																	<span class="old-price">$90.00</span> <span
+																		class="new-price"> - $80.00</span>
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- Single Product End -->
 												</div>
 											</div>
 										</div>
 									</div>
-									<!-- Right Side End -->
 								</div>
+								<!-- Right Side End -->
 							</div>
 						</div>
 					</div>
-					<!-- Right Side End -->
+				</div>
+				<!-- Right Side End -->
 
 
 
-					<!-- 페이징 처리 필요하면 이거 틀 사용해서 만들기!!! -->
-					<!-- Page Pagination Start -->
-					<!-- <div class="col-md-12 col-sm-12">
+				<!-- 페이징 처리 필요하면 이거 틀 사용해서 만들기!!! -->
+				<!-- Page Pagination Start -->
+				<!-- <div class="col-md-12 col-sm-12">
 						<div class="page-pagination text-center pt-55 res-tb-25">
 							<ul>
 								<li class="active"><a href="#">1</a></li>
@@ -697,9 +416,9 @@
 							</ul>
 						</div>
 					</div> -->
-					<!-- Page Pagination End -->
-				</div>
+				<!-- Page Pagination End -->
 			</div>
+		</div>
 		</div>
 	</section>
 	<!-- Page Content Wraper Area End -->
