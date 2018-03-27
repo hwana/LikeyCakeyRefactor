@@ -62,8 +62,6 @@
 								<nav>
 									<ul id="nav">
 										<li><a href="index.html">Home</a></li>
-									
-<<<<<<< HEAD
 										<li><a href="cakelist.ca">CAKE</a>
 											<ul>
 												<li><a href="shop.html"><i class="arrow_carrot-right"></i> 모든 케이크</a></li>
@@ -80,9 +78,9 @@
 											</ul>
 										</li> -->
 								
-									<li><a href="#">SHOP</a>
+									<li><a href="hostpage.ca">SHOP</a>
 										<ul>
-											<li><a href="shop.html"><i class="arrow_carrot-right"></i> 케이크 가게 모아보기</a></li>
+											<li><a href="hostpage.ca"><i class="arrow_carrot-right"></i> 케이크 가게 모아보기</a></li>
 										</ul>
 									</li>
 										
