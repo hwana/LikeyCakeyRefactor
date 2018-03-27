@@ -87,7 +87,7 @@ td{
 							<br> <br>
 							<!-- 회원 정보 리스트 시작 -->
 							<div class="row">
-								<h3>회원 정보</h3>
+								<h3>사업장 정보</h3>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<form action="#">
 
@@ -179,17 +179,17 @@ td{
 
 							<!-- 버튼 시작 -->
 							<div class="row">
-								<div class="col-md-4" style="margin-left: 15%">
+								<div class="col-md-4" style="width:20%; margin-left:30%">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 
 										<div class="pink_button">
-											<input type="submit" value="선택한 회원 삭제하기">
+											<input type="submit" value="선택한 사업장 삭제하기">
 										</div>
 									</div>
 								</div>
 
-								<div class="col-md-4" style="margin-right: 10%">
+								<div class="col-md-4" style="width:20%;">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 										<div class="pink_button">

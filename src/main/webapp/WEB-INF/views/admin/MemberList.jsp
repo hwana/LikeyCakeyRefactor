@@ -89,7 +89,16 @@ td{
 							<br> <br>
 							<!-- 회원 정보 리스트 시작 -->
 							<div class="row">
-								<h3>회원 정보</h3>
+								<h3>회원 정보
+								
+								<!-- 회원 상태 설명 시작 -->
+									<div class="checkout-form-list create-acc"
+										style="margin-bottom: 0px; float: right">
+										<label style="color:#9bcaba">1.일반 2.경고 3.블랙리스트 4.탈퇴</label>
+									</div>
+									<!-- 회원 상태 설명 끝 -->
+								
+								</h3>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<form action="#">
 
@@ -112,6 +121,8 @@ td{
 														<th class="product-thumbnail eceff8">이름</th>
 														<th class="product-thumbnail eceff8">회원 이메일</th>
 														<th class="product-thumbnail eceff8">회원 전화번호</th>
+														<th class="product-thumbnail eceff8">상태</th>
+														<th class="product-thumbnail eceff8">신고횟수</th>
 														<th class="product-remove eceff8" style="width:50px;">수정</th>
 													</tr>
 												</thead>
@@ -125,9 +136,9 @@ td{
 														<td><input type="text" class="s_text" placeholder="" value="1">
 														</td>
 
-														<td><input type="text" 
+														<td><a href="#"><input type="text" 
 															class="text" value="admin"
-															></td>
+															></a></td>
 														<td><input type="text"
 															placeholder="" class="text" value="admin"></td>
 														<td><input type="text"
@@ -138,6 +149,10 @@ td{
 														<td><input type="text"
 															placeholder="" class="text" value="010-1111-2222">
 
+														</td>
+														<td><input type="text" class="s_text" placeholder="" value="3">
+														</td>
+														<td><input type="text" class="s_text" placeholder="" value="7">
 														</td>
 														<td>
 															<div class="buttons-cart" style="margin-bottom: 0px;">
@@ -171,7 +186,7 @@ td{
 
 							<!-- 버튼 시작 -->
 							<div class="row">
-								<div class="col-md-4" style="margin-left: 15%">
+								<div class="col-md-4" style="width:20%; margin-left:30%">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 
@@ -181,7 +196,7 @@ td{
 									</div>
 								</div>
 
-								<div class="col-md-4" style="margin-right: 10%">
+								<div class="col-md-4" style="width:20%">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 										<div class="pink_button">

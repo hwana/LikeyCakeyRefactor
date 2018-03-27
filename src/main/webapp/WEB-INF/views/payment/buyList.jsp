@@ -101,21 +101,25 @@
 													<tr>
 														<td class="product-thumbnail"><a href="#"><img
 																src="/resources/img/product/3.jpg" alt=""></a></td>
-														<td class="product-name"><a
-															href="product-details.htm">
+														<td class="product-name">
 															<p style="font-weight: bold;">똔똔씨의 케잌가게</p>
-															</a>
-															
 															<span>산타할아버지 초코케이크(구매수량 2개)</span>
 															</td>
 														
-														<td class="product-quantity">주문 날짜
-														<br>2018.03.44 12:34:33
+														<td class="product-name">
+														<p style="font-weight: bold;">주문 날짜</p>
+															<span>2018.03.44 12:34:33</span>
 														</td>
-														<td class="product-subtotal">70,000</td>
-														<td class="product-subtotal">
-														입금 기한 <br>
-														2018.03.24 18:00</td>
+														<td >
+															<p style="font-weight: bold;">총 금액</p>
+															<span>70,000</span>
+														
+														</td>
+														<td class="product-name">
+														<p style="font-weight: bold;">입금 기한</p>
+															<span>2018.03.24 18:00</span>
+													
+														</td>
 														<td class="product-price"><span class="amount">
 														<a href="#">배송 상태(택배 현황과 연결하기)</a></span></td>
 														<td class="product-subtotal">
