@@ -15,7 +15,7 @@
 												href="memberMypage.ca"><i
 													class="zmdi zmdi-chevron-right"></i>회원정보수정</a></li>
 											<li style="border-bottom: 0px;"><a href="m_home_qna.ca"><i
-													class="zmdi zmdi-chevron-right"></i>홈페이지 문의모음</a></li>
+													class="zmdi zmdi-chevron-right"></i>홈페이지 문의글</a></li>
 											<li style="border-bottom: 0px;"><a
 												href="m_product_qna.ca"><i
 													class="zmdi zmdi-chevron-right"></i>상품 Q&A</a></li>
