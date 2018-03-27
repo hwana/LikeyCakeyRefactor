@@ -41,7 +41,7 @@
         <![endif]-->
 	<!-- Header Area Start -->
 	<!-- 지연 헤더 파일있는 폴더 경로 -->
-	<%@ include file="../common/header.jsp"%>
+	<%@ include file="../default/header.jsp"%>
 	<!-- Header Area End -->
 
 
@@ -51,31 +51,7 @@
 			<div class="row">
 				<div class="content-full ptb-50 fix" style="margin: 0 auto;">
 					<!-- Left Side Start -->
-					<div class="col-md-2">
-						<div class="right-area">
-							<div class="product-filter">
-								<!-- Category Product -->
-								<div class="category">
-									<h4>My Page</h4>
-									<div class="category-list mt-20">
-										<ul>
-											<!-- li style="border-bottom:0px;" << 라인 없애기 -->
-											<li style="border-bottom:0px;"><a href="#"><i class="zmdi zmdi-chevron-right"></i>구입내역</a></li>
-											<li style="border-bottom:0px;"><a href="memberMypage.ca"><i class="zmdi zmdi-chevron-right"></i>회원정보수정</a></li>
-											<li style="border-bottom:0px;"><a href="m_home_qna.ca"><i class="zmdi zmdi-chevron-right"></i>내
-													문의글</a></li>
-											<li style="border-bottom:0px;"><a href="m_product_qna.ca"><i class="zmdi zmdi-chevron-right"></i>내
-													Q&A</a></li>
-											<li style="border-bottom:0px;"><a href="m_like_list.ca"><i class="zmdi zmdi-chevron-right"></i>좋아요
-													목록</a></li>
-											<li style="border-bottom:0px;"><a href="m_my_postscript.ca"><i class="zmdi zmdi-chevron-right"></i>내가
-													쓴 후기</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<%@ include file ="leftside.jsp" %>
 					<!-- Left Side End -->
 
 
@@ -129,8 +105,12 @@
 															<input type="tel" class="form-control" id="inputNumber"
 																placeholder="- 없이 입력해 주세요" /> <span
 																class="input-group-btn">
-																<button class="btn btn-success">
-																	인증번호 전송<i class="fa fa-mail-forward spaceLeft"></i>
+																<button class="btn btn-success" 
+																		style="background-color:#9bcaba;
+																			   width : 105px; height:50px;
+																			   font-size : 12px;
+																			   margin-left : 5px">
+																	인증번호 전송 <i class="fa fa-mail-forward spaceLeft"></i>
 																</button>
 															</span>
 														</div>
@@ -144,8 +124,13 @@
 															<input class="form-control" id="inputNumberCheck"
 																type="text" placeholder="인증번호"> <span
 																class="input-group-btn">
-																<button class="btn btn-success" type="button">
-																	인증번호 확인<i class="fa fa-edit spaceLeft"></i>
+																<button class="btn btn-success" 
+																		style="background-color:#9bcaba;
+																			   width : 105px; height:50px;
+																			   font-size : 12px;
+																			   margin-left : 5px"
+																		type="button">
+																	인증번호 확인 <i class="fa fa-edit spaceLeft"></i>
 																</button>
 															</span>
 														</div>
@@ -195,7 +180,7 @@
 	</section>
 	<!-- Page Content Wraper Area End -->
 	<!-- Footer 따로 뺀 후 페이지에 포함 : 지연 -->
-	<%@ include file="../common/footer.jsp"%>
+	<%@ include file="../default/footer.jsp"%>
 	<!-- FOOTER END -->
 
 	<!-- all js here -->
