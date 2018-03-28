@@ -165,3 +165,8 @@ margin-top:10px;}
 		</div>
 	</div>
 </section>
+
+</body>
+
+</html>
+<%@ include file="../default/footer.jsp"%>

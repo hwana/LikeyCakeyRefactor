@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="header.jsp"%>
+<%@ include file="../default/header.jsp"%>
 
 <style>
 #cakeupload{
@@ -96,3 +96,8 @@
 		</div>
 	</div>
 </section>
+
+</body>
+
+</html>
+<%@ include file="../default/footer.jsp"%>
