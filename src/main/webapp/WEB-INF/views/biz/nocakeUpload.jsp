@@ -3,9 +3,9 @@
 
 <%@ include file="header.jsp"%>
 
-<link rel="stylesheet" type="text/css" href="resources/css/hwanhee/component.css" />
-<script src="resources/js/hwanhee/classie.js"></script>
-<script src="resources/js/hwanhee/modernizr.custom.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/component.css" />
+<script src="resources/js/classie.js"></script>
+<script src="resources/js/modernizr.custom.js"></script>
 <style>
 	#cakeupload{
 		width : 50%;

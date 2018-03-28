@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="header.jsp"%>
+
+<style>
+#login-submit{
+	margin : 20px auto;
+}
+
+#verifycode{
+	background : #9bcaba;
+	margin-left : 10px;
+}
+
+</style>
 <div class="container" id="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
@@ -51,7 +63,7 @@
 							</form>
 
 							<form id="findpw-form" action="/" class="form-horizontal"
-								method="post" role="form" style="display: block;">
+								method="post" role="form" style="display: none;">
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="name">담당자 이름</label>
 
@@ -62,12 +74,12 @@
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="inputNumber">담당자
-										휴대폰번호</label>
+										<br>휴대폰번호</label>
 									<div class="col-sm-8">
 										<div class="input-group">
 											<input type="text" class="form-control"
 												placeholder="- 없이 입력해 주세요" /> <span class="input-group-btn">
-												<button class="btn btn-success" id="login-submit">
+												<button class="btn btn-success" id="verifycode">
 													인증번호 전송</button>
 											</span>
 										</div>
@@ -82,7 +94,7 @@
 											<input class="form-control" type="tel" placeholder="인증번호">
 											<span class="input-group-btn">
 												<button class="btn btn-success" type="button"
-													id="login-submit">인증번호 확인</button>
+													id="verifycode">인증번호 확인</button>
 											</span>
 										</div>
 
@@ -93,7 +105,7 @@
 									<div class="col-xs-8 col-xs-offset-2">
 										<input type="submit" name="login-submit" id="login-submit"
 											tabindex="4" class="form-control btn btn-login" value="찾기"
-											id="btn-login">
+											>
 									</div>
 								</div>
 							</form>
@@ -105,8 +117,8 @@
 		</div>
 	</div>
 </div>
-<script src="/resources/js/hwanhee/find.js"></script>
-
+<script src="resources/js/find.js"></script>
 </body>
 
 </html>
+
