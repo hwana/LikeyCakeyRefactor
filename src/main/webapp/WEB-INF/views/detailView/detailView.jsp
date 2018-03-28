@@ -33,6 +33,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
        	<link rel="stylesheet" href="/resources/css/young.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
+        
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+      
     </head>
     <body class="other-page">
 
@@ -217,9 +221,13 @@
 									</div>
 									
 									<div class="detail-input">
-									
-									<input placeholder="케이크에 추가하실 문구를 입력해주세요." type="text" class="detail-text mt-10">
- 									<button type="submit" class="detail-btn">구매하기</button>
+									<label for="fromDate">문구 추가</label> 
+									<input class="detail-text mt-10" placeholder="케이크에 추가하실 문구를 입력해주세요." type="text">
+
+									<label for="fromDate">예약 날짜</label> 
+									<input class="cake-reserve detail-text mt-10" placeholder="예약 날짜를 선택해 주세요." type="text" id="cake-reserve">
+
+									<button type="submit" class="detail-btn">구매하기</button>
 									<button type="submit" class="detail-btn">장바구니 담기</button>
 									
 									</div>
@@ -244,7 +252,7 @@
 	<hr class="ml-100 mr-100">
 	
 		<!-- 상품 디테일 시작 -->
-		<div class="detail-text-box mt-100 mb-100 ml-100 mr-100">
+		<div class="detail-text-box mt-100 mb-100 ml-150 mr-150">
 			<h2 class="detail-title">오!해피 복숭아 케이크</h2>
 			<h3 class="detail-intro mtb-40">상품 소개</h3>
 			
@@ -292,7 +300,7 @@
 				- 본 상품은 주문 후 제작에 들어가는 수제작 맞춤 상품으로, 주문 후 상품을 받으신 후에는 취소 및 반품이 불가합니다.<br>
 				- 제작 요청시 고객님의 과실(문구오류 등)로 인한 환불은 불가능하므로, 충분히 검토 후 주문 부탁드립니다.
 				</h6>
-
+			
 			<!-- shop 소개 시작 -->
 			<div class="inner mt-150 mb-10">
 				<div class="shop-location">
@@ -344,12 +352,12 @@
 										
 										<span style="background-image: url(https://scloud.pstatic.net/20170129_215/1485675201358TIWEn_JPEG/KakaoTalk_20161202_193029356.jpg);" class="img_story"></span>
 										
-										<strong class="tit_story">홍대 파티룸 서울 파티룸 그라운드 연말파티장소 최적화 추천합니다!</strong>
+										<strong class="tit_story">진짜 맛있는 복숭아 케이크</strong>
 										<dl class="editor_story">
 											<dt>출처</dt>
 											<dd>http://blog.naver.com/madurh/220876685585</dd>
 										</dl>
-										<p class="p_story">홍대와 합정 그리고 상수라는 삼각형 안에는 무수히 많은 맛집과 멋집들이 존재한다. 서울에 핫한 동네야 ...</p>
+										<p class="p_story">핫한 복숭아 케이크...먹어보세요! 존맛...</p>
 									</a>
 								</div>
 							
@@ -360,12 +368,12 @@
 										
 										<span style="background-image: url(https://scloud.pstatic.net/20170129_80/1485675206167fE7f0_JPEG/20161205_132929.jpg);" class="img_story"></span>
 										
-										<strong class="tit_story">파티룸 그라운드 A ROOM 소개</strong>
+										<strong class="tit_story">오! 복숭아 케이크 소개</strong>
 										<dl class="editor_story">
 											<dt>출처</dt>
 											<dd>http://blog.naver.com/2id-t/220878390584</dd>
 										</dl>
-										<p class="p_story">안녕하세요. 스폰서 입니다. 이번에 저희가 운영하는 공간인 파티룸 그라운드에 대한 소개를 해드리려고 포...</p>
+										<p class="p_story">안녕하세요. 스폰서 입니다. 이번에 저희가 주문한 복숭아 케이크를...</p>
 									</a>
 								</div>
 							
@@ -376,12 +384,12 @@
 										
 										<span style="background-image: url(https://scloud.pstatic.net/20170129_204/1485675211113tc2HQ_JPEG/20161206_132058.jpg);" class="img_story"></span>
 										
-										<strong class="tit_story">파티룸 그라운드 B ROOM 소개</strong>
+										<strong class="tit_story">복숭아 케이크 중 최고</strong>
 										<dl class="editor_story">
 											<dt>출처</dt>
 											<dd>http://blog.naver.com/2id-t/220879438622</dd>
 										</dl>
-										<p class="p_story">안녕하세요. 그라운드를 운영하고 있는 스폰서입니다. 어제는 A ROOM에 대해 소개를 드렸는데요. 오늘...</p>
+										<p class="p_story">이거 진짜 너무 맛있어요 꼭 먹어보세요..!</p>
 									</a>
 								</div>
 							
@@ -392,12 +400,12 @@
 										
 										<span style="background-image: url(https://scloud.pstatic.net/20170129_24/1485675215730bG9dp_JPEG/KakaoTalk_Moim_5VRBpSLAramZgqQ4ThJiftqJx8WciR.jpg);" class="img_story"></span>
 										
-										<strong class="tit_story">서울 파티룸 홍대 그라운드 이만한 곳 어디에도 없다</strong>
+										<strong class="tit_story">진심 너무너무 맛있는 복숭아 케이크</strong>
 										<dl class="editor_story">
 											<dt>출처</dt>
 											<dd>http://blog.naver.com/madurh/220907943695</dd>
 										</dl>
-										<p class="p_story">아직까지 크리스마스 분위기 물씬 나는 서울 파티룸 그라운드. 지난 번에 다녀온 후기가 엄청난 반응을 이...</p>
+										<p class="p_story">진짜 달고 복숭아 향이 짙게 납니다 강추합니다!</p>
 									</a>
 								</div>
 							
@@ -408,12 +416,12 @@
 										
 										<span style="background-image: url(https://scloud.pstatic.net/20180210_122/1518246655801CTuPx_JPEG/KakaoTalk_20180210_153121506.jpg);" class="img_story"></span>
 										
-										<strong class="tit_story">홍대 파티룸 그라운드 보드게임 업그레이드 완료!</strong>
+										<strong class="tit_story">왜 안먹으세요 이케이크</strong>
 										<dl class="editor_story">
 											<dt>출처</dt>
 											<dd>https://blog.naver.com/2id-t/221205699245</dd>
 										</dl>
-										<p class="p_story">안녕하세요. 파티룸 그라운드를 운영하는 인디스폰서 입니다. 오픈 1주년을 맞이하여 그동안 낡았던 보드게...</p>
+										<p class="p_story">존맛이라구!!....</p>
 									</a>
 								</div>
 							
@@ -586,7 +594,7 @@
 		</div>
 		</div>
 		<!-- 호스트의 다른 케이크  시작 -->
-
+		</div>
 	</section>
 		
         <!-- 푸터 -->
@@ -609,6 +617,37 @@
         <script src="/resources/js/jquery.meanmenu.js"></script>
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/main.js"></script>
+        <script src="/resources/js/Form.js"></script>
+       
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+        
+        <script>
+        $(function() {
+    		//datepicker 한국어로 사용하기 위한 언어설정
+    		$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+    		// 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
+    		// 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
+
+    		//시작일.
+    		$('#cake-reserve').datepicker({
+    			dateFormat : "yy-mm-dd", // 날짜의 형식
+    			changeMonth : true, // 월을 이동하기 위한 선택상자 표시여부
+    			//minDate : 1, // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+    			//onClose : function(selectedDate) {
+    				// 시작일(fromDate) datepicker가 닫힐때
+    				// 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+    				//$("#toDate").datepicker("option", "minDate", selectedDate);
+    			//}
+    		});
+
+    		$("#ake-reserve").on("change", function() {
+    			start = $(this).val();
+    			start_array = start.split("-")[2];
+    		});
+
+    		});
+        </script>
     </body>
 </html>
 
