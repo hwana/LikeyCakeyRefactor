@@ -48,28 +48,9 @@
 								<div class="nav-menu-grid">
 									<ul class="nav nav-pills">
 										<h5>신촌(으)로 검색한 결과입니다.</h5>
-										<!-- <li class="active">
-											<a data-toggle="pill" href="#grid"><i class="icon_grid-2x2"></i></a>
-										</li>
-										<li>
-											<a data-toggle="pill" href="#list"><i class="icon_menu"></i></a>
-										</li> -->
 									</ul>
 								</div>
 								<div class="show-more text-center">
-									<!-- <h6>250 products Founde</h6>
-									<ul>
-										<li class="shw">Show</li>
-										<li class="active">
-											<a href="#">6</a>
-										</li>
-										<li>
-											<a href="#">9</a>
-										</li>
-										<li>
-											<a href="#">12</a>
-										</li>
-									</ul> -->
 								</div>
 								<div class="young-sorting text-right">
 									<a href="#"><i class="fa fa-map-marker"></i>지도</a>
@@ -132,12 +113,8 @@
 														<span class="pro-level">당일</span>
 														<div class="hover-content text-center">
 															<ul>
-<!-- 																<li><a href="#" class="icon_refresh"></a></li>
- -->																<li><a href="#" class="icon_cart_alt "></a></li>
+																<li><a href="#" class="icon_cart_alt "></a></li>
 																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
-																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-																</li> -->
 															</ul>
 														</div>
 													</div>
@@ -172,12 +149,8 @@
 														<span class="pro-level">당일</span>
 														<div class="hover-content text-center">
 															<ul>
-<!-- 																<li><a href="#" class="icon_refresh"></a></li>
- -->																<li><a href="#" class="icon_cart_alt "></a></li>
+																<li><a href="#" class="icon_cart_alt "></a></li>
 																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
-																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-																</li> -->
 															</ul>
 														</div>
 													</div>
@@ -212,12 +185,8 @@
 														<span class="pro-level">당일</span>
 														<div class="hover-content text-center">
 															<ul>
-																<!-- <li><a href="#" class="icon_refresh"></a></li> -->
 																<li><a href="#" class="icon_cart_alt "></a></li>
 																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
-																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-																</li> -->
 															</ul>
 														</div>
 													</div>
@@ -252,12 +221,8 @@
 														<span class="pro-level">당일</span>
 														<div class="hover-content text-center">
 															<ul>
-																<!-- <li><a href="#" class="icon_refresh"></a></li> -->
 																<li><a href="#" class="icon_cart_alt "></a></li>
 																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
-																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-																</li> -->
 															</ul>
 														</div>
 													</div>
@@ -292,12 +257,8 @@
 														<span class="pro-level">당일</span>
 														<div class="hover-content text-center">
 															<ul>
-																<!-- <li><a href="#" class="icon_refresh"></a></li> -->
 																<li><a href="#" class="icon_cart_alt "></a></li>
 																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
-																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-																</li> -->
 															</ul>
 														</div>
 													</div>
@@ -332,12 +293,8 @@
 														<span class="pro-level">당일</span>
 														<div class="hover-content text-center">
 															<ul>
-																<!-- <li><a href="#" class="icon_refresh"></a></li> -->
 																<li><a href="#" class="icon_cart_alt "></a></li>
 																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
-																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-																</li> -->
 															</ul>
 														</div>
 													</div>
