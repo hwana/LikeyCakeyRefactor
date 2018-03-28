@@ -111,7 +111,8 @@
 		</div>
 	</div>
 </div>
-<script src="resources/js/hwanhee/login.js"></script>
+<script src="resources/js/login.js"></script>
 </body>
 
 </html>
+
