@@ -260,7 +260,7 @@
         <!-- Page Content Wraper Area End -->
       	
       	<!-- Footer 따로 뺀 후 페이지에 포함 : 지연 -->
-	   	<%@ include file = "../common/footer.jsp" %>
+	   	<%@ include file = "../default/footer.jsp" %>
 	   	
 	   	
 		<!-- all js here -->

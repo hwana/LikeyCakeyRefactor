@@ -41,7 +41,7 @@
         <![endif]-->
 	<!-- Header Area Start -->
 	<!-- 지연 헤더 파일있는 폴더 경로 -->
-	<%@ include file="../common/header.jsp"%>
+	<%@ include file="../default/header.jsp"%>
 	<!-- Header Area End -->
 
 
@@ -51,50 +51,54 @@
 			<div class="row">
 				<div class="content-full ptb-50 fix" style="margin: 0 auto;">
 					<!-- Left Side Start -->
-					<div class="col-md-2">
-						<div class="right-area">
-							<div class="product-filter">
-								<!-- Category Product -->
-								<div class="category">
-									<h4>MY PAGE</h4>
-									<div class="category-list mt-20">
-										<ul>
-											<!-- li style="border-bottom:0px;" << 라인 없애기 -->
-											<li style="border-bottom:0px;"><a href="#"><i class="zmdi zmdi-chevron-right"></i>구입내역</a></li>
-											<li style="border-bottom:0px;"><a href="memberMypage.ca"><i class="zmdi zmdi-chevron-right"></i>회원정보수정</a></li>
-											<li style="border-bottom:0px;"><a href="m_home_qna.ca"><i class="zmdi zmdi-chevron-right"></i>내
-													문의글</a></li>
-											<li style="border-bottom:0px;"><a href="m_product_qna.ca"><i class="zmdi zmdi-chevron-right"></i>내
-													Q&A</a></li>
-											<li style="border-bottom:0px;"><a href="m_like_list.ca"><i class="zmdi zmdi-chevron-right"></i>좋아요
-													목록</a></li>
-											<li style="border-bottom:0px;"><a href="m_my_postscript.ca"><i class="zmdi zmdi-chevron-right"></i>내가
-													쓴 후기</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<%@ include file="leftside.jsp" %>
 					<!-- Left Side End -->
 
 
 					<!-- Right Side Start -->
 					<div class="col-md-10">
-					<span style="border:2px solid pink;"></span>&nbsp;&nbsp;<h1 style="display:inline; margin-top:0"><small><b>내 문의글</b></small></h1>
-							<div class="blog-details-area">
-								<div
-									class="blog-left-single mb-30 res-mb-30 res-mb-sm-30 res-blog-mt-50">
-									<div class="left-area">
+						<span style="border: 2px solid pink;"></span>&nbsp;&nbsp;
+						<h1 style="display: inline; margin-top: 0">
+							<small><b>홈페이지 문의글</b></small>
+						</h1>
+						<div class="blog-details-area">
+							<div
+								class="blog-left-single mb-30 res-mb-30 res-mb-sm-30 res-blog-mt-50">
+								<div class="left-area">
 
-										<!-- 위의 div 4개는 오른쪽 사이드 설정하는 div -->
-										<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
-										<div class="col-md-12">
-											
-											<hr>
-										</div>
+									<!-- 위의 div 4개는 오른쪽 사이드 설정하는 div -->
+									<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
+									<div class="col-md-12">
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>번호</th>
+													<th>제목</th>
+													<th>작성자</th>
+													<th>날짜</th>
+													<th>조회수</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>01</td>
+													<td>도대체 이 홈페이지는</td>
+													<td>캔디걸</td>
+													<td>2018-03-20</td>
+													<td>5</td>
+												</tr>
+												<tr>
+													<td>02</td>
+													<td>대박이네요</td>
+													<td>캔디보이</td>
+													<td>2018-03-21</td>
+													<td>3</td>
+												</tr>
+											</tbody>
+										</table>
 									</div>
 								</div>
+							</div>
 						</div>
 					</div>
 					<!-- Right Side End -->
@@ -122,7 +126,7 @@
 	</section>
 	<!-- Page Content Wraper Area End -->
 	<!-- Footer 따로 뺀 후 페이지에 포함 : 지연 -->
-	<%@ include file="../common/footer.jsp"%>
+	<%@ include file="../default/footer.jsp"%>
 	<!-- FOOTER END -->
 
 	<!-- all js here -->
