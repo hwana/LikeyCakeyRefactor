@@ -8,7 +8,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>상품 상세 페이지</title>
+        <title>커스터마이징 상세 페이지</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -33,6 +33,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
        	<link rel="stylesheet" href="/resources/css/young.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
+        
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+      
     </head>
     <body class="other-page">
 
@@ -121,22 +125,33 @@
 								<!-- 좋아요 누르면 fa fa-heart-o에서 fa-heart로 변경될 것 -->
 								<a href=# class="detail-likes"><i class="fa fa-heart-o">&nbsp;10 Likes </i></a>
 							</div>
-							
-							<div class="category mt-50">
-										<h4>TAGS</h4>
-										<div class="tag-list mt-30 text-uppercase">
-											<ul>
-												<li><a href="#">#복숭아</a></li>
-												<li><a href="#">#생크림</a></li>
-												<li><a href="#">#과일</a></li>
-												<li><a href="#">#화이트시트</a></li>
-												<li><a href="#">#빵케이크</a></li>
-												<li><a href="#">#오지는 맛</a></li>
-											</ul>
-										</div>
-									</div>
-							
-							<!-- <div class="pro-img-tab-slider indicator-style2 owl-carousel owl-theme owl-loaded owl-drag">
+						
+						<!-- 태그 시작 -->
+						<div class="category mtb-50">
+							<h4>TAGS</h4>
+							<div class="tag-list mt-30 text-uppercase">
+								<ul>
+									<li><a href="#">#복숭아</a></li>
+									<li><a href="#">#생크림</a></li>
+									<li><a href="#">#과일</a></li>
+									<li><a href="#">#화이트시트</a></li>
+									<li><a href="#">#빵케이크</a></li>
+									<li><a href="#">#오지는 맛</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="sngle-pro-socl">
+							<ul>
+								<li><a href="#" class="social_facebook"></a></li>
+								<li><a href="#" class="social_googleplus"></a></li>
+								<li><a href="#" class="social_twitter"></a></li>
+							</ul>
+						</div>
+						<!-- 태그 끝 -->
+						
+						
+						<!-- <div class="pro-img-tab-slider indicator-style2 owl-carousel owl-theme owl-loaded owl-drag">
 								
 								
 								
@@ -180,8 +195,8 @@
 					<div class="col-md-6">
 						<div class="singlepro-right">
 							<div class="snglepro-content">
-								<span>복숭아 향이 감도는 화이트 시트 케이크</span>
-								<h3 style="font-size: 2em;"><a href="single-product.html">오!해피 복숭아 케이크</a></h3>
+								<span>뚜레쥬르만의 다양한 시트로 만드는 커스텀 케이크</span>
+								<h3 style="font-size: 2em;"><a href="single-product.html">[뚜레쥬르] 나만의 커스텀 케이크</a></h3>
 								<div class="rating-box">
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
@@ -191,48 +206,87 @@
 									<span>3 Reviews</span>
 								</div>
 								<div class="prce-stock">
-									<h4>\30,000</h4>
+									<h4>\45,000</h4>
 									<h6>뚜레쥬르</h6>
 								</div>
-								<p>촉촉한 화이트시트에 아삭아삭한 복숭아와 복숭아 생크림을 샌드하여 향긋한 복숭아맛을 가득 느낄 수 있는 생크림 케이크</p>
+								<p>뚜레쥬르만의 다양한 시트, 토핑, 크림으로 나만의 커스텀 케이크를 만들어보세요!</p>
 								<div class="pro-info">
 									<ul>
 									
 										<!-- 당일 구매 가능 상품 여부 if/else  -->
-										<li>* 당일 구매 가능</li>
+										<li>* 당일 구매 불가능</li>
 										<li>* 한달 내로 예약 가능</li>
 										<li>* 문구 추가 가능</li>
 									</ul>
 								</div>
 								<div class="input-content mb-50">
-									<div class="quantity">
+									
+										 
+										 <!-- 커스텀 셀렉트 박스 시작 -->
+									
+								<div class="custom-select mb-20">
+									<div class="custom-select-wrap">
+										<label for="fromDate">시트 선택</label> <select
+											class="custom-selectbox">
+											<option value="기본" selected="selected">기본</option>
+											<option value="무스">무스</option>
+											<option value="쉬폰">쉬폰</option>
+											<option value="파운드">파운드</option>
+											<option value="치즈 수플레">치즈 수플레</option>
+										</select>
+									</div>
+
+									<div class="custom-select-wrap">
+										<label for="fromDate">토핑 선택</label> <select
+											class="custom-selectbox">
+											<option value="선택 안함" selected="selected">선택 안함</option>
+											<option value="무스">딸기</option>
+											<option value="쉬폰">쉬폰</option>
+											<option value="파운드">파운드</option>
+											<option value="치즈 수플레">치즈 수플레</option>
+										</select>
+									</div>
+
+									<div class="custom-select-wrap">
+										<label for="fromDate">크림 선택</label> <select
+											class="custom-selectbox">
+											<option value="선택 안함" selected="selected">선택 안함</option>
+											<option value="무스">무스</option>
+											<option value="쉬폰">쉬폰</option>
+											<option value="파운드">파운드</option>
+											<option value="치즈 수플레">치즈 수플레</option>
+										</select>
+									</div>
+									</div>
+								<!-- 커스텀 셀렉트 박스 끝 -->
+								
+								
+								<div class="quantity">
 									<label>상품 개수</label>
+
+									<!-- 상품 + / - 제이쿼리에서 처리할 것 -->
+									<div class="dec qtybutton">-</div>
+									<input type="text" value="0" name="qtybutton"
+										class="cart-plus-minus-box">
+									<div class="inc qtybutton">+</div>
+								</div>
+
+
+
+								<div class="detail-input custom-input">
+									<label for="fromDate">문구 추가</label> 
+									<input class="detail-text custom-text mt-10" placeholder="케이크에 추가하실 문구를 입력해주세요." type="text">
 									
-										
-										<!-- 상품 + / - 제이쿼리에서 처리할 것 -->
-										<div class="dec qtybutton">-</div>
-										  <input type="text" value="0" name="qtybutton" class="cart-plus-minus-box">
-										 <div class="inc qtybutton">+</div>
-										 
-										 
-									</div>
+									<label for="fromDate">예약 날짜</label> 
+									<input class="cake-reserve custom-text detail-text mt-10" placeholder="예약 날짜를 선택해 주세요." type="text" id="cake-reserve">
 									
-									<div class="detail-input">
-									
-									<input placeholder="케이크에 추가하실 문구를 입력해주세요." type="text" class="detail-text mt-10">
- 									<button type="submit" class="detail-btn">구매하기</button>
-									<button type="submit" class="detail-btn">장바구니 담기</button>
+									<button type="submit" class="custom-btn" style="margin-right: 2.7%;">구매하기</button>
+									<button type="submit" class="custom-btn">장바구니 담기</button>
 									
 									</div>
 									
 								</div>
-								<div class="sngle-pro-socl">
-									<ul>
-										<li><a href="#" class="social_facebook"></a></li>
-										<li><a href="#" class="social_googleplus"></a></li>
-										<li><a href="#" class="social_twitter"></a></li>
-									</ul>
-								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -245,12 +299,11 @@
 	<hr class="ml-100 mr-100">
 	
 		<!-- 상품 디테일 시작 -->
-		<div class="detail-text-box mt-100 mb-100 ml-100 mr-100">
-			<h2 class="detail-title">오!해피 복숭아 케이크</h2>
+		<div class="detail-text-box mt-100 mb-100 ml-150 mr-150">
+			<h2 class="detail-title">[뚜레쥬르] 나만의 커스텀 케이크</h2>
 			<h3 class="detail-intro mtb-40">상품 소개</h3>
 			
 			<p class="detail-contents mtb-100">
-				촉촉한 화이트시트에 아삭아삭한 복숭아와 복숭아 생크림을 샌드하여 향긋한 복숭아맛을 가득 느낄 수 있는 생크림 케이크 <br>
 				슈가케이크, 무엇인가요? <br>
 				<br>
 				제과점에서 드시는 고급 파운드케이크 위에 설탕반죽을 씌워만드는 영국 왕실의 케이크로, <br>
@@ -293,7 +346,7 @@
 				- 본 상품은 주문 후 제작에 들어가는 수제작 맞춤 상품으로, 주문 후 상품을 받으신 후에는 취소 및 반품이 불가합니다.<br>
 				- 제작 요청시 고객님의 과실(문구오류 등)로 인한 환불은 불가능하므로, 충분히 검토 후 주문 부탁드립니다.
 				</h6>
-
+			
 			<!-- shop 소개 시작 -->
 			<div class="inner mt-150 mb-10">
 				<div class="shop-location">
@@ -345,12 +398,12 @@
 										
 										<span style="background-image: url(https://scloud.pstatic.net/20170129_215/1485675201358TIWEn_JPEG/KakaoTalk_20161202_193029356.jpg);" class="img_story"></span>
 										
-										<strong class="tit_story">홍대 파티룸 서울 파티룸 그라운드 연말파티장소 최적화 추천합니다!</strong>
+										<strong class="tit_story">진짜 맛있는 복숭아 케이크</strong>
 										<dl class="editor_story">
 											<dt>출처</dt>
 											<dd>http://blog.naver.com/madurh/220876685585</dd>
 										</dl>
-										<p class="p_story">홍대와 합정 그리고 상수라는 삼각형 안에는 무수히 많은 맛집과 멋집들이 존재한다. 서울에 핫한 동네야 ...</p>
+										<p class="p_story">핫한 복숭아 케이크...먹어보세요! 존맛...</p>
 									</a>
 								</div>
 							
@@ -361,12 +414,12 @@
 										
 										<span style="background-image: url(https://scloud.pstatic.net/20170129_80/1485675206167fE7f0_JPEG/20161205_132929.jpg);" class="img_story"></span>
 										
-										<strong class="tit_story">파티룸 그라운드 A ROOM 소개</strong>
+										<strong class="tit_story">오! 복숭아 케이크 소개</strong>
 										<dl class="editor_story">
 											<dt>출처</dt>
 											<dd>http://blog.naver.com/2id-t/220878390584</dd>
 										</dl>
-										<p class="p_story">안녕하세요. 스폰서 입니다. 이번에 저희가 운영하는 공간인 파티룸 그라운드에 대한 소개를 해드리려고 포...</p>
+										<p class="p_story">안녕하세요. 스폰서 입니다. 이번에 저희가 주문한 복숭아 케이크를...</p>
 									</a>
 								</div>
 							
@@ -377,12 +430,12 @@
 										
 										<span style="background-image: url(https://scloud.pstatic.net/20170129_204/1485675211113tc2HQ_JPEG/20161206_132058.jpg);" class="img_story"></span>
 										
-										<strong class="tit_story">파티룸 그라운드 B ROOM 소개</strong>
+										<strong class="tit_story">복숭아 케이크 중 최고</strong>
 										<dl class="editor_story">
 											<dt>출처</dt>
 											<dd>http://blog.naver.com/2id-t/220879438622</dd>
 										</dl>
-										<p class="p_story">안녕하세요. 그라운드를 운영하고 있는 스폰서입니다. 어제는 A ROOM에 대해 소개를 드렸는데요. 오늘...</p>
+										<p class="p_story">이거 진짜 너무 맛있어요 꼭 먹어보세요..!</p>
 									</a>
 								</div>
 							
@@ -393,12 +446,12 @@
 										
 										<span style="background-image: url(https://scloud.pstatic.net/20170129_24/1485675215730bG9dp_JPEG/KakaoTalk_Moim_5VRBpSLAramZgqQ4ThJiftqJx8WciR.jpg);" class="img_story"></span>
 										
-										<strong class="tit_story">서울 파티룸 홍대 그라운드 이만한 곳 어디에도 없다</strong>
+										<strong class="tit_story">진심 너무너무 맛있는 복숭아 케이크</strong>
 										<dl class="editor_story">
 											<dt>출처</dt>
 											<dd>http://blog.naver.com/madurh/220907943695</dd>
 										</dl>
-										<p class="p_story">아직까지 크리스마스 분위기 물씬 나는 서울 파티룸 그라운드. 지난 번에 다녀온 후기가 엄청난 반응을 이...</p>
+										<p class="p_story">진짜 달고 복숭아 향이 짙게 납니다 강추합니다!</p>
 									</a>
 								</div>
 							
@@ -409,12 +462,12 @@
 										
 										<span style="background-image: url(https://scloud.pstatic.net/20180210_122/1518246655801CTuPx_JPEG/KakaoTalk_20180210_153121506.jpg);" class="img_story"></span>
 										
-										<strong class="tit_story">홍대 파티룸 그라운드 보드게임 업그레이드 완료!</strong>
+										<strong class="tit_story">왜 안먹으세요 이케이크</strong>
 										<dl class="editor_story">
 											<dt>출처</dt>
 											<dd>https://blog.naver.com/2id-t/221205699245</dd>
 										</dl>
-										<p class="p_story">안녕하세요. 파티룸 그라운드를 운영하는 인디스폰서 입니다. 오픈 1주년을 맞이하여 그동안 낡았던 보드게...</p>
+										<p class="p_story">존맛이라구!!....</p>
 									</a>
 								</div>
 							
@@ -537,11 +590,11 @@
 						style="background-image: url(https://scloud.pstatic.net/20161202_47/14806634454930axmA_PNG/015.png);"
 						class="pf_left"></div>
 					<div class="pf_right">
-						<strong class="pf_host">HOST</strong> <span class="pf_name">그라운드</span>
-						<p class="pf_txt">합정 파티룸 겸 스튜디오 [GROUND] 입니다.</p>
+						<strong class="pf_host">HOST</strong> <span class="pf_name">뚜레쥬르</span>
+						<p class="pf_txt">최고급 케이크 카페 [뚜레쥬르] 입니다. </p>
 					</div>
 				</div>
-				<a href="#"> <span class="btn-inner"> 호스트 페이지로 이동  <i class="fa fa-arrow-right ml-10"></i></span>
+				<a href="#"> <span class="btn-inner"> 케이크샵 페이지로 이동  <i class="fa fa-arrow-right ml-10"></i></span>
 				</a>
 
 			</div>
@@ -587,7 +640,7 @@
 		</div>
 		</div>
 		<!-- 호스트의 다른 케이크  시작 -->
-
+		</div>
 	</section>
 		
         <!-- 푸터 -->
@@ -610,6 +663,37 @@
         <script src="/resources/js/jquery.meanmenu.js"></script>
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/main.js"></script>
+        <script src="/resources/js/Form.js"></script>
+       
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+        
+        <script>
+        $(function() {
+    		//datepicker 한국어로 사용하기 위한 언어설정
+    		$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+    		// 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
+    		// 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
+
+    		//시작일.
+    		$('#cake-reserve').datepicker({
+    			dateFormat : "yy-mm-dd", // 날짜의 형식
+    			changeMonth : true, // 월을 이동하기 위한 선택상자 표시여부
+    			//minDate : 1, // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+    			//onClose : function(selectedDate) {
+    				// 시작일(fromDate) datepicker가 닫힐때
+    				// 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+    				//$("#toDate").datepicker("option", "minDate", selectedDate);
+    			//}
+    		});
+
+    		$("#ake-reserve").on("change", function() {
+    			start = $(this).val();
+    			start_array = start.split("-")[2];
+    		});
+
+    		});
+        </script>
     </body>
 </html>
 
