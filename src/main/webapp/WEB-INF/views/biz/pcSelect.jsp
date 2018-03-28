@@ -3,7 +3,7 @@
 <%@ include file="header.jsp"%>
 <link rel="stylesheet" type="text/css" href="resources/css/component.css" />
 <script src="resources/js/classie.js"></script>
-<script src="resources/j/hwanhee/modernizr.custom.js"></script>
+<script src="resources/js/modernizr.custom.js"></script>
 <style>
 	#customupload{
 		width : 30%;

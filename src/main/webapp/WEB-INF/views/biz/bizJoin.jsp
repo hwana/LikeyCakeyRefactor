@@ -267,6 +267,6 @@ hr{
 		</div>
 	</article>
 
-	<script src="/resources/js/hwanhee/bootstrap.min.js"></script>
+	<script src="/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
