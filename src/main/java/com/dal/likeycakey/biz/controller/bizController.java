@@ -1,4 +1,4 @@
-package com.dal.likeycakey.biz;
+package com.dal.likeycakey.biz.controller;
 
 
 import java.util.Locale;
@@ -51,13 +51,6 @@ public class bizController {
 		return "biz/nocakeUpload";
 	}
 	
-	@RequestMapping(value = "yescakeUpload.ca", method = RequestMethod.GET)
-	public String yescakeUpload(Locale locale, Model model) {
-		
-		
-		return "biz/yescakeUpload";
-	}
-	
 	@RequestMapping(value = "productCakeUpload.ca", method = RequestMethod.GET)
 	public String productCakeUpload(Locale locale, Model model) {
 		
@@ -86,18 +79,18 @@ public class bizController {
 		return "biz/bizQNA";
 	}
 	
-	@RequestMapping(value = "uploadComplete.ca", method = RequestMethod.GET)
-	public String uploadComplete(Locale locale, Model model) {
+	@RequestMapping(value = "uploadOK.ca", method = RequestMethod.GET)
+	public String uploadOK(Locale locale, Model model) {
 		
 		
-		return "biz/uploadComplete";
+		return "biz/uploadOK";
 	}
 	
-	@RequestMapping(value = "findIdPw.ca", method = RequestMethod.GET)
-	public String findIdPw(Locale locale, Model model) {
+	@RequestMapping(value = "findIDPW.ca", method = RequestMethod.GET)
+	public String findIDPW(Locale locale, Model model) {
 		
 		
-		return "biz/findIdPw";
+		return "biz/findIDPW";
 	}
 	
 	

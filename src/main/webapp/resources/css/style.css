@@ -1596,7 +1596,7 @@ ul.size-widget li:last-child a {
   line-height: 35px;
   text-align: center;
   transition: all 0.4s ease 0s;
-  width: 5%;
+  width: 7%;
 }
 .input-content input.cart-plus-minus-box {
   -moz-appearance: textfield;
@@ -1609,7 +1609,7 @@ ul.size-widget li:last-child a {
   line-height: 14px;
   padding: 8px;
   transition: all 0.3s ease 0s;
-  width: 5%;
+  width: 7%;
   text-align: center;
 }
 .snglepro-content > span {
@@ -1654,8 +1654,8 @@ ul.size-widget li:last-child a {
 }
 .pro-info {
   display: block;
-  margin-bottom: 40px;
-  margin-top: 40px;
+  margin-bottom: 5%;
+  margin-top: 5%;
   overflow: hidden;
 }
 .pro-info ul li {
@@ -3117,12 +3117,18 @@ input::-webkit-input-placeholder { color: #d7d7d7; }
 /* detailView - 문구 추가 input-text */
 .detail-text {
 	
+	width:78.5%;
 	background: #fff none repeat scroll 0 0;
     border: 1px solid #ddd;
     font-size: 0.9em;
     font-weight: 600;
     height: 40px;
  
+}
+
+/* 커스텀 텍스트 위의 detail-text와 함께 적용 width만 교체*/
+.detail-text.custom-text {
+	width: 82.5%;
 }
 
 /* body태그 클래스 .other-page 전체 글꼴 설정 */
@@ -3132,7 +3138,7 @@ input::-webkit-input-placeholder { color: #d7d7d7; }
 
 /* body태그 클래스 .other-page 전체 버튼 설정 */
 .other-page button {
-background: #9bcaba none repeat scroll 0 0;
+	background: #9bcaba none repeat scroll 0 0;
     border: medium none;
     color: #fff;
     display: inline-block;
@@ -3313,6 +3319,9 @@ position: absolute;
 	width:49.5%;
 }
 
+.custom-btn {
+	width:48%;
+}
 
 /* ------- 리뷰 -------- */
 
@@ -3485,7 +3494,7 @@ position: absolute;
 .host_profile {
 	display: table;
     position: relative;
-    width: 80%;
+    width: 100%;
     vertical-align: middle;
 }
 
@@ -3531,6 +3540,7 @@ position: absolute;
 
 .host_profile .inner {
 	padding : 5% 4%;
+	margin: 0;
 }
 
 /* 홈 배경 흰색 */
@@ -3539,7 +3549,6 @@ position: absolute;
 }
 
 .story_list {
-    width: 80%;
     position: relative;
 }
 
@@ -3602,4 +3611,50 @@ position: absolute;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
- 
+
+/* 상품 개수 */
+.quantity label {
+	font-size : 1.1em;
+}
+
+/* 예약 날짜 설정 */
+.detail-input label {
+	margin-top: 2%;
+	font-size : 1.1em;
+	line-height : 2em;
+	clear:left;
+}
+
+
+/* 커스텀 추가  */
+
+/* 커스텀 셀렉트 박스 */
+.custom-selectbox {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ddd;
+    font-size: 0.9em;
+    font-weight: 600;
+    height: 40px;
+	margin-top: 2%;
+}
+
+/* 커스텀 셀렉트 + 라벨 묶기*/
+.custom-select-wrap {
+	width:32.7%;
+	display: inline-block;
+}
+
+/* 커스텀 선택 박스 전체 묶기 */
+.custom-select {
+	clear:left;
+}
+
+.detail-input.custom-input {
+	width: 100%;
+}
+
+/* 커스텀 시트, 토핑, 크림 */
+.custom-select label {
+	font-size: 1.1em;
+}
+

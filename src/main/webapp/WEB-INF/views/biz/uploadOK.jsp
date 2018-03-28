@@ -1,34 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../default/header.jsp"%>
-<link rel="stylesheet" type="text/css" href="resources/css/component.css" />
-<script src="resources/js/classie.js"></script>
-<script src="resources/js/modernizr.custom.js"></script>
+
 <style>
-	#customupload{
-		width : 30%;
-		background : #f6c6c9;
-		border : #f6c6c9;
-		padding : 40px;
-		font-size : 30px;
-		
-	}
-	
-	#productupload{
-		width : 30%;
-		background : #9bcaba;
-		border : #9bcaba;
-		padding : 40px;
-		font-size : 30px;
-	}
-	
-	#cake{
-		font-size : 30px;
-	}
-	
-	
-	
+div#form {
+	width: 700px;
+	height: 200px;
+	margin: 50px auto;
+	border: solid 1px #c0c0c0;
+	border-radius: 20px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+}
+
+label{
+	margin: 40px 137px 15px 137px;
+	font-size: 40px;
+}
+
+.submitcake{
+			width: auto;
+			padding: 9px 15px;
+			background: #f6c6c9;
+			border: 0;
+			font-size: 14px;
+			color: #FFFFFF;
+			-webkit-border-radius: 5px;
+			margin-left : 160px;
+			text-decoration : none;
+}
+
+.submithome{
+			width: auto;
+			padding: 9px 15px;
+			background: #f6c6c9;
+			border: 0;
+			font-size: 14px;
+			color: #FFFFFF;
+			-webkit-border-radius: 5px;
+			margin-left : 30px;
+			text-decoration : none;
+}
+
+
 </style>
+
 <!-- Page Content Wraper Area Start -->
 <section class="page-content-wrapper">
 	<div class="container">
@@ -63,20 +78,22 @@
 				</div>
 				<!-- Left Side End -->
 
-				<!-- Right Side Start -->
-				<div style = "margin-bottom : 30px;">
-				<span style="border: 2px solid pink;"></span>&nbsp;&nbsp;
-				<h1 style="display: inline; margin-top: 0">
-					<small><b>케이크 등록하기</b></small>
-				</h1>
-				</div>
-				<br>
-				
-				<button class="btn btn-3 btn-3c" id = "customupload">&nbsp;&nbsp;<div>커스터마이징 <br>케이크 등록하기</div></button>
-				<button class="btn btn-3 btn-3c" id = "productupload">&nbsp;&nbsp;<div>완제품 <br>케이크 등록하기</div></button>
 
+				
+
+				<div class="col-md-10">
+					<div id="form">
+						<div>
+							<label for="ok">등록이 완료되었습니다.</label>
+						</div>
+						<br>
+						<div>
+							<a href="#" class=submitcake>등록된 케이크 확인하기</a>
+							<a href="#" class=submithome>홈으로 돌아가기</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
 </section>
