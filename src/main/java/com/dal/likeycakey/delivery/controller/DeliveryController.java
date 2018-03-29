@@ -29,6 +29,13 @@ public class DeliveryController {
 		return "delivery/delivery";
 	}
 	
+	@RequestMapping(value = "/delivery2.ca", method = RequestMethod.GET)
+	public String delivery2(Locale locale, Model model) {
+		
+		
+		return "delivery/delivery2";
+	}
+	
 	
 	
 }
