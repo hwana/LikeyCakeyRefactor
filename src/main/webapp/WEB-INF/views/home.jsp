@@ -91,7 +91,7 @@
 									</li>
 										<li><a href="memberMypage.ca">MY PAGE</a></li>
 										<li><a href="contact.html">NOTICE</a></li>
-										<li><a href="contact.html">CONTACT</a></li>
+										<li><a href="contact.html">Q & A</a></li>
 									</ul>
 								</nav>
 								<!-- Product Cart -->
