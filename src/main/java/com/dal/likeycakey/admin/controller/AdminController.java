@@ -32,6 +32,7 @@ public class AdminController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );*/
+		System.out.println("memberList mapping도착");
 		
 		return "admin/memberList";
 	}
@@ -47,6 +48,7 @@ public class AdminController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		*/
+		System.out.println("hostInfo mapping도착");
 		return "admin/hostInfo";
 	}
 	
