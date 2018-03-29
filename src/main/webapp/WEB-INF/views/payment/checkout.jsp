@@ -178,7 +178,7 @@
 
 
 
-
+<!-- 
 								<div class="col-md-8">
 									<div class="country-select">
 										<label>배송지 선택<span class="required">*</span></label> <select>
@@ -200,7 +200,7 @@
 											type="submit" value="+ 새로운 배송지">
 									</div>
 								</div>
-
+ -->
 
 
 
@@ -228,7 +228,16 @@
 											placeholder="Apartment, suite, unit etc. (optional)">
 									</div>
 								</div>
+								
+								
 								<div class="col-md-12">
+									<div class="checkout-form-list">
+										<label>배송 메모<span class="required">*</span></label> <input
+											type="text" placeholder="">
+									</div>
+								</div>
+								
+							<!-- 	<div class="col-md-12">
 									<div class="country-select">
 										<label>배송 메모<span class="required">*</span></label> <select>
 											<option value="volvo">메송메모를 선택해 주세요.
@@ -242,7 +251,7 @@
 										</select>
 									</div>
 								</div>
-
+ -->
 
 								<hr>
 							</div>
@@ -310,7 +319,7 @@
 														<td class="product-name">2018.03.32 18:22:44</td>
 
 													</tr>
-													<tr>
+													<!-- <tr>
 														<td colspan="2">
 															<div class="checkout-form-list create-acc"
 																style="margin-bottom: 0px">
@@ -318,7 +327,7 @@
 																	이 결제 수단을 사용하시겠습니까?</label>
 															</div>
 														</td>
-													</tr>
+													</tr> -->
 												</tbody>
 											</table>
 										</div>
