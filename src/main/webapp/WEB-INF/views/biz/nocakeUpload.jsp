@@ -21,22 +21,6 @@
 	#cake{
 		font-size : 30px;
 	}
-	
-	#cakeupload{
-		width : 50%;
-		margin-top : 70px;
-		margin-left : 200px;
-		background : #f6c6c9;
-		border : #f6c6c9;
-		padding : 40px;
-		font-size : 30px;
-		
-	}
-	
-	#cake{
-		font-size : 30px;
-	}
-	
 </style>
 
 <!-- Page Content Wraper Area Start -->
@@ -84,8 +68,5 @@
 		</div>
 	</section>
 	<!-- Page Content Wraper Area End -->
-
-
-
 </html>
 <%@ include file="../default/footer.jsp"%>
