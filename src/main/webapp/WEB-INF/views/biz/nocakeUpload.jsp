@@ -22,11 +22,6 @@
 		font-size : 30px;
 	}
 	
-	
-	
-</style>
-
-<style>
 	#cakeupload{
 		width : 50%;
 		margin-top : 70px;
@@ -41,8 +36,6 @@
 	#cake{
 		font-size : 30px;
 	}
-	
-	
 	
 </style>
 
