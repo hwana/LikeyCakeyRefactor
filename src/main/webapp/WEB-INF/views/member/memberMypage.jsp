@@ -51,108 +51,103 @@
 			<div class="row">
 				<div class="content-full ptb-50 fix" style="margin: 0 auto;">
 					<!-- Left Side Start -->
-					<%@ include file ="leftside.jsp" %>
+					<%@ include file="leftside.jsp"%>
 					<!-- Left Side End -->
 
 
 					<!-- Right Side Start -->
 					<div class="col-md-10">
-					<span style="border:2px solid pink;"></span>&nbsp;&nbsp;<h1 style="display:inline; margin-top:0"><small><b>회원정보수정</b></small></h1>
-							<div class="blog-details-area">
-								<div
-									class="blog-left-single mb-30 res-mb-30 res-mb-sm-30 res-blog-mt-50">
-									<div class="left-area">
+						<span style="border: 2px solid pink;"></span>&nbsp;&nbsp;
+						<h1 style="display: inline; margin-top: 0">
+							<small><b>회원정보수정</b></small>
+						</h1>
+						<div class="blog-details-area">
+							<div
+								class="blog-left-single mb-30 res-mb-30 res-mb-sm-30 res-blog-mt-50">
+								<div class="left-area">
 
-										<!-- 위의 div 4개는 오른쪽 사이드 설정하는 div -->
-										<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
-										<div class="col-md-12">
-											<form class="form-horizontal">
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
-													<div class="col-sm-6">
-														<input class="form-control" id="inputEmail" type="email"
-															placeholder="이메일">
+									<!-- 위의 div 4개는 오른쪽 사이드 설정하는 div -->
+									<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
+									<div class="col-md-12">
+										<form class="form-horizontal">
+											<div class="form-group">
+												<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
+												<div class="col-sm-6">
+													<input class="form-control" id="inputEmail" type="email"
+														placeholder="이메일">
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
+												<div class="col-sm-6">
+													<input class="form-control" id="inputPassword"
+														type="password" placeholder="비밀번호">
+													<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label"
+													for="inputPasswordCheck">비밀번호 확인</label>
+												<div class="col-sm-6">
+													<input class="form-control" id="inputPasswordCheck"
+														type="password" placeholder="비밀번호 확인">
+													<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label" for="inputName">이름</label>
+												<div class="col-sm-6">
+													<input class="form-control" id="inputName" type="text"
+														placeholder="이름">
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
+												<div class="col-sm-6">
+													<div class="input-group">
+														<input type="tel" class="form-control" id="inputNumber"
+															placeholder="- 없이 입력해 주세요" /> <span
+															class="input-group-btn">
+															<button class="btn btn-success">
+																인증번호 전송</button>
+														</span>
 													</div>
 												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
-													<div class="col-sm-6">
-														<input class="form-control" id="inputPassword"
-															type="password" placeholder="비밀번호">
-														<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label" for="inputNumberCheck">인증번호
+													확인</label>
+												<div class="col-sm-6">
+													<div class="input-group">
+														<input class="form-control" id="inputNumberCheck"
+															type="text" placeholder="인증번호"> <span
+															class="input-group-btn">
+															<button class="btn btn-success"
+																style="background-color: #9bcaba; font-size: 12px; margin-left: 5px"
+																type="button">
+																인증번호 확인 <i class="fa fa-edit spaceLeft"></i>
+															</button>
+														</span>
 													</div>
+													<p class="help-block">전송된 인증번호를 입력해주세요.</p>
 												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label"
-														for="inputPasswordCheck">비밀번호 확인</label>
-													<div class="col-sm-6">
-														<input class="form-control" id="inputPasswordCheck"
-															type="password" placeholder="비밀번호 확인">
-														<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
-													</div>
+											</div>
+
+											<div class="form-group">
+												<div class="col-sm-12 text-center">
+													<button class="btn btn-primary" type="submit">
+														정보수정<i class="fa fa-check spaceLeft"></i>
+													</button>
+													<button class="btn btn-danger" type="submit">
+														수정취소<i class="fa fa-times spaceLeft"></i>
+													</button>
 												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="inputName">이름</label>
-													<div class="col-sm-6">
-														<input class="form-control" id="inputName" type="text"
-															placeholder="이름">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
-													<div class="col-sm-6">
-														<div class="input-group">
-															<input type="tel" class="form-control" id="inputNumber"
-																placeholder="- 없이 입력해 주세요" /> <span
-																class="input-group-btn">
-																<button class="btn btn-success" 
-																		style="background-color:#9bcaba;
-																			   width : 105px; height:50px;
-																			   font-size : 12px;
-																			   margin-left : 5px">
-																	인증번호 전송 <i class="fa fa-mail-forward spaceLeft"></i>
-																</button>
-															</span>
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-3 control-label"
-														for="inputNumberCheck">인증번호 확인</label>
-													<div class="col-sm-6">
-														<div class="input-group">
-															<input class="form-control" id="inputNumberCheck"
-																type="text" placeholder="인증번호"> <span
-																class="input-group-btn">
-																<button class="btn btn-success" 
-																		style="background-color:#9bcaba;
-																			   width : 105px; height:50px;
-																			   font-size : 12px;
-																			   margin-left : 5px"
-																		type="button">
-																	인증번호 확인 <i class="fa fa-edit spaceLeft"></i>
-																</button>
-															</span>
-														</div>
-														<p class="help-block">전송된 인증번호를 입력해주세요.</p>
-													</div>
-												</div>
-			
-												<div class="form-group">
-													<div class="col-sm-12 text-center">
-														<button class="btn btn-primary" type="submit">
-															정보수정<i class="fa fa-check spaceLeft"></i>
-														</button>
-														<button class="btn btn-danger" type="submit">
-															수정취소<i class="fa fa-times spaceLeft"></i>
-														</button>
-													</div>
-												</div>
-											</form>
-											<hr>
-										</div>
+											</div>
+										</form>
+										<hr>
 									</div>
 								</div>
+							</div>
 						</div>
 					</div>
 					<!-- Right Side End -->

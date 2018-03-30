@@ -33,20 +33,12 @@
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
-         
-
-
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-		<!-- Header Area Start -->
+    	<!-- Header Area Start -->
 		<header>
-		
 			<!-- Header Menu Area -->
 			<div class="menu-area mt-60">
 				<div class="container">
 					<div class="row">
-					
 					<!-- 로그인, 회원가입 / 로그아웃, 마이페이지 -->
 					<div class="sign-wrapper">
 						<a class="sign-button">Sign-Up</a><a class="sign-button">Log-in</a> 
@@ -54,14 +46,14 @@
 					
 						<div class="col-md-3 col-sm-12">
 							<div class="logo-area text-center text-uppercase">
-								<a href="index.html"><img src="/resources/img/icon/logo.png" alt="" /></a>
+								<a href="home.ca"><img src="/resources/img/icon/logo.png" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-12">
 							<div class="main-menu lemon-bg">
 								<nav>
 									<ul id="nav">
-										<li><a href="index.html">Home</a></li>
+										<li><a href="home.ca">Home</a></li>
 										<li><a href="cakelist.ca">CAKE</a>
 											<ul>
 												<li><a href="shop.html"><i class="arrow_carrot-right"></i> 모든 케이크</a></li>
@@ -70,14 +62,7 @@
 												<li><a href="single-product.html"><i class="arrow_carrot-right"></i> 아이스크림 케이크</a></li>
 											</ul>
 										</li>
-										
-									<!-- 	<li><a href="blog.html">BLOG</a>
-											<ul>
-												<li><a href="blog.html"><i class="arrow_carrot-right"></i>Blog</a></li>
-												<li><a href="blog-details.html"><i class="arrow_carrot-right"></i>Blog Details</a></li>
-											</ul>
-										</li> -->
-								
+
 									<li><a href="hostpage.ca">SHOP</a>
 										<ul>
 											<li><a href="hostpage.ca"><i class="arrow_carrot-right"></i> 케이크 가게 모아보기</a></li>
@@ -86,7 +71,7 @@
 										
 									<li><a href="#">CUSTOMIZING</a>
 										<ul>
-											<li><a href="shop.html"><i class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
+											<li><a href="hostpage.ca"><i class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
 										</ul>
 									</li>
 										<li><a href="memberMypage.ca">MY PAGE</a></li>
@@ -172,30 +157,6 @@
 							</div>
 							
 							<p class="main_info NanumGothic"><i class="fa fa-info"></i><strong> 케이크 종류, 브랜드명 </strong>을 검색해보세요. </p>
-
-							<!-- <div class="slider-btn text-uppercase"></div> -->
-							
-							
-							<!-- Icon Left -->
-							<!-- <div class="social-icon-left">
-									<ul>
-										<li><a href="#" class="social_facebook"></a></li>
-										<li><a href="#" class="social_googleplus"></a></li>
-										<li><a href="#" class="social_twitter"></a></li>
-									</ul>
-								</div>  -->
-							<!-- Icon Left -->
-							
-							
-							<!-- Icon Right -->
-							<!-- <div class="social-icon-right">
-								<ul>
-									<li><a href="#" class="icon_refresh"></a></li>
-									<li><a href="#" class="icon_heart_alt"></a></li>
-									<li><a href="#" class=" icon_search"></a></li>
-								</ul>
-							</div> -->
-							<!-- Icon Right -->
 						</div>
 					</div>
 				</div>

@@ -269,5 +269,7 @@ hr{
 
 	<script src="/resources/js/bootstrap.min.js"></script>
 </body>
+
 </html>
+<%@ include file="../default/footer.jsp"%>
 

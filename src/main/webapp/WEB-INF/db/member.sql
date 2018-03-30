@@ -36,12 +36,3 @@ CREATE TABLE MEMBER_BIZ
 	MASTER_NAME VARCHAR2(50),
 	CONSTRAINT MEMBIZ_FK_MID FOREIGN KEY (M_ID) REFERENCES MEMBER (M_ID)
 )
-
-
-select * from MEMBER;
-
-INSERT INTO MEMBER VALUES('dd123', 'ddd123', '도도', 'dodo123@naver.com', 
-'13402', '경기도 성남시', '판교휴먼시아', 'img', '010-1234-5678', 2, 2,3);
-
-INSERT INTO MEMBER VALUES('admin11', 'admin11', '관리자2', 'admin@naver.com', 
-'13402', '서울시 강남', 'kh 아파트', 'img', '010-1234-5444', 1, 0,0);

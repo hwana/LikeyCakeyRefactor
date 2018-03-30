@@ -12,7 +12,7 @@
 	margin : auto 0;
 }
 #checkbox{
-	margin-top:18px;
+	margin-top:10px;
 }
 
 #search{
@@ -33,6 +33,12 @@ background : #9bcaba;
 
 #inputtag{
 margin-top:10px;}
+
+input[type="checkbox"]{
+	width : auto;
+	height : auto;
+	
+}
 </style>
 <!-- Page Content Wraper Area Start -->
 <section class="page-content-wrapper">
@@ -121,31 +127,18 @@ margin-top:10px;}
 								</div>
 							</div>
 							
-							<div class="form-group">
+							<div class="form-inline">
 								<label class="col-sm-3 control-label" for="inputCakeInfo">규격</label>
-								<div class="col-sm-6">
-									<input class="form-control" id="inputtag" type="text"
-										placeholder="케이크 호수를 입력해주세요 ex)1호">
-										<input class="form-control" id="inputtag" type="text"
-										placeholder="케이크 호수를 입력해주세요 ex)2호">
-										<input class="form-control" id="inputtag" type="text"
-										placeholder="케이크 호수를 입력해주세요 ex)3호">
-									<button class="btn btn-success" type="button" id="search" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
+								<div class="col-sm-6" id = checkbox>
+									<input class="span2" id="inputtag" type="checkbox">1호&nbsp;&nbsp;&nbsp;
+									<input class="span2" id="inputtag" type="checkbox">2호&nbsp;&nbsp;&nbsp;
+									<input class="span2" id="inputtag" type="checkbox">3호&nbsp;&nbsp;&nbsp;
+									<input class="span2" id="inputtag" type="checkbox">4호&nbsp;&nbsp;&nbsp;
+									<input class="span2" id="inputtag" type="checkbox">5호&nbsp;&nbsp;&nbsp;
 								</div>
 							</div>
 							
-							<div class="form-group">
-								<label class="col-sm-3 control-label" for="inputCakeInfo">사이즈</label>
-								<div class="col-sm-6">
-									<input class="form-control" id="inputtag" type="text"
-										placeholder="케이크 사이즈를 입력해주세요 ex)30*30*10(cm)">
-										<input class="form-control" id="inputtag" type="text"
-										placeholder="케이크 사이즈를 입력해주세요 ex)30*30*10(cm)">
-										<input class="form-control" id="inputtag" type="text"
-										placeholder="케이크 사이즈를 입력해주세요 ex)30*30*10(cm)">
-									<button class="btn btn-success" type="button" id="search" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
-								</div>
-							</div>
+						
 							
 						
 
@@ -165,3 +158,8 @@ margin-top:10px;}
 		</div>
 	</div>
 </section>
+
+</body>
+
+</html>
+<%@ include file="../default/footer.jsp"%>

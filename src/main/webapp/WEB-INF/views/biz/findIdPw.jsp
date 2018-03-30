@@ -51,7 +51,7 @@
 							</form>
 
 							<form id="findpw-form" action="/" class="form-horizontal"
-								method="post" role="form" style="display: block;">
+								method="post" role="form" style="display: none;">
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="name">담당자 이름</label>
 
@@ -110,3 +110,4 @@
 </body>
 
 </html>
+<%@ include file="../default/footer.jsp"%>
