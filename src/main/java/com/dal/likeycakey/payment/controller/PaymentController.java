@@ -17,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class PaymentController {
 	
+	@RequestMapping(value = "/cart.ca", method = RequestMethod.GET)
+	public String cart(Locale locale, Model model) {
+		
+		return "payment/cart";
+	}
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -30,11 +35,6 @@ public class PaymentController {
 	}
 	
 	
-	@RequestMapping(value = "/cart.ca", method = RequestMethod.GET)
-	public String cart(Locale locale, Model model) {
-		
-		return "payment/cart";
-	}
 	
 	@RequestMapping(value = "/checkoutSuccess.ca", method = RequestMethod.GET)
 	public String checkoutSuccess(Locale locale, Model model) {

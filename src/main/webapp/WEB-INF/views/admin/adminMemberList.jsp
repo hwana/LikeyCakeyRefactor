@@ -4,6 +4,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<c:set var="listCount" value="${requestScope.listCount}" />
+<c:set var="currentPage" value="${requestScope.currentPage}" />
+<c:set var="startPage" value="${requestScope.startPage}" />
+<c:set var="endPage" value="${requestScope.endPage}" />
+<c:set var="maxPage" value="${requestScope.maxPage}" />
+<c:set var="list" value="${requestScope.list}" />
+<c:set var="member" value="${sessionScope.member}" />
+
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -41,19 +50,16 @@
 </head>
 
 <style>
-
 .th {
 	padding: 10px 2px;
 }
 
-td{
+td {
 	padding-top: 5px !important;
 	padding-bottom: 5px !important;
-	text-align:center;
-	margin:0 auto; 
+	text-align: center;
+	margin: 0 auto;
 }
-
-
 </style>
 <body class="other-page">
 
@@ -89,15 +95,16 @@ td{
 							<br> <br>
 							<!-- 회원 정보 리스트 시작 -->
 							<div class="row">
-								<h3>회원 정보
-								
-								<!-- 회원 상태 설명 시작 -->
+								<h3>
+									회원 정보
+
+									<!-- 회원 상태 설명 시작 -->
 									<div class="checkout-form-list create-acc"
 										style="margin-bottom: 0px; float: right">
-										<label style="color:#9bcaba">1.일반 2.경고 3.블랙리스트 4.탈퇴</label>
+										<label style="color: #9bcaba">1.일반 2.경고 3.블랙리스트 4.탈퇴</label>
 									</div>
 									<!-- 회원 상태 설명 끝 -->
-								
+
 								</h3>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<form action="#">
@@ -113,7 +120,7 @@ td{
 												<thead>
 													<tr>
 														<th class="product-thumbnail eceff8"><input
-															type="checkbox" style="height: 12px; width:20px;"></th>
+															type="checkbox" style="height: 12px; width: 20px;"></th>
 														<th class="product-thumbnail eceff8">분류번호</th>
 														<th class="product-thumbnail eceff8">id</th>
 														<th class="product-thumbnail eceff8">passwd</th>
@@ -123,52 +130,46 @@ td{
 														<th class="product-thumbnail eceff8">회원 전화번호</th>
 														<th class="product-thumbnail eceff8">상태</th>
 														<th class="product-thumbnail eceff8">신고횟수</th>
-														<th class="product-remove eceff8" style="width:50px;">수정</th>
+														<th class="product-remove eceff8" style="width: 50px;">수정</th>
 													</tr>
 												</thead>
 												<tbody>
-												
-												<foreach item="item" index="index" collection="list">
-												
-													<!-- 회원 1 시작 -->
-													<tr>
-														<td><input type="checkbox" style="height: 12px; width:20px;"></td>
-														<td><input type="text" class="s_text" placeholder="" value="1">
-														</td>
 
-														<td><a href="#"><input type="text" 
-															class="text" value="admin"
-															></a></td>
-														<td><input type="text"
-															placeholder="" class="text" value="admin"></td>
-														<td><input type="text"
-															placeholder="" class="text" value="김은송"></td>
-														<td><input type="text"
-															placeholder="" class="text" value="admin@naver.com">
-														</td>
-														<td><input type="text"
-															placeholder="" class="text" value="010-1111-2222">
+													<c:forEach var="m" items="${list}">
 
-														</td>
-														<td><input type="text" class="s_text" placeholder="" value="3">
-														</td>
-														<td><input type="text" class="s_text" placeholder="" value="7">
-														</td>
-														<td>
-															<div class="buttons-cart" style="margin-bottom: 0px;">
-																<div class="pink_button small_button"
-																	>
+														<!-- 회원 1 시작 -->
+														<tr>
+															<td><input type="checkbox"
+																style="height: 12px; width: 20px;"></td>
+															<td><input type="text" class="s_text" placeholder=""
+																value="${m.code}"></td>
 
-
-																	<a href="#">수정</a>
+															<td><a href="#"><input type="text" class="text"
+																	value="${m.id}"></a></td>
+															<td><input type="text" placeholder="" class="text"
+																value="${m.passwd}"></td>
+															<td><input type="text" placeholder="" class="text"
+																value="${m.name}"></td>
+															<td><input type="text" placeholder="" class="text"
+																value="${m.email}"></td>
+															<td><input type="text" placeholder="" class="text"
+																value="${m.phone}"></td>
+															<td><input type="text" class="s_text" placeholder=""
+																value="${m.status}"></td>
+															<td><input type="text" class="s_text" placeholder=""
+																value="${m.blackCnt}"></td>
+															<td>
+																<div class="buttons-cart" style="margin-bottom: 0px;">
+																	<div class="pink_button small_button">
+																		<a href="#">수정</a>
+																	</div>
 																</div>
-															</div>
-														</td>
+															</td>
 
-													</tr>
-													<!--  회원 1 끝 -->
-													
-													</foreach>
+														</tr>
+														<!--  회원 1 끝 -->
+
+													</c:forEach>
 
 
 
@@ -186,7 +187,7 @@ td{
 
 							<!-- 버튼 시작 -->
 							<div class="row">
-								<div class="col-md-4" style="width:20%; margin-left:30%">
+								<div class="col-md-4" style="width: 20%; margin-left: 30%">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 
@@ -196,7 +197,7 @@ td{
 									</div>
 								</div>
 
-								<div class="col-md-4" style="width:20%">
+								<div class="col-md-4" style="width: 20%">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 										<div class="pink_button">
