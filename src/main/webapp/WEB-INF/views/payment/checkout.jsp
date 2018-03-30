@@ -42,6 +42,16 @@
 
 <style>
 
+
+.input_height{
+height: 33px !important;
+}
+
+.height{
+height: 50px !important;
+ margin-bottom: 20px !important; 
+}
+
 </style>
 <body class="other-page">
 
@@ -178,7 +188,7 @@
 
 
 
-
+<!-- 
 								<div class="col-md-8">
 									<div class="country-select">
 										<label>배송지 선택<span class="required">*</span></label> <select>
@@ -200,35 +210,65 @@
 											type="submit" value="+ 새로운 배송지">
 									</div>
 								</div>
-
+ -->
 
 
 
 								<div class="col-md-12">
-									<div class="checkout-form-list">
-										<label>이름<span class="required">*</span></label> <input
+									<div class="checkout-form-list height">
+										<label>수령인<span class="required">*</span></label> <input class="input_height"
 											type="text" placeholder="">
 									</div>
 								</div>
 
 								<div class="col-md-12">
-									<div class="checkout-form-list">
-										<label>연락처</label> <input type="text" placeholder="">
+									<div class="checkout-form-list height">
+										<label>연락처<span class="required">*</span></label> <input class="input_height" type="text" placeholder="">
 									</div>
 								</div>
-								<div class="col-md-12">
-									<div class="checkout-form-list">
-										<label>주소 <span class="required">*</span></label> <input
-											type="text" placeholder="Street address">
+								
+								
+								<div class="col-md-8">
+									<div class="checkout-form-list height">
+										<label>배송지<span class="required">*</span></label><input class="input_height"
+											type="text" placeholder="우편번호">
 									</div>
 								</div>
-								<div class="col-md-12">
-									<div class="checkout-form-list">
-										<input type="text"
-											placeholder="Apartment, suite, unit etc. (optional)">
+
+								<div class="col-md-4">
+									<div class="country-button height" style="">
+										<label><span class="required"></span></label>
+
+										<div class="pink_button">
+											<input  class="input_height" type="submit" value="우편번호">
+										</div>
 									</div>
 								</div>
+
+								
 								<div class="col-md-12">
+									<div class="checkout-form-list" style="margin-bottom: 10px;">
+										<input class="input_height" 
+											type="text" placeholder="기본주소">
+									</div>
+								</div>
+								
+								<div class="col-md-12">
+									<div class="checkout-form-list" style="margin-bottom: 15px;">
+										<input type="text" class="input_height"
+											placeholder="상세주소">
+									</div>
+								</div>
+								
+								
+								<div class="col-md-12">
+									<div class="checkout-form-list height">
+										<label>배송 메모<span class="required">*</span></label> <input class="input_height"
+											type="text" placeholder="">
+									</div>
+								</div>
+								
+							<!-- 	<div class="col-md-12">
 									<div class="country-select">
 										<label>배송 메모<span class="required">*</span></label> <select>
 											<option value="volvo">메송메모를 선택해 주세요.
@@ -242,7 +282,7 @@
 										</select>
 									</div>
 								</div>
-
+ -->
 
 								<hr>
 							</div>
@@ -310,7 +350,7 @@
 														<td class="product-name">2018.03.32 18:22:44</td>
 
 													</tr>
-													<tr>
+													<!-- <tr>
 														<td colspan="2">
 															<div class="checkout-form-list create-acc"
 																style="margin-bottom: 0px">
@@ -318,7 +358,7 @@
 																	이 결제 수단을 사용하시겠습니까?</label>
 															</div>
 														</td>
-													</tr>
+													</tr> -->
 												</tbody>
 											</table>
 										</div>
