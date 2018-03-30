@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../default/header.jsp"%>
@@ -111,7 +112,7 @@
 		</div>
 	</div>
 </div>
-<script src="resources/js/hwanhee/login.js"></script>
+<script src="resources/js/login.js"></script>
 </body>
 
 </html>

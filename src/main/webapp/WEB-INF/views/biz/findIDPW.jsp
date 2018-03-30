@@ -105,7 +105,7 @@
 		</div>
 	</div>
 </div>
-<script src="/resources/js/hwanhee/find.js"></script>
+<script src="/resources/js/find.js"></script>
 
 </body>
 

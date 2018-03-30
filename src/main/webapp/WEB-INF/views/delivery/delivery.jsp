@@ -42,12 +42,20 @@
 body {
 	text-align: center; /* Quirks Mode 를 위한 가운데 정렬 */
 }
-
-
-th:first-child {
-	background-color: #9bcaba; /* #f6c6c9; */
-	width: 20%;
+td{
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	text-align:center;
+	margin:0 auto; 
 }
+
+th{
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	text-align:center;
+	margin:0 auto; 
+}
+
 
 </style>
 </head>
@@ -101,39 +109,39 @@ th:first-child {
 								<div class="review-right">
 
 									<form action="mail.php" method="post">
-										<div class="p-details-table table-responsive">
+										<div class="table-content table-responsive">
 											<table>
 
 												<tbody>
 													<tr>
-														<th>보내는 분</th>
+														<th class="product-thumbnail eceff8">보내는 분</th>
 														<td>김은송</td>
 
 													</tr>
 													<tr>
-														<th>받는 분</th>
+														<th class="product-thumbnail eceff8">받는 분</th>
 														<td>송지연</td>
 													</tr>
 													<tr>
-														<th>주소</th>
+														<th class="product-thumbnail eceff8">주소</th>
 														<td>대한민국 서울시 강남구</td>
 
 													</tr>
 
 													<tr>
-														<th>상품정보</th>
+														<th class="product-thumbnail eceff8">상품정보</th>
 														<td>[무료배송]알뜰 협탁 12종/4종</td>
 
 													</tr>
 
 													<tr>
-														<th>택배사</th>
+														<th class="product-thumbnail eceff8">택배사</th>
 														<td>천일택배</td>
 
 													</tr>
 
 													<tr>
-														<th>운송장 번호</th>
+														<th class="product-thumbnail eceff8">운송장 번호</th>
 														<td>51293849047362</td>
 
 													</tr>
@@ -158,40 +166,37 @@ th:first-child {
 							<div class="col-md-6">
 								<div class="review-right">
 									<form action="mail.php" method="post">
-										<div class="p-details-table table-responsive">
+										<div class="table-content table-responsive">
 											<table>
 												<thead>
 													<tr>
-														<th>처리일시</th>
-														<th>배송단계</th>
-														<th>현재위치</th>
-														<th>배송상태</th>
-														<th>배송기사 연락처</th>
+														<th class="product-thumbnail eceff8">
+														
+														처리일시
+														</th>
+													
+														<th class="product-thumbnail eceff8">현재위치</th>
+														<th class="product-thumbnail eceff8">배송상태</th>
+														<th class="product-thumbnail eceff8">배송기사 연락처</th>
 
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
-														<th>2018-02-19 21:58</th>
-														<td>집화 완료</td>
-														<td>포천송우 031-54303729</td>
+														<td>2018-02-19 21:58</td>
+													
+														<td>포천송우</td>
 														<td>집하</td>
-														<td>0</td>
+														<td> 031-54303729<</td>
 													</tr>
 													<tr>
-														<th>2018-02-19 07:28</th>
-														<td>배송중</td>
-														<td>영화배송 010-2200-7075</td>
+														<td>2018-02-19 07:28</td>
+												
+														<td>영화배송</td>
 														<td>배송중(입고)</td>
 														<td>010-2200-7075</td>
 													</tr>
-													<tr>
-														<th>Quality</th>
-														<td><input type="radio" class="radio" value=""></td>
-														<td><input type="radio" class="radio" value=""></td>
-														<td><input type="radio" class="radio" value=""></td>
-														<td><input type="radio" class="radio" value=""></td>
-													</tr>
+													
 												</tbody>
 											</table>
 										</div>
@@ -208,7 +213,7 @@ th:first-child {
 						<!-- 버튼 시작 -->
 							<div class="row">
 								<div class="col-md-4">
-									<div class="country-button" style="margin-left: 30%; margin-right:30%;">
+									<div class="country-button" style="margin-left: 40%; margin-right:40%;">
 										<label><span class="required"></span></label>
 
 										<div class="pink_button">

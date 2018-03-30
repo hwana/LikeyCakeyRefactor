@@ -3,9 +3,29 @@
 
 <%@ include file="../default/header.jsp"%>
 
-<link rel="stylesheet" type="text/css" href="resources/css/hwanhee/component.css" />
-<script src="resources/js/hwanhee/classie.js"></script>
-<script src="resources/js/hwanhee/modernizr.custom.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/component.css" />
+<script src="resources/js/classie.js"></script>
+<script src="resources/js/modernizr.custom.js"></script>
+<style>
+	#cakeupload{
+		width : 50%;
+		margin-top : 70px;
+		margin-left : 200px;
+		background : #f6c6c9;
+		border : #f6c6c9;
+		padding : 40px;
+		font-size : 30px;
+		
+	}
+	
+	#cake{
+		font-size : 30px;
+	}
+	
+	
+	
+</style>
+
 <style>
 	#cakeupload{
 		width : 50%;
@@ -42,11 +62,11 @@
 									<h4>My Page</h4>
 									<div class="category-list mt-20">
 										<ul>
-											<!-- li style="border-bottom:0px;" << 라인 없애기 -->
-											<li style="border-bottom:0px;"><a href="#"><i class="zmdi zmdi-chevron-right"></i>케이크 등록하기</a></li>
-											<li style="border-bottom:0px;"><a href="#"><i class="zmdi zmdi-chevron-right"></i>사업가 정보 수정</a></li>
-											<li style="border-bottom:0px;"><a href="#"><i class="zmdi zmdi-chevron-right"></i>주문내역</a></li>
-											<li style="border-bottom:0px;"><a href="#"><i class="zmdi zmdi-chevron-right"></i>문의글 모음</a></li>
+											<!-- li style="border-bottom:0px;" << ë¼ì¸ ìì ê¸° -->
+											<li style="border-bottom:0px;"><a href="#"><i class="zmdi zmdi-chevron-right"></i>ì¼ì´í¬ ë±ë¡íê¸°</a></li>
+											<li style="border-bottom:0px;"><a href="#"><i class="zmdi zmdi-chevron-right"></i>ì¬ìê° ì ë³´ ìì </a></li>
+											<li style="border-bottom:0px;"><a href="#"><i class="zmdi zmdi-chevron-right"></i>ì£¼ë¬¸ë´ì­</a></li>
+											<li style="border-bottom:0px;"><a href="#"><i class="zmdi zmdi-chevron-right"></i>ë¬¸ìê¸ ëª¨ì</a></li>
 											
 										</ul>
 									</div>
@@ -56,9 +76,9 @@
 					</div>
 					<!-- Left Side End -->
 					<!-- Right Side Start -->
-					<span style="border:2px solid pink;"></span>&nbsp;&nbsp;<h1 style="display:inline; margin-top:0"><small><b>케이크 등록하기</b></small></h1><br>
+					<span style="border:2px solid pink;"></span>&nbsp;&nbsp;<h1 style="display:inline; margin-top:0"><small><b>ì¼ì´í¬ ë±ë¡íê¸°</b></small></h1><br>
 					
-					<button class="btn btn-3 btn-3c" id = "cakeupload">&nbsp;&nbsp;<div>케이크 등록하기</div></button>
+					<button class="btn btn-3 btn-3c" id = "cakeupload">&nbsp;&nbsp;<div>ì¼ì´í¬ ë±ë¡íê¸°</div></button>
 					
 					<!-- Right Side End -->
 				</div>

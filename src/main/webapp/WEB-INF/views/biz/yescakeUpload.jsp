@@ -1,34 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../default/header.jsp"%>
-<link rel="stylesheet" type="text/css" href="resources/css/component.css" />
+
+<style>
+#cakeupload{
+
+	margin-bottom : 30px;
+	
+}
+</style>
 <script src="resources/js/classie.js"></script>
 <script src="resources/js/modernizr.custom.js"></script>
-<style>
-	#customupload{
-		width : 30%;
-		background : #f6c6c9;
-		border : #f6c6c9;
-		padding : 40px;
-		font-size : 30px;
-		
-	}
-	
-	#productupload{
-		width : 30%;
-		background : #9bcaba;
-		border : #9bcaba;
-		padding : 40px;
-		font-size : 30px;
-	}
-	
-	#cake{
-		font-size : 30px;
-	}
-	
-	
-	
-</style>
+
 <!-- Page Content Wraper Area Start -->
 <section class="page-content-wrapper">
 	<div class="container">
@@ -62,21 +45,54 @@
 					</div>
 				</div>
 				<!-- Left Side End -->
-
+				
+				
 				<!-- Right Side Start -->
-				<div style = "margin-bottom : 30px;">
+				<div class = "col-md-8" style = "margin-bottom : 30px;">
 				<span style="border: 2px solid pink;"></span>&nbsp;&nbsp;
 				<h1 style="display: inline; margin-top: 0">
 					<small><b>케이크 등록하기</b></small>
 				</h1>
 				</div>
 				<br>
+				<div class = "col-md-2" >
+				<button class="btn pull-right" id = "cakeupload">케이크 등록하기</button>
+				</div>
+				<div class = "col-md-10">
+				<table class = "table table-hover">
+					<thead>
+					<tr>
+					<th>번호</th>
+					<th>이름</th>
+					<th>가격</th>
+					<th>당일구매</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+					<th>1234</th>
+					<th>달콤 촉촉 초코케이크</th>
+					<th>13,000원</th>
+					<th>가능</th>
+					</tr>
+					<tr>
+					<th>1235</th>
+					<th>마카롱케이크</th>
+					<th>29,000원</th>
+					<th>불가능</th>
+					</tr>
+					<tr>
+					<th>1234</th>
+					<th>딸기 케이크</th>
+					<th>30,000원</th>
+					<th>가능</th>
+					</tr>
+					</tbody>
+				</table>
+				</div>
 				
-				<button class="btn btn-3 btn-3c" id = "customupload">&nbsp;&nbsp;<div>커스터마이징 <br>케이크 등록하기</div></button>
-				<button class="btn btn-3 btn-3c" id = "productupload">&nbsp;&nbsp;<div>완제품 <br>케이크 등록하기</div></button>
-
+				
 			</div>
 		</div>
 	</div>
-
 </section>

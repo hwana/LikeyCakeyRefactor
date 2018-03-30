@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>buyList</title>
+<title>HostInfo</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,6 +41,16 @@
 </head>
 
 <style>
+.th {
+	padding: 10px 2px;
+}
+
+td{
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+	text-align:center;
+	margin:0 auto; 
+}
 
 
 </style>
@@ -66,105 +76,134 @@
 
 						<div class="checkbox-form">
 
-					<!-- 결제 방법 창 -->
-					<div class="row">
-								<h2 style=" width:20%; display: inline-block; font-weight:500;">구매 내역</h2>
-								<h3></h3>
-							
-								
-					</div>
-					<!-- 결제 방법 창 -->
-			<br><br>
-							<!-- 구매 내역 시작 -->
+							<!-- 무슨 창인지 설명하는 부분 -->
 							<div class="row">
-								<h3>구매 내역 정보</h3>
+								<h2 style="width: 20%; display: inline-block; font-weight: 500;">사업장 정보</h2>
+								<h3></h3>
+
+
+							</div>
+							<!-- 무슨 창인지 설명하는 부분-->
+							<br> <br>
+							<!-- 회원 정보 리스트 시작 -->
+							<div class="row">
+								<h3>사업장 정보</h3>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<form action="#">
-									
-											
-											
-											
-											
-											<!-- 구매 내역 2 시작 -->
+
+
+
+
+
+										<!-- 회원 정보 리스트 시작 -->
 										<div class="table-content table-responsive">
-										
+
 											<table>
 												<thead>
 													<tr>
-														<th class="product-thumbnail eceff8" colspan="5">구매 내역</th>
-														
-														<th class="product-subtotal eceff8">유효기한/배송상태</th>
-														<th class="product-remove eceff8">관리</th>
+														<th class="product-thumbnail eceff8"><input
+															type="checkbox" style="height: 12px; width:20px;"></th>
+														<th class="product-thumbnail eceff8">번호</th>
+														<th class="product-thumbnail eceff8">회원 id</th>
+														<th class="product-thumbnail eceff8">가게이름</th>
+
+														<th class="product-thumbnail eceff8">가게 전화번호</th>
+														<th class="product-thumbnail eceff8">사업자 등록번호</th>
+														<th class="product-thumbnail eceff8">업체 이메일</th>
+														<th class="product-thumbnail eceff8">배송비</th>
+														<th class="product-thumbnail eceff8">담당자 이름</th>
+														<th class="product-remove eceff8" style="width:50px;">수정</th>
 													</tr>
 												</thead>
 												<tbody>
+												
+												<foreach item="item" index="index" collection="list">
+												
+													<!-- 회원 1 시작 -->
 													<tr>
-														<td ><a href="#"><img
-																src="/resources/img/product/3.jpg" alt=""></a></td>
-														<td class="product-name">
-															<p style="font-weight: bold;">똔똔씨의 케잌가게</p>
-															<span>산타할아버지 초코케이크(구매수량 2개)</span>
-															</td>
-														
-														<td >
-														<p style="font-weight: bold;">주문 날짜</p>
-															<span>2018.03.44 12:34:33</span>
+														<td><input type="checkbox" style="height: 12px; width:20px"></td>
+														<td>1
 														</td>
-														<td >
-															<p style="font-weight: bold;">총 금액</p>
-															<span>70,000</span>
-														
+
+														<td><input type="text" 
+															class="text" value="admin"
+															></td>
+														<td><input type="text"
+															placeholder="" class="text" value="admin"></td>
+														<td><input type="text"
+															placeholder="" class="text" value="김은송"></td>
+														<td><input type="text"
+															placeholder="" class="text" value="admin@naver.com">
+														</td>
+														<td><input type="text"
+															placeholder="" class="text" value="010-1111-2222">
+
+														</td>
+														<td><input type="text"
+															placeholder="" class="text" value="010-1111-2222">
+
+														</td>
+														<td><input type="text"
+															placeholder="" class="text" value="010-1111-2222">
+
 														</td>
 														<td>
-														<p style="font-weight: bold;">입금 기한</p>
-															<span>2018.03.24 18:00</span>
+															<div class="buttons-cart" style="margin-bottom: 0px;">
+																<div class="pink_button small_button"
+																	>
+
+
+																	<a href="#">수정</a>
+																</div>
+															</div>
+														</td>
+
+													</tr>
+													<!--  회원 1 끝 -->
 													
-														</td>
-														<td class="product-price" ><span>
-														<a href="#">배송 상태(택배 현황과 연결하기)</a></span></td>
-														<td class="product-subtotal">
-														
-														<!-- 배송지 수정 버튼 시작 -->
-														<div class="pink_button">
-															<input type="button" value="구매취소" style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
-														</div>
-														<!-- 배송지 수정 버튼 끝 -->
-														
-														</td>
-													</tr>
-													<tr>
-														<td class="product-thumbnail">
-														
-														<p style="font-weight: bold;">주문번호</p>
-															<span>2032626747</span>
-														
-														
-														<td colspan="6">배송지 정보 : 김은송, (444-222)경기도 수원시 영통구 삼대 한보아파트
-														<br>
-														<!-- 배송지 수정 버튼 시작 -->
-														<div class="pink_button">
-															<input type="button" value="배송지 수정" style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
-														</div>
-														<!-- 배송지 수정 버튼 끝 -->
-												
-												</div>
-												
-														</td>
-													</tr>
+													</foreach>
+
+
+
+
 												</tbody>
 											</table>
 										</div>
-											<!-- 구매 내역 2 끝 -->
-									
+
+
 									</form>
 								</div>
 							</div>
-							<!-- 장바구니 끝 -->
-							<br> <br> <br>
-							
+							<!-- 회원 정보 보기끝 -->
+							<br> <br> <br> <br> <br> <br>
 
-							<br> <br> <br>
-						
+							<!-- 버튼 시작 -->
+							<div class="row">
+								<div class="col-md-4" style="width:20%; margin-left:30%">
+									<div class="country-button" style="">
+										<label><span class="required"></span></label>
+
+										<div class="pink_button">
+											<input type="submit" value="선택한 사업장 삭제하기">
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4" style="width:20%;">
+									<div class="country-button" style="">
+										<label><span class="required"></span></label>
+										<div class="pink_button">
+											<input type="submit" value="전체 수정하기">
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
+
+							<!-- 버튼 끝 -->
+
 
 						</div>
 
