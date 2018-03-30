@@ -192,4 +192,6 @@ label {
 
 
 </body>
+
 </html>
+<%@ include file="../default/footer.jsp"%>
