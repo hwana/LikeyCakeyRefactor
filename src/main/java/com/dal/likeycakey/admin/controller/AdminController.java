@@ -22,8 +22,8 @@ public class AdminController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/MemberList.ca", method = RequestMethod.GET)
-	public String MemberList(Locale locale, Model model) {
+	@RequestMapping(value = "/memberList.ca", method = RequestMethod.GET)
+	public String memberList(Locale locale, Model model) {
 		/*logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -32,12 +32,13 @@ public class AdminController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );*/
+		System.out.println("memberList mapping도착");
 		
-		return "admin/MemberList";
+		return "admin/memberList";
 	}
 	
-	@RequestMapping(value = "/HostInfo.ca", method = RequestMethod.GET)
-	public String HostInfo(Locale locale, Model model) {
+	@RequestMapping(value = "/hostInfo.ca", method = RequestMethod.GET)
+	public String hostInfo(Locale locale, Model model) {
 	/*	logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -47,7 +48,8 @@ public class AdminController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		*/
-		return "admin/HostInfo";
+		System.out.println("hostInfo mapping도착");
+		return "admin/hostInfo";
 	}
 	
 	
