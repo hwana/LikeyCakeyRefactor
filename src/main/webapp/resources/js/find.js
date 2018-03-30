@@ -1,5 +1,4 @@
 $(function() {
-
     $('#findid').click(function(e) {
 		$("#findid-form").delay(100).fadeIn(100);
  		$("#findpw-form").fadeOut(100);
