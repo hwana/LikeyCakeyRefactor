@@ -118,7 +118,15 @@ margin-top:10px;}
 								<label class="col-sm-3 control-label" for="inputCakeInfo">케이크 설명</label>
 								<div class="col-sm-6">
 									<textarea class="form-control" id="inputCakeInfo"
-										placeholder="케이크의 설명을 입력해 주세요." rows = 6 style = "resize : none"></textarea>
+										placeholder="본문에 들어갈 설명을 입력해주세요." rows = 6 style = "resize : none"></textarea>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="inputCakeInfo">케이크 소설명</label>
+								<div class="col-sm-6">
+									<textarea class="form-control" id="inputCakeInfo"
+										placeholder="제목 아래에 들어갈 작은 설명을 입력해주세요." rows = 6 style = "resize : none"></textarea>
 								</div>
 							</div>
 							
@@ -176,3 +184,8 @@ margin-top:10px;}
 		</div>
 	</div>
 </section>
+
+</body>
+
+</html>
+<%@ include file="../default/footer.jsp"%>
