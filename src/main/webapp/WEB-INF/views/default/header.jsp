@@ -51,7 +51,7 @@
 				<div class="row">
 					<div class="col-md-3 col-sm-12">
 						<div class="logo-area text-center text-uppercase res-logo-sm">
-							<a href="index.html"><img src="/resources/img/icon/logo.png"
+							<a href="home.ca"><img src="/resources/img/icon/logo.png"
 								alt="" /></a>
 						</div>
 					</div>
@@ -59,9 +59,9 @@
 						<div class="main-menu lemon-bg">
 							<nav>
 								<ul id="nav">
-									<li><a href="index.html">Home</a></li>
+									<li><a href="home.ca">Home</a></li>
 
-									<li><a href="shop.html">CAKE</a>
+									<li><a href="cakelist.ca">CAKE</a>
 										<ul>
 											<li><a href="shop.html"><i
 													class="arrow_carrot-right"></i> 모든 케이크</a></li>
@@ -80,13 +80,13 @@
 											</ul>
 										</li> -->
 
-									<li><a href="#">SHOP</a>
+									<li><a href="hostpage.ca">SHOP</a>
 										<ul>
 											<li><a href="shop.html"><i
 													class="arrow_carrot-right"></i> 케이크 가게 모아보기</a></li>
 										</ul></li>
 
-									<li><a href="#">CUSTOMIZING</a>
+									<li><a href="/">CUSTOMIZING</a>
 										<ul>
 											<li><a href="shop.html"><i
 													class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
