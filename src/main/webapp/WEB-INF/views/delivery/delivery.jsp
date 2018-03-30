@@ -174,7 +174,7 @@ th{
 														
 														처리일시
 														</th>
-														<th class="product-thumbnail eceff8">배송단계</th>
+													
 														<th class="product-thumbnail eceff8">현재위치</th>
 														<th class="product-thumbnail eceff8">배송상태</th>
 														<th class="product-thumbnail eceff8">배송기사 연락처</th>
@@ -184,15 +184,15 @@ th{
 												<tbody>
 													<tr>
 														<td>2018-02-19 21:58</td>
-														<td>집화 완료</td>
-														<td>포천송우 031-54303729</td>
+													
+														<td>포천송우</td>
 														<td>집하</td>
-														<td>0</td>
+														<td> 031-54303729<</td>
 													</tr>
 													<tr>
 														<td>2018-02-19 07:28</td>
-														<td>배송중</td>
-														<td>영화배송 010-2200-7075</td>
+												
+														<td>영화배송</td>
 														<td>배송중(입고)</td>
 														<td>010-2200-7075</td>
 													</tr>
