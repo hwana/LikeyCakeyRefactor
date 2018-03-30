@@ -37,13 +37,6 @@
 <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-
-
-
-	<!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-	<!-- Header Area Start -->
 	<header>
 		<!-- Header Menu Area -->
 		<div class="menu-area mt-60">
@@ -72,21 +65,13 @@
 											<li><a href="single-product.html"><i
 													class="arrow_carrot-right"></i> 아이스크림 케이크</a></li>
 										</ul></li>
-
-									<!-- 	<li><a href="blog.html">BLOG</a>
-											<ul>
-												<li><a href="blog.html"><i class="arrow_carrot-right"></i>Blog</a></li>
-												<li><a href="blog-details.html"><i class="arrow_carrot-right"></i>Blog Details</a></li>
-											</ul>
-										</li> -->
-
 									<li><a href="hostpage.ca">SHOP</a>
 										<ul>
 											<li><a href="shop.html"><i
 													class="arrow_carrot-right"></i> 케이크 가게 모아보기</a></li>
 										</ul></li>
 
-									<li><a href="/">CUSTOMIZING</a>
+									<li><a href="#">CUSTOMIZING</a>
 										<ul>
 											<li><a href="shop.html"><i
 													class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
