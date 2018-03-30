@@ -16,6 +16,7 @@
 <!-- Place favicon.ico in the root directory -->
 
 <!-- all css here -->
+<link rel="stylesheet" href="/resources/css/hwanhee.css">
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="/resources/css/elegant-font.css">
@@ -30,6 +31,7 @@
 <link rel="stylesheet" href="/resources/css/shortcode/shortcodes.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/responsive.css">
+<link rel="stylesheet" href="/resources/css/hwanhee.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -91,7 +93,7 @@
 										</ul></li>
 									<li><a href="contact.html">MY PAGE</a></li>
 									<li><a href="contact.html">NOTICE</a></li>
-									<li><a href="contact.html">CONTACT</a></li>
+									<li><a href="contact.html">Q & A</a></li>
 								</ul>
 							</nav>
 							<!-- Product Cart -->
