@@ -41,7 +41,7 @@
 					<div class="row">
 					<!-- 로그인, 회원가입 / 로그아웃, 마이페이지 -->
 					<div class="sign-wrapper">
-						<a class="sign-button">Sign-Up</a><a class="sign-button">Log-in</a> 
+						<a class="sign-button" href = "bizJoin.ca">Sign-Up</a><a class="sign-button">Log-in</a> 
 					</div>
 					
 						<div class="col-md-3 col-sm-12">

@@ -13,84 +13,96 @@ public class Member implements java.io.Serializable{
 	private String id;
 	private String passwd;
 	private String name;
+	private int code;
 	private String email;
-	private String gender;
-	private int age;
+	private String post;
+	private String addressB;
+	private String addressD;
 	private String phone;
-	private String address;
-	private Date enrollDate;
+	private String photo;
 	
-	public Member() {}
-
+	public Member() {
+		
+	}
+	
+	public Member(String id, String passwd, String name, int code, String email, String post, String addressB,
+			String addressD, String phone, String photo) {
+		super();
+		this.id = id;
+		this.passwd = passwd;
+		this.name = name;
+		this.code = code;
+		this.email = email;
+		this.post = post;
+		this.addressB = addressB;
+		this.addressD = addressD;
+		this.phone = phone;
+		this.photo = photo;
+	}
+	
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getPasswd() {
 		return passwd;
 	}
-
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	public int getCode() {
+		return code;
+	}
+	public void setCode(int code) {
+		this.code = code;
+	}
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getGender() {
-		return gender;
+	public String getPost() {
+		return post;
 	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setPost(String post) {
+		this.post = post;
 	}
-
-	public int getAge() {
-		return age;
+	public String getAddressB() {
+		return addressB;
 	}
-
-	public void setAge(int age) {
-		this.age = age;
+	public void setAddressB(String addressB) {
+		this.addressB = addressB;
 	}
-
+	public String getAddressD() {
+		return addressD;
+	}
+	public void setAddressD(String addressD) {
+		this.addressD = addressD;
+	}
 	public String getPhone() {
 		return phone;
 	}
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	public String getAddress() {
-		return address;
+	public String getPhoto() {
+		return photo;
 	}
-
-	public void setAddress(String address) {
-		this.address = address;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
-
-	public Date getEnrollDate() {
-		return enrollDate;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-
-	public void setEnrollDate(Date enrollDate) {
-		this.enrollDate = enrollDate;
-	};
+	
+	
 }
