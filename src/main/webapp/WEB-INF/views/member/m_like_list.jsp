@@ -68,7 +68,7 @@
 
 									<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
 									<!-- Right Side Start -->
-									<div class="col-md-10">
+									<div class="col-md-12">
 										<div class="tab-content">
 											<div class="shop-tab-area">
 												<div class="row">
