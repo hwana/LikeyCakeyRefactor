@@ -2,13 +2,12 @@ package com.dal.likeycakey.admin.model.dao;
 
 import java.util.ArrayList;
 
-
 import org.apache.ibatis.session.RowBounds;
-import com.dal.likeycakey.admin.model.dao.AdminDao;
-import com.dal.likeycakey.admin.model.vo.Member;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.dal.likeycakey.admin.model.vo.AdminMember;
 
 @Repository("adminDao")
 public class AdminDaoImpl implements AdminDao {
@@ -24,11 +23,11 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public ArrayList<Member> selectList(int currentPage, int limit) {
+	public ArrayList<AdminMember> selectList(int currentPage, int limit) {
 		System.out.println("adminDao.selectList 도착");
 		int offset = (currentPage - 1) * limit;
 		RowBounds rows = new RowBounds(offset, limit);
-		return new ArrayList<Member>(sqlSession.selectList("AdminMapper.selectList", null, rows));
+		return new ArrayList<AdminMember>(sqlSession.selectList("AdminMapper.selectList", null, rows));
 	}
 /*
 	@Override

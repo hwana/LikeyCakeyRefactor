@@ -1,13 +1,14 @@
 package com.dal.likeycakey.admin.model.dao;
 
 import java.util.ArrayList;
-import com.dal.likeycakey.admin.model.vo.Member;
+
+import com.dal.likeycakey.admin.model.vo.AdminMember;
 
 public interface AdminDao {
 	
 	public int getListCount();
 	
-	public ArrayList<Member> selectList(int currentPage, int limit);
+	public ArrayList<AdminMember> selectList(int currentPage, int limit);
 	
 
 	/*

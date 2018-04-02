@@ -15,11 +15,15 @@
 		<result property="addressDetail" column="M_DETAIL_ADDR" />
 		<result property="phone" column="M_CP" />
 		<result property="photo" column="M_PHOTO" />
+		<result property="blackcnt" column="M_BLACKCNT"/>
+		<result property="mstatus" column="M_STATUS" />
 	</resultMap>
 
 	<insert id="insertMember" parameterType="Member" flushCache="true">
-		INSERT INTO MEMBER VALUES
-		(#{id},#{passwd},#{name},#{email},#{post},#{addressBasic},#{addressDetail},#{phone},3,#{photo})
+		INSERT INTO MEMBER (M_ID, M_PW, M_NAME, M_EMAIL, M_POST, M_BASIC_ADDR, M_DETAIL_ADDR, 
+		M_CP, M_PHOTO, M_BLACKCNT, M_STATUS) VALUES
+		(#{id},#{passwd},#{name},#{email},#{post},#{addressBasic},#{addressDetail},#{phone},#{photo},
+		#{blackcnt}, #{mstatus})
 	</insert>
 
 

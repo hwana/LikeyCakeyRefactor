@@ -2,7 +2,7 @@ package com.dal.likeycakey.admin.model.service;
 
 import java.util.ArrayList;
 
-import com.dal.likeycakey.admin.model.vo.Member;
+import com.dal.likeycakey.admin.model.vo.AdminMember;
 
 public interface AdminService {
 
@@ -10,7 +10,7 @@ public interface AdminService {
 	
 	public int getListCount() ;
 	
-	public ArrayList<Member> selectList(int currentPage, int limit) ;
+	public ArrayList<AdminMember> selectList(int currentPage, int limit) ;
 	
 	
 	/*

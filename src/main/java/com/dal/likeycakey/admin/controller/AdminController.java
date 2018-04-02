@@ -1,15 +1,8 @@
 package com.dal.likeycakey.admin.controller;
 
-import java.text.DateFormat;
-
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.likeycakey.admin.model.service.AdminService;
-import com.dal.likeycakey.admin.model.vo.Member;
+import com.dal.likeycakey.admin.model.vo.AdminMember;
 
 /**
  * Handles requests for the application home page.
@@ -100,7 +93,7 @@ public class AdminController {
 	
 	/*1_1. 관리자_멤버 리스트 셀렉트*/
 	@RequestMapping(value = "/adminMemberList.ca", method = RequestMethod.GET)
-	public ModelAndView adminMemberList(Member m, @RequestParam(value = "page", required = false) Integer page, ModelAndView mv) {
+	public ModelAndView adminMemberList(AdminMember m, @RequestParam(value = "page", required = false) Integer page, ModelAndView mv) {
 		
 		System.out.println("memberList mapping도착");
 		
@@ -123,7 +116,7 @@ public class AdminController {
 			
 			System.out.println("adminMemberList : listCount =" +listCount);
 			
-			ArrayList<Member> list = adminService.selectList(currentPage, limit);
+			ArrayList<AdminMember> list = adminService.selectList(currentPage, limit);
 
 			// 총 페이지수 계산 : 목록이 최소 1개일 때 1page로 처리하기
 			// 위해 0.9 더함
