@@ -3,12 +3,11 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberMapper">
-
 	<resultMap id="resultMember" type="Member">
 		<id property="id" column="ID" />
-  		<result property="passwd" column="PASSWD"/>
+  		<result property="passwd" column="M_PASS"/>
   		<result property="name" column="NAME"/>
-  		<result property="email" column="EMAIL"/>
+  		<result property="email" column="M_EMAIL"/>                
   		<result property="gender" column="GENDER"/>
   		<result property="age" column="AGE"/>
   		<result property="phone" column="PHONE"/>
