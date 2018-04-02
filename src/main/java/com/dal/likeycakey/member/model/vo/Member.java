@@ -1,7 +1,8 @@
 package com.dal.likeycakey.member.model.vo;
 
-import java.sql.Date;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Member implements java.io.Serializable{
 	// 자바 내부에서 사용하는 자료를 자바 외의 프로그램에서도 인식할 수 있게 바이트로 변환하여
 	// 데이터를 전송하기 위해 직렬화 처리를 한다.
@@ -13,84 +14,94 @@ public class Member implements java.io.Serializable{
 	private String id;
 	private String passwd;
 	private String name;
+	private int code;
 	private String email;
-	private String gender;
-	private int age;
+	private String post;
+	private String addressBasic;
+	private String addressDetail;
 	private String phone;
-	private String address;
-	private Date enrollDate;
+	private String photo;
 	
-	public Member() {}
-
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getPasswd() {
 		return passwd;
 	}
-
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	public int getCode() {
+		return code;
+	}
+	public void setCode(int code) {
+		this.code = code;
+	}
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getGender() {
-		return gender;
+	public String getPost() {
+		return post;
 	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setPost(String post) {
+		this.post = post;
 	}
-
-	public int getAge() {
-		return age;
+	public String getAddressBasic() {
+		return addressBasic;
 	}
-
-	public void setAge(int age) {
-		this.age = age;
+	public void setAddressBasic(String addressBasic) {
+		this.addressBasic = addressBasic;
 	}
-
+	public String getAddressDetail() {
+		return addressDetail;
+	}
+	public void setAddressDetail(String addressDetail) {
+		this.addressDetail = addressDetail;
+	}
 	public String getPhone() {
 		return phone;
 	}
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	public String getAddress() {
-		return address;
+	public String getPhoto() {
+		return photo;
 	}
-
-	public void setAddress(String address) {
-		this.address = address;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
-
-	public Date getEnrollDate() {
-		return enrollDate;
+	
+	public Member() {
+	
 	}
+	
+	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,
+			String addressDetail, String phone, String photo) {
+		super();
+		this.id = id;
+		this.passwd = passwd;
+		this.name = name;
+		this.code = code;
+		this.email = email;
+		this.post = post;
+		this.addressBasic = addressBasic;
+		this.addressDetail = addressDetail;
+		this.phone = phone;
+		this.photo = photo;
+	}
+	
 
-	public void setEnrollDate(Date enrollDate) {
-		this.enrollDate = enrollDate;
-	};
+	
 }
