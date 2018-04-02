@@ -25,25 +25,12 @@ public class Member implements java.io.Serializable{
 	private int status;
 	private int blackCnt;
 	//1. 은송 수정 구간 끝
-	
-	public int getBlackcnt() {
-		return blackcnt;
-	}
-	public void setBlackcnt(int blackcnt) {
-		this.blackcnt = blackcnt;
-	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
 
-	private int blackcnt;
-	private int status;
-	
 	public String getId() {
 		return id;
+	}
+	public int getBlackCnt() {
+		return blackCnt;
 	}
 	public void setId(String id) {
 		this.id = id;
@@ -125,22 +112,7 @@ public class Member implements java.io.Serializable{
 	
 	}
 	
-	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,
-			String addressDetail, String phone, String photo, int blackcnt, int status) {
-		super();
-		this.id = id;
-		this.passwd = passwd;
-		this.name = name;
-		this.code = code;
-		this.email = email;
-		this.post = post;
-		this.addressBasic = addressBasic;
-		this.addressDetail = addressDetail;
-		this.phone = phone;
-		this.photo = photo;
-		this.blackcnt = blackcnt;
-		this.status = status;
-	}
+	
 	
 	//3. 은송 수정 구간 시작
 	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,
