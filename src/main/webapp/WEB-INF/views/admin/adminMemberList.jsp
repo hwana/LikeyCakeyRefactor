@@ -47,6 +47,32 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
+<script>
+		$(function(){
+			$("#checkid").click(function(){
+				$.ajax({
+					url : "dupid.do",
+					data : {id : $("#userid").val()},
+					dataType : "text",
+					type : "post",
+					success : function(value){
+						if (value == "ok"){ 
+							alert("아이디가 중복되지 않습니다.");
+							$('input[name=name]').focus();
+						}
+						else {
+							alert("이미 존재하는 아이디입니다. 아이디를 다시 설정하세요");
+							$('#userid').select();
+						}
+					},
+					error : function(value){
+						alert("잘못 입력하셨습니다."+value);
+					}
+				});
+				return false;
+			}); //click
+		}); //ready
+	</script>
 </head>
 
 <style>
