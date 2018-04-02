@@ -37,13 +37,6 @@
 <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-
-
-
-	<!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-	<!-- Header Area Start -->
 	<header>
 		<!-- Header Menu Area -->
 		<div class="menu-area mt-60">
@@ -51,7 +44,7 @@
 				<div class="row">
 					<div class="col-md-3 col-sm-12">
 						<div class="logo-area text-center text-uppercase res-logo-sm">
-							<a href="index.html"><img src="/resources/img/icon/logo.png"
+							<a href="home.ca"><img src="/resources/img/icon/logo.png"
 								alt="" /></a>
 						</div>
 					</div>
@@ -59,9 +52,9 @@
 						<div class="main-menu lemon-bg">
 							<nav>
 								<ul id="nav">
-									<li><a href="index.html">Home</a></li>
+									<li><a href="home.ca">Home</a></li>
 
-									<li><a href="shop.html">CAKE</a>
+									<li><a href="cakelist.ca">CAKE</a>
 										<ul>
 											<li><a href="shop.html"><i
 													class="arrow_carrot-right"></i> 모든 케이크</a></li>
@@ -72,15 +65,7 @@
 											<li><a href="single-product.html"><i
 													class="arrow_carrot-right"></i> 아이스크림 케이크</a></li>
 										</ul></li>
-
-									<!-- 	<li><a href="blog.html">BLOG</a>
-											<ul>
-												<li><a href="blog.html"><i class="arrow_carrot-right"></i>Blog</a></li>
-												<li><a href="blog-details.html"><i class="arrow_carrot-right"></i>Blog Details</a></li>
-											</ul>
-										</li> -->
-
-									<li><a href="#">SHOP</a>
+									<li><a href="hostpage.ca">SHOP</a>
 										<ul>
 											<li><a href="shop.html"><i
 													class="arrow_carrot-right"></i> 케이크 가게 모아보기</a></li>

@@ -4,10 +4,21 @@
 	@import url('https://fonts.googleapis.com/css?family=Exo+2:100,200,300,400,500,600,800,900');
 /* ============= 2. Category Banner ============= */
 
+body{
+	font-family: open sans;
+	
+	    
+}
+
 .eceff8 {
 	background-color: #9bcaba; /* #9bcaba */
 	border-bottom-color: #9bcaba;
 	border-right-color: #9bcaba;
+	/* color: #5b5b5b; */
+	color:white !important;
+    font-family: open sans ;
+/*     font-size: 12px !important;
+    font-weight: 700 !important; */
 }
 
 
@@ -77,4 +88,8 @@ input.s_text{
 	text-align: right;
 	display: inline-block;
 	font-weight: 500;
+}
+
+td{
+	color: #6f6f6f;
 }

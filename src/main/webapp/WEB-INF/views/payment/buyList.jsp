@@ -99,14 +99,14 @@
 												</thead>
 												<tbody>
 													<tr>
-														<td class="product-thumbnail"><a href="#"><img
+														<td ><a href="#"><img
 																src="/resources/img/product/3.jpg" alt=""></a></td>
 														<td class="product-name">
 															<p style="font-weight: bold;">똔똔씨의 케잌가게</p>
 															<span>산타할아버지 초코케이크(구매수량 2개)</span>
 															</td>
 														
-														<td class="product-name">
+														<td >
 														<p style="font-weight: bold;">주문 날짜</p>
 															<span>2018.03.44 12:34:33</span>
 														</td>
@@ -115,12 +115,12 @@
 															<span>70,000</span>
 														
 														</td>
-														<td class="product-name">
+														<td>
 														<p style="font-weight: bold;">입금 기한</p>
 															<span>2018.03.24 18:00</span>
 													
 														</td>
-														<td class="product-price"><span class="amount">
+														<td class="product-price" ><span>
 														<a href="#">배송 상태(택배 현황과 연결하기)</a></span></td>
 														<td class="product-subtotal">
 														
@@ -133,7 +133,12 @@
 														</td>
 													</tr>
 													<tr>
-														<td class="product-thumbnail">주문번호<br>2032626747</td>
+														<td class="product-thumbnail">
+														
+														<p style="font-weight: bold;">주문번호</p>
+															<span>2032626747</span>
+														
+														
 														<td colspan="6">배송지 정보 : 김은송, (444-222)경기도 수원시 영통구 삼대 한보아파트
 														<br>
 														<!-- 배송지 수정 버튼 시작 -->
