@@ -2,23 +2,25 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="MemberMapper">
+<mapper namespace="Member">
 
 	<resultMap id="resultMember" type="Member">
-		<id property="id" column="ID" />
-  		<result property="passwd" column="PASSWD"/>
-  		<result property="name" column="NAME"/>
-  		<result property="email" column="EMAIL"/>
-  		<result property="gender" column="GENDER"/>
-  		<result property="age" column="AGE"/>
-  		<result property="phone" column="PHONE"/>
-  		<result property="address" column="ADDRESS"/>
-  		<result property="enrollDate" column="ENROLL_DATE"/>
+		<id property="id" column="M_ID" />
+		<result property="passwd" column="M_PW" />
+		<result property="name" column="M_NAME" />
+		<result property="code" column="M_NUM" />
+		<result property="email" column="M_EMAIL" />
+		<result property="post" column="M_POST" />
+		<result property="addressBasic" column="M_BASIC_ADDR" />
+		<result property="addressDetail" column="M_DETAIL_ADDR" />
+		<result property="phone" column="M_CP" />
+		<result property="photo" column="M_PHOTO" />
 	</resultMap>
-	
-	<select id="selectOne" parameterType="Member" resultMap="resultMember">
-		SELECT * FROM MEMBER WHERE ID = #{id} and PASSWD = #{passwd}
-	</select>
+
+	<insert id="insertMember" parameterType="Member" flushCache="true">
+		INSERT INTO MEMBER VALUES
+		(#{id},#{passwd},#{name},#{email},#{post},#{addressBasic},#{addressDetail},#{phone},3,#{photo})
+	</insert>
 
 
 
