@@ -72,7 +72,7 @@ html>body>section>div>div>div>form span>.btn-in {
 							회원가입 <small>[Likey Cakey 일반 회원]</small>
 						</h1>
 					</div>
-					<form class="form-horizontal">
+					<form class="form-horizontal" action="memberJoin.ca">
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputId">아이디</label>
 							<div class="col-sm-6">

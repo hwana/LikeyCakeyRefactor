@@ -15,7 +15,7 @@
 		<result property="addressDetail" column="M_DETAIL_ADDR" />
 		<result property="phone" column="M_CP" />
 		<result property="photo" column="M_PHOTO" />
-		<result property="blackcnt" column="M_BLACKCNT"/>
+		<result property="blackCnt" column="M_BLACKCNT"/>
 		<result property="mstatus" column="M_STATUS" />
 	</resultMap>
 
