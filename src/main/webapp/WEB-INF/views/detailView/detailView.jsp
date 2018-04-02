@@ -223,13 +223,16 @@
 									<div class="detail-input">
 									<label for="fromDate">문구 추가</label> 
 									<input class="detail-text mt-10" placeholder="케이크에 추가하실 문구를 입력해주세요." type="text">
-
+									</div>
+									
+									<div class="detail-input">
 									<label for="fromDate">예약 날짜</label> 
 									<input class="cake-reserve detail-text mt-10" placeholder="예약 날짜를 선택해 주세요." type="text" id="cake-reserve">
-
+									</div>
+									
+									<div class="detail-input">
 									<button type="submit" class="detail-btn">구매하기</button>
 									<button type="submit" class="detail-btn">장바구니 담기</button>
-									
 									</div>
 									
 								</div>
