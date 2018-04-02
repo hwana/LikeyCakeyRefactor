@@ -1,8 +1,19 @@
 package com.dal.likeycakey.admin.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DateFormat;
+
+
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.likeycakey.admin.model.service.AdminService;
-import com.dal.likeycakey.admin.model.vo.AdminMember;
+import com.dal.likeycakey.member.model.vo.Member;
 
 /**
  * Handles requests for the application home page.
@@ -41,61 +52,28 @@ public class AdminController {
 		
 		return mv;
 	}
-	*/
 	
-/*	
-	@RequestMapping("blist.do")
-	public ModelAndView boardList(ModelAndView mv, @RequestParam(value = "page", required = false) Integer page) {
-		// 페이지 값 처리용
-		int currentPage = 1;
-		// 한 페이지당 출력할 목록 갯수
-		int limit = 10;
-
-		// 전달된 페이지값 추출
-		if (page != null)
-			currentPage = page;
-
-		// 전체 목록 갯수와 해당 페이지별 목록을 리턴
-		int listCount = bService.getListCount();
-
-		ArrayList<Board> list = bService.selectList(currentPage, limit);
-
-		// 총 페이지수 계산 : 목록이 최소 1개일 때 1page로 처리하기
-		// 위해 0.9 더함
-		int maxPage = (int) ((double) listCount / limit + 0.9);
-		// 현재 페이지에 보여줄 시작 페이지수
-		// (1, 11, 21, .......)
-		// 현재 페이지가 13page 이면 시작페이지는 11page 가 되어야 함
-		int startPage = (((int) ((double) currentPage / limit + 0.9)) - 1) * limit + 1;
-		// 만약, 목록 아래에 보여질 페이지 갯수가 10개이면
-		// 끝페이지수는 20페이지가 되어야 함
-		int endPage = startPage + limit - 1;
-		if (maxPage < endPage)
-			endPage = maxPage;
-
-		if (list != null && list.size() > 0) {
-
-			mv.addObject("list", list)
-			.addObject("currentPage", currentPage)
-			.addObject("maxPage", maxPage)
-			.addObject("startPage", startPage)
-			.addObject("endPage", endPage)
-			.addObject("listCount", listCount)
-			.setViewName("board/boardListView");
-		} else {
-			mv.addObject("error", "게시글 전체 조회 실패");
-			mv.setViewName("board/boardError");
-		}
-		return mv;
+	@RequestMapping("dupid.do")
+	public void idDupulicationCheck(Model model,
+			@RequestParam("id") String id,
+			HttpServletResponse response) throws IOException{
+		PrintWriter out = response.getWriter();
+		
+		int result = mService.checkIdDup(id);
+		if (result > 0) out.print("no");
+		else out.print("ok");
+		
+		out.flush();
+		out.close();
 	}
-*/
 	
+	*/
 	
 	/*1_1. 관리자_멤버 리스트 셀렉트*/
 	@RequestMapping(value = "/adminMemberList.ca", method = RequestMethod.GET)
-	public ModelAndView adminMemberList(AdminMember m, @RequestParam(value = "page", required = false) Integer page, ModelAndView mv) {
+	public ModelAndView adminMemberList(Member m, @RequestParam(value = "page", required = false) Integer page, ModelAndView mv) {
 		
-		System.out.println("memberList mapping도착");
+		System.out.println("adminmemberList mapping도착");
 		
 		
 
@@ -116,7 +94,7 @@ public class AdminController {
 			
 			System.out.println("adminMemberList : listCount =" +listCount);
 			
-			ArrayList<AdminMember> list = adminService.selectList(currentPage, limit);
+			ArrayList<Member> list = adminService.selectList(currentPage, limit);
 
 			// 총 페이지수 계산 : 목록이 최소 1개일 때 1page로 처리하기
 			// 위해 0.9 더함
@@ -160,20 +138,30 @@ public class AdminController {
 		return mv;
 	}
 	
-	/*1_2. 관리자_멤버 수정*/
+	/*1_2. 관리자_멤버 한명만!!! 수정*/
 	@RequestMapping(value = "/adminMemberUpdate.ca", method = RequestMethod.GET)
-	public String adminMemberUpdate(Locale locale, Model model) {
+	public ModelAndView adminMemberUpdate(Member m, ModelAndView mv, @RequestParam("id") String id) {
 		
-		System.out.println("memberList mapping도착");
+		System.out.println("adminMemberUpdate mapping도착");
 		
-		return "admin/adminMemberList";
+		try {
+			adminService.updateMember(m);//멤버 업데이트 하고
+			
+			Member member = adminService.selectOne(id);//업데이트 한 멤버만 정보 다시 받아오기
+			 mv.setViewName("redirect:home.do");
+		} catch (Exception e) {
+			mv.setViewName("admin/adminMemberList");
+		}
+		
+		return mv;
+		
 	}
 	
 	/*1_3. 관리자_멤버 선택 삭제*/
 	@RequestMapping(value = "/adminMemberDelete.ca", method = RequestMethod.GET)
-	public String adminMemberDelete(Locale locale, Model model) {
+	public String adminMemberDelete(Member m, ModelAndView mv) {
 		
-		System.out.println("memberList mapping도착");
+		System.out.println("adminMemberDelete mapping도착");
 		
 		return "admin/adminMemberList";
 	}
@@ -181,29 +169,50 @@ public class AdminController {
 	
 	/*2_1. 관리자_사업장 리스트 셀렉트*/
 	@RequestMapping(value = "/adminBizList.ca", method = RequestMethod.GET)
-	public String adminBizList(Locale locale, Model model) {
+	public ModelAndView adminBizList(Member m, ModelAndView mv) {
 		
-		System.out.println("memberList mapping도착");
+		System.out.println("adminBizList mapping도착");
 		
-		return "admin/adminBizList";
+		try {
+			/*bizService.insertBiz(bm);*/
+			 mv.setViewName("redirect:home.do");
+		} catch (Exception e) {
+			mv.setViewName("admin/adminBizList");
+		}
+		
+		return mv;
+	
 	}
 	
 	/*2_2. 관리자_사업장 수정*/
 	@RequestMapping(value = "/adminBizUpdate.ca", method = RequestMethod.GET)
-	public String adminBizUpdate(Locale locale, Model model) {
+	public ModelAndView adminBizUpdate(Member m, ModelAndView mv) {
 		
-		System.out.println("memberList mapping도착");
+		System.out.println("adminBizUpdate mapping도착");
+		try {
+			/*bizService.insertBiz(bm);*/
+			 mv.setViewName("redirect:home.do");
+		} catch (Exception e) {
+			mv.setViewName("admin/adminBizList");
+		}
 		
-		return "admin/adminBizList";
+		return mv;
 	}
 	
 	/*1_3. 관리자_사업장 선택 삭제*/
 	@RequestMapping(value = "/adminBizDelete.ca", method = RequestMethod.GET)
-	public String adminBizDelete(Locale locale, Model model) {
+	public ModelAndView adminBizDelete(Member m, ModelAndView mv) {
 		
-		System.out.println("memberList mapping도착");
+		System.out.println("adminBizDelete mapping도착");
+		try {
+			/*bizService.insertBiz(bm);*/
+			 mv.setViewName("redirect:home.do");
+		} catch (Exception e) {
+			mv.setViewName("admin/adminBizList");
+		}
 		
-		return "admin/adminBizList";
+		return mv;
+	
 	}
 	
 	

@@ -4,7 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AdminMapper">
 
-	<resultMap id="resultAdminMember" type="adminMember">
+	<resultMap id="resultAdminMember" type="Member">
 		<id property="id" column="M_ID" />
 		<result property="passwd" column="M_PW" />
 		<result property="name" column="M_NAME" />
@@ -16,13 +16,48 @@
 	</resultMap>
 
 	<select id="getListCount" resultType="_int">
-		SELECT COUNT(*) FROM MEMBER
+		SELECT 
+			COUNT(*) 
+		FROM 
+			MEMBER
 	</select>
 
 	<select id="selectList" resultMap="resultAdminMember">
-		SELECT * FROM (SELECT * FROM
-		MEMBER ORDER BY M_NUM)
+		SELECT 
+			* 
+		FROM 
+			(SELECT 
+				* 
+			FROM
+				MEMBER 
+			ORDER BY 
+				M_NUM)
 	</select>
+	
+	<select id="selectOne" resultMap="resultAdminMember">
+		SELECT
+			*
+		FROM
+			MEMBER
+		WHERE
+			M_ID = #{id}
+	</select>
+
+	<update id="updateMember" parameterType="Member" flushCache="true"
+		statementType="PREPARED">
+		UPDATE 
+			MEMBER 
+		SET 
+			M_PW = #{passwd},
+			M_NUM=#{code}, 
+			M_EMAIL =#{email},
+			M_CP = #{phone},
+			M_STATUS =#{status},
+			M_BLACKCNT = #{blackCnt}
+		WHERE 
+			M_ID = #{id}
+	</update>
+
 
 
 
