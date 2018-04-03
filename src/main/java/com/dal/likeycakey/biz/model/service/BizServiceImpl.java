@@ -15,9 +15,12 @@ public class BizServiceImpl implements BizService{
 	@Autowired
 	private BizDao bizDao;
 	
+	
 	@Override
 	public int insertBiz(Member m) throws Exception {
+		
 		int result = bizDao.insertBiz(m);
+		
 		return result;
 	}
 	
@@ -29,5 +32,12 @@ public class BizServiceImpl implements BizService{
 		return result2;
 	}
 	
-
+	//로그인
+	@Override
+	public int loginCheck(String id, String passwd) throws Exception {
+		int result = bizDao.loginCheck(id, passwd);
+		return result;
+	}
+	
+	
 }

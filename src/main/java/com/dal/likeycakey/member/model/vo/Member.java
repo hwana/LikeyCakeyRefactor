@@ -25,86 +25,69 @@ public class Member implements java.io.Serializable{
 	private int status;
 	private int blackCnt;
 	//1. 은송 수정 구간 끝
+	
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getPasswd() {
 		return passwd;
 	}
-
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public int getCode() {
 		return code;
 	}
-
 	public void setCode(int code) {
 		this.code = code;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getPost() {
 		return post;
 	}
-
 	public void setPost(String post) {
 		this.post = post;
 	}
-
 	public String getAddressBasic() {
 		return addressBasic;
 	}
-
 	public void setAddressBasic(String addressBasic) {
 		this.addressBasic = addressBasic;
 	}
-
 	public String getAddressDetail() {
 		return addressDetail;
 	}
-
 	public void setAddressDetail(String addressDetail) {
 		this.addressDetail = addressDetail;
 	}
-
 	public String getPhone() {
 		return phone;
 	}
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 	public String getPhoto() {
 		return photo;
 	}
-
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 
+	//2.은송 수정 구간 시작
 	public int getStatus() {
 		return status;
 	}
@@ -113,16 +96,42 @@ public class Member implements java.io.Serializable{
 		this.status = status;
 	}
 
-	public int getBlackCnt() {
+	public int getblackCnt() {
 		return blackCnt;
 	}
 
 	public void setBlackCnt(int blackCnt) {
 		this.blackCnt = blackCnt;
 	}
-
 	//2. 은송 수정 구간 끝
-
+	
+	
+	
+	public Member() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Member(String id, String passwd) {
+		super();
+		this.id = id;
+		this.passwd = passwd;
+	}
+	
+	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,
+			String addressDetail, String phone, String photo) {
+		super();
+		this.id = id;
+		this.passwd = passwd;
+		this.name = name;
+		this.code = code;
+		this.email = email;
+		this.post = post;
+		this.addressBasic = addressBasic;
+		this.addressDetail = addressDetail;
+		this.phone = phone;
+		this.photo = photo;
+	}
+	
 	//3. 은송 수정 구간 시작
 	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,
 			String addressDetail, String phone, String photo, int status, int blackCnt) {
@@ -141,16 +150,6 @@ public class Member implements java.io.Serializable{
 		this.blackCnt=blackCnt;
 	}
 	//3. 은송 수정 구간 끝
-	
-	// 4. 지연 추가부분
-	public Member() {}
-	public Member(String id, String passwd) {
-		super();
-		this.id = id;
-		this.passwd = passwd;
-	}
-	
-	
-	
+
 	
 }

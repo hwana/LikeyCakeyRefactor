@@ -63,7 +63,7 @@ hr{
                회원가입 <small>[Likey Cakey]사업자 회원가입</small>
             </h1>
          </div>
-         <form class="form-horizontal" action="bizInsert.ca">
+         <form class="form-horizontal" action="bizInsert.ca" method="post">
          
          <div class="form-group">
                <label class="col-sm-3 control-label" for="inputPhoto">업체사진</label>
