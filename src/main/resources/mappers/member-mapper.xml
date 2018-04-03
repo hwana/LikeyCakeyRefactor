@@ -4,6 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Member">
 
+	<!-- id property : PK 같은 역할, resultMap id : 아래 쿼리문에 id로 사용 -->
 	<resultMap id="resultMember" type="Member">
 		<id property="id" column="M_ID" />
 		<result property="passwd" column="M_PW" />
@@ -15,7 +16,7 @@
 		<result property="addressDetail" column="M_DETAIL_ADDR" />
 		<result property="phone" column="M_CP" />
 		<result property="photo" column="M_PHOTO" />
-		<result property="blackCnt" column="M_BLACKCNT"/>
+		<result property="blackcnt" column="M_BLACKCNT"/>
 		<result property="mstatus" column="M_STATUS" />
 	</resultMap>
 

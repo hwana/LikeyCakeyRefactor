@@ -1,11 +1,17 @@
 package com.dal.likeycakey.member.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 // @Controller 를 사용하기 위한 import
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.likeycakey.member.model.service.MemberService;
@@ -21,13 +27,32 @@ public class MemberController {
 	/*@RequestMapping(value="memberJoin.ca", method=RequestMethod.POST)
 	// ModelAndView : 데이터를 전송할 수 있는 리턴 타입, String : 단순히 페이지만 열어주는 역할
 	public ModelAndView memberJoin(Member member, ModelAndView mv) {
-		
-		
 		return mv;
 	}*/
 	
+	
 	// 일반회원 회원가입 페이지로 이동
-	@RequestMapping(value="memberJoin.ca", method = RequestMethod.POST)
+	@RequestMapping(value="memberJoin.ca", method = RequestMethod.GET)
+	public String onlyMoveJoin(Model model) {
+		return "member/memberJoin";
+	}
+	
+	
+	// 회원가입 시 아이디 중복 확인
+	@RequestMapping("idcheck_member.ca")
+	public void idCheck(Model model, @RequestParam("id") String id, HttpServletResponse response) throws IOException{
+		PrintWriter out = response.getWriter();
+		int result = memberService.idCheck(id);
+		if(result > 0 )out.print("no");
+		else out.print("ok");
+		
+		out.flush();
+		out.close();
+	}
+	
+	
+	// 일반회원 INSERT 해주는 부분
+	@RequestMapping(value="memberInsert.ca", method = RequestMethod.POST)
 	public ModelAndView insertJoin(Member m, ModelAndView mv) {
 		try {
 			memberService.insertMember(m);
@@ -43,16 +68,21 @@ public class MemberController {
 		return mv;
 	}
 	
+	// 로그인으로 이동해줄 수 있는 컨트롤러
 	@RequestMapping(value="memberLogin.ca")
 	public String onlymovelogin(Model model) {
 		return "member/memberLogin";
 	}
 	
+	
+	// 마이페이지로 이동시켜주는 컨트롤러
 	@RequestMapping(value="memberMypage.ca")
 	public String onlymovemypage(Model model) {
 		return "member/memberMypage";
 	}
 	
+	
+	// 
 	@RequestMapping(value = "m_home_qna.ca")
 	public String onlymovehomeq(Model model) {
 		return "member/m_home_qna";

@@ -11,11 +11,25 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberDao memberDao;
+
+	// 로그인하기위한 서비스
+	@Override
+	public Member loginMember(String id, String passwd) throws Exception {
+		return memberDao.selectMember(id, passwd);
+	}
 	
+	// ID CHECK
+	@Override
+	public int idCheck(String id) {
+		return memberDao.selectMember(id);
+	}
+	
+	// member 삽입
 	@Override
 	public int insertMember (Member m) throws Exception {
-		int result = memberDao.insertMember(m);
-		return result;
+		return memberDao.insertMember(m);
 	}
+	
+
 
 }

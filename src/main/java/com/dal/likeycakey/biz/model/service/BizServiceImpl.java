@@ -17,9 +17,7 @@ public class BizServiceImpl implements BizService{
 	
 	@Override
 	public int insertBiz(Member m) throws Exception {
-		
 		int result = bizDao.insertBiz(m);
-		
 		return result;
 	}
 	
