@@ -86,7 +86,7 @@ public class Member implements java.io.Serializable{
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	
+
 	//2.은송 수정 구간 시작
 	public int getStatus() {
 		return status;
@@ -105,8 +105,16 @@ public class Member implements java.io.Serializable{
 	}
 	//2. 은송 수정 구간 끝
 	
-	public Member() {
 	
+	
+	public Member() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Member(String id, String passwd) {
+		super();
+		this.id = id;
+		this.passwd = passwd;
 	}
 	
 	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,

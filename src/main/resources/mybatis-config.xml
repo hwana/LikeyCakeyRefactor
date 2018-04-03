@@ -19,12 +19,9 @@
 	<!-- 마이바티스 DataSource 설정은 root-context.xml을 참조한다. -->
 	
 	<mappers>
-
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/bizmember-mapper.xml"/>
 		<mapper resource="mappers/admin-mapper.xml"/>
-
-		
 	</mappers> 
 
 </configuration>

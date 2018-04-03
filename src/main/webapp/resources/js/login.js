@@ -5,6 +5,7 @@ $(function() {
  		$("#register-form").fadeOut(100);
 		$('#biz-member-link').removeClass('active');
 		$(this).addClass('active');
+	
 		e.preventDefault();
 	});
 	$('#biz-member-link').click(function(e) {
@@ -12,6 +13,7 @@ $(function() {
  		$("#login-form").fadeOut(100);
 		$('#normal-member-link').removeClass('active');
 		$(this).addClass('active');
+	
 		e.preventDefault();
 	});
 
