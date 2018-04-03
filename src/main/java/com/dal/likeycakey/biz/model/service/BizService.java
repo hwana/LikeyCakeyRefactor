@@ -9,5 +9,7 @@ public interface BizService {
 
 	public int insertBiz(Member m) throws Exception;
 	public int insertBiz(BizMember bm) throws Exception;
+	public int loginCheck(String id, String passwd) throws Exception;
+
 
 }

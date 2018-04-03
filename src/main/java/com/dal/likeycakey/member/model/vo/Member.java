@@ -83,8 +83,16 @@ public class Member implements java.io.Serializable{
 		this.photo = photo;
 	}
 	
-	public Member() {
 	
+	
+	public Member() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Member(String id, String passwd) {
+		super();
+		this.id = id;
+		this.passwd = passwd;
 	}
 	
 	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,

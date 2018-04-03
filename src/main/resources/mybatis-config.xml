@@ -11,7 +11,7 @@
 	<typeAliases>		
 		<typeAlias type="com.dal.likeycakey.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.dal.likeycakey.biz.model.vo.BizMember" alias="bizMember"/>
-		<typeAlias type="com.dal.likeycakey.admin.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.dal.likeycakey.admin.model.vo.Member" alias="Admin"/>
 		<!-- <typeAlias type="org.kh.firstSpring.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="org.kh.firstSpring.board.model.vo.Board" alias="Board"/> -->
 	</typeAliases>

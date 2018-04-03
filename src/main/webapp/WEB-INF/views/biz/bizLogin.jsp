@@ -1,6 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../default/header.jsp"%>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".login-submit").submit(function(event) {
+		
+		var form_data = {
+			user_id: $(".username").val(),
+			user_pw: $(".password").val()
+		};
+		$.ajax({
+			type: "POST",
+			url: "loginCheck1.ca",
+			async: false,
+			data: form_data,
+			success: function(data) {
+				if(data.equals("ok")) {
+					$(".message").html("로그인 성공");
+					return;
+				}else{
+					$(".message").html("<p style='color:red'>아이디 또는 비밀번호가 잘못되었습니다.</p>");
+				}	
+			}
+		});//ajax
+		event.preventDefault();
+		//return false;
+	});//submit
+});//ready
+</script>
 <div class="container" id="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
@@ -24,32 +52,31 @@
 						<div class="col-lg-12">
 
 
-							<form id="login-form" action="/" class="form-horizontal"
-								method="post" role="form" style="display: block;">
+							<form id="login-form" action="loginCheck1.ca" class="form-horizontal"
+								method="post" role="form" style="display: block;" >
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="id">아이디</label>
 
 									<div class="col-xs-8">
-										<input type="text" name="username" id="username" tabindex="1"
+										<input type="text" name="id" class="username" tabindex="1"
 											class="form-control" placeholder="아이디를 입력하세요." value="">
 									</div>
 
 									<label class="col-xs-3 text-right">비밀번호</label>
 									<div class="col-xs-8">
-										<input type="password" name="password" id="password"
+										<input type="password" name="passwd" class="password"
 											tabindex="2" class="form-control" placeholder="비밀번호를 입력하세요.">
 									</div>
 								</div>
-
+								<div class="message"></div>
 								<div class="row">
 									<div class="col-xs-8 col-xs-offset-2">
-										<input type="submit" name="login-submit" id="login-submit"
-											tabindex="4" class="form-control btn btn-login" value="로그인"
-											id="btn-login">
+										<input type="submit" name="login-submit"
+											tabindex="4" class="form-control btn btn-login login-submit" value="로그인">
 									</div>
 								</div>
 								<div class="row text-center">
-									<input type="checkbox" class="" name="remember" id="remember">
+									<input type="checkbox" name="remember" class="remember">
 									<label for="remember"> 아이디 저장하기</label>
 								</div>
 
@@ -64,32 +91,31 @@
 								</div>
 							</form>
 
-							<form id="register-form" action="/" method="post" role="form"
+							<form id="register-form" action="loginCheck2.ca" method="post" role="form"
 								style="display: none;" class="form-horizontal">
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="id">아이디</label>
 
 									<div class="col-xs-8">
-										<input type="text" name="username" id="username" tabindex="1"
+										<input type="text" name="username" class="username" tabindex="1"
 											class="form-control" placeholder="아이디를 입력하세요." value="">
 									</div>
 
 									<label class="col-xs-3 text-right">비밀번호</label>
 									<div class="col-xs-8">
-										<input type="password" name="password" id="password"
+										<input type="password" name="password" class="password"
 											tabindex="2" class="form-control" placeholder="비밀번호를 입력하세요.">
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-xs-8 col-xs-offset-2">
-										<input type="submit" name="login-submit" id="login-submit"
-											tabindex="4" class="form-control btn btn-login" value="로그인"
-											id="btn-login">
+										<input type="submit" name="login-submit"
+											tabindex="4" class="form-control btn btn-login login-submit" value="로그인">
 									</div>
 								</div>
 								<div class="row text-center">
-									<input type="checkbox" class="" name="remember" id="remember">
+									<input type="checkbox" name="remember" class="remember">
 									<label for="remember"> 아이디 저장하기</label>
 								</div>
 
