@@ -14,14 +14,20 @@
   		<result property="addressB" column="M_BASIC_ADDR"/>
   		<result property="addressD" column="M_DETAIL_ADDR"/>
   		<result property="phone" column="M_CP"/>
-  		<result property="photo" column="M_PHOTO"/>
+  		<result property="photoo" column="M_PHOTO"/>
 	</resultMap>
 	
-	<select id="insertMember" parameterType="Member" resultMap="resultMember">
+	<insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER VALUES
-      (#{id},#{passwd},#{name},#{email},#{post},#{addressBasic},#{addressDetail},#{phone},#{photo})
+      (#{id},#{passwd},#{name},3,#{email},#{post},#{addressB},#{addressD},#{phone},#{photoo})
+	</insert>
+
+	<select id="loginCheck" parameterType="Member" resultMap="resultMember">
+		SELECT * FROM MEMBER WHERE M_ID = #{id} and M_PW = #{passwd}
 	</select>
 
-
+	<select id="dupid" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id}
+	</select>
 
 </mapper>

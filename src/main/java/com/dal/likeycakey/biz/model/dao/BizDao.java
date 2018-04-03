@@ -1,7 +1,13 @@
 package com.dal.likeycakey.biz.model.dao;
 
+import com.dal.likeycakey.biz.model.vo.BizMember;
+import com.dal.likeycakey.detailView.model.vo.ProductBoard;
 import com.dal.likeycakey.member.model.vo.Member;
 
 public interface BizDao {
-	public int insertBiz(Member member) throws Exception;
+	public int insertBiz1(Member member) throws Exception;
+	public int insertBiz2(BizMember bizMember) throws Exception;
+	public Member selectMember(String id, String passwd);
+	public int selectMember(String id);
+	public int insertProductBoard(ProductBoard productBoard);
 }

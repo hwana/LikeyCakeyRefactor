@@ -24,19 +24,19 @@
 						<div class="col-lg-12">
 
 
-							<form id="login-form" action="/" class="form-horizontal"
+							<form id="login-form" action="loginCheck1.ca" class="form-horizontal"
 								method="post" role="form" style="display: block;">
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="id">아이디</label>
 
 									<div class="col-xs-8">
-										<input type="text" name="username" id="username" tabindex="1"
+										<input type="text" name="id" id="username" tabindex="1"
 											class="form-control" placeholder="아이디를 입력하세요." value="">
 									</div>
 
 									<label class="col-xs-3 text-right">비밀번호</label>
 									<div class="col-xs-8">
-										<input type="password" name="password" id="password"
+										<input type="password" name="passwd" id="password"
 											tabindex="2" class="form-control" placeholder="비밀번호를 입력하세요.">
 									</div>
 								</div>
@@ -64,19 +64,19 @@
 								</div>
 							</form>
 
-							<form id="register-form" action="/" method="post" role="form"
+							<form id="register-form" action="loginCheck2.ca" method="post" role="form"
 								style="display: none;" class="form-horizontal">
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="id">아이디</label>
 
 									<div class="col-xs-8">
-										<input type="text" name="username" id="username" tabindex="1"
+										<input type="text" name="id" id="username" tabindex="1"
 											class="form-control" placeholder="아이디를 입력하세요." value="">
 									</div>
 
 									<label class="col-xs-3 text-right">비밀번호</label>
 									<div class="col-xs-8">
-										<input type="password" name="password" id="password"
+										<input type="password" name="passwd" id="password"
 											tabindex="2" class="form-control" placeholder="비밀번호를 입력하세요.">
 									</div>
 								</div>

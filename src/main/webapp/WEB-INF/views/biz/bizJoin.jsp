@@ -63,12 +63,12 @@ hr{
                회원가입 <small>[Likey Cakey]사업자 회원가입</small>
             </h1>
          </div>
-         <form class="form-horizontal" action="bizInsert.ca">
+         <form class="form-horizontal" action="bizInsert.ca" method="post">
          
          <div class="form-group">
                <label class="col-sm-3 control-label" for="inputPhoto">업체사진</label>
                <div class="col-sm-4">
-                  <input class="form-control" id="inputPhoto" type="text" name = "photo"
+                  <input class="form-control" id="inputPhoto" type="text" name = "photoo"
                      placeholder="업체사진">
                      
                      </div>
@@ -83,7 +83,7 @@ hr{
                      placeholder="아이디"  name = "id">
                      
                      </div>
-                     <button class="btn btn-success" type="button" class="search">
+                     <button class="btn btn-success" type="button" class="search" id="dupid">
                            중복검사</button>
                
             </div>
@@ -109,7 +109,7 @@ hr{
                <label class="col-sm-3 control-label" for="inputName">대표자
                   이름</label>
                <div class="col-sm-6">
-                  <input class="form-control" id="inputName" type="text"
+                  <input class="form-control" id="inputName" type="text" name="name"
                      placeholder="대표자 이름">
                </div>
             </div>
@@ -117,7 +117,7 @@ hr{
             <div class="form-group">
                <label class="col-sm-3 control-label" for="inputStoreName">상호명</label>
                <div class="col-sm-6">
-                  <input class="form-control" id="inputStoreName" type="text"
+                  <input class="form-control" id="inputStoreName" type="text" name="bizName"
                      placeholder="상호명">
                </div>
             </div>
@@ -125,7 +125,7 @@ hr{
             <div class="form-group">
                <label class="col-sm-3 control-label" for="inputStoreCall">업체번호</label>
                <div class="col-sm-6">
-                  <input class="form-control" id="inputStoreCall" type="text"
+                  <input class="form-control" id="inputStoreCall" type="text" name="bizPn"
                      placeholder="업체번호">
                </div>
             </div>
@@ -134,7 +134,7 @@ hr{
                <label class="col-sm-3 control-label" for="inputBizNum">사업자
                   등록번호</label>
                <div class="col-sm-6">
-                  <input class="form-control" id="inputBizNum" type="text"
+                  <input class="form-control" id="inputBizNum" type="text" name="bizNum"
                      placeholder="사업자 등록번호">
                </div>
             </div>
@@ -170,7 +170,7 @@ hr{
             <div class="form-group">
                <label class="col-sm-3 control-label" for="inputMasterName">담당자 이름</label>
                <div class="col-sm-6">
-                  <input class="form-control" id="inputMasterName" type="text"
+                  <input class="form-control" id="inputMasterName" type="text" name="masterName"
                      placeholder="담당자 이름">
                </div>
             </div>
@@ -211,6 +211,14 @@ hr{
                <div class="col-sm-6">
                   <input class="form-control" id="inputemail" type="text" name = "email"
                      placeholder="정산용 이메일입니다.">
+               </div>
+            </div>
+            
+            <div class="form-group">
+               <label class="col-sm-3 control-label" for="inputDelivery">배송비</label>
+               <div class="col-sm-6">
+                  <input class="form-control" id="inputDelivery" type="text"
+                     placeholder="배송비를 입력해주세요"  name = "bizDelivery">
                </div>
             </div>
             
@@ -268,6 +276,33 @@ hr{
    </article>
 
    <script src="/resources/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
+   <script>
+		$(document).ready(function(){
+			$("#dupid").click(function(){
+				$.ajax({
+					url : "dupid.ca",
+					data : {id : $("#inputID").val()},
+					dataType : "text",
+					type : "post",
+					success : function(value){
+						if (value == "ok"){ 
+							alert("아이디가 중복되지 않습니다.");
+							$('input[name=name]').focus();
+						}
+						else {
+							alert("이미 존재하는 아이디입니다. 아이디를 다시 설정하세요");
+							$('#id').select();
+						}
+					},
+					error : function(value){
+						alert("잘못 입력하셨습니다."+value);
+					}
+				});
+				return false;
+			}); //click
+		}); //ready
+	</script>
 </body>
 
 </html>

@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ page pageEncoding="UTF-8" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -39,11 +38,21 @@
 			<div class="menu-area mt-60">
 				<div class="container">
 					<div class="row">
+	
 					<!-- 로그인, 회원가입 / 로그아웃, 마이페이지 -->
-					<div class="sign-wrapper">
-						<a class="sign-button" href = "bizJoin.ca">Sign-Up</a><a class="sign-button">Log-in</a> 
-					</div>
+					<c:set var="member" value="${sessionScope.member}" />
+					<c:if test="${empty sessionScope.member }">
+						<div class="sign-wrapper">
+							<a class="sign-button" href = "bizJoin.ca">Sign-Up</a><a class="sign-button" href = "bizLogin.ca">Log-in</a> 
+						</div>
+					</c:if>
 					
+					<c:if test="${!empty sessionScope.member}">
+						<div class="sign-wrapper">
+							<span>안녕하세요, ${member.name} 님 </span>
+							<a class="sign-button" href = "logout.ca">Log-out</a><a class="sign-button" href = "bizMypageModify.ca">My Page</a> 	
+						</div>
+					</c:if>
 						<div class="col-md-3 col-sm-12">
 							<div class="logo-area text-center text-uppercase">
 								<a href="home.ca"><img src="/resources/img/icon/logo.png" alt="" /></a>

@@ -9,6 +9,8 @@
 
 	<typeAliases>		
 		<typeAlias type="com.dal.likeycakey.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.dal.likeycakey.biz.model.vo.BizMember" alias="bizMember"/>
+		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductBoard" alias="ProductBoard"/>
 		<!-- <typeAlias type="org.kh.firstSpring.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="org.kh.firstSpring.board.model.vo.Board" alias="Board"/> -->
 	</typeAliases> 	
@@ -17,8 +19,10 @@
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/bizmember-mapper.xml"/>
+		<mapper resource="mappers/productboard-mapper.xml"/>
 		<!-- <mapper resource="mappers/notice-mapper.xml"/>
-		<mapper resource="mappers/board-mapper.xml"/> -->
+		 -->
 	</mappers>
 
 </configuration>

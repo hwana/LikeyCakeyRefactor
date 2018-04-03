@@ -1,13 +1,14 @@
 package com.dal.likeycakey.member.model.vo;
 
-import java.sql.Date;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Member implements java.io.Serializable{
 	// 자바 내부에서 사용하는 자료를 자바 외의 프로그램에서도 인식할 수 있게 바이트로 변환하여
 	// 데이터를 전송하기 위해 직렬화 처리를 한다.
 	// 이 때 프로그램을 인식시키기 위한 고유의 식별 번호를 부여한다.
 	// 만약 이 식별번호가 일치하면 자바에서 해당 객체를 중복으로 인식하여 에러를 발생시킨다.
-	private static final long serialVersionUID = 1000000L;
+	private static final long serialVersionUID = 1000001L;
 	
 	
 	private String id;
@@ -19,10 +20,16 @@ public class Member implements java.io.Serializable{
 	private String addressB;
 	private String addressD;
 	private String phone;
-	private String photo;
+	private String photoo;
 	
 	public Member() {
 		
+	}
+	
+	public Member(String id, String passwd) {
+		super();
+		this.id = id;
+		this.passwd = passwd;
 	}
 	
 	public Member(String id, String passwd, String name, int code, String email, String post, String addressB,
@@ -37,7 +44,7 @@ public class Member implements java.io.Serializable{
 		this.addressB = addressB;
 		this.addressD = addressD;
 		this.phone = phone;
-		this.photo = photo;
+		this.photoo = photo;
 	}
 	
 	public String getId() {
@@ -94,15 +101,11 @@ public class Member implements java.io.Serializable{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getPhoto() {
-		return photo;
+	public String getPhotoo() {
+		return photoo;
 	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setPhotoo(String photo) {
+		this.photoo = photo;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
 	
 }
