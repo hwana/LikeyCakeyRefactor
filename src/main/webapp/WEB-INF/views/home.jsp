@@ -170,9 +170,9 @@
 
 							<div class="input_wrap">
 								<form>
-									<input type="text" id="input_search" class="_query"
-										maxlength="40" value="" placeholder="초코 케이크"> <a><i
-										class="fa fa-search" aria-hidden="true"></i></a>
+									<input type="text" id="input_search" name="input_search" class="_query"
+										maxlength="40" value="" placeholder="초코 케이크"/> 
+									<a href="javascript:{}" onclick="document.getElementById('input_search').submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
 								</form>
 							</div>
 
