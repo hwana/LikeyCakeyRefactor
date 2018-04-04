@@ -115,6 +115,7 @@ public class BizController {
 		} catch (Exception e) {
 			mv.setViewName("redirect:home.ca");
 			System.out.println("비즈멤버등록실패");
+			System.out.println(e);
 		}
 		return mv;
 	}

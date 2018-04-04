@@ -48,6 +48,11 @@ html>body>section>div>div>div>form span>.btn-in {
 }
 </style>
 
+<!-- 유효성 검사를 위한 자바스크립트 -->
+<script type="text/javascript">
+
+</script>
+
 <script>
 	<script src="/resources/js/vendor/modernizr-2.8.3.min.js">
 </script>

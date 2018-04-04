@@ -1,10 +1,5 @@
 package com.dal.likeycakey.member.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 // @Controller 를 사용하기 위한 import
 import org.springframework.stereotype.Controller;
@@ -12,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.likeycakey.member.model.service.MemberService;
@@ -38,7 +34,7 @@ public class MemberController {
 	}
 	
 	
-	// 회원가입 시 아이디 중복 확인
+/*	// 회원가입 시 아이디 중복 확인
 	@RequestMapping("idcheck_member.ca")
 	public void idCheck(Model model, @RequestParam("id") String id, HttpServletResponse response) throws IOException{
 		PrintWriter out = response.getWriter();
@@ -48,7 +44,7 @@ public class MemberController {
 		
 		out.flush();
 		out.close();
-	}
+	}*/
 	
 	
 	// 일반회원 INSERT 해주는 부분
@@ -67,13 +63,6 @@ public class MemberController {
 		}
 		return mv;
 	}
-	
-	// 로그인으로 이동해줄 수 있는 컨트롤러
-	@RequestMapping(value="memberLogin.ca")
-	public String onlymovelogin(Model model) {
-		return "member/memberLogin";
-	}
-	
 	
 	// 마이페이지로 이동시켜주는 컨트롤러
 	@RequestMapping(value="memberMypage.ca")

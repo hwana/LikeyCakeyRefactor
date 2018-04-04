@@ -23,7 +23,7 @@ public class Member implements java.io.Serializable{
 	private String phone;
 	private String photo;
 	private int status;
-	private int blackCnt;
+	private int blackcnt;
 
 	public Member() {
 		
@@ -51,7 +51,7 @@ public class Member implements java.io.Serializable{
 	}
 	
 	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,
-			String addressDetail, String phone, String photo, int status, int blackCnt) {
+			String addressDetail, String phone, String photo, int status, int blackcnt) {
 		super();
 		this.id = id;
 		this.passwd = passwd;
@@ -64,7 +64,7 @@ public class Member implements java.io.Serializable{
 		this.phone = phone;
 		this.photo = photo;
 		this.status = status;
-		this.blackCnt=blackCnt;
+		this.blackcnt=blackcnt;
 	}
 
 	public String getId() {
@@ -142,11 +142,11 @@ public class Member implements java.io.Serializable{
 		this.status = status;
 	}
 
-	public int getblackCnt() {
-		return blackCnt;
+	public int getblackcnt() {
+		return blackcnt;
 	}
 
-	public void setBlackCnt(int blackCnt) {
-		this.blackCnt = blackCnt;
+	public void setblackcnt(int blackcnt) {
+		this.blackcnt = blackcnt;
 	}
 }
