@@ -157,7 +157,12 @@ public class BizController {
 	public ModelAndView cakeInsert(
 			HttpSession session,
 			HttpServletRequest request,
-			@RequestParam(value = "file", required=false) MultipartFile file,
+			@RequestParam(value = "file", required=false) MultipartFile file, 
+			@RequestParam("inputtag1") String inputtag1,
+			@RequestParam("inputtag2") String inputtag2,
+			@RequestParam("inputtag3") String inputtag3,
+			@RequestParam("inputtag4") String inputtag4,
+			@RequestParam("inputtag5") String inputtag5,
 			ModelAndView mv,
 			ProductBoard productBoard
 			) throws IOException {
@@ -171,6 +176,7 @@ public class BizController {
 		
 		//productBoard에 이미지 넣기
 		productBoard.setpImg(file.getOriginalFilename());
+		productBoard.setPbTag(inputtag1 + " " + inputtag2 + " " + inputtag3 + " " + inputtag4 + " " + inputtag5);
 		
 		if (bizService.insertProductBoard(productBoard) > 0) {
 			System.out.println("프로덕트 케이크 넣기 성공");

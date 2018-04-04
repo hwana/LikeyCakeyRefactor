@@ -166,6 +166,10 @@ input[type="file"] {
 										placeholder="태그입력">
 									<input class="form-control" id="inputtag3" name="inputtag3" type="text"
 										placeholder="태그입력">
+									<input class="form-control" id="inputtag4" name="inputtag4" type="hidden"
+										placeholder="태그입력">
+									<input class="form-control" id="inputtag5" name="inputtag5" type="hidden"
+										placeholder="태그입력">
 									<button class="btn btn-success" type="button" id="search" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
 								</div>
 							</div>
