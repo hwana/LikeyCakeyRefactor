@@ -4,8 +4,8 @@ $(function() {
 		$("#login-form").delay(100).fadeIn(100);
  		$("#register-form").fadeOut(100);
 		$('#biz-member-link').removeClass('active');
-		$("normalorbiz").val("1");
 		$(this).addClass('active');
+	
 		e.preventDefault();
 	});
     
@@ -13,8 +13,8 @@ $(function() {
 		$("#register-form").delay(100).fadeIn(100);
  		$("#login-form").fadeOut(100);
 		$('#normal-member-link').removeClass('active');
-		$("normalorbiz").val("2");
 		$(this).addClass('active');
+	
 		e.preventDefault();
 	});
 

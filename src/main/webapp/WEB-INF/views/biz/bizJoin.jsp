@@ -68,7 +68,7 @@ hr{
          <div class="form-group">
                <label class="col-sm-3 control-label" for="inputPhoto">업체사진</label>
                <div class="col-sm-4">
-                  <input class="form-control" id="inputPhoto" type="text" name = "photoo"
+                  <input class="form-control" id="inputPhoto" type="text" name = "photo"
                      placeholder="업체사진">
                      
                      </div>
@@ -307,3 +307,4 @@ hr{
 
 </html>
 <%@ include file="../default/footer.jsp"%>
+

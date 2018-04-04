@@ -6,28 +6,27 @@
 
 	<resultMap id="resultMember" type="Member">
 		<id property="id" column="M_ID" />
-  		<result property="passwd" column="M_PW"/>
-  		<result property="name" column="M_NAME"/>
-  		<result property="code" column="M_NUM"/>
-  		<result property="email" column="M_EMAIL"/>
-  		<result property="post" column="M_POST"/>
-  		<result property="addressB" column="M_BASIC_ADDR"/>
-  		<result property="addressD" column="M_DETAIL_ADDR"/>
-  		<result property="phone" column="M_CP"/>
-  		<result property="photoo" column="M_PHOTO"/>
+		<result property="passwd" column="M_PW" />
+		<result property="name" column="M_NAME" />
+		<result property="code" column="M_NUM" />
+		<result property="email" column="M_EMAIL" />
+		<result property="post" column="M_POST" />
+		<result property="addressBasic" column="M_BASIC_ADDR" />
+		<result property="addressDetail" column="M_DETAIL_ADDR" />
+		<result property="phone" column="M_CP" />
+		<result property="photo" column="M_PHOTO" />
 	</resultMap>
-	
-	<insert id="insertMember" parameterType="Member">
-		INSERT INTO MEMBER VALUES
-      (#{id},#{passwd},#{name},3,#{email},#{post},#{addressB},#{addressD},#{phone},#{photoo})
-	</insert>
 
-	<select id="loginCheck" parameterType="Member" resultMap="resultMember">
-		SELECT * FROM MEMBER WHERE M_ID = #{id} and M_PW = #{passwd}
+	<insert id="insertMember" parameterType="Member" flushCache="true">
+		INSERT INTO MEMBER VALUES
+		(#{id},#{passwd},#{name},#{email},#{post},#{addressBasic},#{addressDetail},#{phone},3,#{photo})
+	</insert>
+	
+	<select id = "loginCheck" parameterType="Member" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id} AND M_PW = #{passwd}
 	</select>
 
 	<select id="dupid" parameterType="string" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id}
 	</select>
-
 </mapper>

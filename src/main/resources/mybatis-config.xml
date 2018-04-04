@@ -15,6 +15,7 @@
 		<typeAlias type="org.kh.firstSpring.board.model.vo.Board" alias="Board"/> -->
 	</typeAliases> 	
 	
+
 	<!-- 마이바티스 DataSource 설정은 root-context.xml을 참조한다. -->
 	
 	<mappers>

@@ -27,19 +27,20 @@ public class BizServiceImpl implements BizService {
 	}
 	
 	@Override
-	public Member loginCheck(String id, String passwd) {
+	public Member loginCheck(String id, String passwd) throws Exception {
 		
 		return bizDao.selectMember(id, passwd);
 	}
 	
 	@Override
-	public int dupid(String id) {
+	public int dupid(String id) throws Exception {
 		return bizDao.selectMember(id);
 	}
 
 	@Override
-	public int insertProductBoard(ProductBoard productBoard) {
+	public int insertProductBoard(ProductBoard productBoard) throws Exception {
 		System.out.println("bizService의 insertProductBoard입니다");
 		return bizDao.insertProductBoard(productBoard);
 	}
 }
+
