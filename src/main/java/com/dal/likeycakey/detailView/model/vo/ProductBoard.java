@@ -2,9 +2,15 @@ package com.dal.likeycakey.detailView.model.vo;
 
 import org.springframework.stereotype.Component;
 
+
+
 // servlet-context의 <context:component-scan>에 설정된 것을 읽음.
 @Component
-public class ProductBoard {
+public class ProductBoard implements java.io.Serializable{
+	
+	private static final long serialVersionUID = 3000000L;
+	
+	
 	private int pbNum; // 게시글 번호
 	private String id; // 회원 아이디
 	private String pName; // 케이크 이름
@@ -20,8 +26,9 @@ public class ProductBoard {
 	private int pbLike; // 케이크 좋아요 개수
 	private int pbReadCnt; // 케이크 상세페이지 조회수
 	private String pbYN; // 케이크 당일 구매 여부
-	private String pnWarn; // 케이크 예약시 주의사항 
+	private String pbWarn; // 케이크 예약시 주의사항 
 	private String pbTag; // 케이크 태그
+	private int pbSellCnt; // 케이크 팔린 개수
 	
 	public ProductBoard() {
 		super();
@@ -30,7 +37,7 @@ public class ProductBoard {
 
 	public ProductBoard(int pbNum, String id, String pName, String pPrice, String pImg, int pSize, String pCM,
 			int pCount, int pCountLimit, String pbMiniTitle, String pbMiniContent, String pbContent, int pbLike,
-			int pbReadCnt, String pbYN, String pnWarn, String pbTag) {
+			int pbReadCnt, String pbYN, String pbWarn, String pbTag, int pbSellCnt) {
 		super();
 		this.pbNum = pbNum;
 		this.id = id;
@@ -47,8 +54,9 @@ public class ProductBoard {
 		this.pbLike = pbLike;
 		this.pbReadCnt = pbReadCnt;
 		this.pbYN = pbYN;
-		this.pnWarn = pnWarn;
+		this.pbWarn = pbWarn;
 		this.pbTag = pbTag;
+		this.pbSellCnt = pbSellCnt;
 	}
 	
 	
@@ -142,11 +150,11 @@ public class ProductBoard {
 	public void setPbYN(String pbYN) {
 		this.pbYN = pbYN;
 	}
-	public String getPnWarn() {
-		return pnWarn;
+	public String getpbWarn() {
+		return pbWarn;
 	}
-	public void setPnWarn(String pnWarn) {
-		this.pnWarn = pnWarn;
+	public void setpbWarn(String pbWarn) {
+		this.pbWarn = pbWarn;
 	}
 	public String getPbTag() {
 		return pbTag;
@@ -154,8 +162,14 @@ public class ProductBoard {
 	public void setPbTag(String pbTag) {
 		this.pbTag = pbTag;
 	}
-	
-	
+
+	public int getPbSellCnt() {
+		return pbSellCnt;
+	}
+
+	public void setPbSellCnt(int pbSellCnt) {
+		this.pbSellCnt = pbSellCnt;
+	}
 	
 	
 }

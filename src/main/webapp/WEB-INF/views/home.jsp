@@ -1,7 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<%@ page pageEncoding="UTF-8" %>
-<!doctype html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" %>
+
+<!DOCTYPE html>
 <html class="no-js" lang="zxx">
     <head>
         <meta charset="utf-8">
@@ -31,6 +33,48 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
        	<link rel="stylesheet" href="/resources/css/young.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
+    
+    
+    <script type="text/javascript" src="/resources/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+    	
+    	$.ajax({
+    		url : "top3List.ca",
+    		type : "get",
+    		dataType : "json",
+    		success : function(data) {
+    			// 객체를 문자열로 변환
+    			var jsonStr = JSON.stringify(data);
+    			
+    			// 문자열을 배열 객체로 바꿈
+    			var json = JSON.parse(jsonStr); 
+    			
+    			var values = $("#top3-list").html();
+    			
+    			for( var i in json.list) {
+    				values += "<div class='col-md-4 col-sm-4 col-xs-12 res-mb-25'>"
+						   +  "<div class='cate-bnr-sngle'>"
+    					   +  "<img src='/resources/img/product/" + json.list[i].pImg + ".jpg'>" 
+    					   +  "<div class='cate-content text-center'>"
+    					   +  "<h6>" + decodeURIComponent(json.list[i].pName) + "</h6>"
+    					   +  "<a href='detailView.ca/pbNum=" + json.list[i].pbNum + "'>상품 보러가기</a>"
+    					   +  "</div>"
+    					   +  "</div>"
+    					   +  "</div>";
+    				
+    			}
+    			$("#top3-list").html(values);
+    		},
+    		error : function(request,status,error) {
+    			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    		}
+	  	});
+    	
+    });
+    </script>
+    
+    
     </head>
     <body>
     	<!-- Header Area Start -->
@@ -222,9 +266,9 @@
 				</div>
 			<section class="category-banner pb-65 pt-50">
 				<div class="container">
-					<div class="row">
+					<div class="row" id="top3-list">
 						<!-- Category Banner Single -->
-						<div class="col-md-4 col-sm-4 col-xs-12 res-mb-25">
+						<!-- <div class="col-md-4 col-sm-4 col-xs-12 res-mb-25">
 							<div class="cate-bnr-sngle">
 								<img src="/resources/img/category-banner/1.jpg" alt="" />
 								<div class="cate-content text-center">
@@ -232,36 +276,24 @@
 									<a href="single-product.html">상품 보러가기</a>
 								</div>
 							</div>
-						</div>
-						<!-- Category Banner Single -->
-						<!-- Category Banner Single -->
-						<div class="col-md-4 col-sm-4 col-xs-12 res-mb-25">
-							<div class="cate-bnr-sngle">
-								<img src="/resources/img/category-banner/2.jpg" alt="" />
-								<div class="cate-content text-center">
-									<h6>lipstick & Eye Makeup</h6>
-									<a href="single-product.html">상품 보러가기</a>
-								</div>
-							</div>
-						</div>
-						<!-- Category Banner Single -->
-						<!-- Category Banner Single -->
-						<div class="col-md-4 col-xs-12 col-sm-4">
-							<div class="cate-bnr-sngle">
-								<img src="/resources/img/category-banner/3.jpg" alt="" />
-								<div class="cate-content text-center">
-									<h6>night cream & perfume</h6>
-									<a href="single-product.html">상품 보러가기</a>
-								</div>
-							</div>
-						</div>
+						</div> -->
 						<!-- Category Banner Single -->
 					</div>
 				</div>
 			</section>
 			</div>
 			<!-- Category Banner Area End -->
-			<!-- Deal For Month Area Start -->
+			
+
+			<!-- 오늘의 상품 start -->
+			<!-- 변수 설정  -->
+			<c:set var="todaysCake" value="${requestScope.todaysCake}"/>
+			<c:set var="todaysBizMember" value="${requestScope.todaysBizMember}"/>
+			<!-- 오늘 날짜 구하기  -->
+			<c:set var="now" value="<%=new java.util.Date(new java.util.Date().getTime() + 60 * 60 * 24 * 1000)%>" />
+			<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy/MM/dd" /></c:set> 
+			
+			<c:out value="${sysYear}"></c:out>
 			<section class="deal-month-area ptb-100 dark-gray-bg">
 				<!-- SECTION TITEL -->
 				<div class="section-titel text-center mb-85 text-uppercase">
@@ -272,20 +304,20 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-6 col-xs-12 res-mb-25">
 							<div class="deal-month-left">
-								<img src="/resources/img/other/cake1.png" alt="" />
+								<img src="/resources/img/product/${todaysCake.pImg}.jpg" alt="" />
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<div class="deal-month-right white-bg p-20">
-								<span class="titel">뚜레주르</span>
+								<span class="titel">${todaysBizMember.bizName }</span>
 								<div class="main-content">
-									<h2 class="NanumGothic"><a href="#">엔젤 프레즈 쉬폰</a></h2>
-									<h4>\20,000</h4>
-									<p>촉촉한 쉬폰안에 생딸기를 가득 넣고 신선한 생크림으로 아이싱한 뚜레쥬르만의 시그니쳐 쉬폰 케이크</p>
+									<h2><a href="./detailView.ca/${todaysCake.pbNum }">${todaysCake.pName}</a></h2>
+									<h4>\<fmt:formatNumber value="${todaysCake.pPrice}" pattern="\#,###"/></h4>
+									<p>${todaysCake.pbMiniContent }</p>
 									<div class="count-down-area">
 										<div class="timer default-bg">
 											<!-- 현선 : 오늘 날짜 불러오는 메소드 추가할 것 -->
-											<div data-countdown="2018/03/22"></div>
+											<div data-countdown="${sysYear}"></div>
 										</div> 
 									</div>
 									<div class="deal-btn mt-40">
@@ -297,8 +329,7 @@
 						</div>
 					</div>
 				</div>
-			</section>
-			
+			</section>			
 			<!-- Product Tab Area Start -->
 			<section class="product-tab-area pt-90 pb-50">
 				<div class="container">
