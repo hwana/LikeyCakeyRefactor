@@ -82,7 +82,7 @@ $(document).ready(function() {
 
 								<div class="row">
 									<div class="col-xs-5 text-right">
-										<a href="#" class="forgot-password" id="forgot-password">회원가입</a>
+										<a href="mem_choice.ca" class="forgot-password" id="forgot-password">회원가입</a>
 									</div>
 									<div class="col-xs-5 text-left">
 										<a href="#" class="forgot-password" id="forgot-password">아이디/비밀번호
