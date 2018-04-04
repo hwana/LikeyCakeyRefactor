@@ -22,10 +22,11 @@
 		(#{id},#{passwd},#{name},#{email},#{post},#{addressBasic},#{addressDetail},#{phone},3,#{photo})
 	</insert>
 	
-
-	<select id = "loginCheck" parameterType="Member" resultType="_int">
-		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id} AND M_PW = #{passwd}
+	<select id = "loginCheck" parameterType="Member" resultMap="resultMember">
+		SELECT * FROM MEMBER WHERE M_ID = #{id} and M_PW = #{passwd}
 	</select>
 
-
+	<select id="dupid" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id}
+	</select>
 </mapper>

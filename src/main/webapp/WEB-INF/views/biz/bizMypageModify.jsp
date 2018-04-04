@@ -42,7 +42,7 @@ label {
 								<div class="category-list mt-20">
 									<ul>
 										<!-- li style="border-bottom:0px;" << 라인 없애기 -->
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="productCakeUpload.ca"><i
 												class="zmdi zmdi-chevron-right"></i>케이크 등록하기</a></li>
 										<li style="border-bottom: 0px;"><a href="#"><i
 												class="zmdi zmdi-chevron-right"></i>사업가 정보 수정</a></li>
@@ -70,7 +70,6 @@ label {
 						<div
 							class="blog-left-single mb-30 res-mb-30 res-mb-sm-30 res-blog-mt-50">
 							<div class="left-area">
-
 								<!-- 위의 div 4개는 오른쪽 사이드 설정하는 div -->
 								<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
 								<div class="col-md-12">

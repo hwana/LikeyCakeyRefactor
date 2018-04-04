@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductBoard">
+   <resultMap id="resultProductBoard" type="ProductBoard">
+      <!-- PK같은 것  -->
+      <id property="pbNum" column="P_B_NUM"/>
+      <result property="id" column="M_ID"/>
+      <result property="pName" column="P_NAME"/>
+      <result property="pPrice" column="P_PRICE"/>
+      <result property="pImg" column="P_IMG"/>
+      <result property="pSize" column="P_SIZE"/>
+      <result property="pCM" column="P_CM"/> 
+      <result property="pCount" column="P_COUNT"/>
+      <result property="pCountLimit" column="P_COUNT_LIMIT"/>
+      <result property="pbMiniTitle" column="P_B_MINI_TITLE"/>
+      <result property="pbMiniContent" column="P_B_MINI_CONTENT"/>
+      <result property="pbContent" column="P_B_CONTENT"/>
+      <result property="pbLike" column="P_B_LIKE"/>
+      <result property="pbReadCnt" column="P_B_READCNT"/>
+      <result property="pbYN" column="P_B_YN"/>
+      <result property="pbWarn" column="P_B_WARN"/>
+      <result property="pbTag" column="P_B_TAG"/>
+      <result property="pbSellCnt" column="P_B_SELLCNT"/>
+   </resultMap>
+   
+   <select id="selectTop3" resultMap="resultProductBoard">
+      SELECT * FROM PRODUCT_BOARD ORDER BY P_B_SELLCNT DESC 
+   </select>
+   
+  
+   <insert id="insertProductBoard" parameterType="ProductBoard">
+ 		INSERT INTO PRODUCT_BOARD VALUES 
+		( (SELECT MAX(P_B_NUM) + 1 FROM PRODUCT_BOARD),
+			#{id}, #{pName}, #{pPrice}, #{pImg},
+			1, 1, 1, 10, #{pbMiniTitle}, #{pbMiniContent},
+			#{pbContent}, 3, 4, #{pbYN}, #{pbWarn}, 'something', 5)
+  	</insert>
+</mapper>

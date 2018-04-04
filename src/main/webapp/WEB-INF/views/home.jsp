@@ -46,16 +46,14 @@
 					<c:set var="member" value="${sessionScope.member}" />
 					<c:if test="${empty sessionScope.member }">
 						<div class="sign-wrapper">
-							<a class="sign-button" href="bizJoin.ca">Sign-Up</a><a
-								class="sign-button" href="bizLogin.ca">Log-in</a>
+							<a class="sign-button" href = "bizJoin.ca">Sign-Up</a><a class="sign-button" href = "bizLogin.ca">Log-in</a> 
 						</div>
 					</c:if>
-
+					
 					<c:if test="${!empty sessionScope.member}">
 						<div class="sign-wrapper">
-						<a class="sign-button"
-								href="logout.ca">Log-out</a><a class="sign-button"
-								href="bizMypageModify.ca">My Page</a>
+							<span>안녕하세요, ${member.name} 님 </span>
+							<a class="sign-button" href = "logout.ca">Log-out</a><a class="sign-button" href = "bizMypageModify.ca">My Page</a> 	
 						</div>
 					</c:if>
 
