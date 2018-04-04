@@ -39,7 +39,7 @@ public class BizController {
 	public ModelAndView loginCheck1(
 			HttpSession session,
 			Member member,
-			ModelAndView mv){
+			ModelAndView mv) {
 		
 		session.setAttribute("member", bizService.loginCheck(member.getId(), member.getPasswd()));
 		mv.setViewName("redirect:home.ca");

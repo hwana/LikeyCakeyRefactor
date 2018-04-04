@@ -29,17 +29,17 @@ public class BizDaoImpl implements BizDao {
 	}
 	
 	@Override
-	public Member selectMember(String id, String passwd) throws Exception{
+	public Member selectMember(String id, String passwd) {
 		return (Member)sqlSession.selectOne("Member.loginCheck", new Member(id, passwd));
 	}
 	
 	@Override
-	public int selectMember(String id) throws Exception{
+	public int selectMember(String id) {
 		return sqlSession.selectOne("Member.dupid", id);
 	}
 	
 	@Override
-	public int insertProductBoard(ProductBoard productBoard) throws Exception {
+	public int insertProductBoard(ProductBoard productBoard)  {
 		System.out.println("bizDao의 insertProductBoard입니다");
 		return sqlSession.insert("ProductBoard.insertProductBoard", productBoard);
 	}
