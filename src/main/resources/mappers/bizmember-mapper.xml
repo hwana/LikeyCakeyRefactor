@@ -18,5 +18,4 @@
 		INSERT INTO MEMBER_BIZ(BIZ_NAME, BIZ_PN, BIZ_NUM, BIZ_DELIVERY, MASTER_NAME) VALUES 
 		(#{bizName},#{bizPn},#{bizNum},#{bizDelivery},#{masterName})
 	</insert>
-
 </mapper>

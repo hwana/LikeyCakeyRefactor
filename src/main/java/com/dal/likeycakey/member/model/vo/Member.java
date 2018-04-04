@@ -8,7 +8,8 @@ public class Member implements java.io.Serializable{
 	// 데이터를 전송하기 위해 직렬화 처리를 한다.
 	// 이 때 프로그램을 인식시키기 위한 고유의 식별 번호를 부여한다.
 	// 만약 이 식별번호가 일치하면 자바에서 해당 객체를 중복으로 인식하여 에러를 발생시킨다.
-	private static final long serialVersionUID = 1000000L;
+
+	private static final long serialVersionUID = 1000300L;
 	
 	
 	private String id;
@@ -21,11 +22,51 @@ public class Member implements java.io.Serializable{
 	private String addressDetail;
 	private String phone;
 	private String photo;
-	//1. 은송 수정 구간 시작
 	private int status;
 	private int blackCnt;
-	//1. 은송 수정 구간 끝
+
+	public Member() {
+		
+	}
 	
+	public Member(String id, String passwd) {
+		super();
+		this.id = id;
+		this.passwd = passwd;
+	}
+	
+	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,
+			String addressDetail, String phone, String photo) {
+		super();
+		this.id = id;
+		this.passwd = passwd;
+		this.name = name;
+		this.code = code;
+		this.email = email;
+		this.post = post;
+		this.addressBasic = addressBasic;
+		this.addressDetail = addressDetail;
+		this.phone = phone;
+		this.photo = photo;
+	}
+	
+	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,
+			String addressDetail, String phone, String photo, int status, int blackCnt) {
+		super();
+		this.id = id;
+		this.passwd = passwd;
+		this.name = name;
+		this.code = code;
+		this.email = email;
+		this.post = post;
+		this.addressBasic = addressBasic;
+		this.addressDetail = addressDetail;
+		this.phone = phone;
+		this.photo = photo;
+		this.status = status;
+		this.blackCnt=blackCnt;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -62,24 +103,30 @@ public class Member implements java.io.Serializable{
 	public void setPost(String post) {
 		this.post = post;
 	}
+	
 	public String getAddressBasic() {
 		return addressBasic;
 	}
+
 	public void setAddressBasic(String addressBasic) {
 		this.addressBasic = addressBasic;
 	}
+
 	public String getAddressDetail() {
 		return addressDetail;
 	}
+	
 	public void setAddressDetail(String addressDetail) {
 		this.addressDetail = addressDetail;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getPhoto() {
 		return photo;
 	}
@@ -87,7 +134,6 @@ public class Member implements java.io.Serializable{
 		this.photo = photo;
 	}
 
-	//2.은송 수정 구간 시작
 	public int getStatus() {
 		return status;
 	}
@@ -103,53 +149,4 @@ public class Member implements java.io.Serializable{
 	public void setBlackCnt(int blackCnt) {
 		this.blackCnt = blackCnt;
 	}
-	//2. 은송 수정 구간 끝
-	
-	
-	
-	public Member() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Member(String id, String passwd) {
-		super();
-		this.id = id;
-		this.passwd = passwd;
-	}
-	
-	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,
-			String addressDetail, String phone, String photo) {
-		super();
-		this.id = id;
-		this.passwd = passwd;
-		this.name = name;
-		this.code = code;
-		this.email = email;
-		this.post = post;
-		this.addressBasic = addressBasic;
-		this.addressDetail = addressDetail;
-		this.phone = phone;
-		this.photo = photo;
-	}
-	
-	//3. 은송 수정 구간 시작
-	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,
-			String addressDetail, String phone, String photo, int status, int blackCnt) {
-		super();
-		this.id = id;
-		this.passwd = passwd;
-		this.name = name;
-		this.code = code;
-		this.email = email;
-		this.post = post;
-		this.addressBasic = addressBasic;
-		this.addressDetail = addressDetail;
-		this.phone = phone;
-		this.photo = photo;
-		this.status = status;
-		this.blackCnt=blackCnt;
-	}
-	//3. 은송 수정 구간 끝
-
-	
 }
