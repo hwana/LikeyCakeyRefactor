@@ -50,7 +50,7 @@
 	<!-- AOP 추가 // xmlns:aop="http://www.springframework.org/schema/aop" -->
 	<aop:config proxy-target-class="true"> 
 		<aop:pointcut id="serviceMethod"
-			expression="execution(* com.dal.likeycakey..*ServiceImpl.*(..)))" /> <!-- aop메소드를 어느 컨트롤러에 적용하고 싶은지 결정 -->
+			expression="execution(* com.dal.likeycakey..*Service*.*(..)))" /> <!-- aop메소드를 어느 컨트롤러에 적용하고 싶은지 결정 -->
 		<aop:advisor id="transactionAdvisor" pointcut-ref="serviceMethod"
 			advice-ref="txAdvice" /><!-- 실제로 내가 적용하고 싶은 aop메소드 -->
 	</aop:config>

@@ -26,14 +26,11 @@ import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.service.ProductBoardService;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController{
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	@RequestMapping(value = "/home.ca", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView mv) {
 		

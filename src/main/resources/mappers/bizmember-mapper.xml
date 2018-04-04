@@ -19,7 +19,7 @@
 		INSERT INTO MEMBER_BIZ(BIZ_NAME, BIZ_PN, BIZ_NUM, BIZ_DELIVERY, MASTER_NAME) VALUES 
 		(#{bizName},#{bizPn},#{bizNum},#{bizDelivery},#{masterName})
 	</insert>
-	
+
 	<select id="selectBizMember" parameterType="bizMember" resultMap="resultMember">
 		SELECT * FROM MEMBER_BIZ WHERE M_ID=#{id}
 	</select>
