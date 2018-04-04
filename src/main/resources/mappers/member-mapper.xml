@@ -8,18 +8,20 @@
 		<id property="id" column="M_ID" />
 		<result property="passwd" column="M_PW" />
 		<result property="name" column="M_NAME" />
-		<result property="code" column="M_NUM" />
+		<result property="phone" column="M_CP" />
 		<result property="email" column="M_EMAIL" />
 		<result property="post" column="M_POST" />
 		<result property="addressBasic" column="M_BASIC_ADDR" />
 		<result property="addressDetail" column="M_DETAIL_ADDR" />
-		<result property="phone" column="M_CP" />
 		<result property="photo" column="M_PHOTO" />
+		<result property="code" column="M_NUM" />
+		<result property="blackcnt" column="M_BLACKCNT"/>
+		<result property="status" column="M_STATUS"/>
 	</resultMap>
 
 	<insert id="insertMember" parameterType="Member" flushCache="true">
-		INSERT INTO MEMBER VALUES
-		(#{id},#{passwd},#{name},#{email},#{post},#{addressBasic},#{addressDetail},#{phone},3,#{photo})
+		INSERT INTO MEMBER (M_ID, M_PW, M_NAME, M_CP, M_EMAIL, M_POST, M_BASIC_ADDR, M_DETAIL_ADDR, M_PHOTO, M_NUM, M_BLACKCNT, M_STATUS)
+		VALUES (#{id},#{passwd},#{name},#{phone},#{email},#{post},#{addressBasic},#{addressDetail},#{photo},2,0,0)
 	</insert>
 	
 	<select id = "loginCheck" parameterType="Member" resultMap="resultMember">
