@@ -3311,12 +3311,12 @@ position: absolute;
 
 /* 상품 개수 ~ 버튼 까지 wrap */
 .detail-input {
-	width:80%;
+	width:100%;
 }
 
 /* 구매하기, 장바구니 담기 버튼 */
 .detail-btn {
-	width:49.5%;
+	width:47.5%;
 }
 
 .custom-btn {
@@ -3612,6 +3612,10 @@ position: absolute;
     white-space: nowrap;
 }
 
+.quantity {
+	width: 100%;
+}
+
 /* 상품 개수 */
 .quantity label {
 	font-size : 1.1em;
@@ -3658,3 +3662,11 @@ position: absolute;
 	font-size: 1.1em;
 }
 
+
+.size-label {
+	width: 19.5%;
+}
+
+.size-select {
+	width:79.5%;
+}

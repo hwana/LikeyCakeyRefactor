@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../default/header.jsp"%>
+<<<<<<< HEAD
 
 
 <script type="text/javascript">
@@ -26,6 +27,8 @@ $(document).ready(function() {
 });//ready
 
 </script>
+=======
+>>>>>>> refs/heads/master
 <div class="container" id="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
@@ -49,38 +52,45 @@ $(document).ready(function() {
 						<div class="col-lg-12">
 
 
+<<<<<<< HEAD
 							<!-- <form id="login-form" action="loginCheck1.ca" class="form-horizontal"
 								method="post" role="form" style="display: block;" enctype="multipart/form-data"
 								>
+=======
+							<form id="login-form" action="loginCheck1.ca"
+								class="form-horizontal" method="post" role="form"
+								style="display: block;">
+>>>>>>> refs/heads/master
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="id">아이디</label>
 
 									<div class="col-xs-8">
-										<input type="text" name="id" class="username" tabindex="1"
+										<input type="text" name="id" id="username" tabindex="1"
 											class="form-control" placeholder="아이디를 입력하세요." value="">
 									</div>
 
 									<label class="col-xs-3 text-right">비밀번호</label>
 									<div class="col-xs-8">
-										<input type="password" name="passwd" class="password"
+										<input type="password" name="passwd" id="password"
 											tabindex="2" class="form-control" placeholder="비밀번호를 입력하세요.">
 									</div>
 								</div>
-								<div class="message"></div>
+
 								<div class="row">
 									<div class="col-xs-8 col-xs-offset-2">
-										<input type="submit" name="login-submit"
-											tabindex="4" class="form-control btn btn-login login-submit" value="로그인">
+										<input type="submit" name="login-submit" id="login-submit"
+											tabindex="4" class="form-control btn btn-login" value="로그인"
+											id="btn-login">
 									</div>
 								</div>
 								<div class="row text-center">
-									<input type="checkbox" name="remember" class="remember">
+									<input type="checkbox" class="" name="remember" id="remember">
 									<label for="remember"> 아이디 저장하기</label>
 								</div>
 
 								<div class="row">
 									<div class="col-xs-5 text-right">
-										<a href="#" class="forgot-password" id="forgot-password">회원가입</a>
+										<a href="mem_choice.ca" class="forgot-password" id="forgot-password">회원가입</a>
 									</div>
 									<div class="col-xs-5 text-left">
 										<a href="#" class="forgot-password" id="forgot-password">아이디/비밀번호
@@ -88,37 +98,58 @@ $(document).ready(function() {
 									</div>
 								</div>
 							</form>
+<<<<<<< HEAD
  -->
 							
 							
 							
 							<form id="register-form" method="post" role="form"
 								style="display: none;" class="form-horizontal" >
+=======
+
+							<form id="register-form" action="loginCheck2.ca" method="post"
+								role="form" style="display: none;" class="form-horizontal">
+>>>>>>> refs/heads/master
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="id">아이디</label>
 						
 									<div class="col-xs-8">
+<<<<<<< HEAD
 										<input type="text" name="id"  tabindex="1" id="username"
 											class="form-control username" placeholder="아이디를 입력하세요.">
+=======
+										<input type="text" name="id" id="username" tabindex="1"
+											class="form-control" placeholder="아이디를 입력하세요." value="">
+>>>>>>> refs/heads/master
 									</div>
 									
 									
 
 									<label class="col-xs-3 text-right">비밀번호</label>
 									<div class="col-xs-8">
+<<<<<<< HEAD
 										<input type="password" name="passwd" class="password"
+=======
+										<input type="password" name="passwd" id="password"
+>>>>>>> refs/heads/master
 											tabindex="2" class="form-control" placeholder="비밀번호를 입력하세요.">
 									</div>
 								</div>
 								<div class="col-xs-12 message" style = "text-align : center; color : red; margin-bottom : 10px;"></div>
 								<div class="row">
 									<div class="col-xs-8 col-xs-offset-2">
+<<<<<<< HEAD
 										<input type="button" name="login-submit"
 											tabindex="4" class="form-control btn btn-login login-submit" value="로그인">
+=======
+										<input type="submit" name="login-submit" id="login-submit"
+											tabindex="4" class="form-control btn btn-login" value="로그인"
+											id="btn-login">
+>>>>>>> refs/heads/master
 									</div>
 								</div>
 								<div class="row text-center">
-									<input type="checkbox" name="remember" class="remember">
+									<input type="checkbox" class="" name="remember" id="remember">
 									<label for="remember"> 아이디 저장하기</label>
 								</div>
 
@@ -144,4 +175,3 @@ $(document).ready(function() {
 </body>
 
 </html>
-

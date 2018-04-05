@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
@@ -48,8 +48,9 @@ html>body>section>div>div>div>form span>.btn-in {
 }
 </style>
 
-
-<script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
+<script>
+	<script src="/resources/js/vendor/modernizr-2.8.3.min.js">
+</script>
 </head>
 <body class="other-page">
 
@@ -72,28 +73,33 @@ html>body>section>div>div>div>form span>.btn-in {
 							회원가입 <small>[Likey Cakey 일반 회원]</small>
 						</h1>
 					</div>
-					<form class="form-horizontal">
+					<form class="form-horizontal" action="memberInsert.ca" method="post">
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputId">아이디</label>
 							<div class="col-sm-6">
 								<div class="input-group">
-									<input type="tel" class="form-control" id="inputId"
+									<input type="text" class="form-control" id="inputId" name="id"
 										placeholder="아이디" /> <span class="input-group-btn">
-										<button class="btn btn-success btn-in" style="margin: 8px;">
+										<button class="btn btn-success btn-in" style="margin: 8px;"
+											id="check_id">
 											중복확인 <i class="fa fa-mail-forward spaceLeft"></i>
 										</button>
 									</span>
 								</div>
 							</div>
 						</div>
+
+
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputPassword" type="password"
-									placeholder="비밀번호">
+									placeholder="비밀번호" name="passwd">
 								<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
 							</div>
 						</div>
+
+
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호
 								확인</label>
@@ -104,20 +110,23 @@ html>body>section>div>div>div>form span>.btn-in {
 							</div>
 						</div>
 
+
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputName">이름</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputName" type="text"
-									placeholder="이름">
+									placeholder="이름" name="name">
 							</div>
 						</div>
 
+
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
+							<label class="col-sm-3 control-label" for="inputCp">휴대폰번호</label>
 							<div class="col-sm-6">
 								<div class="input-group">
-									<input type="tel" class="form-control" id="inputNumber"
-										placeholder="- 없이 입력해 주세요" /> <span class="input-group-btn">
+									<input type="tel" class="form-control" id="inputPhone"
+										placeholder="- 없이 입력해 주세요" name="phone" /> <span
+										class="input-group-btn">
 										<button class="btn btn-success btn-in" style="margin: 8px;">
 											인증번호 전송 <i class="fa fa-mail-forward spaceLeft"></i>
 										</button>
@@ -125,12 +134,14 @@ html>body>section>div>div>div>form span>.btn-in {
 								</div>
 							</div>
 						</div>
+
+
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputNumberCheck">인증번호
 								확인</label>
 							<div class="col-sm-6">
 								<div class="input-group">
-									<input class="form-control" id="inputNumberCheck" type="text"
+									<input class="form-control" id="inputCpCheck" type="text"
 										placeholder="인증번호"> <span class="input-group-btn">
 										<button class="btn btn-success btn-in" style="margin: 8px;">
 											인증번호 확인 <i class="fa fa-mail-forward spaceLeft"></i>
@@ -146,7 +157,8 @@ html>body>section>div>div>div>form span>.btn-in {
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
 							<div class="col-sm-6">
-								<input class="form-control" type="text" placeholder="이메일">
+								<input class="form-control" type="text" placeholder="이메일"
+									name="email">
 							</div>
 						</div>
 
@@ -156,8 +168,10 @@ html>body>section>div>div>div>form span>.btn-in {
 							<div class="col-sm-6">
 								<div class="input-group">
 									<input class="form-control" id="inputAddrnum" type="text"
-										placeholder="인증번호"> <span class="input-group-btn">
-										<button class="btn btn-success btn-in" style="margin: 8px;">
+										placeholder="우편번호" name="post"> <span
+										class="input-group-btn">
+										<button class="btn btn-success btn-in" style="margin: 8px;"
+											id="post_find">
 											우편찾기 <i class="fa fa-mail-forward spaceLeft"></i>
 										</button>
 									</span>
@@ -165,20 +179,46 @@ html>body>section>div>div>div>form span>.btn-in {
 							</div>
 						</div>
 
+
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputPost">기본주소</label>
+							<label class="col-sm-3 control-label" for="inputAddrB">기본주소</label>
 							<div class="col-sm-6">
-								<input class="form-control" type="text" placeholder="기본주소">
+								<input class="form-control" type="text" placeholder="기본주소" id = "inputAddrB"
+									name="addressBasic">
 							</div>
 						</div>
 
+
+
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputPost">상세주소</label>
+							<label class="col-sm-3 control-label" for="inputAddrD">상세주소</label>
 							<div class="col-sm-6">
-								<input class="form-control" type="text"
-									placeholder="나머지 주소를 입력해주세요">
+								<input class="form-control" type="text" id="inputAddrD"
+									placeholder="나머지 주소를 입력해주세요" name="addressDetail">
 							</div>
 						</div>
+
+
+						<!-- jQuery와 Postcodify를 로딩한다 -->
+						<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+
+						<!-- "검색" 단추를 누르면 팝업 레이어가 열리도록 설정한다 -->
+						<script>
+							$(function() {
+								$("#post_find").postcodifyPopUp();
+							});
+						</script>
+
+
+						<!-- 사진등록 -->
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputFile">사진등록</label>
+							<div class="col-sm-6">
+								<input class="form-control" type="file" id="inputFile">
+							</div>
+						</div>
+
+
 
 
 
@@ -194,11 +234,11 @@ html>body>section>div>div>div>form span>.btn-in {
 						</div>
 						<div class="form-group">
 							<div class="col-sm-12 text-center">
-								<button class="btn btn-primary" type="submit"
+								<button class="btn btn-primary" type="submit" id="join"
 									style="background-color: #f6c6c9">
 									회원가입<i class="fa fa-check spaceLeft"></i>
 								</button>
-								<button class="btn btn-danger" type="submit"
+								<button class="btn btn-danger" type="submit" id="cancel"
 									style="background-color: #9bcaba">
 									가입취소<i class="fa fa-times spaceLeft"></i>
 								</button>

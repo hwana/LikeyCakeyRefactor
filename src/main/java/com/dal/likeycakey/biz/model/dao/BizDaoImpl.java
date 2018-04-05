@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dal.likeycakey.biz.model.vo.BizMember;
+import com.dal.likeycakey.detailView.model.vo.ProductBoard;
 import com.dal.likeycakey.member.model.vo.Member;
 
 @Repository("bizDao")
@@ -12,20 +13,23 @@ public class BizDaoImpl implements BizDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-
+	
 	@Override
-	public int insertBiz(Member m) throws Exception {
+	public int insertBiz1(Member m) throws Exception {
+		System.out.println("here is DAO insertBiz1");
 		int result = sqlSession.insert("Member.insertMember", m);
 		return result;
 	}
-
+	
 	@Override
-	public int insertBiz(BizMember bm) throws Exception {
+	public int insertBiz2(BizMember bm) throws Exception {
+		System.out.println("here is DAO insertBiz2");
 		int result2 = sqlSession.insert("bizMember.insertMember", bm);
 		return result2;
 	}
-
+	
 	@Override
+
 	public int loginCheck(String id, String passwd) throws Exception {
 		
 		int result = sqlSession.selectOne("Member.loginCheck", new Member(id, passwd));
@@ -33,8 +37,17 @@ public class BizDaoImpl implements BizDao {
 		System.out.println("DAO="+passwd);
 		System.out.println("DAO="+result);
 		return result;
+
 	}
-
-
-
+	
+	@Override
+	public int selectMember(String id) {
+		return sqlSession.selectOne("Member.dupid", id);
+	}
+	
+	@Override
+	public int insertProductBoard(ProductBoard productBoard)  {
+		System.out.println("bizDao의 insertProductBoard입니다");
+		return sqlSession.insert("ProductBoard.insertProductBoard", productBoard);
+	}
 }
