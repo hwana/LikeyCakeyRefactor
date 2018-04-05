@@ -65,5 +65,17 @@ public class ProductBoardServiceImpl implements ProductBoardService {
 		return pbDao.selectBizMember(id);
 	}
 
+	@Override
+	public ArrayList<ProductBoard> selectNewArrivalList() {
+		// TODO Auto-generated method stub
+		return pbDao.selectNewArrivalList();
+	}
+
+	@Override
+	public String selectBizAddress(String id) {
+		// TODO Auto-generated method stub
+		return pbDao.selectBizAddress(id);
+	}
+
 
 }

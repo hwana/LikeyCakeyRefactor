@@ -34,4 +34,16 @@ public class ProductBoardDaoImpl implements ProductBoardDao {
 		return sqlSession.selectOne("bizMember.selectBizMember", id);
 	}
 
+	@Override
+	public ArrayList<ProductBoard> selectNewArrivalList() {
+		RowBounds rows = new RowBounds(0, 6);
+		return new ArrayList<ProductBoard> (sqlSession.selectList("productBoard.selectNewArrivalList", null, rows));
+	}
+
+	@Override
+	public String selectBizAddress(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("Member.selectBizAddress", id);
+	}
+
 }

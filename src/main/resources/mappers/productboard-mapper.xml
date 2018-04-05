@@ -35,6 +35,10 @@
 		(SELECT * FROM PRODUCT_BOARD ORDER BY P_B_READCNT DESC)
 		WHERE ROWNUM = 1
 	</select>
+	
+	<select id="selectNewArrivalList" resultMap="resultProductBoard">
+		SELECT * FROM PRODUCT_BOARD ORDER BY P_B_NUM DESC
+	</select>
 
    <insert id="insertProductBoard" parameterType="ProductBoard">
  		INSERT INTO PRODUCT_BOARD VALUES 

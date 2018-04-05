@@ -22,5 +22,9 @@ public interface ProductBoardService {
 	public void addSellcnt(int pbNum); 
 	
 	public BizMember selectBizMember(String id);
+
+	public ArrayList<ProductBoard> selectNewArrivalList();
+
+	public String selectBizAddress(String id);
 	
 }

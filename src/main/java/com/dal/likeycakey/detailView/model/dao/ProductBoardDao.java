@@ -12,6 +12,10 @@ public interface ProductBoardDao {
 	public ProductBoard selectTodaysCake();
 
 	public BizMember selectBizMember(String id);
+
+	public ArrayList<ProductBoard> selectNewArrivalList();
+
+	public String selectBizAddress(String id);
 	
 	
 
