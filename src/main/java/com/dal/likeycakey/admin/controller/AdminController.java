@@ -4,14 +4,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 
-
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,55 +30,19 @@ import com.dal.likeycakey.member.model.vo.Member;
  */
 @Controller
 public class AdminController {
-	
+
 	@Autowired
 	private AdminService adminService;
-	
-	/*// 회원가입한 멤버 등록
-	@RequestMapping(value="bInsert.ca")
-	public ModelAndView bizInsert(BizMember bm,
-			@RequestParam("address1") String addr1,
-			@RequestParam("address2") String addr2,
-			@RequestParam("address3") String addr3,
-			// request.getParameter("name속성");
+
+	/* 1_1. 관리자_멤버 리스트 셀렉트 */
+	@RequestMapping(value = "/adminMemberList.ca", method = RequestMethod.GET)
+	public ModelAndView adminMemberList(Member m, @RequestParam(value = "page", required = false) Integer page,
 			ModelAndView mv) {
 
-		try {
-			bizService.insertBiz(bm);
-			 mv.setViewName("redirect:home.do");
-		} catch (Exception e) {
-			mv.setViewName("member/memberError");
-		}
-		
-		return mv;
-	}
-	
-	@RequestMapping("dupid.do")
-	public void idDupulicationCheck(Model model,
-			@RequestParam("id") String id,
-			HttpServletResponse response) throws IOException{
-		PrintWriter out = response.getWriter();
-		
-		int result = mService.checkIdDup(id);
-		if (result > 0) out.print("no");
-		else out.print("ok");
-		
-		out.flush();
-		out.close();
-	}
-	
-	*/
-	
-	/*1_1. 관리자_멤버 리스트 셀렉트*/
-	@RequestMapping(value = "/adminMemberList.ca", method = RequestMethod.GET)
-	public ModelAndView adminMemberList(Member m, @RequestParam(value = "page", required = false) Integer page, ModelAndView mv) {
-		
 		System.out.println("adminmemberList mapping도착");
-		
-		
 
 		try {
-			
+
 			// 페이지 값 처리용
 			int currentPage = 1;
 			// 한 페이지당 출력할 목록 갯수
@@ -87,13 +51,14 @@ public class AdminController {
 			// 전달된 페이지값 추출
 			if (page != null)
 				currentPage = page;
+			
+			System.out.println();
 
 			// 전체 목록 갯수와 해당 페이지별 목록을 리턴
 			int listCount = adminService.getListCount();
-			
-			
-			System.out.println("adminMemberList : listCount =" +listCount);
-			
+
+			System.out.println("adminMemberList : listCount =" + listCount);
+
 			ArrayList<Member> list = adminService.selectList(currentPage, limit);
 
 			// 총 페이지수 계산 : 목록이 최소 1개일 때 1page로 처리하기
@@ -107,115 +72,174 @@ public class AdminController {
 			// 끝페이지수는 20페이지가 되어야 함
 			int endPage = startPage + limit - 1;
 			if (maxPage < endPage) {
-				endPage = maxPage;}
-			System.out.println("adminMemberList : list.size="+list.size());
+				endPage = maxPage;
+			}
+			System.out.println("adminMemberList : list.size=" + list.size());
 			if (list != null && list.size() > 0) {
 
-				mv.addObject("list", list)
-				.addObject("currentPage", currentPage)
-				.addObject("maxPage", maxPage)
-				.addObject("startPage", startPage)
-				.addObject("endPage", endPage)
-				.addObject("listCount", listCount)
-				.setViewName("admin/adminMemberList");
+				mv.addObject("list", list).addObject("currentPage", currentPage).addObject("maxPage", maxPage)
+						.addObject("startPage", startPage).addObject("endPage", endPage)
+						.addObject("listCount", listCount).setViewName("admin/adminMemberList");
 			} else {
 				System.out.println("adminMemberList : list가 안 들고 와짐");
 				mv.addObject("error", "adminMemberList : 게시글 전체 조회 실패");
 				mv.setViewName("admin/adminMemberList");
 			}
-			
-		
+
 		} catch (Exception e) {
-			
+
 			System.out.println("adminMemberList에서 에러남");
 			mv.addObject("error", "게시글 전체 조회 실패");
-			
+
 			mv.setViewName("admin/adminMemberList");
 		}
-		
-		
-		
+
 		return mv;
 	}
-	
-	/*1_2. 관리자_멤버 한명만!!! 수정*/
-	@RequestMapping(value = "/adminMemberUpdate.ca", method = RequestMethod.GET)
-	public ModelAndView adminMemberUpdate(Member m, ModelAndView mv, @RequestParam("id") String id) {
-		
+
+	/* 1_2. 관리자_멤버 한명만!!! 수정 */
+	@RequestMapping(value = "/adminMemberUpdate.ca", method = RequestMethod.POST)
+	public ModelAndView adminMemberUpdate(ModelAndView mv, @RequestParam("mcode") String mcode,
+			@RequestParam("mid") String mid, @RequestParam("mpasswd") String mpasswd,
+			@RequestParam("mname") String mname, @RequestParam("memail") String memail,
+			@RequestParam("mphone") String mphone, @RequestParam("mstatus") String mstatus,
+			@RequestParam("mblackCnt") String mblackCnt, HttpServletResponse response) {
+
 		System.out.println("adminMemberUpdate mapping도착");
-		
+
 		try {
-			adminService.updateMember(m);//멤버 업데이트 하고
-			
-			Member member = adminService.selectOne(id);//업데이트 한 멤버만 정보 다시 받아오기
-			 mv.setViewName("redirect:home.do");
+			/*
+			 * JSONObject json = new JSONObject(); json.put("mcode", mcode); json.put("mid",
+			 * mid);
+			 */
+			PrintWriter out = response.getWriter();
+			System.out.println("print");
+			System.out.println(mcode + " " + mid + " " + mpasswd + " " + mname + " " + memail + " " + mphone + " "
+					+ mstatus + " " + mblackCnt);
+			Member member = new Member(Integer.parseInt(mcode), mid, mpasswd, mname, memail, mphone,
+					Integer.parseInt(mstatus), Integer.parseInt(mblackCnt));
+			System.out.println("멤버 초기화?");
+
+			int result = adminService.updateMember(member);// 멤버 업데이트 하고z
+			System.out.println("멤버 업데이트 성공: result=" + result);
+			if (result > 0)
+				out.print("ok");
+			else
+				out.print("no");
+
+			out.flush();
+			out.close();
+			/*
+			 * Member member = adminService.selectOne(id);//업데이트 한 멤버만 정보 다시 받아오기
+			 */ /* mv.setViewName("redirect:home.do"); */
+			mv.setViewName("admin/adminMemberList");
 		} catch (Exception e) {
 			mv.setViewName("admin/adminMemberList");
 		}
-		
+
 		return mv;
-		
+
 	}
-	
-	/*1_3. 관리자_멤버 선택 삭제*/
-	@RequestMapping(value = "/adminMemberDelete.ca", method = RequestMethod.GET)
-	public String adminMemberDelete(Member m, ModelAndView mv) {
-		
+
+	/* 1_3. 관리자_멤버 선택 삭제 */
+	@RequestMapping(value = "/adminMemberDelete.ca", method = RequestMethod.POST)
+	public void adminMemberDelete(@RequestParam("delMembers") String deleteMembers, HttpServletResponse response) {
 		System.out.println("adminMemberDelete mapping도착");
-		
-		return "admin/adminMemberList";
-	}
-	
-	
-	/*2_1. 관리자_사업장 리스트 셀렉트*/
-	@RequestMapping(value = "/adminBizList.ca", method = RequestMethod.GET)
-	public ModelAndView adminBizList(Member m, ModelAndView mv) {
-		
-		System.out.println("adminBizList mapping도착");
-		
+
 		try {
-			/*bizService.insertBiz(bm);*/
-			 mv.setViewName("redirect:home.do");
+			PrintWriter out = response.getWriter();
+			System.out.println("deleteMember="+deleteMembers);
+			
+			ArrayList<String> delMembers = new ArrayList<String>(Arrays.asList(deleteMembers.split(",")));
+			System.out.println("delMembers.size()="+delMembers.size());
+			
+			int result = 0;
+			for (int i = 0; i < delMembers.size(); i++) {
+				System.out.println((String) delMembers.get(i));
+				result = adminService.deleteMember((String) delMembers.get(i));// 멤버 업데이트 하고z
+			}
+			System.out.println("멤버 선택 삭제 성공: result=" + result);
+
+			System.out.println(result);
+			if (result > 0)
+				out.print("ok");
+			else
+				out.print("no");
+
+		} catch (Exception e) {
+			System.out.println("adminMemberDelete에서 에러발생");
+
+		}
+
+	}
+
+	/* 1_4. 관리자_멤버 전체 삭제 */
+	@RequestMapping(value = "/adminMemberTotalDelete.ca", method = RequestMethod.POST)
+	public void adminMemberTotalDelete(HttpServletResponse response) {
+
+		System.out.println("adminMemberTotalDelete mapping도착");
+		try {
+			PrintWriter out = response.getWriter();
+			int result = adminService.deleteTotalMember();// 멤버 업데이트 하고z
+			System.out.println("멤버 업데이트 성공: result=" + result);
+			if (result > 0)
+				out.print("ok");
+			else
+				out.print("no");
+
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+		}
+
+	}
+
+	/* 2_1. 관리자_사업장 리스트 셀렉트 */
+	@RequestMapping(value = "/adminBizList.ca", method = RequestMethod.GET)
+	public ModelAndView adminBizList(ModelAndView mv) {
+
+		System.out.println("adminBizList mapping도착");
+
+		try {
+			/* bizService.insertBiz(bm); */
+			mv.setViewName("redirect:home.do");
 		} catch (Exception e) {
 			mv.setViewName("admin/adminBizList");
 		}
-		
+
 		return mv;
-	
+
 	}
-	
-	/*2_2. 관리자_사업장 수정*/
+
+	/* 2_2. 관리자_사업장 수정 */
 	@RequestMapping(value = "/adminBizUpdate.ca", method = RequestMethod.GET)
 	public ModelAndView adminBizUpdate(Member m, ModelAndView mv) {
-		
+
 		System.out.println("adminBizUpdate mapping도착");
 		try {
-			/*bizService.insertBiz(bm);*/
-			 mv.setViewName("redirect:home.do");
+			/* bizService.insertBiz(bm); */
+			mv.setViewName("redirect:home.do");
 		} catch (Exception e) {
 			mv.setViewName("admin/adminBizList");
 		}
-		
+
 		return mv;
 	}
-	
-	/*1_3. 관리자_사업장 선택 삭제*/
+
+	/* 1_3. 관리자_사업장 선택 삭제 */
 	@RequestMapping(value = "/adminBizDelete.ca", method = RequestMethod.GET)
 	public ModelAndView adminBizDelete(Member m, ModelAndView mv) {
-		
+
 		System.out.println("adminBizDelete mapping도착");
 		try {
-			/*bizService.insertBiz(bm);*/
-			 mv.setViewName("redirect:home.do");
+			/* bizService.insertBiz(bm); */
+			mv.setViewName("redirect:home.do");
 		} catch (Exception e) {
 			mv.setViewName("admin/adminBizList");
 		}
-		
+
 		return mv;
-	
+
 	}
-	
-	
-	
-	
+
 }
