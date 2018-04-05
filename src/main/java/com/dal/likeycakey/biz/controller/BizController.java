@@ -1,9 +1,7 @@
 package com.dal.likeycakey.biz.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +19,7 @@ import com.dal.likeycakey.biz.model.service.BizService;
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
 import com.dal.likeycakey.member.model.vo.Member;
+
 
 @Controller
 public class BizController {
@@ -230,6 +229,5 @@ public class BizController {
 		
 		return "biz/findIdPw";
 	}
-	
 	
 }

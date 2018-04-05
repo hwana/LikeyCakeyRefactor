@@ -1,18 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 카카오 로그인을 위한 API 경로지정 -->
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<!-- for naver login api -->
-<script src="http://code.jquery.com/jquery-1.7.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
-<script src="js/jquery.innerfade.js"></script>
-<script type="text/javascript"
-	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"></script>
-<script type="text/javascript" src="jquery.cookie.js"></script>
-
 <!-- <script type='text/javascript'>
 	//<![CDATA[
 	// 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -223,12 +214,18 @@
 									width="200" />
 								</a>
 							</div>
--->
+
 							<div id="kakao-logged-group"></div>
 							<div id="kakao-profile"></div>
-							<%@include file="../member/naverLogin.jsp" %>
+							-->
 							
-							
+							<div style="margin: 0 auto">
+								<a id="custom-login-btn" href="javascript:createKakaotalkLogin()">
+									<img
+									src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"
+									width="200" />
+								</a>
+							</div>
 
 						</div>
 					</div>

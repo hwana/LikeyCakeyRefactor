@@ -74,7 +74,7 @@
 												<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
 												<div class="col-sm-6">
 													<input class="form-control" id="inputEmail" type="email"
-														placeholder="이메일">
+														placeholder="이메일" readonly>
 												</div>
 											</div>
 											<div class="form-group">

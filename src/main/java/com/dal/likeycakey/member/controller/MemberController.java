@@ -1,5 +1,9 @@
 package com.dal.likeycakey.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 // @Controller 를 사용하기 위한 import
 import org.springframework.stereotype.Controller;
@@ -7,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.likeycakey.member.model.service.MemberService;
@@ -25,7 +28,7 @@ public class MemberController {
 	public ModelAndView memberJoin(Member member, ModelAndView mv) {
 		return mv;
 	}*/
-	
+
 	
 	// 일반회원 회원가입 페이지로 이동
 	@RequestMapping(value="memberJoin.ca", method = RequestMethod.GET)
