@@ -31,4 +31,8 @@
 	<select id="dupid" parameterType="string" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id}
 	</select>
+	
+	<select id="selectBizAddress" parameterType="String" resultType="String">
+		SELECT M_BASIC_ADDR FROM MEMBER WHERE M_ID = #{id}
+	</select>
 </mapper>
