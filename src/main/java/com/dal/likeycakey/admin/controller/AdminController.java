@@ -34,36 +34,6 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
-	/*
-	 * // 회원가입한 멤버 등록
-	 * 
-	 * @RequestMapping(value="bInsert.ca") public ModelAndView bizInsert(BizMember
-	 * bm,
-	 * 
-	 * @RequestParam("address1") String addr1,
-	 * 
-	 * @RequestParam("address2") String addr2,
-	 * 
-	 * @RequestParam("address3") String addr3, // request.getParameter("name속성");
-	 * ModelAndView mv) {
-	 * 
-	 * try { bizService.insertBiz(bm); mv.setViewName("redirect:home.do"); } catch
-	 * (Exception e) { mv.setViewName("member/memberError"); }
-	 * 
-	 * return mv; }
-	 * 
-	 * @RequestMapping("dupid.do") public void idDupulicationCheck(Model model,
-	 * 
-	 * @RequestParam("id") String id, HttpServletResponse response) throws
-	 * IOException{ PrintWriter out = response.getWriter();
-	 * 
-	 * int result = mService.checkIdDup(id); if (result > 0) out.print("no"); else
-	 * out.print("ok");
-	 * 
-	 * out.flush(); out.close(); }
-	 * 
-	 */
-
 	/* 1_1. 관리자_멤버 리스트 셀렉트 */
 	@RequestMapping(value = "/adminMemberList.ca", method = RequestMethod.GET)
 	public ModelAndView adminMemberList(Member m, @RequestParam(value = "page", required = false) Integer page,
@@ -81,6 +51,8 @@ public class AdminController {
 			// 전달된 페이지값 추출
 			if (page != null)
 				currentPage = page;
+			
+			System.out.println();
 
 			// 전체 목록 갯수와 해당 페이지별 목록을 리턴
 			int listCount = adminService.getListCount();
