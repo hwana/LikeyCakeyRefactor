@@ -31,4 +31,11 @@
 	<select id="dupid" parameterType="string" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id}
 	</select>
+	
+	<select id = "mypageMember" parameterType="Member" resultMap="myMember">
+		SELECT 
+			M_EMAIL, M_NAME, M_CP, M_POST, M_BASIC_ADDR, M_DETAIL_ADDR, M_PHOTO
+			FROM
+		MEMBER WHERE M_ID = #{id}
+	</select>
 </mapper>

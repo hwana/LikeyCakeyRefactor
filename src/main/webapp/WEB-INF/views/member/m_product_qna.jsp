@@ -72,9 +72,8 @@
 										<table class="table table-hover">
 											<thead>
 												<tr>
-													<th>번호</th>
 													<th>가게명</th>
-													<th>제목</th>
+													<th>상품명</th>
 													<th>작성자</th>
 													<th>날짜</th>
 													<th>조회수</th>
@@ -82,7 +81,6 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td>21</td>
 													<td>희소당</td>
 													<td>무지개 컵케이크</td>
 													<td>주나인</td>
@@ -90,7 +88,6 @@
 													<td>5</td>
 												</tr>
 												<tr>
-													<td>15</td>
 													<td>파리바게트</td>
 													<td>화이트 케이크</td>
 													<td>김희수</td>
