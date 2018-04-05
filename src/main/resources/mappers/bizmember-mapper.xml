@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="bizMember">
 
 	<resultMap id="resultMember" type="bizMember">
-		<!-- <result property = "id" column="M_ID" /> -->
+		<result property = "id" column="M_ID" /> 
 		<result property="bizName" column="BIZ_NAME" />
 		<result property="bizPn" column="BIZ_PN" />
 		<result property="bizNum" column="BIZ_NUM" />
@@ -19,4 +20,7 @@
 		(#{bizName},#{bizPn},#{bizNum},#{bizDelivery},#{masterName})
 	</insert>
 
+	<select id="selectBizMember" parameterType="bizMember" resultMap="resultMember">
+		SELECT * FROM MEMBER_BIZ WHERE M_ID=#{id}
+	</select>
 </mapper>

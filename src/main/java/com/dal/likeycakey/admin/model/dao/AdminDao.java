@@ -39,3 +39,4 @@ public interface AdminDao {
 
 	public int deleteBoard(int boardNum);*/
 }
+

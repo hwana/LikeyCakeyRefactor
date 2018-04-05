@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BizMember {
-	
+
 	private String id;
 	private String bizName; //매장이름
 	private String bizPn;
@@ -61,6 +61,4 @@ public class BizMember {
 	public void setMasterName(String masterName) {
 		this.masterName = masterName;
 	}
-
-	
 }
