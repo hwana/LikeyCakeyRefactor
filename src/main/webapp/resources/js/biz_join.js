@@ -51,11 +51,10 @@ $(document)
 									function() {
 
 										var nameP = /^[가-힣]+$/; // 이름 한글만 사용가능
-										var telP = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/; // 전화번호
-																						// 형식
-										var bizP = /([0-9]{3})-?([0-9]{2})-?([0-9]{5})/; // 사업자
-																							// 등록번호
-																							// 형식
+										var telP = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/; // 전화번호 형식
+										var bizP = /([0-9]{3})-?([0-9]{2})-?([0-9]{5})/; // 사업자등록번호 형식
+										var emailP = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/ //이메일 형식
+										var pwP = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; //비밀번호 형식
 
 										// alert("ok");
 										if ($("#inputPhoto").val() == "") {
@@ -72,7 +71,14 @@ $(document)
 											$("#inputPassword").focus();
 											return false;
 
-										} else if ($("#inputPasswordCheck")
+										} else if (!pwP.test($("#inputPassword")
+												.val())) {
+											alert("비밀번호 형식은 영어, 숫자포함 6~20 자리 입니다.");
+											$("#inputPassword").val("");
+											$("#inputPassword").focus();
+											return false;
+
+										}else if ($("#inputPasswordCheck")
 												.val() == "") {
 											alert("비밀번호확인을 입력하세요.");
 											$("#inputPasswordCheck").focus();
@@ -151,6 +157,16 @@ $(document)
 											$("#inputNumber").focus();
 											return false;
 											
+										}else if ($("#inputemail").val() == "") {
+											alert("이메일을 입력하세요");
+											$("#inputemail").focus();
+										}else if (!emailP.test($("#inputemail")
+												.val())) {
+											alert("올바른 이메일 형식으로 입력하십시오.");
+											$("#inputemail").val("");
+											$("#inputemail").focus();
+											return false;
+
 										} else if ($("#delyes").is(':checked') == false
 												&& $("#delno").is(':checked') == false) {
 											alert("배송 가능여부를 선택하세요.");
@@ -162,10 +178,7 @@ $(document)
 											return false;
 											
 										}
-										else if ($("#inputemail").val() == "") {
-											alert("이메일을 입력하세요");
-											$("#inputemail").focus();
-										}  else {
+										  else {
 											alert("회원가입 완료");
 											return true;
 										}
