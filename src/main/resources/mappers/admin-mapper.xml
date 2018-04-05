@@ -48,6 +48,7 @@
 		UPDATE 
 			MEMBER 
 		SET 
+			M_NAME = #{name},
 			M_PW = #{passwd},
 			M_NUM=#{code}, 
 			M_EMAIL =#{email},
@@ -57,8 +58,37 @@
 		WHERE 
 			M_ID = #{id}
 	</update>
+	
+	
+	<delete id="deleteTotalMember" parameterType="string" flushCache="true" statementType="PREPARED">
+	DELETE FROM MEMBER
+  </delete>
+  
+  <delete id="deleteMember" flushCache="true" statementType="PREPARED">
+		DELETE 
+		FROM
+			MEMBER
+		WHERE
+			M_ID = #{id}
+	</delete>
+  
+	
+<!-- 	<delete id="deleteTotalMember" flushCache="true"
+		statementType="PREPARED">
+		DELETE 
+		FROM
+			MEMBER
+	</delete>
+	
+	<delete id="deleteMember" flushCache="true"
+		statementType="PREPARED">
+		DELETE 
+		FROM
+			MEMBER
+		WHERE
+			ID = #{}
+	</delete>
 
-
-
+ -->
 
 </mapper>

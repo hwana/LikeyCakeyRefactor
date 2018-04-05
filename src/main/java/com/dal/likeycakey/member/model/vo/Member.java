@@ -141,6 +141,18 @@ public class Member implements java.io.Serializable{
 		this.status = status;
 		this.blackCnt=blackCnt;
 	}
+	
+	public Member( int code, String id, String passwd, String name, String email, String phone, int status, int blackCnt) {
+		super();
+		this.id = id;
+		this.passwd = passwd;
+		this.name = name;
+		this.code = code;
+		this.email = email;
+		this.phone = phone;
+		this.status = status;
+		this.blackCnt=blackCnt;
+	}
 	//3. 은송 수정 구간 끝
 
 	

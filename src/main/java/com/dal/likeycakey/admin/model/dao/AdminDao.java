@@ -16,6 +16,7 @@ public interface AdminDao {
 	
 	public int deleteMember(String id);
 	
+	public int deleteTotalMember();
 
 	/*
 	public ArrayList<Board> selectList(int currentPage, int limit);
