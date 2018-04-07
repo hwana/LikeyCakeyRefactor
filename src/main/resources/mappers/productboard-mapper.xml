@@ -26,18 +26,26 @@
 		<result property="pbSellCnt" column="P_B_SELLCNT"/>
 	</resultMap>
 	
+	<!-- 메인 페이지 Top3 -->
 	<select id="selectTop3" resultMap="resultProductBoard">
 		SELECT * FROM PRODUCT_BOARD ORDER BY P_B_SELLCNT DESC 
 	</select>
 	
-	<select id="selectTodaysCake" parameterType="String" resultMap="resultProductBoard">
+	<!-- 메인 페이지 오늘의 상품 -->
+	<select id="selectTodaysCake" resultMap="resultProductBoard">
 		SELECT * FROM 
 		(SELECT * FROM PRODUCT_BOARD ORDER BY P_B_READCNT DESC)
 		WHERE ROWNUM = 1
 	</select>
 	
+	<!-- 메인페이지 NEW ARRIVAL -->
 	<select id="selectNewArrivalList" resultMap="resultProductBoard">
 		SELECT * FROM PRODUCT_BOARD ORDER BY P_B_NUM DESC
+	</select>
+	
+	<!-- 메인페이지 BESTLIKEY -->
+	<select id="selectLikeyList" resultMap="resultProductBoard">
+		SELECT * FROM PRODUCT_BOARD ORDER BY P_B_LIKE DESC
 	</select>
 
    <insert id="insertProductBoard" parameterType="ProductBoard">

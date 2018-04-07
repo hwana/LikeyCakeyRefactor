@@ -43,20 +43,36 @@ public class HomeController{
 		BizMember todaysBiz = selectBizMember(todaysCake.getId());
 		// New Arrival 리스트
 		ArrayList<ProductBoard> newArrivalList = newArrivalList();
-		String [] selectBizAddress= {"","","","","",""};
+		// New Arrival 사업장 주소 리스트
+		String [] newArrivalAddr = new String [newArrivalList.size()];
 		for (int i = 0; i < newArrivalList.size(); i++) {
-			selectBizAddress[i] = selectBizAddress(newArrivalList.get(i).getId());
+			newArrivalAddr[i] = selectBizAddress(newArrivalList.get(i).getId());
+		}
+		//BestSeller 리스트
+		ArrayList<ProductBoard> bestSellerList = selectBestSellerList();
+		//BestSeller 사업장 주소 리스트
+		String [] bestSellerAddr = new String[bestSellerList.size()];
+		for (int i = 0; i < bestSellerAddr.length; i++) {
+			bestSellerAddr[i] = selectBizAddress(bestSellerList.get(i).getId());
+		}
+		ArrayList<ProductBoard> bestLikeyList = selectBestLikeyList();
+		String[] bestLikeyAddr = new String[bestLikeyList.size()];
+		for (int i=0; i < bestLikeyAddr.length; i++ ) {
+			bestLikeyAddr[i] = selectBizAddress(bestLikeyList.get(i).getId());
 		}
 		
 		mv.addObject("todaysCake", todaysCake)
 		.addObject("todaysBiz", todaysBiz)
 		.addObject("newArrivalList", newArrivalList)
-		.addObject("selectBizAddress", selectBizAddress)
+		.addObject("newArrivalAddr", newArrivalAddr)
+		.addObject("bestSellerList", bestSellerList)
+		.addObject("bestSellerAddr", bestSellerAddr)
+		.addObject("bestLikeyList", bestLikeyList)
+		.addObject("bestLikeyAddr", bestLikeyAddr)
 		.setViewName("home");
 		
 		return mv;
 	}
-	
 
 	// Top3 리스트
 	@SuppressWarnings("unchecked")
@@ -133,12 +149,13 @@ public class HomeController{
 		return bizMember;
 	}
 	
-	// newArrival리스트 
+	// NEW ARRIVAL 리스트 
 	public ArrayList<ProductBoard> newArrivalList(){
 		ArrayList<ProductBoard> newArrivalList = pbService.selectNewArrivalList();
 		return newArrivalList;
 	}
 	
+	// 사업자 아이디로 검색해서 주소 자치구까지만 불러오기
 	public String selectBizAddress(String id) {
 		String bizAddress = pbService.selectBizAddress(id);
 		
@@ -146,6 +163,19 @@ public class HomeController{
 		bizAddress = bizAddress.substring(0, gu+1);
 		return bizAddress;
 	}
+	
+	// BEST SELLER 리스트 
+	private ArrayList<ProductBoard> selectBestSellerList() {
+		ArrayList<ProductBoard> selectBestSellerList = pbService.selectBestSellerList();
+		return selectBestSellerList;
+	}
+	
+	// BEST LIKEY 리스트
+	private ArrayList<ProductBoard> selectBestLikeyList() {
+		ArrayList<ProductBoard> selectBestLikeyList = pbService.selectBestLikeyList();
+		return selectBestLikeyList;
+	}
+
 	
 	@RequestMapping(value = "/cakelist.ca", method = RequestMethod.GET)
 	public String cakeList() {

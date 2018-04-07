@@ -351,23 +351,21 @@
 					<div
 						class="tab-menu section-titel style-two text-center text-uppercase">
 						<ul>
-							<li class="active"><a data-toggle="tab" href="#arrival">new
-									arrival </a></li>
-							<li><a data-toggle="tab" href="#saler">Best saler</a></li>
-							<li><a data-toggle="tab" href="#tranding">tranding</a></li>
+							<li class="active"><a data-toggle="tab" href="#arrival">new arrival </a></li>
+							<li><a data-toggle="tab" href="#saler">Best seller</a></li>
+							<li><a data-toggle="tab" href="#tranding">Best likey</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="tab-content">
 				
 				
-				<!-- 새로운 상품 시작 -->
+<!-- NEW ARRIVAL 시작 -->
 					<div id="arrival" class="tab-pane fade in active">
 				
-				<c:set var="bizAddress" value="${requestScope.selectBizAddress}"></c:set>
+				<c:set var="newArrivalAddr" value="${requestScope.newArrivalAddr}"></c:set>
+				<!-- 반복문 시작 -->
 				<c:forEach var="newArrival" items="${requestScope.newArrivalList}" varStatus="status">
-				
-						<!-- Single Product Start -->
 						<div class="col-md-4 col-sm-6">
 							<div class="single-product style-two mb-50">
 								<div class="single-img">
@@ -391,32 +389,43 @@
 									</h4>
 									<div class="young-product-details-tag">
 										<i class="fa fa-map-marker"></i> <span
-											class="young-product-details-tag-place">${bizAddress[status.index]}</span> <i
+											class="young-product-details-tag-place">${newArrivalAddr[status.index]}</span> <i
 											class="fa fa-tag"></i> <span
 											class="young-product-details-tag-place-detail">${newArrival.pbTag}</span> <!-- <span
 											class="young-product-details-tag-place-detail">#마카롱이라구?</span>
 										<span class="young-product-details-tag-place-detail">#말도안돼</span> -->
 									</div>
 									<div class="young-product-details-price">
-										<span>₩<fmt:formatNumber value="${newArrival.pPrice}" pattern="#,###"/></span> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i>
+										<span><fmt:formatNumber value="${newArrival.pPrice}" pattern="#,###" type="number"/>원</span> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- Single Product End -->
-				</c:forEach>
+					</c:forEach>
+					<!-- 반복문 끝 -->
+					</div>
+<!-- NEW ARRIVALl 끝  -->
 					
-					</div>
-					<!-- 새로운 상품 끝  -->
+<!-- BEST SELLER 시작 -->
 					<div id="saler" class="tab-pane fade">
-						<!-- Single Product Start -->
-						<div class="col-md-4">
+						
+						<c:set var="bestSellerAddr" value="${requestScope.bestSellerAddr}"/>
+						<!-- 베스트 셀러 리스트 반복문 시작 -->
+						<c:forEach var="bestSellerList" items="${requestScope.bestSellerList}" varStatus="status">
+						<div class="col-md-4 col-sm-6">
 							<div class="single-product style-two mb-50">
 								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/5.jpg"
-										alt="" /></a>
+									<a href="#"><img src="/resources/img/product/${bestSellerList.pImg}.jpg" alt="" /></a>
+							
+							<!-- 당일구매여부에 따라 당일 마크 부착  -->
+							 <c:if test="${bestSellerList.pbYN eq 'Y'}">
+									<span class="pro-level">당일</span>
+							 </c:if> 
 									<div class="hover-content text-center">
 										<ul>
 											<li><a href="#" class="icon_cart_alt "></a></li>
@@ -426,189 +435,47 @@
 								</div>
 								<div class="young-product-details mt-20">
 									<h4>
-										<a href="single-product.html">들어는 보셧나 마카롱 케이크</a>
+										<a href="#">${bestSellerList.pName}</a>
 									</h4>
 									<div class="young-product-details-tag">
-										<i class="fa fa-map-marker"></i> <span
-											class="young-product-details-tag-place">서울시 북구</span> <i
-											class="fa fa-tag"></i> <span
-											class="young-product-details-tag-place-detail">#마카롱</span> <span
-											class="young-product-details-tag-place-detail">#마카롱이라구?</span>
-										<span class="young-product-details-tag-place-detail">#말도안돼</span>
+										<i class="fa fa-map-marker"></i> 
+										<span class="young-product-details-tag-place">${bestSellerAddr[status.index]} </span> 
+										<i class="fa fa-tag"></i> 
+										<span class="young-product-details-tag-place-detail">${bestSellerList.pbTag}</span> 
+										<!-- <span class="young-product-details-tag-place-detail">#마카롱이라구?</span>
+										<span class="young-product-details-tag-place-detail">#말도안돼</span> -->
 									</div>
 									<div class="young-product-details-price">
-										<span>33,000 원</span> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i>
+										<span><fmt:formatNumber value="${bestSellerList.pPrice}" pattern="#,###" type="number"/>원</span> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/6.jpg"
-										alt="" /></a> <span class="pro-level">New</span>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>Blashan
-											Brush</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="old-price">$90.00</span> <span class="new-price">
-											- $80.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/1.jpg"
-										alt="" /></a> <span class="pro-level">Sale</span>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Sun Skin</a><span>kajol &amp;
-											eyeliner</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="old-price">$40.00</span> <span class="new-price">
-											- $80.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/2.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="young-product-details mt-20">
-									<h4>
-										<a href="single-product.html">들어는 보셧나 마카롱 케이크</a>
-									</h4>
-									<div class="young-product-details-tag">
-										<i class="fa fa-map-marker"></i> <span
-											class="young-product-details-tag-place">서울시 북구</span> <i
-											class="fa fa-tag"></i> <span
-											class="young-product-details-tag-place-detail">#마카롱</span> <span
-											class="young-product-details-tag-place-detail">#마카롱이라구?</span>
-										<span class="young-product-details-tag-place-detail">#말도안돼</span>
-									</div>
-									<div class="young-product-details-price">
-										<span>33,000 원</span> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/4.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>Blashan
-											Brush</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="new-price">$40.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/1.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>kajol
-											&amp; eyeliner</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="new-price"> $50.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
+						</c:forEach>
+						<!-- 반복문 종료 -->
 					</div>
+<!-- BEST SELLER 끝 -->
+
+<!-- BEST LIKEY 시작 -->
 					<div id="tranding" class="tab-pane fade">
-						<!-- Single Product Start -->
-						<div class="col-md-4">
+						
+						<c:set var="bestLikeyAddr" value="${requestScope.bestLikeyAddr}"/>
+						<c:forEach var="bestLikeyList" items="${requestScope.bestLikeyList}" varStatus="status">
+					
+						<div class="col-md-4 padding_14px">
 							<div class="single-product style-two mb-50">
 								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/2.jpg"
-										alt="" /></a>
+									<a href="#"><img src="/resources/img/product/${bestLikeyList.pImg}.jpg" alt="" /></a>
+									
+									<!-- 당일구매여부에 따라 당일 마크 부착  -->
+									 <c:if test="${bestLikeyList.pbYN eq 'Y'}">
+											<span class="pro-level">당일</span>
+									 </c:if> 
 									<div class="hover-content text-center">
 										<ul>
 											<li><a href="#" class="icon_cart_alt "></a></li>
@@ -618,178 +485,28 @@
 								</div>
 								<div class="young-product-details mt-20">
 									<h4>
-										<a href="single-product.html">들어는 보셧나 마카롱 케이크</a>
+										<a href="#">${bestLikeyList.pName}</a>
 									</h4>
 									<div class="young-product-details-tag">
-										<i class="fa fa-map-marker"></i> <span
-											class="young-product-details-tag-place">서울시 북구</span> <i
-											class="fa fa-tag"></i> <span
-											class="young-product-details-tag-place-detail">#마카롱</span> <span
-											class="young-product-details-tag-place-detail">#마카롱이라구?</span>
-										<span class="young-product-details-tag-place-detail">#말도안돼</span>
+										<i class="fa fa-map-marker"></i> 
+										<span class="young-product-details-tag-place">${bestLikeyAddr[status.index]}</span> 
+										<i class="fa fa-tag"></i> 
+										<span class="young-product-details-tag-place-detail">${bestLikeyList.pbTag}</span> 
 									</div>
 									<div class="young-product-details-price">
-										<span>33,000 원</span> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i>
+									<span><fmt:formatNumber value="${bestLikeyList.pPrice}" pattern="#,###" type="number"/>원</span> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/4.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>Blashan
-											Brush</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="new-price">$40.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/1.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>kajol
-											&amp; eyeliner</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="new-price"> $50.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/5.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>kajol
-											&amp; eyeliner</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="new-price"> $50.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/6.jpg"
-										alt="" /></a> <span class="pro-level">New</span>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>Blashan
-											Brush</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="old-price">$90.00</span> <span class="new-price">
-											- $80.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/1.jpg"
-										alt="" /></a> <span class="pro-level">Sale</span>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Sun Skin</a><span>kajol &amp;
-											eyeliner</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="old-price">$40.00</span> <span class="new-price">
-											- $80.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
+						</c:forEach>
 					</div>
+<!-- BEST LIKEY 끝 -->
 				</div>
 			</div>
 		</div>

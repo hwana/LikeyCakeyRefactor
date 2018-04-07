@@ -16,6 +16,10 @@ public interface ProductBoardDao {
 	public ArrayList<ProductBoard> selectNewArrivalList();
 
 	public String selectBizAddress(String id);
+
+	public ArrayList<ProductBoard> selectBestSellerList();
+
+	public ArrayList<ProductBoard> selectBestLikeyList();
 	
 	
 

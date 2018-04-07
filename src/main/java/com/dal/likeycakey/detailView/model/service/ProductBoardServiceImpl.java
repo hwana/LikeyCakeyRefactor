@@ -77,5 +77,17 @@ public class ProductBoardServiceImpl implements ProductBoardService {
 		return pbDao.selectBizAddress(id);
 	}
 
+	@Override
+	public ArrayList<ProductBoard> selectBestSellerList() {
+		// TODO Auto-generated method stub
+		return pbDao.selectBestSellerList();
+	}
+
+	@Override
+	public ArrayList<ProductBoard> selectBestLikeyList() {
+		// TODO Auto-generated method stub
+		return pbDao.selectBestLikeyList();
+	}
+
 
 }

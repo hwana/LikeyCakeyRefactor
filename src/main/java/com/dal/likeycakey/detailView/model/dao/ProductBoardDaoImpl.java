@@ -46,4 +46,16 @@ public class ProductBoardDaoImpl implements ProductBoardDao {
 		return sqlSession.selectOne("Member.selectBizAddress", id);
 	}
 
+	@Override
+	public ArrayList<ProductBoard> selectBestSellerList() {
+		RowBounds rows = new RowBounds(0, 6);
+		return new ArrayList<ProductBoard>(sqlSession.selectList("productBoard.selectTop3", null, rows));
+	}
+
+	@Override
+	public ArrayList<ProductBoard> selectBestLikeyList() {
+		RowBounds rows = new RowBounds(0, 6);
+		return new ArrayList<ProductBoard>(sqlSession.selectList("productBoard.selectLikeyList", null, rows));
+	}
+
 }
