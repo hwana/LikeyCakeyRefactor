@@ -212,7 +212,7 @@
 													class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
 										</ul></li>
 									<li><a href="memberMypage.ca">MY PAGE</a></li>
-									<li><a href="contact.html">NOTICE</a></li>
+									<li><a href="notice.ca">NOTICE</a></li>
 									<li><a href="contact.html">Q &amp; A</a></li>
 								</ul>
 							</nav>
