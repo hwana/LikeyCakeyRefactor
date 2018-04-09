@@ -18,7 +18,7 @@ public class ListDaoImpl implements ListDao {
 	@Override
 	public int getCakeCount(String inputsearch) throws Exception {
 		System.out.println("listDao의 getCakeCount입니다.");
-		return sqlSession.selectOne("ProductBoard.getCakeCount", inputsearch);
+		return sqlSession.selectOne("productBoard.getCakeCount", inputsearch);
 	}
 	
 	@Override
@@ -26,7 +26,7 @@ public class ListDaoImpl implements ListDao {
 		System.out.println("listDao의 selectCakeList입니다.");
 		int offset = (currentPage - 1) * limit;
 		RowBounds rows = new RowBounds(offset, limit);
-		return new ArrayList<ProductBoard>(sqlSession.selectList("ProductBoard.selectCakeList", inputsearch, rows));
+		return new ArrayList<ProductBoard>(sqlSession.selectList("productBoard.selectCakeList", inputsearch, rows));
 	}
 	
 	@Override
