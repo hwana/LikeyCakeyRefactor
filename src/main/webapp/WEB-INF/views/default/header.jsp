@@ -19,8 +19,7 @@
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="/resources/css/elegant-font.css">
-<link rel="stylesheet"
-	href="/resources/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" href="/resources/css/material-design-iconic-font.min.css">
 <link rel="stylesheet" href="/resources/css/meanmenu.min.css">
 <link rel="stylesheet" href="/resources/css/animate.css">
 <link rel="stylesheet" href="/resources/css/magnific-popup.css">
@@ -31,8 +30,7 @@
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/responsive.css">
 <link rel="stylesheet" href="/resources/css/hwanhee.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>

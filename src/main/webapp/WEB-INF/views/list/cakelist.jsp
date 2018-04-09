@@ -1,8 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="listError.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<c:set var="cakeCount" value="${requestScope.cakeCount}"/>
+<c:set var="currentPage" value="${requestScope.currentPage}"/>
+<c:set var="startpage" value="${requestScope.startpage}"/>
+<c:set var="endpage" value="${requestScope.endpage}"/>
+<c:set var="maxpage" value="${requestScope.maxpage}"/>
+<c:set var="cakelist" value="${requestScope.cakelist}"/>
+<c:set var="locationlist" value="${requestScope.locationlist}"/>
+<c:set var="member" value="${sessionScope.member}"/>
 
 <!DOCTYPE html>
 <html>
@@ -47,13 +56,7 @@
 							<div class="shop-tab-pill">
 								<div class="nav-menu-grid">
 									<ul class="nav nav-pills">
-										<h5>신촌(으)로 검색한 결과입니다.</h5>
-										<!-- <li class="active">
-											<a data-toggle="pill" href="#grid"><i class="icon_grid-2x2"></i></a>
-										</li>
-										<li>
-											<a data-toggle="pill" href="#list"><i class="icon_menu"></i></a>
-										</li> -->
+										<h5>${input_search} (으)로 검색한 결과입니다.(총 ${cakeCount}개 )</h5>
 									</ul>
 								</div>
 								<div class="show-more text-center">
@@ -62,12 +65,6 @@
 										<li class="shw">Show</li>
 										<li class="active">
 											<a href="#">6</a>
-										</li>
-										<li>
-											<a href="#">9</a>
-										</li>
-										<li>
-											<a href="#">12</a>
 										</li>
 									</ul> -->
 								</div>
@@ -124,16 +121,18 @@
 								<div id="grid" class="shop-left pt-35 tab-pane fade in active">
 									<div class="shop-tab-area">
 										<div class="row">
+											<c:set var="list" value="${locationlist}" />
+											<c:forEach var="cake" items="${cakelist}" varStatus="loop">
 											<!-- Single Product Start -->
 											<div class="col-md-4 col-sm-6">
 												<div class="single-product style-two mb-50">
 													<div class="young-single-img">
-														<a href="#"><img src="/resources/img/young/1.jpg" alt="" /></a>
+														<a href="#"><img src="resources/img/product/${cake.pImg}.jpg"/></a>
 														<span class="pro-level">당일</span>
 														<div class="hover-content text-center">
 															<ul>
 <!-- 																<li><a href="#" class="icon_refresh"></a></li>
- -->																<li><a href="#" class="icon_cart_alt "></a></li>
+-->																<li><a href="#" class="icon_cart_alt "></a></li>
 																<li><a href="#" class="icon_heart_alt"></a></li>
 																<!-- <li>
 																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
@@ -142,18 +141,15 @@
 														</div>
 													</div>
 													<div class="young-product-details mt-20">
-														<h4><a href="single-product.html">오지게 맛있는 초코케익</a></h4>
+														<h4><a href="single-product.html">${cake.pName }</a></h4>
 														<div class="young-product-details-tag">
 															<i class="fa fa-map-marker"></i>
-															<span class="young-product-details-tag-place">서울시 종로구</span>
+															<span class="young-product-details-tag-place"><c:out value="${list[loop.index]}"/></span>
 															<i class="fa fa-tag"></i>
-															<span class="young-product-details-tag-place-detail">#초코</span>
-															<span class="young-product-details-tag-place-detail">#초코릿</span>
-															<span class="young-product-details-tag-place-detail">#초코렛</span>
-															<span class="young-product-details-tag-place-detail">#달아</span>
+															<span class="young-product-details-tag-place-detail">${cake.pbTag }</span>
 														</div>
 														<div class="young-product-details-price">
-															<span>23,000 원</span>
+															<span>${cake.pPrice }</span>
 															<i class="fa fa-star"></i>
 															<i class="fa fa-star"></i>
 															<i class="fa fa-star"></i>
@@ -164,206 +160,7 @@
 												</div>
 											</div>
 											<!-- Single Product End -->
-											<!-- Single Product Start -->
-											<div class="col-md-4 col-sm-6">
-												<div class="single-product style-two mb-50">
-													<div class="young-single-img">
-														<a href="#"><img src="/resources/img/young/2.jpg" alt="" /></a>
-														<span class="pro-level">당일</span>
-														<div class="hover-content text-center">
-															<ul>
-<!-- 																<li><a href="#" class="icon_refresh"></a></li>
- -->																<li><a href="#" class="icon_cart_alt "></a></li>
-																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
-																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-																</li> -->
-															</ul>
-														</div>
-													</div>
-													<div class="young-product-details mt-20">
-														<h4><a href="single-product.html">달달 딸기 치즈케이크</a></h4>
-														<div class="young-product-details-tag">
-															<i class="fa fa-map-marker"></i>
-															<span class="young-product-details-tag-place">서울시 강남구</span>
-															<i class="fa fa-tag"></i>
-															<span class="young-product-details-tag-place-detail">#딸기</span>
-															<span class="young-product-details-tag-place-detail">#딸기가조아</span>
-															<span class="young-product-details-tag-place-detail">#너무너무너무너무</span>
-															<span class="young-product-details-tag-place-detail">#달아</span>
-														</div>
-														<div class="young-product-details-price">
-															<span>34,000 원</span>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-														</div>
-													</div>
-												</div>
-											</div>
-											<!-- Single Product End -->
-											<!-- Single Product Start -->
-											<div class="col-md-4 col-sm-6">
-												<div class="single-product style-two mb-50">
-													<div class="young-single-img">
-														<a href="#"><img src="/resources/img/young/3.jpg" alt="" /></a>
-														<span class="pro-level">당일</span>
-														<div class="hover-content text-center">
-															<ul>
-																<!-- <li><a href="#" class="icon_refresh"></a></li> -->
-																<li><a href="#" class="icon_cart_alt "></a></li>
-																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
-																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-																</li> -->
-															</ul>
-														</div>
-													</div>
-													<div class="young-product-details mt-20">
-														<h4><a href="single-product.html">과일 생크림 케이크 무려 두겹이나 있다</a></h4>
-														<div class="young-product-details-tag">
-															<i class="fa fa-map-marker"></i>
-															<span class="young-product-details-tag-place">서울시 동대문구</span>
-															<i class="fa fa-tag"></i>
-															<span class="young-product-details-tag-place-detail">#딸기</span>
-															<span class="young-product-details-tag-place-detail">#블루베리</span>
-															<span class="young-product-details-tag-place-detail">#크림</span>
-															<span class="young-product-details-tag-place-detail">#두겹</span>
-														</div>
-														<div class="young-product-details-price">
-															<span>40,000 원</span>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-														</div>
-													</div>
-												</div>
-											</div>
-											<!-- Single Product End -->
-											<!-- Single Product Start -->
-											<div class="col-md-4 col-sm-6">
-												<div class="single-product style-two mb-50">
-													<div class="young-single-img">
-														<a href="#"><img src="/resources/img/young/4.jpg" alt="" /></a>
-														<span class="pro-level">당일</span>
-														<div class="hover-content text-center">
-															<ul>
-																<!-- <li><a href="#" class="icon_refresh"></a></li> -->
-																<li><a href="#" class="icon_cart_alt "></a></li>
-																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
-																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-																</li> -->
-															</ul>
-														</div>
-													</div>
-													<div class="young-product-details mt-20">
-														<h4><a href="single-product.html">들어는 보셧나 마카롱 케이크</a></h4>
-														<div class="young-product-details-tag">
-															<i class="fa fa-map-marker"></i>
-															<span class="young-product-details-tag-place">서울시 북구</span>
-															<i class="fa fa-tag"></i>
-															<span class="young-product-details-tag-place-detail">#마카롱</span>
-															<span class="young-product-details-tag-place-detail">#마카롱이라구?</span>
-															<span class="young-product-details-tag-place-detail">#말도안되</span>
-															<span class="young-product-details-tag-place-detail">#이런게존재</span>
-														</div>
-														<div class="young-product-details-price">
-															<span>33,000 원</span>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-														</div>
-													</div>
-												</div>
-											</div>
-											<!-- Single Product End -->
-											<!-- Single Product Start -->
-											<div class="col-md-4 col-sm-6">
-												<div class="single-product style-two mb-50">
-													<div class="young-single-img">
-														<a href="#"><img src="/resources/img/young/5.jpg" alt="" /></a>
-														<span class="pro-level">당일</span>
-														<div class="hover-content text-center">
-															<ul>
-																<!-- <li><a href="#" class="icon_refresh"></a></li> -->
-																<li><a href="#" class="icon_cart_alt "></a></li>
-																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
-																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-																</li> -->
-															</ul>
-														</div>
-													</div>
-													<div class="young-product-details mt-20">
-														<h4><a href="single-product.html">초코 체스판 카스테라</a></h4>
-														<div class="young-product-details-tag">
-															<i class="fa fa-map-marker"></i>
-															<span class="young-product-details-tag-place">서울시 홍대</span>
-															<i class="fa fa-tag"></i>
-															<span class="young-product-details-tag-place-detail">#체크박스</span>
-															<span class="young-product-details-tag-place-detail">#너텔라</span>
-															<span class="young-product-details-tag-place-detail">#카스테라</span>
-															<span class="young-product-details-tag-place-detail">#우유</span>
-														</div>
-														<div class="young-product-details-price">
-															<span>28,000 원</span>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-														</div>
-													</div>
-												</div>
-											</div>
-											<!-- Single Product End -->
-											<!-- Single Product Start -->
-											<div class="col-md-4 col-sm-6">
-												<div class="single-product style-two mb-50">
-													<div class="young-single-img">
-														<a href="#"><img src="/resources/img/young/6.jpg" alt="" /></a>
-														<span class="pro-level">당일</span>
-														<div class="hover-content text-center">
-															<ul>
-																<!-- <li><a href="#" class="icon_refresh"></a></li> -->
-																<li><a href="#" class="icon_cart_alt "></a></li>
-																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
-																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-																</li> -->
-															</ul>
-														</div>
-													</div>
-													<div class="young-product-details mt-20">
-														<h4><a href="single-product.html">아이스 레몬 레인보우 케이크</a></h4>
-														<div class="young-product-details-tag">
-															<i class="fa fa-map-marker"></i>
-															<span class="young-product-details-tag-place">서울시 강남구</span>
-															<i class="fa fa-tag"></i>
-															<span class="young-product-details-tag-place-detail">#레몬</span>
-															<span class="young-product-details-tag-place-detail">#레인보우</span>
-															<span class="young-product-details-tag-place-detail">#케달달</span>
-															<span class="young-product-details-tag-place-detail">#상큼</span>
-														</div>
-														<div class="young-product-details-price">
-															<span>39,000 원</span>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-														</div>
-													</div>
-												</div>
-											</div>
-											<!-- Single Product End -->
+											</c:forEach>
 										</div>
 									</div>
 								</div>
