@@ -221,8 +221,21 @@
 								</div>
 								<div class="input-content mb-50">
 									
+									
+								
 										 
 										 <!-- 커스텀 셀렉트 박스 시작 -->
+									
+									<div class="custom-select mb-10">
+										<label for="fromDate">사이즈 선택</label> <select
+											class="custom-selectbox">
+											<option value="기본" selected="selected">기본</option>
+											<option value="무스">무스</option>
+											<option value="쉬폰">쉬폰</option>
+											<option value="파운드">파운드</option>
+											<option value="치즈 수플레">치즈 수플레</option>
+										</select>
+									</div>
 									
 								<div class="custom-select mb-20">
 									<div class="custom-select-wrap">
@@ -273,16 +286,19 @@
 
 
 
-								<div class="detail-input custom-input">
+									<div class="detail-input custom-input">
 									<label for="fromDate">문구 추가</label> 
 									<input class="detail-text custom-text mt-10" placeholder="케이크에 추가하실 문구를 입력해주세요." type="text">
+									</div>
 									
+									<div class="detail-input custom-input mb-30">
 									<label for="fromDate">예약 날짜</label> 
 									<input class="cake-reserve custom-text detail-text mt-10" placeholder="예약 날짜를 선택해 주세요." type="text" id="cake-reserve">
+									</div>
 									
+									<div class="detail-input custom-input">
 									<button type="submit" class="custom-btn" style="margin-right: 2.7%;">구매하기</button>
 									<button type="submit" class="custom-btn">장바구니 담기</button>
-									
 									</div>
 									
 								</div>

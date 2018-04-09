@@ -17,7 +17,7 @@ public interface AdminService {
 	
 	public int updateMember(Member m) ;
 	
-	
+	public int deleteTotalMember() ;
 	public int deleteMember(String id) ;
 	/*
 	public ArrayList<Board> selectTopList();

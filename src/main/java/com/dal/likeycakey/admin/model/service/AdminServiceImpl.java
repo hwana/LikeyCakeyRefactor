@@ -40,7 +40,11 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.deleteMember(id);
 	}
 	
-	
+	@Override
+	public int deleteTotalMember() {
+		// TODO Auto-generated method stub
+		return adminDao.deleteTotalMember();
+	}
 	
 	
 	/*@Override
