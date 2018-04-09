@@ -108,7 +108,7 @@ public class BizController {
 		bm.setMasterName(masterName);
 		
 		try {
-			int result = bizService.insertBiz(m);
+			int result = bizService.insertBiz1(m);
 			int result2 = bizService.insertBiz2(bm);
 			mv.setViewName("redirect:home.ca");
 			System.out.println("비즈멤버등록성공");
@@ -167,16 +167,51 @@ public class BizController {
 			ProductBoard productBoard
 			) throws IOException {
 		
-		System.out.println("cakeInsert.ca입니다");
-		System.out.println(" 상품정보 : "+productBoard);
+		System.out.println("cakeInsert.ca입니다(배송비 꼭 숫자 넣어주세요!!!!)");
 		// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 		String savePath = root + "\\img\\product";
+		System.out.println("이미지가 저장되는 곳은 " + savePath);
+		
+		if (file != null && !file.isEmpty()) {
+			if (!new File(savePath).exists()) {
+				new File(savePath).mkdir();
+			}
+
+			// 업로도된 파일명을 "년월일시분초.확장자" 로 변경함
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			String originFileName = file.getOriginalFilename();
+			String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+					+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
+
+			File renameFile = new File(savePath + "\\" + renameFileName);
+			file.transferTo(renameFile);
+			productBoard.setpImg(renameFileName.substring(0, renameFileName.lastIndexOf('.')));
+		}
 		
 		//productBoard에 이미지 넣기
-		productBoard.setpImg(file.getOriginalFilename());
-		productBoard.setPbTag(inputtag1 + " " + inputtag2 + " " + inputtag3 + " " + inputtag4 + " " + inputtag5);
+		String inputtag = "";
+		if(inputtag1 != "") {
+			inputtag = inputtag + "#" + inputtag1;
+			if(inputtag2 != "") {
+				inputtag = inputtag + ", #" + inputtag2;
+				if(inputtag3 != "") {
+					inputtag = inputtag + ", #" + inputtag3;
+					if(inputtag4 != "") {
+						inputtag = inputtag + ", #" + inputtag4;
+						if(inputtag5 != "") {
+							inputtag = inputtag + ", #" + inputtag5;
+						}
+					}
+				}
+			}
+		}
+		
+		productBoard.setPbTag(inputtag);
+		
+		// 상품정보
+		System.out.println(" 상품정보 : "+productBoard);
 		
 		if (bizService.insertProductBoard(productBoard) > 0) {
 			System.out.println("프로덕트 케이크 넣기 성공");
