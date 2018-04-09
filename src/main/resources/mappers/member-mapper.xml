@@ -32,7 +32,7 @@
 		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id}
 	</select>
 	
-	<select id = "mypageMember" parameterType="Member" resultMap="myMember">
+	<select id = "mypageMember" parameterType="Member" resultMap="">
 		SELECT 
 			M_EMAIL, M_NAME, M_CP, M_POST, M_BASIC_ADDR, M_DETAIL_ADDR, M_PHOTO
 			FROM

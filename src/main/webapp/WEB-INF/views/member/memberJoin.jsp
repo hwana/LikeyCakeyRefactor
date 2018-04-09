@@ -49,9 +49,36 @@ html>body>section>div>div>div>form span>.btn-in {
 </style>
 
 <!-- 유효성 검사를 위한 자바스크립트 -->
-<script type="text/javascript">
-
-</script>
+<script type="text/javascript"
+		src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#check_id").click(function() {
+				$.ajax({
+					url : "id_check.ca",
+					data : {
+						id : $("#inputId").val()
+					},
+					dataType : "text",
+					type : "post",
+					success : function(value) {
+						if (value == "ok") {
+							alert("사용가능한 아이디입니다.");
+							$('input[name=name]').focus();
+						} else {
+							alert("이미 존재하는 아이디입니다. 아이디를 다시 설정하세요");
+							$('#inputId').select();
+						}
+					},
+					error : function(value) {
+						alert("잘못 입력하셨습니다." + value);
+						console.log('Error:', data);
+					}
+				});
+				return false;
+			}); //click
+		}); //ready
+	</script>
 
 <script>
 	<script src="/resources/js/vendor/modernizr-2.8.3.min.js">
