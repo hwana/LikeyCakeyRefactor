@@ -1,6 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../default/header.jsp"%>
+
+<style>
+label {
+   margin-top: 10px;
+}
+
+hr {
+   margin: 20px;
+}
+
+.radio {
+   height: auto;
+   width: auto;
+   font-size: 15px;
+   margin: auto 0;
+}
+
+.checkbox {
+   margin-top: 18px;
+}
+
+.container {
+   margin-top: 50px;
+   margin-bottom: 50px;
+}
+
+#joinbutton {
+   margin-top: 30px;
+}
+
+.verifycode {
+   background: #9bcaba;
+   margin-left: 10px;
+}
+
+.search {
+   background: #9bcaba;
+   margin-top: 10px;
+   color: white;
+}
+
+#agree {
+   background: #9bcaba;
+   border-color: #9bcaba;
+}
+
+#join {
+   background: #f6c6c9;
+}
+
+#cancle {
+   background: #9bcaba;
+}
+</style>
+
 <div class="container" id="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
