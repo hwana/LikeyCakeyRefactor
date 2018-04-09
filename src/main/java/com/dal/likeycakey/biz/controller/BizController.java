@@ -108,7 +108,7 @@ public class BizController {
 		bm.setMasterName(masterName);
 		
 		try {
-			int result = bizService.insertBiz1(m);
+			int result = bizService.insertBiz(m);
 			int result2 = bizService.insertBiz2(bm);
 			mv.setViewName("redirect:home.ca");
 			System.out.println("비즈멤버등록성공");
