@@ -24,6 +24,7 @@ public class BizDaoImpl implements BizDao {
 	@Override
 	public int insertBiz2(BizMember bm) throws Exception {
 		System.out.println("here is DAO insertBiz2");
+		System.out.println(bm.getBizName());
 		int result2 = sqlSession.insert("bizMember.insertMember", bm);
 		return result2;
 	}

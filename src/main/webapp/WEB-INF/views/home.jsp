@@ -213,10 +213,10 @@
 							</h2>
 
 							<div class="input_wrap">
-								<form>
-									<input type="text" id="input_search" class="_query"
-										maxlength="40" value="" placeholder="초코 케이크"> <a><i
-										class="fa fa-search" aria-hidden="true"></i></a>
+								<form id="user_input" name="user_input" action="cakeSearch.ca">
+									<input type="text" id="input_search" name="input_search" class="_query"
+										maxlength="40" value="" placeholder="초코 케이크"/> 
+									<a href="javascript:{}" onclick="document.getElementById('user_input').submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
 								</form>
 							</div>
 

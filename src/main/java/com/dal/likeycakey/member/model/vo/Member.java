@@ -154,7 +154,7 @@ public class Member implements java.io.Serializable{
 		this.status = status;
 	}
 
-	public int getblackCnt() {
+	public int getBlackCnt() {
 		return blackCnt;
 	}
 
