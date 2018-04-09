@@ -166,7 +166,7 @@
 					<c:set var="member" value="${sessionScope.member}" />
 					<c:if test="${empty sessionScope.member }">
 						<div class="sign-wrapper">
-							<a class="sign-button" href = "bizJoin.ca">Sign-Up</a><a class="sign-button" href = "bizLogin.ca">Log-in</a> 
+							<a class="sign-button" href = "mem_choice.ca">Sign-Up</a><a class="sign-button" href = "bizLogin.ca">Log-in</a> 
 						</div>
 					</c:if>
 					
