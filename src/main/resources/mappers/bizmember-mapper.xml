@@ -12,12 +12,11 @@
 		<result property="bizNum" column="BIZ_NUM" />
 		<result property="bizDelivery" column="BIZ_DELIVERY" />
 		<result property="masterName" column="MASTER_NAME" />
-		
 	</resultMap>
 
 	<insert id="insertMember" parameterType="bizMember" flushCache="true">
-		INSERT INTO MEMBER_BIZ(BIZ_NAME, BIZ_PN, BIZ_NUM, BIZ_DELIVERY, MASTER_NAME) VALUES 
-		(#{bizName},#{bizPn},#{bizNum},#{bizDelivery},#{masterName})
+		INSERT INTO MEMBER_BIZ VALUES 
+		(#{id}, 2, #{bizName},#{bizPn},#{bizNum},#{bizDelivery},#{masterName}, 'Y', 'Y')
 	</insert>
 
 	<select id="selectBizMember" parameterType="bizMember" resultMap="resultMember">

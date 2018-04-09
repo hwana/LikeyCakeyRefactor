@@ -8,7 +8,6 @@ public class ProductBoard implements java.io.Serializable{
    
    private static final long serialVersionUID = 3000000L;
    
-   
    private int pbNum; // 게시글 번호
    private String id; // 회원 아이디
    private String pName; // 케이크 이름

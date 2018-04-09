@@ -42,10 +42,32 @@
 
    <insert id="insertProductBoard" parameterType="ProductBoard">
  		INSERT INTO PRODUCT_BOARD VALUES 
-		( (SELECT MAX(P_B_NUM) + 1 FROM PRODUCT_BOARD),
+		( NVL((SELECT MAX(P_B_NUM) + 1 FROM PRODUCT_BOARD),0),
 			#{id}, #{pName}, #{pPrice}, #{pImg},
 			1, 1, 1, 10, #{pbMiniTitle}, #{pbMiniContent},
-			#{pbContent}, 3, 4, #{pbYN}, #{pbWarn}, 'something', 5)
+			#{pbContent}, 3, 4, #{pbYN}, #{pbWarn}, #{pbTag}, 5)
   	</insert>
+  	
+  	<select id="getCakeCount" parameterType="String" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT_BOARD
+			WHERE P_NAME LIKE '%' || #{inputsearch} || '%'
+			   OR P_B_MINI_TITLE LIKE '%' || #{inputsearch} || '%'
+			   OR P_B_MINI_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   OR P_B_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   OR P_B_WARN LIKE '%' || #{inputsearch} || '%'
+			   OR P_B_TAG LIKE '%' || #{inputsearch} || '%'
+	</select>
+	
+	<select id="selectCakeList" parameterType="String" resultMap="resultProductBoard">
+		SELECT * FROM (
+			SELECT * FROM PRODUCT_BOARD 
+				WHERE P_NAME LIKE '%' || #{inputsearch} || '%'
+			  	OR P_B_MINI_TITLE LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_MINI_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_WARN LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_TAG LIKE '%' || #{inputsearch} || '%'
+		)	
+	</select>
 
 </mapper>
