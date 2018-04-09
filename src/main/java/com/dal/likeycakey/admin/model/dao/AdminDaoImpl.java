@@ -49,6 +49,12 @@ public class AdminDaoImpl implements AdminDao {
 		
 		return sqlSession.delete("AdminMapper.deleteMember",id);
 	}
+
+	@Override
+	public int deleteTotalMember() {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("AdminMapper.deleteTotalMember");
+	}
 	
 
 }

@@ -8,14 +8,14 @@
 		<id property="id" column="M_ID" />
 		<result property="passwd" column="M_PW" />
 		<result property="name" column="M_NAME" />
-		<result property="code" column="M_NUM" />
+		<result property="phone" column="M_CP" />
 		<result property="email" column="M_EMAIL" />
 		<result property="post" column="M_POST" />
 		<result property="addressBasic" column="M_BASIC_ADDR" />
 		<result property="addressDetail" column="M_DETAIL_ADDR" />
-		<result property="phone" column="M_CP" />
 		<result property="photo" column="M_PHOTO" />
-		<result property="blackCnt" column="M_BLACKCNT"/>
+		<result property="code" column="M_NUM" />
+		<result property="blackcnt" column="M_BLACKCNT"/>
 		<result property="status" column="M_STATUS"/>
 	</resultMap>
 

@@ -11,7 +11,7 @@
 <c:set var="maxPage" value="${requestScope.maxPage}" />
 <c:set var="list" value="${requestScope.list}" />
 <c:set var="member" value="${sessionScope.member}" />
-
+<c:set var="deleteList" value="${requestScope.deleteList}" />
 
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -21,6 +21,7 @@
 <title>MemberList</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="shortcut icon" type="image/x-icon"
@@ -46,33 +47,137 @@
 <link rel="stylesheet" href="/resources/css/responsive.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
-<script>
-		$(function(){
-			$("#checkid").click(function(){
+<script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+	//1.한명만 업데이트 하는 ajax 코드 시작//
+	$(function() {
+		var checkAll;
+		var delMembers = new Array();
+		$("button[name=updateMember]").click(function() {
+			alert("hello");
+			$.ajax({
+				url : "adminMemberUpdate.ca",
+				data : {
+					mcode : $(this).closest("tr").find("#mcode").val(),
+					mid : $(this).closest("tr").find("#mid").val(),
+					mpasswd : $(this).closest("tr").find("#mpasswd").val(),
+					mname : $(this).closest("tr").find("#mname").val(),
+					memail : $(this).closest("tr").find("#memail").val(),
+					mphone : $(this).closest("tr").find("#mphone").val(),
+					mstatus : $(this).closest("tr").find("#mstatus").val(),
+					mblackCnt : $(this).closest("tr").find("#mblackCnt").val()
+				},
+
+				dataType : "text",
+				type : "post",
+				success : function(value) {//
+					if (value == "ok") {
+						alert("수정에 성공했습니다.");
+					} else {
+						alert("수정에 실패했습니다.");
+					}
+				},
+				error : function(value) {
+					alert("잘못 입력하셨습니다." + value);
+				}
+			});//AJAX
+			return false;
+		}); //click
+
+		//1. 한명만 업데이트 하는 ajax 코드 끝//
+
+		//2. 체크박스 전체 선택하는 jQuery 코드 시작//
+		$("#checkAll").click(function() {
+			if ($(this).is(":checked")) {
+				$("input[name=check]").prop("checked", true);
+				checkAll = true;
+				console.log(checkAll);
+			} else {
+				$("input[name=check]").prop("checked", false);
+				checkAll = false;
+				console.log(checkAll);
+			}
+		});
+
+		//2. 체크박스 전체 선택하는 jQuery 코드 끝//
+
+		//3. 체크박스가 선택되면 list에 해당 id를 추가하고, 해제 되면 해당 id를 리스트에서 삭제하는 제이쿼리 시작
+		$("input[name=check]").change(function() {
+			
+			var mem = $(this).closest("tr").find("#mid").val();
+			if ($(this).is(":checked")) {
+				delMembers.push(mem);
+				console.log(delMembers);
+			} else {
+				
+			 	delMembers = $.grep(delMembers, function(n) {
+				    return n != mem;
+				}); 
+				 
+				
+				/*  const idx = delMembers.findIndex($(this).closest("tr").find("#mid").val());
+ 				
+ 			 delMembers.slice(idx, 1) ; 
+ */
+				/*  delete delMembers[$(this).closest("tr").find("#mid").val()]; */
+				console.log(delMembers);
+			}
+		});
+		//3. 체크박스가 선택되면 list에 해당 id를 추가하고, 해제 되면 해당 id를 리스트에서 삭제하는 제이쿼리 끝
+		
+		
+		//4. 삭제 버튼을 눌렀을 때, checkAll이 treu면 전체 삭제로 가고, false면 일부 삭제로 간다. 경로 조정 가능?
+		$("#adminDelete").click(function() {
+			console.log("adminDelete 클릭");
+			if(checkAll){
+					alert("전체 삭제를 실행합니다.");
 				$.ajax({
-					url : "dupid.do",
-					data : {id : $("#userid").val()},
-					dataType : "text",
+					url : "adminMemberTotalDelete.ca",
 					type : "post",
-					success : function(value){
-						if (value == "ok"){ 
-							alert("아이디가 중복되지 않습니다.");
-							$('input[name=name]').focus();
-						}
-						else {
-							alert("이미 존재하는 아이디입니다. 아이디를 다시 설정하세요");
-							$('#userid').select();
+					success : function(value) {//
+						if (value == "ok") {
+							alert("전체 삭제에 성공했습니다.");
+							location.reload();
+						} else {
+							alert("전체 삭제에 실패했습니다.");
 						}
 					},
-					error : function(value){
-						alert("잘못 입력하셨습니다."+value);
+					error : function(value) {
+						alert("잘못 입력하셨습니다." + value);
 					}
-				});
-				return false;
-			}); //click
-		}); //ready
-	</script>
+				});//AJAX
+				return false;				
+			}else if(delMembers.length == 0){
+				alert("삭제할 회원을 선택해주세요.");
+			}else{
+				alert("선택 삭제를 실행합니다.");
+				jQuery.ajaxSettings.traditional = true;
+				$.ajax({
+					url : "adminMemberDelete.ca",
+					data : {
+						delMembers: delMembers
+					},
+					dataType : "text",
+					type : "post",
+					success : function(value) {//
+						if (value == "ok") {
+							alert("선택 삭제에 성공했습니다.");
+							location.reload();
+						} else {
+							alert("선택 삭제에 실패했습니다.");
+						}
+					},
+					error : function(value) {
+						alert("잘못 입력하셨습니다." + value);
+					}
+				});//AJAX
+				return false;	
+			}
+		});
+		//4. 삭제 버튼을 눌렀을 때, checkAll이 treu면 전체 삭제로 가고, false면 일부 삭제로 간다. 경로 조정 가능? 
+
+	}); //ready
+</script>
 </head>
 
 <style>
@@ -125,20 +230,28 @@ td {
 									회원 정보
 
 									<!-- 회원 상태 설명 시작 -->
-									<div class="checkout-form-list create-acc"
-										style="margin-bottom: 0px; float: right">
-										<label style="color: #9bcaba">1.일반 2.경고 3.블랙리스트 4.탈퇴</label>
+									<div class="checkout-form-list create-acc" style="margin-bottom: 0px; float: right">
+										 <select style="height:30px;">
+											<option value="volvo">분류 번호 순
+											<option value="saab">신고 당한 횟수 순
+											<option value="mercedes">활동 회원만
+											<option value="audi">경고 회원만
+											<option value="audi">블록 회원만
+											<option value="audi">탈퇴 회원만
+											<option value="audi">일반회원만
+											<option value="audi">관리자만
+											<option value="audi">사업자만
+										</select>
 									</div>
 									<!-- 회원 상태 설명 끝 -->
 
 								</h3>
+								<div class="checkout-form-list create-acc"
+										style="margin-bottom: 0px; float: right; margin-right:15px">
+										<label style="color: #9bcaba">1.일반 2.경고 3.블랙리스트 4.탈퇴</label>
+								</div>
 								<div class="col-md-12 col-sm-12 col-xs-12">
-									<form action="#">
-
-
-
-
-
+									<form action="adminMemberDelete.ca" method="post">
 										<!-- 회원 정보 리스트 시작 -->
 										<div class="table-content table-responsive">
 
@@ -146,7 +259,8 @@ td {
 												<thead>
 													<tr>
 														<th class="product-thumbnail eceff8"><input
-															type="checkbox" style="height: 12px; width: 20px;"></th>
+															type="checkbox" id="checkAll"
+															style="height: 12px; width: 20px;"></th>
 														<th class="product-thumbnail eceff8">분류번호</th>
 														<th class="product-thumbnail eceff8">id</th>
 														<th class="product-thumbnail eceff8">passwd</th>
@@ -160,34 +274,36 @@ td {
 													</tr>
 												</thead>
 												<tbody>
-													
-													<c:forEach var="m" items="${list}">
+
+													<c:forEach var="m" items="${list}" varStatus="status">
 
 														<!-- 회원 1 시작 -->
 														<tr>
-															<td><input type="checkbox"
+															<td><input type="checkbox" name="check"
 																style="height: 12px; width: 20px;"></td>
 															<td><input type="text" class="s_text" placeholder=""
-																value="${m.code}"></td>
+																id="mcode" value="${m.code}"></td>
 
 															<td><a href="#"><input type="text" class="text"
-																	value="${m.id}"></a></td>
+																	id="mid" name="mid" value="${m.id}"></a></td>
 															<td><input type="text" placeholder="" class="text"
-																value="${m.passwd}"></td>
+																id="mpasswd" value="${m.passwd}"></td>
 															<td><input type="text" placeholder="" class="text"
-																value="${m.name}"></td>
+																id="mname" value="${m.name}"></td>
 															<td><input type="text" placeholder="" class="text"
-																value="${m.email}"></td>
+																id="memail" value="${m.email}"></td>
 															<td><input type="text" placeholder="" class="text"
-																value="${m.phone}"></td>
+																id="mphone" value="${m.phone}"></td>
 															<td><input type="text" class="s_text" placeholder=""
-																value="${m.status}"></td>
+																id="mstatus" value="${m.status}"></td>
 															<td><input type="text" class="s_text" placeholder=""
-																value="${m.blackCnt}"></td>
+																id="mblackCnt" value="${m.blackCnt}"></td>
 															<td>
 																<div class="buttons-cart" style="margin-bottom: 0px;">
 																	<div class="pink_button small_button">
-																		<a href="#">수정</a>
+																		<button type="button" name="updateMember"
+																			style="height: 30px; width: 50px; line-height: 30px; margin: 0 auto; text-align: center; padding-right: 0; padding-left: 0">
+																			수정</button>
 																	</div>
 																</div>
 															</td>
@@ -209,21 +325,20 @@ td {
 								</div>
 							</div>
 							<!-- 회원 정보 보기끝 -->
-							<br> <br> <br> <br> <br> <br>
+							<br> <br> <br>
 
 							<!-- 버튼 시작 -->
 							<div class="row">
-								<div class="col-md-4" style="width: 20%; margin-left: 30%">
+								<div class="col-md-4" style="width: 40%; margin-left: 30%">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
-
 										<div class="pink_button">
-											<input type="submit" value="선택한 회원 삭제하기">
+											<input type="button" id="adminDelete" value="선택한 회원 삭제하기">
 										</div>
 									</div>
 								</div>
 
-								<div class="col-md-4" style="width: 20%">
+								<!-- <div class="col-md-4" style="width: 20%">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 										<div class="pink_button">
@@ -231,7 +346,7 @@ td {
 										</div>
 									</div>
 
-								</div>
+								</div> -->
 
 							</div>
 
@@ -353,6 +468,7 @@ td {
 	<script src="/resources/js/jquery.meanmenu.js"></script>
 	<script src="/resources/js/plugins.js"></script>
 	<script src="/resources/js/main.js"></script>
+
 </body>
 </html>
 

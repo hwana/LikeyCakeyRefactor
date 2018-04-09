@@ -24,4 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 			return "default/footer";
 		}
 		
+		@RequestMapping(value="mem_choice.ca", method=RequestMethod.GET)
+		public String joinMemchoose (Model model) {
+			return "default/mem_choice";
+		}
+		
 	}

@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../default/header.jsp"%>
 <div class="container" id="container">
@@ -24,8 +24,9 @@
 						<div class="col-lg-12">
 
 
-							<form id="login-form" action="loginCheck1.ca" class="form-horizontal"
-								method="post" role="form" style="display: block;">
+							<form id="login-form" action="loginCheck1.ca"
+								class="form-horizontal" method="post" role="form"
+								style="display: block;">
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="id">아이디</label>
 
@@ -55,7 +56,7 @@
 
 								<div class="row">
 									<div class="col-xs-5 text-right">
-										<a href="#" class="forgot-password" id="forgot-password">회원가입</a>
+										<a href="mem_choice.ca" class="forgot-password" id="forgot-password">회원가입</a>
 									</div>
 									<div class="col-xs-5 text-left">
 										<a href="#" class="forgot-password" id="forgot-password">아이디/비밀번호
@@ -64,8 +65,8 @@
 								</div>
 							</form>
 
-							<form id="register-form" action="loginCheck2.ca" method="post" role="form"
-								style="display: none;" class="form-horizontal">
+							<form id="register-form" action="loginCheck2.ca" method="post"
+								role="form" style="display: none;" class="form-horizontal">
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="id">아이디</label>
 
@@ -115,4 +116,3 @@
 </body>
 
 </html>
-
