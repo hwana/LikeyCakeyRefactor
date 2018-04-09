@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.dao.ProductBoardDao;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
+import com.dal.likeycakey.member.model.vo.MemberLike;
 
 @Service("pbService")
 public class ProductBoardServiceImpl implements ProductBoardService {
@@ -87,6 +88,33 @@ public class ProductBoardServiceImpl implements ProductBoardService {
 	public ArrayList<ProductBoard> selectBestLikeyList() {
 		// TODO Auto-generated method stub
 		return pbDao.selectBestLikeyList();
+	}
+
+	@Override
+	public int insertHeartMember(String pbNum, String id) {
+		return pbDao.insertHeartMember(pbNum, id);
+		
+	}
+
+	@Override
+	public int updateLikeyBoard(String pbNum) {
+		return pbDao.updateLikeyBoard(pbNum);
+		
+	}
+
+	@Override
+	public ArrayList<MemberLike> selectMemberLikeList(String id) {
+		return pbDao.selectMemberLikeList(id);
+	}
+
+	@Override
+	public int updateSubtractLikeyBoard(String pbNum) {
+		return pbDao.updateSubtractLikeyBoard(pbNum);
+	}
+
+	@Override
+	public int deleteHeartMember(String pbNum, String id) {
+		return pbDao.deleteHeartMember(pbNum, id);
 	}
 
 

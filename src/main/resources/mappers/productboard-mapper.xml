@@ -47,6 +47,18 @@
 	<select id="selectLikeyList" resultMap="resultProductBoard">
 		SELECT * FROM PRODUCT_BOARD ORDER BY P_B_LIKE DESC
 	</select>
+	
+	
+	<!-- 상품 게시글 좋아요 추가하기 -->
+	<update id="updateLikeyBoard" parameterType="String" >
+		UPDATE PRODUCT_BOARD SET P_B_LIKE = P_B_LIKE+1 WHERE P_B_NUM = #{pbNum}
+	</update>
+	
+	
+	<!-- 상품 게시글 좋아요 취소했을 때 -1하기 -->
+	<update id="updateSubtractLikeyBoard" parameterType="String">
+		UPDATE PRODUCT_BOARD SET P_B_LIKE = P_B_LIKE-1 WHERE P_B_NUM = #{pbNum}
+	</update>
 
    <insert id="insertProductBoard" parameterType="ProductBoard">
  		INSERT INTO PRODUCT_BOARD VALUES 
@@ -55,5 +67,11 @@
 			1, 1, 1, 10, #{pbMiniTitle}, #{pbMiniContent},
 			#{pbContent}, 3, 4, #{pbYN}, #{pbWarn}, 'something', 5)
   	</insert>
+  	
+  	
+  	
+  	
+  	
+  
 
 </mapper>

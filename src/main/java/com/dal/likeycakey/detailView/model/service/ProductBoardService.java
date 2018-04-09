@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
+import com.dal.likeycakey.member.model.vo.MemberLike;
 
 public interface ProductBoardService {
 	
@@ -30,5 +31,16 @@ public interface ProductBoardService {
 	public ArrayList<ProductBoard> selectBestSellerList();
 
 	public ArrayList<ProductBoard> selectBestLikeyList();
+
+	public int insertHeartMember(String pbNum, String id);
+
+	public int updateLikeyBoard(String pbNum);
+
+	public ArrayList<MemberLike> selectMemberLikeList(String id);
+
+	public int updateSubtractLikeyBoard(String pbNum);
+
+	public int deleteHeartMember(String pbNum, String id);
+
 	
 }
