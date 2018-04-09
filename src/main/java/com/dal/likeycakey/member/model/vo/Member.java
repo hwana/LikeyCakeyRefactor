@@ -24,6 +24,8 @@ public class Member implements java.io.Serializable{
 	private String photo;
 	private int status;
 	private int blackCnt;
+	
+	private MemberLike memberLike;
 
 	public Member() {
 		
@@ -157,8 +159,17 @@ public class Member implements java.io.Serializable{
 	public int getBlackCnt() {
 		return blackCnt;
 	}
-
+	
 	public void setBlackCnt(int blackCnt) {
 		this.blackCnt = blackCnt;
 	}
+	
+	public MemberLike getMemberLike() {
+		return memberLike;
+	}
+
+	public void setMemberLike(MemberLike memberLike) {
+		this.memberLike = memberLike;
+	}
+
 }

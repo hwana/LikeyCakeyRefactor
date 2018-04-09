@@ -3670,3 +3670,8 @@ position: absolute;
 .size-select {
 	width:79.5%;
 }
+
+.col-md-4.padding_14px{
+	padding-left: 14px;
+	padding-right: 14px;
+}
