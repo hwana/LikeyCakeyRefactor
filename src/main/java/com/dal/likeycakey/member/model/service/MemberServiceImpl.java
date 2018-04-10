@@ -14,8 +14,10 @@ public class MemberServiceImpl implements MemberService {
 
 	// 로그인하기위한 서비스
 	@Override
-	public Member loginMember(String id, String passwd) throws Exception {
-		return memberDao.selectMember(id, passwd);
+	public Member forLogin(String id, String passwd) throws Exception {
+		System.out.println("member type : normal");
+		System.out.println("login : success");
+		return memberDao.forLogin(id, passwd);
 	}
 	
 	// ID CHECK

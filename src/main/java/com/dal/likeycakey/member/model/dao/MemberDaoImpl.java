@@ -8,9 +8,9 @@ import com.dal.likeycakey.member.model.vo.Member;
 
 @Repository("memberDao")
 public class MemberDaoImpl implements MemberDao {
+	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
 	
 	// member insert 할 수 있는 DAO
 	@Override
@@ -38,9 +38,10 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	
-	// member를 select 할 수 있는 DAO
+	// 로그인 할 수 있는 DAO
 	@Override
-	public Member selectMember(String id, String passwd) {
-		return (Member)sqlSession.selectOne("Member.selectOne", new Member(id, passwd));
+	public Member forLogin(String id, String passwd) throws Exception {
+		System.out.println("일반회원 로그인");
+		return sqlSession.selectOne("Member.loginCheck", new Member(id, passwd));
 	}
 }

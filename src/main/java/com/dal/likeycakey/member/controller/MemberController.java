@@ -70,6 +70,37 @@ public class MemberController {
 		}
 	}
 	
+	// 로그인 체크
+
+		@RequestMapping(value = "forLogin.ca", method = RequestMethod.POST)
+		public void forLogin(ModelAndView mv, HttpSession session, Member member, HttpServletResponse response) {
+			try {
+				PrintWriter out = response.getWriter();
+				//데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
+				member = memberService.forLogin(member.getId(),member.getPasswd()); 
+				//입력된 아이디를 세션에 저장
+				session.setAttribute("member", member);
+				//결과가 0보다 크면 ok출력
+				int result = 0;
+				if (member != null) {
+					result = 1;
+				} 
+				
+				if(result > 0 ) {
+					out.print("ok");
+				} else {
+					out.print("no");
+				}
+				out.flush();
+				out.close();
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	
 	// 마이페이지로 이동시켜주는 컨트롤러
 	@RequestMapping(value="memberMypage.ca")
 	public String onlymovemypage(Model model) {

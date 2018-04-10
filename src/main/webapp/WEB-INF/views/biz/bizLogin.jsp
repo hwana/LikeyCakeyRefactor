@@ -131,6 +131,28 @@
 				}
 			});//ajax
 		});//submit
+		
+		
+		
+		// 일반회원 로그인
+		$("#btn-login").click(function() {
+			//.serialize를 사용하여 폼에 저장된 모든 데이터를 가져온다.
+			var form_data = $("#login-form").serialize();
+			$.ajax({
+				type : "POST",
+				url : "forLogin.ca",
+				dataType : "text",
+				data : form_data,
+				success : function(data) {
+					if (data == "ok") {
+						alert("로그인에 성공하셨습니다.")
+						location.href = "home.ca?id=" + username.value;
+					} else {
+						$(".message").html("아이디 또는 비밀번호가 잘못되었습니다.");
+					}
+				}
+			});//ajax
+		});//submit
 	});//ready
 </script>
 
@@ -155,7 +177,7 @@
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-lg-12">
-							<form id="login-form" action="loginCheck1.ca"
+							<form id="login-form" action="forLogin.ca"
 								class="form-horizontal" method="post" role="form"
 								style="display: block;">
 								<div class="form-group">
@@ -174,7 +196,7 @@
 
 								<div class="row">
 									<div class="col-xs-8 col-xs-offset-2">
-										<input type="submit" name="login-submit"
+										<input type="button" name="login-submit"
 											tabindex="4" class="form-control btn btn-login login-submit" value="로그인"
 											id="btn-login">
 									</div>

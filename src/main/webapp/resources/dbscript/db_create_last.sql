@@ -1,3 +1,5 @@
+select * from member;
+
 /* SEQ_C_B_NUM */
 CREATE SEQUENCE LIKEYCAKEY.SEQ_C_B_NUM 
    MINVALUE 1
