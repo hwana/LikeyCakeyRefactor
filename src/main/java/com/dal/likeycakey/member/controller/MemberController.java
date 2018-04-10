@@ -2,6 +2,7 @@ package com.dal.likeycakey.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,6 +45,20 @@ public class MemberController {
 	@RequestMapping(value="memberJoin.ca", method = RequestMethod.GET)
 	public String onlyMoveJoin(Model model) {
 		return "member/memberJoin";
+	}
+	
+	// find id & pw page move
+	@RequestMapping(value = "findIdpw.ca", method= {RequestMethod.GET, RequestMethod.POST})
+	public String moveFindid(Model model) {
+		return "biz/findIdPw";
+	}
+	
+	// find id & pw
+	@RequestMapping(value = "findingId.ca" , method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	public @ResponseBody String findingId(@ModelAttribute Member m, Model model , HttpServletResponse response)throws Exception {
+		System.out.println("find id");
+		String findid = memberService.findId(m);
+		return findid;
 	}
 	
 	

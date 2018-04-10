@@ -1,5 +1,7 @@
 package com.dal.likeycakey.member.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,11 +22,20 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 	
+	// id 찾기
+	@Override
+	public String findId(Member m) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("아이디 찾기 dao 진입");
+		return sqlSession.selectOne("Member.findId" , m);
+	}
+	
 	// member idcheck 할 수 있는 DAO
 	public int selectMember(String id) {
 		return sqlSession.selectOne("Member.idCheck", id);
 	}
 	
+
 	// member update 할 수 있는 DAO
 	@Override
 	public int updateMember(Member m) throws Exception{

@@ -51,51 +51,7 @@ html>body>section>div>div>div>form span>.btn-in {
 <!-- 유효성 검사를 위한 자바스크립트 -->
 <script type="text/javascript"
 		src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			$("#check_id").click(function() {
-				$.ajax({
-					url : "dupid.ca",
-					data : {
-						id : $("#inputId").val()
-					},
-					type : "post",
-					success : function(data) {
-						if ($.trim(data) == 0) {
-							alert("사용가능한 아이디입니다.");
-							$('#checkMsg').html('<p style="color:blue">사용가능한 아이디입니다.</p>');							
-							$('input[name=name]').focus();
-						} else {
-							$('#checkMsg').html('<p style="color:red">중복된 아이디입니다.</p>');
-							alert("이미 존재하는 아이디입니다. 아이디를 다시 설정하세요");
-							$('#inputId').select();
-						}
-					},
-					error : function(value) {
-						alert("잘못 입력하셨습니다." + value);
-						console.log('Error:', data);
-					}
-				});
-				return false;
-			}); // id check click
-			
-			$("#join").submit(function(){
-				// 1. 패스워드 같은지 다른지 확인하기
-				
-				// 2. 아이디를 중복확인 했는지
-				
-				// 3. 이메일 인증을 완료 했는지
-				
-				// 4. 
-				
-				// 5. ㅜㅂ
-			}) // join 클릭
-			
-			
-			
-			
-		}); //ready
-</script>
+
 
 <!-- 주소 API -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -141,11 +97,26 @@ html>body>section>div>div>div>form span>.btn-in {
             }
         }).open();
     }
+    
+    
+	// 비밀번호 확인
+	function checkPwd(){
+		  var pw1 = $("inputPassword").val();
+		  var pw2 = $("inputPasswordCheck").val();
+		  
+		  if(pw1!=null && pw2!=null){
+		  	if(pw1 != pw2){
+		   		document.getElementById('pwcheck_change').style.color = "red";
+		   		document.getElementById('pwcheck_change').innerHTML = "동일한 암호를 입력하세요."; 
+		  	} else {
+		   		document.getElementById('pwcheck_change').style.color = "blue";
+		   		document.getElementById('pwcheck_change').innerHTML = "암호가 동일합니다."; 
+		  	}
+		 }
+	}
 </script>
 
-<script>
-	<script src="/resources/js/vendor/modernizr-2.8.3.min.js">
-</script>
+
 </head>
 <body class="other-page">
 
@@ -168,14 +139,13 @@ html>body>section>div>div>div>form span>.btn-in {
 							회원가입 <small>[Likey Cakey 일반 회원]</small>
 						</h1>
 					</div>
-					<form:form class="form-horizontal" action="memberInsert.ca" method="post" modelAttribute="Member">
+					<form class="form-horizontal" action="memberInsert.ca" method="post">
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputId">아이디</label>
 							<div class="col-sm-6">
 								<div class="input-group">
-									<form:input path="id" type="text" class="form-control" id="inputId" name="id"
+									<input type="text" class="form-control" id="inputId" name="id"
 										placeholder="아이디" /> <span class="input-group-btn">
-										<form:errors path="id" cssClass="error" />
 										<input class="btn btn-success btn-in" style="margin: 8px;"
 											id="check_id" type="button" value="중복확인">
 									</span>
@@ -189,8 +159,7 @@ html>body>section>div>div>div>form span>.btn-in {
 							<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputPassword" type="password"
-									placeholder="비밀번호" name="passwd">
-								<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
+									placeholder="숫자, 영어를 조합하여 6~20자리의 비밀번호를 입력해주세요." name="passwd">
 							</div>
 						</div>
 
@@ -200,8 +169,8 @@ html>body>section>div>div>div>form span>.btn-in {
 								확인</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputPasswordCheck"
-									type="password" placeholder="비밀번호 확인">
-								<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
+									type="password" placeholder="비밀번호 확인" onkeyup="checkPwd()">
+								<p class="help-block" id="pwcheck_change">비밀번호를 한번 더 입력해주세요.</p>
 							</div>
 						</div>
 
@@ -209,9 +178,8 @@ html>body>section>div>div>div>form span>.btn-in {
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputName">이름</label>
 							<div class="col-sm-6">
-								<form:input path = "name" class="form-control" id="inputName" type="text"
+								<input type="text" class="form-control" id="inputName" type="text"
 									placeholder="이름" name="name" />
-								<form:errors path="name" cssClass="error" />
 							</div>
 						</div>
 
@@ -220,9 +188,8 @@ html>body>section>div>div>div>form span>.btn-in {
 							<label class="col-sm-3 control-label" for="inputCp">휴대폰번호</label>
 							<div class="col-sm-6">
 								<div class="input-group">
-									<form:input path="phone" type="tel" class="form-control" id="inputPhone"
+									<input type="tel" class="form-control" id="inputPhone"
 										placeholder="-(대시)를 입력해 주세요" name="phone" /> 
-									<form:errors path="phone" cssClass="error" />	
 										<span class="input-group-btn">
 										<input class="btn btn-success btn-in" style="margin: 8px;" 
 											   type="button" value="인증번호 전송">
@@ -253,7 +220,7 @@ html>body>section>div>div>div>form span>.btn-in {
 							<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text" placeholder="이메일"
-									name="email">
+									name="email" id="inputEmail">
 							</div>
 						</div>
 
@@ -263,10 +230,10 @@ html>body>section>div>div>div>form span>.btn-in {
 							<div class="col-sm-6">
 								<div class="input-group">
 									<input class="form-control" id="inputAddrnum" type="text"
-										placeholder="우편번호" name="post" onclick="findPost()"> <span
+										placeholder="우편번호" name="post"> <span
 										class="input-group-btn">
 										<input type="button" class="btn btn-success btn-in" style="margin: 8px;"
-											id="post_find" value="우편찾기">
+											id="post_find" value="우편찾기"  onclick="findPost()">
 									</span>
 								</div>
 							</div>
@@ -305,14 +272,11 @@ html>body>section>div>div>div>form span>.btn-in {
 
 						<!-- 사진등록 -->
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputFile">사진등록</label>
+							<label class="col-sm-3 control-label" for="inputPhoto">사진등록</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="file" id="inputFile">
 							</div>
 						</div>
-
-
-
 
 
 						<div class="form-group">
@@ -339,7 +303,7 @@ html>body>section>div>div>div>form span>.btn-in {
 									value="가입 취소">
 							</div>
 						</div>
-					</form:form>
+					</form>
 					<hr>
 				</div>
 			</div>
@@ -366,5 +330,8 @@ html>body>section>div>div>div>form span>.btn-in {
 	<script src="/resources/js/jquery.meanmenu.js"></script>
 	<script src="/resources/js/plugins.js"></script>
 	<script src="/resources/js/main.js"></script>
+	<script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
+	<!-- 유효성 검사하는 js -->
+	<script src="/resources/js/mem_join.js"></script>
 </body>
 </html>

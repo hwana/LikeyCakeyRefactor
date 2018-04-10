@@ -174,7 +174,12 @@
 
 						<div class="sign-wrapper">
 							<span>안녕하세요, ${member.name} 님 </span>
-							<a class="sign-button" href = "logout.ca">Log-out</a><a class="sign-button" href = "bizMypageModify.ca">My Page</a> 	
+							<c:if test="${member.code == 2}">
+								<a class="sign-button" href="logout.ca">Log-out</a><a class="sign-button" href="memberMypage.ca">My Page</a>
+							</c:if>
+							<c:if test="${member.code == 3}">
+								<a class="sign-button" href = "logout.ca">Log-out</a><a class="sign-button" href = "bizMypageModify.ca">My Page</a>
+							</c:if> 	
 						</div>
 					</c:if>
 

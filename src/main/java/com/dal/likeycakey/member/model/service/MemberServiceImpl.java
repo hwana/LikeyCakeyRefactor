@@ -32,7 +32,13 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberDao.insertMember(m);
 		return result;
 	}
-	
 
+	
+	@Override
+	public String findId(Member m) throws Exception {
+		System.out.println("아이디 찾기 service 진입");
+		String findid = memberDao.findId(m);
+		return findid;
+	}
 
 }

@@ -101,7 +101,7 @@
 												<label class="col-sm-3 control-label" for="inputName">이름</label>
 												<div class="col-sm-6">
 													<input class="form-control" id="inputName" type="text"
-														placeholder="이름" value="${member.name }">
+														placeholder="이름" value="${member.name}">
 												</div>
 											</div>
 											
@@ -110,7 +110,7 @@
 												<div class="col-sm-6">
 													<div class="input-group">
 														<input type="tel" class="form-control" id="inputNumber"
-															placeholder="- 없이 입력해 주세요" /> <span
+															placeholder="- 없이 입력해 주세요" value="${member.phone}" /> <span
 															class="input-group-btn">
 															<button class="btn btn-success">
 																인증번호 전송</button>

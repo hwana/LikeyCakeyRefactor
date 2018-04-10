@@ -113,7 +113,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$(".login-submit").click(function() {
+		$("#biz_login").click(function() {
 			//.serialize를 사용하여 폼에 저장된 모든 데이터를 가져온다.
 			var form_data = $("#register-form").serialize();
 			$.ajax({
@@ -135,7 +135,7 @@
 		
 		
 		// 일반회원 로그인
-		$("#btn-login").click(function() {
+		$("#nor_login").click(function() {
 			//.serialize를 사용하여 폼에 저장된 모든 데이터를 가져온다.
 			var form_data = $("#login-form").serialize();
 			$.ajax({
@@ -150,6 +150,11 @@
 					} else {
 						$(".message").html("아이디 또는 비밀번호가 잘못되었습니다.");
 					}
+				},
+				
+				error : function(request, status, error){
+					alert ("code : " + request.status + "\n" + "message : " + request.responseText + "\n" +
+							"error : " + error);
 				}
 			});//ajax
 		});//submit
@@ -198,7 +203,7 @@
 									<div class="col-xs-8 col-xs-offset-2">
 										<input type="button" name="login-submit"
 											tabindex="4" class="form-control btn btn-login login-submit" value="로그인"
-											id="btn-login">
+											id="nor_login">
 									</div>
 								</div>
 								<div class="row text-center">
@@ -212,7 +217,7 @@
 											id="forgot-password">회원가입</a>
 									</div>
 									<div class="col-xs-5 text-left">
-										<a href="#" class="forgot-password" id="forgot-password">아이디/비밀번호
+										<a href="findIdpw.ca" class="forgot-password" id="forgot-find">아이디/비밀번호
 											찾기</a>
 									</div>
 								</div>
@@ -251,7 +256,7 @@
 									<div class="col-xs-8 col-xs-offset-2">
 
 										<input type="button" name="login-submit" tabindex="4"
-											class="form-control btn btn-login login-submit" value="로그인">
+											class="form-control btn btn-login login-submit" id="biz_login" value="로그인">
 									</div>
 								</div>
 								<div class="row text-center">
