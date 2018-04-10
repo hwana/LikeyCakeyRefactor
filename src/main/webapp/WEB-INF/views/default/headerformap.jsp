@@ -15,11 +15,12 @@
 <!-- Place favicon.ico in the root directory -->
 
 <!-- all css here -->
-
+<link rel="stylesheet" href="/resources/css/hwanhee.css">
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="/resources/css/elegant-font.css">
-<link rel="stylesheet" href="/resources/css/material-design-iconic-font.min.css">
+<link rel="stylesheet"
+	href="/resources/css/material-design-iconic-font.min.css">
 <link rel="stylesheet" href="/resources/css/meanmenu.min.css">
 <link rel="stylesheet" href="/resources/css/animate.css">
 <link rel="stylesheet" href="/resources/css/magnific-popup.css">
@@ -30,7 +31,8 @@
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/responsive.css">
 <link rel="stylesheet" href="/resources/css/hwanhee.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
@@ -51,46 +53,16 @@
 								<ul id="nav">
 									<li><a href="home.ca">Home</a></li>
 
-									<li>
-										<c:url var="headercake" value="cakeSearch.ca">
-											<c:param name="page" value="1"/>
-											<c:param name="input_search" value="#"/>
-											<c:param name="simple_filter" value=""/>
-										</c:url>
-										<a href="${headercake}">CAKE</a>
+									<li><a href="cakelist.ca">CAKE</a>
 										<ul>
-											<li>
-												<c:url var="headercake" value="cakeSearch.ca">
-													<c:param name="page" value="1"/>
-													<c:param name="input_search" value="#"/>
-													<c:param name="simple_filter" value=""/>
-												</c:url>
-												<a href="${headercake}"><i class="arrow_carrot-right"></i>모든 케이크</a>
-											</li>
-											<li>
-												<c:url var="headercake" value="cakeSearch.ca">
-													<c:param name="page" value="1"/>
-													<c:param name="input_search" value="빵"/>
-													<c:param name="simple_filter" value=""/>
-												</c:url>
-												<a href="${headercake}"><i class="arrow_carrot-right"></i>빵 케이크</a>
-											</li>
-											<li>
-												<c:url var="headercake" value="cakeSearch.ca">
-													<c:param name="page" value="1"/>
-													<c:param name="input_search" value="떡"/>
-													<c:param name="simple_filter" value=""/>
-												</c:url>
-												<a href="${headercake}"><i class="arrow_carrot-right"></i>떡 케이크</a>
-											</li>
-											<li>
-												<c:url var="headercake" value="cakeSearch.ca">
-													<c:param name="page" value="1"/>
-													<c:param name="input_search" value="아이스크림"/>
-													<c:param name="simple_filter" value="아이스"/>
-												</c:url>
-												<a href="${headercake}"><i class="arrow_carrot-right"></i>아이스크림 케이크</a>
-											</li>
+											<li><a href="shop.html"><i
+													class="arrow_carrot-right"></i> 모든 케이크</a></li>
+											<li><a href="shop-grid.html"><i
+													class="arrow_carrot-right"></i> 빵 케이크</a></li>
+											<li><a href="shop-list.html"><i
+													class="arrow_carrot-right"></i> 떡 케이크</a></li>
+											<li><a href="single-product.html"><i
+													class="arrow_carrot-right"></i> 아이스크림 케이크</a></li>
 										</ul></li>
 									<li><a href="hostpage.ca">SHOP</a>
 										<ul>
@@ -210,22 +182,6 @@
 			</div>
 		</div>
 		<!-- MOBILE-MENU-AREA END  -->
-		<!-- Banner Area Start -->
-		<div class="banner-area pb-90 pt-160 bg-2">
-			<div class="container">
-				<div class="row">
-					<div class="banner-content text-center text-white">
-						<h1>Detail View</h1>
-						<ul>
-							<li><a href="index.html">cake</a> <span
-								class="arrow_carrot-right "></span></li>
-							<li>Detail View</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Banner Area End -->
 	</header>
 	<script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
 	<script src="/resources/js/bootstrap.min.js"></script>

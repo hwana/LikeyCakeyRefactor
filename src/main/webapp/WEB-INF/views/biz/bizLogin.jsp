@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../default/header.jsp"%>
 
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		$(".login-submit").click(function() {
