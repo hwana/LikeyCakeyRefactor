@@ -30,19 +30,15 @@ public class BizDaoImpl implements BizDao {
 	}
 	
 	@Override
-	public Member selectMember(String id, String passwd) {
-		return (Member)sqlSession.selectOne("Member.loginCheck", new Member(id, passwd));
-	}
-	
-	
-	@Override
-	public int loginCheck(String id, String passwd) throws Exception {
+
+	public Member loginCheck(String id, String passwd) throws Exception {
 		System.out.println("여기도착");
-		int result = sqlSession.selectOne("Member.loginCheck", new Member(id, passwd));
+		
 		System.out.println("DAO="+id);
 		System.out.println("DAO="+passwd);
-		System.out.println("DAO="+result);
-		return result;
+	
+		return sqlSession.selectOne("Member.loginCheck", new Member(id, passwd));
+
 	}
 	
 	@Override

@@ -68,7 +68,7 @@ hr {
 					회원가입 <small>[Likey Cakey]사업자 회원가입</small>
 				</h1>
 			</div>
-			<form class="form-horizontal" action="bizInsert.ca" method="post">
+			<form class="form-horizontal" action="bizInsert.ca" method="post" enctype="multipart/form-data">
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label" for="inputPhoto">업체사진</label>
@@ -77,7 +77,10 @@ hr {
 							name="photo" placeholder="업체사진">
 
 					</div>
-					<button class="btn search" type="button">사진등록</button>
+					<label for="file" class="btn btn-success btn-lg search">
+    								사진등록
+								</label>
+								<input id="file" type="file" name="file"/>
 
 				</div>
 				<div class="form-group">
@@ -245,12 +248,12 @@ hr {
 					<label class="col-sm-3 control-label" for="inputemail">배송여부</label>
 					<div class="col-sm-3 checkbox">
 						<input class="checkbox-inline radio" type="radio"
-							name="bizDeliveryYn" id="delyes" value = "배송"> &nbsp;배송
+							name="bizDeliveryYn" id="delyes" value = "Y"> &nbsp;배송
 					</div>
 
 					<div class="col-sm-3 checkbox">
 						<input class="checkbox-inline radio" type="radio"
-							name="bizDeliveryYn" id="delno" value = "픽업"> &nbsp;픽업
+							name="bizDeliveryYn" id="delno" value = "N"> &nbsp;픽업
 					</div>
 				</div>
 
@@ -258,12 +261,12 @@ hr {
 					<label class="col-sm-3 control-label" for="inputemail">커스터마이징</label>
 					<div class="col-sm-3 checkbox">
 						<input class="checkbox-inline radio" type="radio"
-							name="bizCustomYn" id="cusyes" value = "가능"> &nbsp;가능
+							name="bizCustomYn" id="cusyes" value = "Y"> &nbsp;가능
 					</div>
 
 					<div class="col-sm-3 checkbox">
 						<input class="checkbox-inline radio" type="radio"
-							name="bizCustomYn" id="cusno" value = "불가능"> &nbsp;불가능
+							name="bizCustomYn" id="cusno" value = "N"> &nbsp;불가능
 					</div>
 				</div>
 

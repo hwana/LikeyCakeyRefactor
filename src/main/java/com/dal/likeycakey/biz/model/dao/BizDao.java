@@ -9,7 +9,6 @@ public interface BizDao {
 	public int insertBiz2(BizMember bizMember) throws Exception;
 	public int selectMember(String id);
 	public int insertProductBoard(ProductBoard productBoard) ;
-	public int loginCheck(String id, String passwd) throws Exception;
-	public Member selectMember(String id, String passwd);
+	public Member loginCheck(String id, String passwd) throws Exception;
 
 }
