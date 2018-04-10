@@ -42,7 +42,7 @@
 			$('.dec').click(function(e)){
 				e.preventDefault();
 				
-				vat stat = $('.cart-plus-minus-box').val();
+				var stat = $('.cart-plus-minus-box').val();
 				var num = parseInt(stat, 10);
 				
 			}
