@@ -43,7 +43,7 @@
 				e.preventDefault();
 				
 				vat stat = $('.cart-plus-minus-box').val();
-				//var num = parseInt(stat, 10);
+				var num = parseInt(stat, 10);
 				
 			}
 		})

@@ -8,11 +8,13 @@ public class BizWithMember implements java.io.Serializable{
 	private static final long serialVersionUID = 10L;
 	
 	private String id;
-	private String bizName; //매장이름
+	private String bizName; // 매장이름
 	private String bizPn;	// 사업자 전화번호
-	private String bizNum; //사업자 등록번호
-	private int bizDelivery; //배송비
-	private String masterName; //담당자 이름
+	private String bizNum; // 사업자 등록번호
+	private int bizDelivery; // 배송비
+	private String masterName; // 담당자 이름
+	private String bizDeliveryYn; // 배송 여부
+	private String bizCustomYn; // 커스텀 가능 여부
 	private String mName; // 사업자 이름
 	private String mEmail; // 사업자 이메일
 	private String mPost; // 매장 우편번호
@@ -27,9 +29,9 @@ public class BizWithMember implements java.io.Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public BizWithMember(String id, String bizName, String bizPn, String bizNum, int bizDelivery,
-			String masterName, String mName, String mEmail, String mPost, String mBasicAddr, String mDetailAddr,
-			String mCp, String mPhoto, int mStatus) {
+	public BizWithMember(String id, String bizName, String bizPn, String bizNum, int bizDelivery, String masterName,
+			String bizDeliveryYn, String bizCustomYn, String mName, String mEmail, String mPost, String mBasicAddr,
+			String mDetailAddr, String mCp, String mPhoto, int mStatus) {
 		super();
 		this.id = id;
 		this.bizName = bizName;
@@ -37,6 +39,8 @@ public class BizWithMember implements java.io.Serializable{
 		this.bizNum = bizNum;
 		this.bizDelivery = bizDelivery;
 		this.masterName = masterName;
+		this.bizDeliveryYn = bizDeliveryYn;
+		this.bizCustomYn = bizCustomYn;
 		this.mName = mName;
 		this.mEmail = mEmail;
 		this.mPost = mPost;
@@ -93,6 +97,22 @@ public class BizWithMember implements java.io.Serializable{
 
 	public void setMasterName(String masterName) {
 		this.masterName = masterName;
+	}
+
+	public String getBizDeliveryYn() {
+		return bizDeliveryYn;
+	}
+
+	public void setBizDeliveryYn(String bizDeliveryYn) {
+		this.bizDeliveryYn = bizDeliveryYn;
+	}
+
+	public String getBizCustomYn() {
+		return bizCustomYn;
+	}
+
+	public void setBizCustomYn(String bizCustomYn) {
+		this.bizCustomYn = bizCustomYn;
 	}
 
 	public String getmName() {
@@ -158,6 +178,7 @@ public class BizWithMember implements java.io.Serializable{
 	public void setmStatus(int mStatus) {
 		this.mStatus = mStatus;
 	}
+
 	
 	
 	

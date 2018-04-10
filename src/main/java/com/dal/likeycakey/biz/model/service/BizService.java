@@ -8,7 +8,7 @@ public interface BizService {
 
 	public int insertBiz(Member m) throws Exception;
 	public int insertBiz2(BizMember bm) throws Exception;
-	public Member loginCheck(String id, String passwd);
+	public int loginCheck(String id, String passwd) throws Exception;
 	public int dupid(String id);
 	public int insertProductBoard(ProductBoard productBoard);
 
