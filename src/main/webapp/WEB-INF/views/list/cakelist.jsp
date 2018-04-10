@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" errorPage="listError.jsp"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -11,6 +11,7 @@
 <c:set var="maxpage" value="${requestScope.maxpage}"/>
 <c:set var="cakelist" value="${requestScope.cakelist}"/>
 <c:set var="locationlist" value="${requestScope.locationlist}"/>
+<c:set var="input_search" value="${requestScope.input_search}"/>
 <c:set var="member" value="${sessionScope.member}"/>
 
 <!DOCTYPE html>
@@ -69,7 +70,7 @@
 									</ul> -->
 								</div>
 								<div class="young-sorting text-right">
-									<a href="#"><i class="fa fa-map-marker"></i>지도</a>
+									<a href="showmap.ca"><i class="fa fa-map-marker"></i>지도</a>
 									<a href="#"><i class="fa fa-sliders"></i>필터</a>
 								</div>
 							</div>
@@ -88,29 +89,84 @@
 								<div class="young-grid">
 									<ul>
 										<li>
-											<a>전체</a>
+											<c:url var="all" value="cakeSearch.ca">
+												<c:param name="page" value="1"/>
+												<c:param name="input_search" value="${input_search}"/>
+												<c:param name="simple_filter" value=""/>
+											</c:url>
+											<a href="${all}">전체</a>
 										</li>
 										<i class="fa fa-ellipsis-v"></i>
 										<li>
-											<a>&nbsp;&nbsp;빵</a>
+											<c:url var="bread" value="cakeSearch.ca">
+												<c:param name="page" value="1"/>
+												<c:param name="input_search" value="${input_search}"/>
+												<c:param name="simple_filter" value="빵"/>
+											</c:url>
+											<a href="${bread}">&nbsp;&nbsp;빵</a>
 										</li>
 										<i class="fa fa-ellipsis-v"></i>
 										<li>
-											<a>&nbsp;&nbsp;떡</a>
+											<c:url var="dduck" value="cakeSearch.ca">
+												<c:param name="page" value="1"/>
+												<c:param name="input_search" value="${input_search}"/>
+												<c:param name="simple_filter" value="떡"/>
+											</c:url>
+											<a href="${dduck}">&nbsp;&nbsp;떡</a>
 										</li>
 										<i class="fa fa-ellipsis-v"></i>
 										<li>
-											<a>&nbsp;&nbsp;아이스크림</a>
+											<c:url var="icecream" value="cakeSearch.ca">
+												<c:param name="page" value="1"/>
+												<c:param name="input_search" value="${input_search}"/>
+												<c:param name="simple_filter" value="아이스크림"/>
+											</c:url>
+											<a href="${icecream}">&nbsp;&nbsp;아이스크림</a>
 										</li>
 									</ul>
 								</div>
 								<div class="young_sorting_filter">
-									<label for="young_sorting_filterin">베스트 케이크 순&nbsp;<i class="fa fa-angle-down"></i></label> 
+									<label for="young_sorting_filterin">최신 업로드 순&nbsp;<i class="fa fa-angle-down"></i></label> 
 									<select name="" id="young_sorting_filterin">
-										<option value="BEST_DESC" selected="">베스트 케이크 순</option>
-										<option value="PRC_ASC">가격 낮은 순</option>
-										<option value="PRC_DESC">가격 높은 순</option>
-										<option value="CMNT_DESC">이용후기 많은 순</option>
+										<option value="${newestorder}">
+											<c:url var="newestorder" value="home.ca">
+												<c:param name="page" value="1"/>
+												<c:param name="input_search" value="${input_search}"/>
+											</c:url>
+											최신 업로드 순
+										</option>
+										<option value="${mostlikeorder}">
+											<c:url var="mostlikeorder" value="home.ca">
+												<c:param name="page" value="1"/>
+												<c:param name="input_search" value="${input_search}"/>
+												<c:param name="order_filter" value="P_B_LIKE DESC"/>
+											</c:url>
+											베스트 케이크 순
+										</option>
+										<option value="${cheapest}">
+											<c:url var="cheapest" value="home.ca">
+												<c:param name="page" value="1"/>
+												<c:param name="input_search" value="${input_search}"/>
+												<c:param name="order_filter" value="P_PRICE ASC"/>
+											</c:url>
+											가격 낮은 순
+										</option>
+										<option value="${expensive}">
+											<c:url var="expensive" value="home.ca">
+												<c:param name="page" value="1"/>
+												<c:param name="input_search" value="${input_search}"/>
+												<c:param name="order_filter" value="P_PRICE DESC"/>
+											</c:url>
+											가격 높은 순
+										</option>
+										<option value="${mostreview}">
+											<c:url var="mostreview" value="home.ca">
+												<c:param name="page" value="1"/>
+												<c:param name="input_search" value="${input_search}"/>
+												<c:param name="order_filter" value="P_B_READCOUNT DESC"/>
+											</c:url>
+											이용후기 많은 순
+										</option>
 									</select>
 								</div>
 							</div>
@@ -407,13 +463,37 @@
 						<!-- Page Pagination Start -->
 						<div class="col-md-12">
 							<div class="page-pagination text-center">
-								<ul>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li class="next"><a href="#"><span class="icon-left" data-icon="&#x24;"></span></a></li>
-								</ul>
+								<c:if test="${currentPage <= 1}">
+									<span class="icon-right" data-icon="&#x23;" style="text-decoration:none;"></span>
+								</c:if>
+								<c:if test="${currentPage > 1}">
+									<c:url var="blistST" value="cakeSearch.ca">
+										<c:param name="page" value="${currentPage-1}"/>
+										<c:param name="input_search" value="${input_search}"/>
+									</c:url>
+									<a href="${blistST}" style="text-decoration:none;"><span class="icon-right" data-icon="&#x23;" style="text-decoration:none;"></span></a>
+								</c:if>
+								<c:forEach var="p" begin="${startpage}" end="${endpage}">
+									<c:if test="${p eq currentPage}">
+										<font color="#9ababc"><b>${p}</b></font>
+									</c:if>
+									<c:if test="${p ne currentPage}">
+										<c:url var="blistchk" value="cakeSearch.ca">
+											<c:param name="page" value="${p}"/>
+											<c:param name="input_search" value="${input_search}"/>
+										</c:url>
+										<a href="${blistchk}" style="text-decoration:none">${p}</a>
+									</c:if>
+								</c:forEach>
+								<c:if test="${currentPage >= maxpage}">
+									<span class="icon-left" data-icon="&#x24;" style="text-decoration:none"></span>
+								</c:if><c:if test="${currentPage < maxpage}">
+								<c:url var="blistEND" value="cakeSearch.ca">
+									<c:param name="page" value="${currentPage+1}"/>
+									<c:param name="input_search" value="${input_search}"/>
+								</c:url>
+									<a href="${blistEND}" style="text-decoration:none"><span class="icon-left" data-icon="&#x24;" style="text-decoration:none"></span></a>
+								</c:if>
 							</div>
 						</div>
 						<!-- Page Pagination End -->
