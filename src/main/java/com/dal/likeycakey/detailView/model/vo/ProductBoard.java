@@ -2,6 +2,8 @@ package com.dal.likeycakey.detailView.model.vo;
 
 import org.springframework.stereotype.Component;
 
+import com.dal.likeycakey.biz.model.vo.BizMember;
+
 // servlet-context의 <context:component-scan>에 설정된 것을 읽음.
 @Component
 public class ProductBoard implements java.io.Serializable{
@@ -168,6 +170,7 @@ public class ProductBoard implements java.io.Serializable{
    public void setPbSellCnt(int pbSellCnt) {
       this.pbSellCnt = pbSellCnt;
    }
+  
 
 @Override
 public String toString() {
