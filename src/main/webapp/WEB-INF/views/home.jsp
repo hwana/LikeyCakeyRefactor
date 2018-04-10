@@ -34,6 +34,7 @@
         <link rel="stylesheet" href="/resources/css/responsive.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
        	<link rel="stylesheet" href="/resources/css/young.css">
+       	<link rel="stylesheet" href="/resources/css/hwanhee.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
     
     
@@ -112,16 +113,46 @@
 							<nav>
 								<ul id="nav">
 									<li><a href="home.ca">Home</a></li>
-									<li><a href="cakelist.ca">CAKE</a>
+									<li>
+										<c:url var="headercake" value="cakeSearch.ca">
+											<c:param name="page" value="1"/>
+											<c:param name="input_search" value="#"/>
+											<c:param name="simple_filter" value=""/>
+										</c:url>
+										<a href="${headercake}">CAKE</a>
 										<ul>
-											<li><a href="shop.html"><i
-													class="arrow_carrot-right"></i> 모든 케이크</a></li>
-											<li><a href="shop-grid.html"><i
-													class="arrow_carrot-right"></i> 빵 케이크</a></li>
-											<li><a href="shop-list.html"><i
-													class="arrow_carrot-right"></i> 떡 케이크</a></li>
-											<li><a href="single-product.html"><i
-													class="arrow_carrot-right"></i> 아이스크림 케이크</a></li>
+											<li>
+												<c:url var="headercake" value="cakeSearch.ca">
+													<c:param name="page" value="1"/>
+													<c:param name="input_search" value="#"/>
+													<c:param name="simple_filter" value=""/>
+												</c:url>
+												<a href="${headercake}"><i class="arrow_carrot-right"></i>모든 케이크</a>
+											</li>
+											<li>
+												<c:url var="headercake" value="cakeSearch.ca">
+													<c:param name="page" value="1"/>
+													<c:param name="input_search" value="빵"/>
+													<c:param name="simple_filter" value=""/>
+												</c:url>
+												<a href="${headercake}"><i class="arrow_carrot-right"></i>빵 케이크</a>
+											</li>
+											<li>
+												<c:url var="headercake" value="cakeSearch.ca">
+													<c:param name="page" value="1"/>
+													<c:param name="input_search" value="떡"/>
+													<c:param name="simple_filter" value=""/>
+												</c:url>
+												<a href="${headercake}"><i class="arrow_carrot-right"></i>떡 케이크</a>
+											</li>
+											<li>
+												<c:url var="headercake" value="cakeSearch.ca">
+													<c:param name="page" value="1"/>
+													<c:param name="input_search" value="아이스크림"/>
+													<c:param name="simple_filter" value="아이스"/>
+												</c:url>
+												<a href="${headercake}"><i class="arrow_carrot-right"></i>아이스크림 케이크</a>
+											</li>
 										</ul></li>
 
 									<li><a href="hostpage.ca">SHOP</a>
