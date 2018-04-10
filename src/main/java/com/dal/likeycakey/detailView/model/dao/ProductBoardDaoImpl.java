@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
+import com.dal.likeycakey.member.model.vo.BizWithMember;
 import com.dal.likeycakey.member.model.vo.MemberLike;
 
 @Repository("pbDao")
@@ -91,6 +92,16 @@ public class ProductBoardDaoImpl implements ProductBoardDao {
 		map.put("pbNum", pbNum);
 		map.put("id", id);
 		return sqlSession.delete("Member.deleteHeartMember", map);
+	}
+
+	@Override
+	public ProductBoard selectProductDetail(String pbNum) {
+		return sqlSession.selectOne("productBoard.selectProductDetail", pbNum);
+	}
+
+	@Override
+	public BizWithMember selectProductDetailBiz(String id) {
+		return sqlSession.selectOne("BizWithMember.selectProductDetailBiz", id);
 	}
 
 }
