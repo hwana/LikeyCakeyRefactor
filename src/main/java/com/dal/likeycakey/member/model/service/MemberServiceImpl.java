@@ -27,7 +27,8 @@ public class MemberServiceImpl implements MemberService {
 	// member 삽입
 	@Override
 	public int insertMember (Member m) throws Exception {
-		return memberDao.insertMember(m);
+		int result = memberDao.insertMember(m);
+		return result;
 	}
 	
 

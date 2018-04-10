@@ -15,7 +15,9 @@ public class MemberDaoImpl implements MemberDao {
 	// member insert 할 수 있는 DAO
 	@Override
 	public int insertMember(Member m) throws Exception{
-		return sqlSession.insert("Member.insertMember", m);
+		System.out.println("일반 회원가입");
+		int result = sqlSession.insert("Member.insertMember", m);
+		return result;
 	}
 	
 	// member idcheck 할 수 있는 DAO

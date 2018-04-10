@@ -287,9 +287,6 @@ hr {
 
 	<script>
 		$(document).ready(function() {
-			
-			
-			
 			$("#dupid").click(function() {
 				$.ajax({
 					url : "dupid.ca",
