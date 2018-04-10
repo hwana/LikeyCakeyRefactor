@@ -14,13 +14,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.likeycakey.biz.model.service.BizService;
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
 import com.dal.likeycakey.member.model.vo.Member;
+
 
 @Controller
 public class BizController {
@@ -34,38 +37,51 @@ public class BizController {
 
 		return "biz/bizLogin";
 	}
-	
-	@RequestMapping(value = "loginCheck1.ca", method = RequestMethod.POST)
-	public ModelAndView loginCheck1(
-			HttpSession session,
-			Member member,
-			ModelAndView mv) {
-		
-		session.setAttribute("member", bizService.loginCheck(member.getId(), member.getPasswd()));
-		mv.setViewName("redirect:home.ca");
-		return mv;
-	}
-	
+
+
+	// 로그인 체크
+
 	@RequestMapping(value = "loginCheck2.ca", method = RequestMethod.POST)
-	public ModelAndView loginCheck2(
-			HttpSession session,
-			Member member,
-			ModelAndView mv){
+	public void loginCheck(ModelAndView mv, HttpSession session, @RequestParam("id") String id,
+			 @RequestParam("passwd") String passwd, HttpServletResponse response) {
+	
+		try {
+
+			PrintWriter out = response.getWriter();
+			//데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
+			int result = bizService.loginCheck(id,passwd); 
+			//입력된 아이디를 세션에 저장
+			session.setAttribute("id", id);
+			//결과가 0보다 크면 ok출력
+			if (result > 0) {
+				out.print("ok");			
+			} else {
+				out.print("no");
+			}
+			out.flush();
+			out.close();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
 		
-		session.setAttribute("member", bizService.loginCheck(member.getId(), member.getPasswd()));
-		mv.setViewName("redirect:home.ca");
+	}
+
+	// 로그아웃
+	@RequestMapping(value = "logout.ca", method = RequestMethod.GET)
+	public ModelAndView memberLogout(HttpSession session, ModelAndView mv) {
+
+		if (session.getAttribute("id") != null) {
+			session.invalidate();
+		}
+		mv.setViewName("home");
+
+
 		return mv;
 	}
-	
-	@RequestMapping(value="logout.ca", method=RequestMethod.GET)
-	public ModelAndView memberLogout(HttpSession session, ModelAndView mv) {
-	
-		if(session.getAttribute("member") != null){
-			session.invalidate();
-	    }      mv.setViewName("home");
-	    
-	    return mv;
-	}
+
 	
 	//아이디 중복검사
 	@RequestMapping(value = "dupid.ca", method = RequestMethod.POST)
@@ -97,6 +113,8 @@ public class BizController {
 			@RequestParam("bizNum") String bizNum,
 			@RequestParam("bizDelivery") int bizDelivery,
 			@RequestParam("masterName") String masterName,
+			@RequestParam("bizDeliveryYn") String bizDeliveryYn,
+			@RequestParam("bizCustomYn") String bizCustomYn,
 			 ModelAndView mv) {
 
 		BizMember bm = new BizMember();
@@ -106,6 +124,8 @@ public class BizController {
 		bm.setBizNum(bizNum);
 		bm.setBizDelivery(bizDelivery);
 		bm.setMasterName(masterName);
+		bm.setBizDeliveryYn(bizDeliveryYn);
+		bm.setBizCustomYn(bizCustomYn);
 		
 		try {
 			int result = bizService.insertBiz(m);
@@ -114,6 +134,7 @@ public class BizController {
 			System.out.println("비즈멤버등록성공");
 		} catch (Exception e) {
 			mv.setViewName("redirect:home.ca");
+			System.out.println(e);
 			System.out.println("비즈멤버등록실패");
 		}
 		return mv;

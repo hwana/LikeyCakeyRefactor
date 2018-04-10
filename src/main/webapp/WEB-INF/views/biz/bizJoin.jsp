@@ -12,14 +12,14 @@ hr {
 	margin: 20px;
 }
 
-#radio {
+.radio {
 	height: auto;
 	width: auto;
 	font-size: 15px;
 	margin: auto 0;
 }
 
-#checkbox {
+.checkbox {
 	margin-top: 18px;
 }
 
@@ -32,7 +32,7 @@ hr {
 	margin-top: 30px;
 }
 
-#verifycode {
+.verifycode {
 	background: #9bcaba;
 	margin-left: 10px;
 }
@@ -40,6 +40,7 @@ hr {
 .search {
 	background: #9bcaba;
 	margin-top: 10px;
+	color: white;
 }
 
 #agree {
@@ -55,6 +56,9 @@ hr {
 	background: #9bcaba;
 }
 </style>
+
+
+
 </head>
 <body>
 	<article class="container">
@@ -73,8 +77,7 @@ hr {
 							name="photo" placeholder="업체사진">
 
 					</div>
-					<button class="btn btn-success" type="button" class="search">
-						사진등록</button>
+					<button class="btn search" type="button">사진등록</button>
 
 				</div>
 				<div class="form-group">
@@ -84,8 +87,7 @@ hr {
 							placeholder="아이디" name="id">
 
 					</div>
-					<button class="btn btn-success" type="button" class="search"
-						id="dupid">중복검사</button>
+					<button class="btn search" type="button" id="dupid">중복검사</button>
 
 				</div>
 				<div class="form-group">
@@ -93,7 +95,7 @@ hr {
 					<div class="col-sm-6">
 						<input class="form-control" id="inputPassword" type="password"
 							placeholder="비밀번호" name="passwd">
-						<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
+						<p class="help-block">영여, 숫자포함 8자 이상</p>
 					</div>
 				</div>
 				<div class="form-group">
@@ -110,8 +112,8 @@ hr {
 					<label class="col-sm-3 control-label" for="inputName">대표자
 						이름</label>
 					<div class="col-sm-6">
-						<input class="form-control" id="inputName" type="text" name="name"
-							placeholder="대표자 이름">
+						<input class="form-control" id="inputName" type="text"
+							placeholder="대표자 이름" name="name">
 					</div>
 				</div>
 
@@ -119,7 +121,7 @@ hr {
 					<label class="col-sm-3 control-label" for="inputStoreName">상호명</label>
 					<div class="col-sm-6">
 						<input class="form-control" id="inputStoreName" type="text"
-							name="bizName" placeholder="상호명">
+							placeholder="상호명" name="bizName">
 					</div>
 				</div>
 
@@ -127,7 +129,7 @@ hr {
 					<label class="col-sm-3 control-label" for="inputStoreCall">업체번호</label>
 					<div class="col-sm-6">
 						<input class="form-control" id="inputStoreCall" type="text"
-							name="bizPn" placeholder="업체번호">
+							placeholder="업체번호" name="bizPn">
 					</div>
 				</div>
 
@@ -136,7 +138,7 @@ hr {
 						등록번호</label>
 					<div class="col-sm-6">
 						<input class="form-control" id="inputBizNum" type="text"
-							name="bizNum" placeholder="사업자 등록번호">
+							placeholder="사업자 등록번호" name="bizNum">
 					</div>
 				</div>
 
@@ -147,7 +149,8 @@ hr {
 							placeholder="우편번호">
 					</div>
 
-					<button class="btn btn-success" type="button" class="search">검색</button>
+					<button class="btn search" type="button"
+						onclick="sample6_execDaumPostcode()">검색</button>
 				</div>
 
 				<div class="form-group">
@@ -173,7 +176,8 @@ hr {
 						이름</label>
 					<div class="col-sm-6">
 						<input class="form-control" id="inputMasterName" type="text"
-							name="masterName" placeholder="담당자 이름">
+							placeholder="담당자 이름" name="masterName">
+
 					</div>
 				</div>
 
@@ -184,10 +188,9 @@ hr {
 					<div class="col-sm-6">
 						<div class="input-group">
 							<input type="tel" class="form-control" id="inputNumber"
-								placeholder="- 없이 입력해 주세요" name="phone" /> <span
+								placeholder="-포함하여 입력하세요." name="phone" /> <span
 								class="input-group-btn">
-								<button class="btn btn-success" id="verifycode">인증번호 전송
-								</button>
+								<button class="btn verifycode">인증번호 전송</button>
 							</span>
 						</div>
 					</div>
@@ -200,8 +203,7 @@ hr {
 						<div class="input-group">
 							<input class="form-control" id="inputNumberCheck" type="text"
 								placeholder="인증번호"> <span class="input-group-btn">
-								<button class="btn btn-success" type="button" id="verifycode">
-									인증번호 확인</button>
+								<button class="btn verifycode" type="button">인증번호 확인</button>
 							</span>
 						</div>
 						<p class="help-block">전송된 인증번호를 입력해주세요.</p>
@@ -225,6 +227,7 @@ hr {
 					</div>
 				</div>
 
+
 				<div class="form-group">
 					<label class="col-sm-3 control-label" for="inputAgree">약관
 						동의</label>
@@ -240,27 +243,27 @@ hr {
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label" for="inputemail">배송여부</label>
-					<div class="col-sm-3" id="checkbox">
-						<input class="checkbox-inline" id="radio" type="radio">
-						&nbsp;배송
+					<div class="col-sm-3 checkbox">
+						<input class="checkbox-inline radio" type="radio"
+							name="bizDeliveryYn" id="delyes" value = "배송"> &nbsp;배송
 					</div>
 
-					<div class="col-sm-3" id="checkbox">
-						<input class="checkbox-inline" id="radio" type="radio">
-						&nbsp;픽업
+					<div class="col-sm-3 checkbox">
+						<input class="checkbox-inline radio" type="radio"
+							name="bizDeliveryYn" id="delno" value = "픽업"> &nbsp;픽업
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label" for="inputemail">커스터마이징</label>
-					<div class="col-sm-3" id="checkbox">
-						<input class="checkbox-inline" id="radio" type="radio">
-						&nbsp;가능
+					<div class="col-sm-3 checkbox">
+						<input class="checkbox-inline radio" type="radio"
+							name="bizCustomYn" id="cusyes" value = "가능"> &nbsp;가능
 					</div>
 
-					<div class="col-sm-3" id="checkbox">
-						<input class="checkbox-inline" id="radio" type="radio">
-						&nbsp;불가능
+					<div class="col-sm-3 checkbox">
+						<input class="checkbox-inline radio" type="radio"
+							name="bizCustomYn" id="cusno" value = "불가능"> &nbsp;불가능
 					</div>
 				</div>
 
@@ -272,15 +275,21 @@ hr {
 							가입취소</button>
 					</div>
 				</div>
-			</form>		
+			</form>
 		</div>
 	</article>
 
+
+
+	<script src="/resources/js/biz_join.js"></script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script src="/resources/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
+
 	<script>
 		$(document).ready(function() {
+			
+			
+			
 			$("#dupid").click(function() {
 				$.ajax({
 					url : "dupid.ca",
@@ -291,11 +300,11 @@ hr {
 					type : "post",
 					success : function(value) {
 						if (value == "ok") {
-							alert("아이디가 중복되지 않습니다.");
-							$('input[name=name]').focus();
+							alert("사용가능한 아이디입니다.");
+							$('input[name=passwd]').focus();
 						} else {
 							alert("이미 존재하는 아이디입니다. 아이디를 다시 설정하세요");
-							$('#id').select();
+							$('#inputID').select();
 						}
 					},
 					error : function(value) {
@@ -306,6 +315,7 @@ hr {
 			}); //click
 		}); //ready
 	</script>
+
 </body>
 
 </html>

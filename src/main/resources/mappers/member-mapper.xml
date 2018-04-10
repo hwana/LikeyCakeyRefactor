@@ -32,11 +32,11 @@
 		VALUES (#{id},#{passwd},#{name},#{phone},#{email},#{post},#{addressBasic},#{addressDetail},#{photo},2,0,0)
 	</insert>
 	
-	<select id = "loginCheck" parameterType="Member" resultMap="resultMember">
-		SELECT * FROM MEMBER WHERE M_ID = #{id} and M_PW = #{passwd}
+	<select id = "loginCheck" parameterType="Member" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id} and M_PW = #{passwd}
 	</select>
 
-	<select id="dupid" parameterType="string" resultType="_int">
+	<select id="dupid" parameterType="String" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id}
 	</select>
 	
@@ -59,3 +59,4 @@
 		SELECT * FROM MEMBER_LIKE WHERE M_ID = #{id}
 	</select>
 </mapper>
+

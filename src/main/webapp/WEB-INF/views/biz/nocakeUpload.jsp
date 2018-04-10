@@ -41,13 +41,13 @@
 										<ul>
 											<!-- li style="border-bottom:0px;" <<  -->
 											<!-- li style="border-bottom:0px;" << 라인 없애기 -->
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="pcSelect.ca"><i
 												class="zmdi zmdi-chevron-right"></i>케이크 등록하기</a></li>
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="bizMypageModify.ca"><i
 												class="zmdi zmdi-chevron-right"></i>사업가 정보 수정</a></li>
 										<li style="border-bottom: 0px;"><a href="#"><i
 												class="zmdi zmdi-chevron-right"></i>주문내역</a></li>
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="bizQNA.ca"><i
 												class="zmdi zmdi-chevron-right"></i>문의글 모음</a></li>
 
 										</ul>
@@ -60,7 +60,7 @@
 					<!-- Right Side Start -->
 					<span style="border:2px solid pink;"></span>&nbsp;&nbsp;<h1 style="display:inline; margin-top:0"><small><b>케이크 등록하기</b></small></h1><br>
 					
-					<button class="btn btn-3 btn-3c" id = "cakeupload">&nbsp;&nbsp;<div>케이크 등록하기</div></button>
+					<button class="btn btn-3 btn-3c" id = "cakeupload" onclick = "location.href = 'pscSelect.ca'">&nbsp;&nbsp;<div>케이크 등록하기</div></button>
 					
 					<!-- Right Side End -->
 				</div>
