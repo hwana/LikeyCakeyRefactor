@@ -7,6 +7,7 @@
 
 	<resultMap id="resultMember" type="bizMember">
 		<result property = "id" column="M_ID" /> 
+	
 		<result property="bizName" column="BIZ_NAME" />
 		<result property="bizPn" column="BIZ_PN" />
 		<result property="bizNum" column="BIZ_NUM" />
@@ -18,11 +19,11 @@
 	</resultMap>
 
 	<insert id="insertMember" parameterType="bizMember" flushCache="true">
-		INSERT INTO MEMBER_BIZ(BIZ_NAME, BIZ_PN, BIZ_NUM, BIZ_DELIVERY, MASTER_NAME,BIZ_DELIVERY_YN, BIZ_CUSTOM_YN) VALUES 
-		(#{bizName},#{bizPn},#{bizNum},#{bizDelivery},#{masterName},#{bizDeliveryYn},#{bizCustomYn})
+		INSERT INTO MEMBER_BIZ VALUES
+		(#{id},3, #{bizName},#{bizPn},#{bizNum},#{bizDelivery},#{masterName},#{bizDeliveryYn},#{bizCustomYn})
 	</insert>
 
 	<select id="selectBizMember" parameterType="bizMember" resultMap="resultMember">
-		SELECT * FROM MEMBER_BIZ WHERE M_ID=#{id}
+		SELECT count(*) FROM MEMBER_BIZ WHERE M_ID=#{id}
 	</select>
 </mapper>

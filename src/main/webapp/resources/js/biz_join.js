@@ -133,6 +133,16 @@ $(document)
 											$("#inputBizNum").focus();
 											return false;
 
+										}else if ($("#inputBasicAddr").val() == "") {
+											alert("기본주소를 입력하세요");
+											$("#inputBasicAddr").focus();
+											return false;
+
+										}else if ($("#inputDetailAddr").val() == "") {
+											alert("상세주소를 입력하세요");
+											$("#inputDetailAddr").focus();
+											return false;
+
 										}else if ($("#inputMasterName").val() == "") {
 											alert("담당자 이름을 입력하세요");
 											$("#inputMasterName").focus();
@@ -179,7 +189,10 @@ $(document)
 											
 										}
 										  else {
-											alert("회원가입 완료");
+											 
+											  alert("회원가입이 완료되었습니다.");
+											
+		
 											return true;
 										}
 

@@ -44,7 +44,6 @@ public class BizController {
 	@RequestMapping(value = "loginCheck2.ca", method = RequestMethod.POST)
 	public void loginCheck(ModelAndView mv, HttpSession session, @RequestParam("id") String id,
 			 @RequestParam("passwd") String passwd, HttpServletResponse response) {
-
 	
 		try {
 
@@ -114,6 +113,8 @@ public class BizController {
 			@RequestParam("bizNum") String bizNum,
 			@RequestParam("bizDelivery") int bizDelivery,
 			@RequestParam("masterName") String masterName,
+			@RequestParam("bizDeliveryYn") String bizDeliveryYn,
+			@RequestParam("bizCustomYn") String bizCustomYn,
 			 ModelAndView mv) {
 
 		BizMember bm = new BizMember();
@@ -123,6 +124,8 @@ public class BizController {
 		bm.setBizNum(bizNum);
 		bm.setBizDelivery(bizDelivery);
 		bm.setMasterName(masterName);
+		bm.setBizDeliveryYn(bizDeliveryYn);
+		bm.setBizCustomYn(bizCustomYn);
 		
 		try {
 			int result = bizService.insertBiz(m);
@@ -131,6 +134,7 @@ public class BizController {
 			System.out.println("비즈멤버등록성공");
 		} catch (Exception e) {
 			mv.setViewName("redirect:home.ca");
+			System.out.println(e);
 			System.out.println("비즈멤버등록실패");
 		}
 		return mv;

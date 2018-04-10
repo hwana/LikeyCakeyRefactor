@@ -31,7 +31,7 @@ public class BizDaoImpl implements BizDao {
 	@Override
 
 	public int loginCheck(String id, String passwd) throws Exception {
-		
+		System.out.println("여기도착");
 		int result = sqlSession.selectOne("Member.loginCheck", new Member(id, passwd));
 		System.out.println("DAO="+id);
 		System.out.println("DAO="+passwd);

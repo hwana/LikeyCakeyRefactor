@@ -46,13 +46,13 @@
 								<div class="category-list mt-20">
 									<ul>
 										<!-- li style="border-bottom:0px;" << 라인 없애기 -->
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="pcSelect.ca"><i
 												class="zmdi zmdi-chevron-right"></i>케이크 등록하기</a></li>
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="bizMypageModify.ca"><i
 												class="zmdi zmdi-chevron-right"></i>사업가 정보 수정</a></li>
 										<li style="border-bottom: 0px;"><a href="#"><i
 												class="zmdi zmdi-chevron-right"></i>주문내역</a></li>
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="bizQNA.ca"><i
 												class="zmdi zmdi-chevron-right"></i>문의글 모음</a></li>
 
 									</ul>
@@ -72,8 +72,8 @@
 				</div>
 				<br>
 				
-				<button class="btn btn-3 btn-3c" id = "customupload">&nbsp;&nbsp;<div>커스터마이징 <br>케이크 등록하기</div></button>
-				<button class="btn btn-3 btn-3c" id = "productupload">&nbsp;&nbsp;<div>완제품 <br>케이크 등록하기</div></button>
+				<button class="btn btn-3 btn-3c" id = "customupload" onclick = "location.href = 'customCakeUpload.ca'">&nbsp;&nbsp;<div>커스터마이징 <br>케이크 등록하기</div></button>
+				<button class="btn btn-3 btn-3c" id = "productupload" onclick = "location.href = 'productCakeUpload.ca'">&nbsp;&nbsp;<div>완제품 <br>케이크 등록하기</div></button>
 
 			</div>
 		</div>

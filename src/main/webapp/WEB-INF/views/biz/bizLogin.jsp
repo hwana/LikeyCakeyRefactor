@@ -53,7 +53,7 @@
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="id">아이디</label>
 									<div class="col-xs-8">
-										<input type="text" name="id" id="username" tabindex="1"
+										<input type="text" name="id" tabindex="1"
 											class="form-control" placeholder="아이디를 입력하세요." value="">
 									</div>
 

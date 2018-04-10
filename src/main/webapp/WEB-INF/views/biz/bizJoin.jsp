@@ -57,6 +57,8 @@ hr {
 }
 </style>
 
+
+
 </head>
 <body>
 	<article class="container">
@@ -93,7 +95,7 @@ hr {
 					<div class="col-sm-6">
 						<input class="form-control" id="inputPassword" type="password"
 							placeholder="비밀번호" name="passwd">
-						<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
+						<p class="help-block">영여, 숫자포함 8자 이상</p>
 					</div>
 				</div>
 				<div class="form-group">
@@ -186,7 +188,7 @@ hr {
 					<div class="col-sm-6">
 						<div class="input-group">
 							<input type="tel" class="form-control" id="inputNumber"
-								placeholder="- 없이 입력해 주세요" name="phone" /> <span
+								placeholder="-포함하여 입력하세요." name="phone" /> <span
 								class="input-group-btn">
 								<button class="btn verifycode">인증번호 전송</button>
 							</span>
@@ -243,12 +245,12 @@ hr {
 					<label class="col-sm-3 control-label" for="inputemail">배송여부</label>
 					<div class="col-sm-3 checkbox">
 						<input class="checkbox-inline radio" type="radio"
-							name="bizDeliveryYn" id="delyes"> &nbsp;배송
+							name="bizDeliveryYn" id="delyes" value = "배송"> &nbsp;배송
 					</div>
 
 					<div class="col-sm-3 checkbox">
 						<input class="checkbox-inline radio" type="radio"
-							name="bizDeliveryYn" id="delno"> &nbsp;픽업
+							name="bizDeliveryYn" id="delno" value = "픽업"> &nbsp;픽업
 					</div>
 				</div>
 
@@ -256,12 +258,12 @@ hr {
 					<label class="col-sm-3 control-label" for="inputemail">커스터마이징</label>
 					<div class="col-sm-3 checkbox">
 						<input class="checkbox-inline radio" type="radio"
-							name="bizCustomYn" id="cusyes"> &nbsp;가능
+							name="bizCustomYn" id="cusyes" value = "가능"> &nbsp;가능
 					</div>
 
 					<div class="col-sm-3 checkbox">
 						<input class="checkbox-inline radio" type="radio"
-							name="bizCustomYn" id="cusno"> &nbsp;불가능
+							name="bizCustomYn" id="cusno" value = "불가능"> &nbsp;불가능
 					</div>
 				</div>
 
@@ -285,6 +287,9 @@ hr {
 
 	<script>
 		$(document).ready(function() {
+			
+			
+			
 			$("#dupid").click(function() {
 				$.ajax({
 					url : "dupid.ca",
