@@ -42,16 +42,20 @@ public class BizController {
 	// 로그인 체크
 
 	@RequestMapping(value = "loginCheck2.ca", method = RequestMethod.POST)
-	public void loginCheck(ModelAndView mv, HttpSession session, @RequestParam("id") String id,
-			 @RequestParam("passwd") String passwd, HttpServletResponse response) {
+	public void loginCheck(ModelAndView mv, HttpSession session, Member member, HttpServletResponse response) {
 	
 		try {
 
 			PrintWriter out = response.getWriter();
 			//데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
-			int result = bizService.loginCheck(id,passwd); 
-			//입력된 아이디를 세션에 저장
-			session.setAttribute("id", id);
+			member = bizService.loginCheck(member.getId(), member.getPasswd());
+			System.out.println(member.getId() + member.getPasswd());
+			session.setAttribute("member", member);
+			int result = 0;
+			if(member!=null) {
+				result = 1;
+			}
+		
 			//결과가 0보다 크면 ok출력
 			if (result > 0) {
 				out.print("ok");			
