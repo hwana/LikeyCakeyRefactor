@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
 import com.dal.likeycakey.list.model.dao.ListDao;
+import com.dal.likeycakey.list.model.vo.FilterList;
 
 @Service("listService")
 public class ListServiceImpl implements ListService {
@@ -20,8 +21,23 @@ public class ListServiceImpl implements ListService {
 	}
 	
 	@Override
+	public int getCakeCount(FilterList filterlist) throws Exception {
+		return listDao.getCakeCount(filterlist);
+	}
+	
+	@Override
 	public ArrayList<ProductBoard> selectCakeList(String inputsearch, int currentPage, int limit){
 		return listDao.selectCakeList(inputsearch, currentPage, limit);
+	}
+	
+	@Override
+	public ArrayList<ProductBoard> selectCakeList(FilterList filterlist, int currentPage, int limit){
+		return listDao.selectCakeList(filterlist, currentPage, limit);
+	}
+	
+	@Override
+	public ArrayList<ProductBoard> selectCakeListwithOrder(FilterList filterlist, int currentPage, int limit){
+		return listDao.selectCakeListwithOrder(filterlist, currentPage, limit);
 	}
 	
 	@Override
