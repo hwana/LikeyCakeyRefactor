@@ -55,17 +55,18 @@ html>body>section>div>div>div>form span>.btn-in {
 		$(document).ready(function() {
 			$("#check_id").click(function() {
 				$.ajax({
-					url : "id_check.ca",
+					url : "dupid.ca",
 					data : {
 						id : $("#inputId").val()
 					},
-					dataType : "text",
 					type : "post",
-					success : function(value) {
-						if (value == "ok") {
+					success : function(data) {
+						if ($.trim(data) == 0) {
 							alert("사용가능한 아이디입니다.");
+							$('#checkMsg').html('<p style="color:blue">사용가능한 아이디입니다.</p>');							
 							$('input[name=name]').focus();
 						} else {
+							$('#checkMsg').html('<p style="color:red">중복된 아이디입니다.</p>');
 							alert("이미 존재하는 아이디입니다. 아이디를 다시 설정하세요");
 							$('#inputId').select();
 						}
@@ -76,9 +77,71 @@ html>body>section>div>div>div>form span>.btn-in {
 					}
 				});
 				return false;
-			}); //click
+			}); // id check click
+			
+			$("#join").submit(function(){
+				// 1. 패스워드 같은지 다른지 확인하기
+				
+				// 2. 아이디를 중복확인 했는지
+				
+				// 3. 이메일 인증을 완료 했는지
+				
+				// 4. 
+				
+				// 5. ㅜㅂ
+			}) // join 클릭
+			
+			
+			
+			
 		}); //ready
-	</script>
+</script>
+
+<!-- 주소 API -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script>
+    function findPost() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = ''; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+
+                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    fullAddr = data.roadAddress;
+
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    fullAddr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                if(data.userSelectedType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('inputAddrnum').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('inputAddrB').value = fullAddr;
+
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById('inputAddrD').focus();
+            }
+        }).open();
+    }
+</script>
 
 <script>
 	<script src="/resources/js/vendor/modernizr-2.8.3.min.js">
@@ -105,19 +168,19 @@ html>body>section>div>div>div>form span>.btn-in {
 							회원가입 <small>[Likey Cakey 일반 회원]</small>
 						</h1>
 					</div>
-					<form class="form-horizontal" action="memberInsert.ca" method="post">
+					<form:form class="form-horizontal" action="memberInsert.ca" method="post" modelAttribute="Member">
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputId">아이디</label>
 							<div class="col-sm-6">
 								<div class="input-group">
-									<input type="text" class="form-control" id="inputId" name="id"
+									<form:input path="id" type="text" class="form-control" id="inputId" name="id"
 										placeholder="아이디" /> <span class="input-group-btn">
-										<button class="btn btn-success btn-in" style="margin: 8px;"
-											id="check_id">
-											중복확인 <i class="fa fa-mail-forward spaceLeft"></i>
-										</button>
+										<form:errors path="id" cssClass="error" />
+										<input class="btn btn-success btn-in" style="margin: 8px;"
+											id="check_id" type="button" value="중복확인">
 									</span>
 								</div>
+								<div id="checkMsg"></div>
 							</div>
 						</div>
 
@@ -146,8 +209,9 @@ html>body>section>div>div>div>form span>.btn-in {
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputName">이름</label>
 							<div class="col-sm-6">
-								<input class="form-control" id="inputName" type="text"
-									placeholder="이름" name="name">
+								<form:input path = "name" class="form-control" id="inputName" type="text"
+									placeholder="이름" name="name" />
+								<form:errors path="name" cssClass="error" />
 							</div>
 						</div>
 
@@ -156,12 +220,12 @@ html>body>section>div>div>div>form span>.btn-in {
 							<label class="col-sm-3 control-label" for="inputCp">휴대폰번호</label>
 							<div class="col-sm-6">
 								<div class="input-group">
-									<input type="tel" class="form-control" id="inputPhone"
-										placeholder="- 없이 입력해 주세요" name="phone" /> <span
-										class="input-group-btn">
-										<button class="btn btn-success btn-in" style="margin: 8px;">
-											인증번호 전송 <i class="fa fa-mail-forward spaceLeft"></i>
-										</button>
+									<form:input path="phone" type="tel" class="form-control" id="inputPhone"
+										placeholder="-(대시)를 입력해 주세요" name="phone" /> 
+									<form:errors path="phone" cssClass="error" />	
+										<span class="input-group-btn">
+										<input class="btn btn-success btn-in" style="margin: 8px;" 
+											   type="button" value="인증번호 전송">
 									</span>
 								</div>
 							</div>
@@ -175,9 +239,8 @@ html>body>section>div>div>div>form span>.btn-in {
 								<div class="input-group">
 									<input class="form-control" id="inputCpCheck" type="text"
 										placeholder="인증번호"> <span class="input-group-btn">
-										<button class="btn btn-success btn-in" style="margin: 8px;">
-											인증번호 확인 <i class="fa fa-mail-forward spaceLeft"></i>
-										</button>
+										<input type="button" class="btn btn-success btn-in" style="margin: 8px;"
+											value="인증번호 확인">
 									</span>
 								</div>
 								<p class="help-block">전송된 인증코드를 입력해주세요.</p>
@@ -200,12 +263,10 @@ html>body>section>div>div>div>form span>.btn-in {
 							<div class="col-sm-6">
 								<div class="input-group">
 									<input class="form-control" id="inputAddrnum" type="text"
-										placeholder="우편번호" name="post"> <span
+										placeholder="우편번호" name="post" onclick="findPost()"> <span
 										class="input-group-btn">
-										<button class="btn btn-success btn-in" style="margin: 8px;"
-											id="post_find">
-											우편찾기 <i class="fa fa-mail-forward spaceLeft"></i>
-										</button>
+										<input type="button" class="btn btn-success btn-in" style="margin: 8px;"
+											id="post_find" value="우편찾기">
 									</span>
 								</div>
 							</div>
@@ -215,7 +276,7 @@ html>body>section>div>div>div>form span>.btn-in {
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputAddrB">기본주소</label>
 							<div class="col-sm-6">
-								<input class="form-control" type="text" placeholder="기본주소" id = "inputAddrB"
+								<input class="form-control" type="text" placeholder="기본주소" id ="inputAddrB"
 									name="addressBasic">
 							</div>
 						</div>
@@ -266,17 +327,19 @@ html>body>section>div>div>div>form span>.btn-in {
 						</div>
 						<div class="form-group">
 							<div class="col-sm-12 text-center">
-								<button class="btn btn-primary" type="submit" id="join"
-									style="background-color: #f6c6c9">
-									회원가입<i class="fa fa-check spaceLeft"></i>
-								</button>
-								<button class="btn btn-danger" type="submit" id="cancel"
-									style="background-color: #9bcaba">
-									가입취소<i class="fa fa-times spaceLeft"></i>
-								</button>
+								<input class="btn btn-primary" type="submit" id="join"
+									style="background-color: #f6c6c9;
+										   border : 0px;
+										   width : 200px;" 
+									value="회원가입">
+								<input type="reset" class="btn btn-danger" id="cancel"
+									style="background-color: #9bcaba;
+										   border:0px;
+										   width : 200px;" 
+									value="가입 취소">
 							</div>
 						</div>
-					</form>
+					</form:form>
 					<hr>
 				</div>
 			</div>

@@ -211,7 +211,21 @@
 											<li><a href="hostpage.ca"><i
 													class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
 										</ul></li>
-									<li><a href="memberMypage.ca">MY PAGE</a></li>
+									
+									<!-- 세션에 멤버 존재 > 마이페이지 > 코드분류에 따라 일반 및 사업자로 분류 / 세션에 멤버 비존재 > 가입 -->
+									<c:if test="${empty sessionScope.member }">
+										<li><a href="mem_choice.ca">JOIN</a></li>
+									</c:if>
+									<c:if test="${!empty sessionScope.member }">
+										<c:if test="${member.code} == 2">
+											<li><a href="memberMypage.ca">MY PAGE</a></li>
+										</c:if>
+										<c:if test="${member.code} == 3">
+											<li><a href="bizMypageModify.ca">BIZ PAGE</a></li>
+										</c:if>
+									</c:if>
+									
+									
 									<li><a href="notice.ca">NOTICE</a></li>
 									<li><a href="contact.html">Q &amp; A</a></li>
 								</ul>

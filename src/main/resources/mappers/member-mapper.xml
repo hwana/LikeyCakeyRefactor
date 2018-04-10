@@ -22,7 +22,7 @@
 		<result property="addressDetail" column="M_DETAIL_ADDR" />
 		<result property="photo" column="M_PHOTO" />
 		<result property="code" column="M_NUM" />
-		<result property="blackcnt" column="M_BLACKCNT"/>
+		<result property="blackCnt" column="M_BLACKCNT"/>
 		<result property="status" column="M_STATUS"/>
 		<collection property="resultMemberLike" resultMap="MemberLike"/>
 	</resultMap>

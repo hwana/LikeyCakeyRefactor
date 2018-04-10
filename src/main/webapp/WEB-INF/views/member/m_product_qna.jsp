@@ -68,6 +68,7 @@
 
 									<!-- 위의 div 4개는 오른쪽 사이드 설정하는 div -->
 									<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
+							
 									<div class="col-md-12">
 										<table class="table table-hover">
 											<thead>
@@ -81,7 +82,7 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td>희소당</td>
+													<td>${productBoard.}</td>
 													<td>무지개 컵케이크</td>
 													<td>주나인</td>
 													<td>2018-03-20</td>
@@ -97,6 +98,7 @@
 											</tbody>
 										</table>
 									</div>
+									
 								</div>
 							</div>
 						</div>

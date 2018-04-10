@@ -6,17 +6,20 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 // @Controller 를 사용하기 위한 import
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.likeycakey.member.model.service.MemberService;
@@ -44,33 +47,27 @@ public class MemberController {
 	
 	
 	// 회원가입 시 아이디 중복 확인
-	@RequestMapping("id_check.ca")
-	public void idCheck(Model model, @RequestParam("id") String id, HttpServletResponse response) throws IOException{
-		PrintWriter out = response.getWriter();
-		int result = memberService.idCheck(id);
-		if(result > 0 )out.print("no");
-		else out.print("ok");
-		
-		out.flush();
-		out.close();
-	}
+    @ResponseBody
+    @RequestMapping(value = "id_check.ca", method = RequestMethod.POST)
+    public String idcheck(HttpServletRequest request, Model model) {
+        String id = request.getParameter("id");
+        int rowcount = memberService.idCheck(id);
+        return String.valueOf(rowcount);
+    }
+    
 	
 	
 	// 일반회원 INSERT 해주는 부분
 	@RequestMapping(value="memberInsert.ca", method = RequestMethod.POST)
-	public ModelAndView insertJoin(Member m, ModelAndView mv) {
-		try {
-			memberService.insertMember(m);
-			System.out.println("일반회원 가입 성공");
-			mv.setViewName("redirect:home.ca");
-		} 
-		
-		catch (Exception e) {
-			System.out.println(e);
-			System.out.println("회원가입 실패");
-			mv.setViewName("redirect:home.ca");
+	public String insertJoin(@Valid Member m, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			System.out.println("일반회원 : 회원가입 실패");
+			return "home";
 		}
-		return mv;
+		else {
+			System.out.println("일반회원 : 회원가입 성공");
+			return "home";
+		}
 	}
 	
 	// 마이페이지로 이동시켜주는 컨트롤러
