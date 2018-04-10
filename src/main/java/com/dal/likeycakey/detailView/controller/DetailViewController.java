@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dal.likeycakey.detailView.model.service.ProductBoardService;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
 import com.dal.likeycakey.member.model.vo.BizWithMember;
-import com.dal.likeycakey.member.model.vo.Member;
 
 
 	// @Component 에서 Controller부분의 기본 설정을 추가한 자동 매핑 어노테이션 
@@ -27,7 +26,8 @@ import com.dal.likeycakey.member.model.vo.Member;
 		public ModelAndView detailView(@RequestParam("pbNum") String pbNum, ModelAndView mv) {
 			
 			ProductBoard productDetail = selectProductDetail(pbNum);
-			String tag[] = productDetail.getPbTag().split(",");
+			String tagMinus = productDetail.getPbTag().replace("#", "");
+			String tag[] = tagMinus.split(",");
 			BizWithMember productDetailBiz = selectProductDetailBiz(productDetail.getId());
 			
 			mv.addObject("productDetail", productDetail)

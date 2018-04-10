@@ -68,7 +68,7 @@ public class ProductBoardDaoImpl implements ProductBoardDao {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("pbNum", pbNum);
 		map.put("id", id);
-		return sqlSession.insert("Member.insertHeartMember", map);
+		return sqlSession.insert("MemberLike.insertHeartMember", map);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class ProductBoardDaoImpl implements ProductBoardDao {
 
 	@Override
 	public ArrayList<MemberLike> selectMemberLikeList(String id) {
-		return new ArrayList<MemberLike>(sqlSession.selectList("Member.selectMemberLikeList", id));
+		return new ArrayList<MemberLike>(sqlSession.selectList("MemberLike.selectMemberLikeList", id));
 	}
 
 	@Override
@@ -91,7 +91,7 @@ public class ProductBoardDaoImpl implements ProductBoardDao {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("pbNum", pbNum);
 		map.put("id", id);
-		return sqlSession.delete("Member.deleteHeartMember", map);
+		return sqlSession.delete("MemberLike.deleteHeartMember", map);
 	}
 
 	@Override

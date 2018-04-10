@@ -33,19 +33,34 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
        	<link rel="stylesheet" href="/resources/css/young.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
-
+	
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-
+		<script src="/resources/js/na.js"></script>
+		
 		<script type="text/javascript">
 		$(function(){
-			$('.dec').click(function(e)){
+			$('.dec').click(function(e){
 				e.preventDefault();
-				
 				var stat = $('.cart-plus-minus-box').val();
 				var num = parseInt(stat, 10);
+				num--;
+				if(num<0) num=0;
+				$('.cart-plus-minus-box').val(num);
+			})
+			
+			$('.inc').click(function(e){
+				e.preventDefault();
+				var stat = $('.cart-plus-minus-box').val();
+				var num = parseInt(stat, 10);
+				num++;
+				if(num>10) {
+					alert('10개 이상 구매하실 수 없습니다.');
+					num=10;
+				}
 				
-			}
+				$('.cart-plus-minus-box').val(num);
+			})
 		})
 		</script>
         
@@ -55,7 +70,11 @@
       
     </head>
     <body class="other-page">
-        
+
+		 <!-- 현재 페이지 주소 값 currentPage에 저장 -->          
+         <c:set var="currentPage" value="${pageContext.request.requestURL}"/>
+   		 <input type="hidden" value="${currentPage}" class="currentPage"/>
+    
         <section class="page-content-wrapper ptb-100">
 			<!-- Single Product Top Info Start -->
 			<div class="container">
@@ -95,7 +114,8 @@
 							
 							<div class="detail-likes-wrap">
 								<!-- 좋아요 누르면 fa fa-heart-o에서 fa-heart로 변경될 것 -->
-								<a href=# class="detail-likes"><i class="fa fa-heart-o">&nbsp;${pDetail.pbLike} Likes </i></a>
+								<input type="hidden" id="pbNum" value="${pDetail.pbNum}" >
+								<a class="detail-likes"><i class="heart fa fa-heart-o"></i>&nbsp;${pDetail.pbLike} Likes </a>
 							</div>
 							
 							<div class="category mt-50">
@@ -103,7 +123,7 @@
 										<div class="tag-list mt-30 text-uppercase">
 											<ul>
 												<c:forEach var="pbTag" items="${requestScope.pbTag}">
-												<li><a href="#">${pbTag}</a></li>
+												<li><a href="cakeSearch.ca?input_search=%23${pbTag}">#${pbTag}</a></li>
 												</c:forEach>
 											</ul>
 										</div>
@@ -114,7 +134,7 @@
 						<div class="singlepro-right">
 							<div class="snglepro-content">
 								<span>${pDetail.pbMiniTitle }</span>
-								<h3 style="font-size: 2em;"><a href="single-product.html">${pDetail.pName}</a></h3>
+								<h3 style="font-size: 2em;"><a>${pDetail.pName}</a></h3>
 								<div class="rating-box">
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>

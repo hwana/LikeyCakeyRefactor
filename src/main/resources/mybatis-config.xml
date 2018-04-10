@@ -26,6 +26,7 @@
 		<mapper resource="mappers/productboard-mapper.xml"/>
 		<mapper resource="mappers/admin-mapper.xml"/>
 		<mapper resource="mappers/biz-mapper.xml"/>
+		<mapper resource="mappers/memberlike-mapper.xml"/>
 	</mappers> 
 
 </configuration>

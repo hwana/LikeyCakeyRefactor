@@ -34,6 +34,13 @@
 <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
+	 <!-- session에 아이디 값이 있을 경우 변수 선언하기-->
+    <c:if test="${!empty sessionScope.member}">
+    	 <c:set var="member" value="${sessionScope.member}" />
+   		 <c:set var="id" value="${member.id}"/>
+   		 <input type="hidden" value="${id}" class="memberId"/>
+    </c:if>
+    
 	<header>
 		<!-- Header Menu Area -->
 		<div class="menu-area mt-60">
