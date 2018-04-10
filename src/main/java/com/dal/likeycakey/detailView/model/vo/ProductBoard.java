@@ -8,11 +8,10 @@ public class ProductBoard implements java.io.Serializable{
    
    private static final long serialVersionUID = 3000000L;
    
-   
    private int pbNum; // 게시글 번호
    private String id; // 회원 아이디
    private String pName; // 케이크 이름
-   private String pPrice; // 케이크 가격
+   private int pPrice; // 케이크 가격
    private String pImg; // 케이크 사진
    private int pSize; // 케이크 호수
    private String pCM; // 케이크 사이즈(cm)
@@ -33,7 +32,7 @@ public class ProductBoard implements java.io.Serializable{
       // TODO Auto-generated constructor stub
    }
 
-   public ProductBoard(int pbNum, String id, String pName, String pPrice, String pImg, int pSize, String pCM,
+   public ProductBoard(int pbNum, String id, String pName, int pPrice, String pImg, int pSize, String pCM,
          int pCount, int pCountLimit, String pbMiniTitle, String pbMiniContent, String pbContent, int pbLike,
          int pbReadCnt, String pbYN, String pbWarn, String pbTag, int pbSellCnt) {
       super();
@@ -77,10 +76,10 @@ public class ProductBoard implements java.io.Serializable{
    public void setpName(String pName) {
       this.pName = pName;
    }
-   public String getpPrice() {
+   public int getpPrice() {
       return pPrice;
    }
-   public void setpPrice(String pPrice) {
+   public void setpPrice(int pPrice) {
       this.pPrice = pPrice;
    }
    public String getpImg() {

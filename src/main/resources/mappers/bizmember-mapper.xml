@@ -15,7 +15,7 @@
 		<result property="masterName" column="MASTER_NAME" />
 		<result property="bizDeliveryYn" column="BIZ_DELIVERY_YN" />
 		<result property="bizCustomYn" column="BIZ_CUSTOM_YN" />
-		
+
 	</resultMap>
 
 	<insert id="insertMember" parameterType="bizMember" flushCache="true">
