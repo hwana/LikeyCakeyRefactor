@@ -112,6 +112,7 @@ input[type="file"] {
 					<div class="col-md-10">
 						
 						<form class="form-horizontal" action="cakeInsert.ca" method="POST" enctype="multipart/form-data">
+						<!-- 아이디를 사용해서 아이디에 해당하는 멤버의 쿼리로 주소를 가져옴 -->
 							<input type="hidden" name="id" value="${member.id }"></input>
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="inputID">이미지</label>

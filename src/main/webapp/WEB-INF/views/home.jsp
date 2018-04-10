@@ -101,14 +101,14 @@
 
 					<!-- 로그인, 회원가입 / 로그아웃, 마이페이지 -->
 					<c:set var="member" value="${sessionScope.member}" />
-					<c:if test="${empty sessionScope.id }">
+					<c:if test="${empty member}">
 						<div class="sign-wrapper">
 							<a class="sign-button" href = "bizJoin.ca">Sign-Up</a><a class="sign-button" href = "bizLogin.ca">Log-in</a> 
 						</div>
 					</c:if>
 
 				
-					<c:if test="${!empty sessionScope.id}">
+					<c:if test="${!empty member}">
 
 						<div class="sign-wrapper">
 							<span>안녕하세요, ${member.name} 님 </span>
