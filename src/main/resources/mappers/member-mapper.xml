@@ -1,9 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Member">
-
+	
+	<resultMap id="resultMemberLike" type="MemberLike">
+		<id property="likeNo" column="LIKE_NO"/>
+		<result property="pbNum" column="P_B_NUM"/>
+		<result property="cbNum" column="C_B_NUM"/>
+		<result property="id" column="M_ID"/>
+	</resultMap>
+	
 	<resultMap id="resultMember" type="Member">
 		<id property="id" column="M_ID" />
 		<result property="passwd" column="M_PW" />
@@ -17,22 +24,39 @@
 		<result property="code" column="M_NUM" />
 		<result property="blackCnt" column="M_BLACKCNT"/>
 		<result property="status" column="M_STATUS"/>
+		<collection property="resultMemberLike" resultMap="MemberLike"/>
 	</resultMap>
-
+	
 	<insert id="insertMember" parameterType="Member" flushCache="true">
 		INSERT INTO MEMBER (M_ID, M_PW, M_NAME, M_CP, M_EMAIL, M_POST, M_BASIC_ADDR, M_DETAIL_ADDR, M_PHOTO, M_NUM, M_BLACKCNT, M_STATUS)
 		VALUES (#{id},#{passwd},#{name},#{phone},#{email},#{post},#{addressBasic},#{addressDetail},#{photo},2,0,0)
 	</insert>
 	
-	<select id = "loginCheck" parameterType="Member" resultMap="resultMember">
-		SELECT * FROM MEMBER WHERE M_ID = #{id} and M_PW = #{passwd}
+	<select id = "loginCheck" parameterType="Member" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id} and M_PW = #{passwd}
 	</select>
 
-	<select id="dupid" parameterType="string" resultType="_int">
+	<select id="dupid" parameterType="String" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id}
 	</select>
 	
 	<select id="selectBizAddress" parameterType="String" resultType="String">
 		SELECT M_BASIC_ADDR FROM MEMBER WHERE M_ID = #{id}
 	</select>
+	
+	<!-- 좋아요 누르면 insert -->
+	<insert id="insertHeartMember" parameterType="hashmap" >
+		INSERT INTO MEMBER_LIKE (P_B_NUM, M_ID, LIKE_NO)
+		VALUES (#{pbNum}, #{id}, SEQ_LIKE_NO.NEXTVAL)
+	</insert>
+	
+	<!-- 좋아요 취소시  delete -->
+	<delete id="deleteHeartMember" parameterType="hashmap">
+		DELETE MEMBER_LIKE WHERE P_B_NUM=#{pbNum} AND M_ID=#{id}
+	</delete>
+	
+	<select id="selectMemberLikeList" parameterType="String" resultMap="resultMemberLike">
+		SELECT * FROM MEMBER_LIKE WHERE M_ID = #{id}
+	</select>
 </mapper>
+

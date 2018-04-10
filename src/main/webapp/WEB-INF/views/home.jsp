@@ -61,7 +61,7 @@
     					   +  "<img src='/resources/img/product/" + json.list[i].pImg + ".jpg'>" 
     					   +  "<div class='cate-content text-center'>"
     					   +  "<h6>" + decodeURIComponent(json.list[i].pName) + "</h6>"
-    					   +  "<a href='detailView.ca/pbNum=" + json.list[i].pbNum + "'>상품 보러가기</a>"
+    					   +  "<a href='detail.ca?pbNum=" + json.list[i].pbNum + "'>상품 보러가기</a>"
     					   +  "</div>"
     					   +  "</div>"
     					   +  "</div>";
@@ -74,12 +74,88 @@
     		}
 	  	});
     	
+    	/* 좋아요 클릭했을 때 */
+    	$('.heart').click(function(){
+    		var id = 'user1';
+    		console.log("게시글 번호는" + $(this).parent().parent().parent().children('#pbNum').val());
+    		var pbNum = $(this).parent().parent().parent().children('#pbNum').val();
+    		<%-- <%=(String)session.getAttribute("id")%> --%>
+    		/* 로그인 상태가 아닐 경우 */
+    		if(!id){
+    			alert('로그인이 필요한 서비스입니다.');
+    		/* 로그인 상태일 경우 - 빈하트   일시 하트 채우고 인서트, 업데이트 +1
+    				      	    꽉찬하트 일시 하트 비우고 딜리트, 업데이트-1  */
+    		}else{
+    			/* 빈하트일 경우  */
+    			if($(this).attr('class')=='heart fa fa-heart-o'){
+    				/* 좋아요 성공했을 경우 하트 채우기 */
+    	    		$.ajax({
+    	    			url : "addHeart.ca",
+    	        		type : "post",
+    	        		dataType : "json",
+    	        		data : {
+    	        			'pbNum' : pbNum,
+    	        			'id'	: id
+    	        		},
+    	        		success : function(result){
+    	        			console.log('좋아요 누른 값 보내기 성공');
+    	        			
+    	        			var jsonStr = JSON.stringify(result);
+		        			var json = JSON.parse(jsonStr);
+		        			
+		        			if(json.result=="success"){
+		        				console.log('좋아요 인서트 성공');
+		        				$('input[value*='+json.pbNum+']').parent().find('.heart').attr('class', 'heart fa fa-heart');
+		        			}
+    	        		},
+    	        		error : function(request,status,error) {
+    	        			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    	        		}
+    	    			
+    	    		});
+    				
+    				/* 꽉찬 하트일 경우 */
+    			} else {
+    				/* MEMBER_LIKE 삭제하고 PRODUCT_BOARD P_B_LIKE UPDATE 하기 */
+    				$.ajax({
+    	    			url : "subtractHeart.ca",
+    	        		type : "post",
+    	        		dataType : "json",
+    	        		data : {
+    	        			'pbNum' : pbNum,
+    	        			'id'	: id
+    	        		},
+    	        		success : function(result){
+    	        			console.log('좋아요 취소 누른 값 보내기 성공');
+    	        			
+    	        			var jsonStr = JSON.stringify(result);
+		        			var json = JSON.parse(jsonStr);
+		        			
+		        			if(json.result=="success"){
+		        				console.log('좋아요 취소 성공');
+		        				$('input[value*='+json.pbNum+']').parent().find('.heart').attr('class', 'heart fa fa-heart-o');
+		        			}
+    	        		},
+    	        		error : function(request,status,error) {
+    	        			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    	        		}
+    	    			
+    	    		});
+    			}
+    		}
+    	});
     });
     </script>
     
     
     </head>
     <body>
+    
+    <!-- session에 아이디 값이 있을 경우 변수 선언하기-->
+    <%-- <c:if test="${!empty sessionScope.userId}"> --%>
+   		 <c:set var="id" value="user1"/>
+   <%--  </c:if> --%>
+    
     	<!-- Header Area Start -->
 		<header>
 			<!-- Header Menu Area -->
@@ -89,13 +165,15 @@
 
 					<!-- 로그인, 회원가입 / 로그아웃, 마이페이지 -->
 					<c:set var="member" value="${sessionScope.member}" />
-					<c:if test="${empty sessionScope.member }">
+					<c:if test="${empty sessionScope.id }">
 						<div class="sign-wrapper">
 							<a class="sign-button" href = "bizJoin.ca">Sign-Up</a><a class="sign-button" href = "bizLogin.ca">Log-in</a> 
 						</div>
 					</c:if>
-					
-					<c:if test="${!empty sessionScope.member}">
+
+				
+					<c:if test="${!empty sessionScope.id}">
+
 						<div class="sign-wrapper">
 							<span>안녕하세요, ${member.name} 님 </span>
 							<a class="sign-button" href = "logout.ca">Log-out</a><a class="sign-button" href = "bizMypageModify.ca">My Page</a> 	
@@ -354,12 +432,11 @@
 							<div class="deal-month-right white-bg p-20">
 								<span class="titel">${todaysBiz.bizName }</span>
 								<div class="main-content">
-									<h2><a href="./detailView.ca/${todaysCake.pbNum }">${todaysCake.pName}</a></h2>
+									<h2><a href="./detail.ca/${todaysCake.pbNum }">${todaysCake.pName}</a></h2>
 									<h4><fmt:formatNumber value="${todaysCake.pPrice}" pattern="\#,###"/></h4>
 									<p>${todaysCake.pbMiniContent }</p>
 									<div class="count-down-area">
 										<div class="timer default-bg">
-											<!-- 현선 : 오늘 날짜 불러오는 메소드 추가할 것 -->
 											<div data-countdown="${sysYear}"></div>
 										</div> 
 									</div>
@@ -382,23 +459,24 @@
 					<div
 						class="tab-menu section-titel style-two text-center text-uppercase">
 						<ul>
-							<li class="active"><a data-toggle="tab" href="#arrival">new
-									arrival </a></li>
-							<li><a data-toggle="tab" href="#saler">Best saler</a></li>
-							<li><a data-toggle="tab" href="#tranding">tranding</a></li>
+							<li class="active"><a data-toggle="tab" href="#arrival">new arrival </a></li>
+							<li><a data-toggle="tab" href="#saler">Best seller</a></li>
+							<li><a data-toggle="tab" href="#tranding">Best likey</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="tab-content">
 				
 				
-				<!-- 새로운 상품 시작 -->
-					<div id="arrival" class="tab-pane fade in active">
 				
-				<c:set var="bizAddress" value="${requestScope.selectBizAddress}"></c:set>
+				
+<!-- NEW ARRIVAL 시작 -->
+				<div id="arrival" class="tab-pane fade in active">
+				
+				<c:set var="newArrivalAddr" value="${requestScope.newArrivalAddr}"/>
+			
+				<!-- 반복문 시작 -->
 				<c:forEach var="newArrival" items="${requestScope.newArrivalList}" varStatus="status">
-				
-						<!-- Single Product Start -->
 						<div class="col-md-4 col-sm-6">
 							<div class="single-product style-two mb-50">
 								<div class="single-img">
@@ -409,418 +487,224 @@
 									<span class="pro-level">당일</span>
 							 </c:if> 
 							 
-									<div class="hover-content text-center">
+									<div class="hover-content text-center" id="pbNumWrap">
+										<input type="hidden" id="pbNum" value="${newArrival.pbNum}" >
 										<ul>
 											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
+											<c:choose>
+												<%-- memberLikeList가 비어있을 때 --%>
+												<c:when test="${empty requestScope.memberLikeList}">
+													<%-- 빈 하트 출력  --%>
+													<li><a class="heart fa fa-heart-o"></a></li>
+												</c:when>
+												<c:otherwise>
+													<%-- 회원의 좋아요 리스트에 있는 번호와 케이크 번호 비교 --%>
+													<c:set var="doneLoop" value="false"/>
+													<c:forEach var="memberLike" items="${requestScope.memberLikeList}" varStatus="status">
+														<%-- 리스트에 있는 번호와 일치하면 --%>
+														<%-- <c:out value="${memberLike.pbNum},${newArrival.pbNum}"/> --%>
+															<c:if test="${not doneLoop}">
+																<c:choose>
+																	<c:when test="${memberLike.pbNum eq newArrival.pbNum}">
+																		<%-- 꽉 찬 하트 출력 --%>
+																		<c:set var="heartSelect" value="fa-heart" />
+																		<c:set var="doneLoop" value="true" />
+																	</c:when>
+																	<c:otherwise>
+																		<c:set var="heartSelect" value="fa-heart-o" />
+																	</c:otherwise>
+																</c:choose>
+															</c:if>
+														</c:forEach>
+														<li><a class="heart fa ${heartSelect}"></a></li>
+												</c:otherwise>
+											</c:choose>
+											
 										</ul>
 									</div>
 								</div>
 								<div class="young-product-details mt-20">
 									<h4>
-										<a href="detail.View/${newArrival.pbNum}">${newArrival.pName}</a>
+										<a href="detail.ca?pbNum=${newArrival.pbNum}">${newArrival.pName}</a>
 									</h4>
 									<div class="young-product-details-tag">
 										<i class="fa fa-map-marker"></i> <span
-											class="young-product-details-tag-place">${bizAddress[status.index]}</span> <i
+											class="young-product-details-tag-place">${newArrivalAddr[status.index]}</span> <i
 											class="fa fa-tag"></i> <span
 											class="young-product-details-tag-place-detail">${newArrival.pbTag}</span> <!-- <span
 											class="young-product-details-tag-place-detail">#마카롱이라구?</span>
 										<span class="young-product-details-tag-place-detail">#말도안돼</span> -->
 									</div>
 									<div class="young-product-details-price">
-										<span>₩<fmt:formatNumber value="${newArrival.pPrice}" pattern="#,###"/></span> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i>
+										<span><fmt:formatNumber value="${newArrival.pPrice}" pattern="#,###" type="number"/>원</span> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- Single Product End -->
-				</c:forEach>
+					</c:forEach>
+					<!-- 반복문 끝 -->
+					</div>
+<!-- NEW ARRIVALl 끝  -->
 					
-					</div>
-					<!-- 새로운 상품 끝  -->
+<!-- BEST SELLER 시작 -->
 					<div id="saler" class="tab-pane fade">
-						<!-- Single Product Start -->
-						<div class="col-md-4">
+						
+						<c:set var="bestSellerAddr" value="${requestScope.bestSellerAddr}"/>
+						<!-- 베스트 셀러 리스트 반복문 시작 -->
+						<c:forEach var="bestSellerList" items="${requestScope.bestSellerList}" varStatus="status">
+						<div class="col-md-4 col-sm-6">
 							<div class="single-product style-two mb-50">
 								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/5.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
+									<a href="#"><img src="/resources/img/product/${bestSellerList.pImg}.jpg" alt="" /></a>
+							
+							<!-- 당일구매여부에 따라 당일 마크 부착  -->
+							 <c:if test="${bestSellerList.pbYN eq 'Y'}">
+									<span class="pro-level">당일</span>
+							 </c:if> 
+									<div class="hover-content text-center" id="pbNumWrap">
+										<input type="hidden" id="pbNum" value="${bestSellerList.pbNum}" >
 										<ul>
 											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
+											
+											<c:choose>
+												<%-- memberLikeList가 비어있을 때 --%>
+												<c:when test="${empty requestScope.memberLikeList}">
+													<%-- 빈 하트 출력  --%>
+													<li><a class="heart fa fa-heart-o"></a></li>
+												</c:when>
+												<c:otherwise>
+													<%-- 회원의 좋아요 리스트에 있는 번호와 케이크 번호 비교 --%>
+													<c:set var="doneLoop" value="false"/>
+													<c:forEach var="memberLike" items="${requestScope.memberLikeList}" varStatus="status">
+														<%-- 리스트에 있는 번호와 일치하면 --%>
+														<%-- <c:out value="${memberLike.pbNum},${newArrival.pbNum}"/> --%>
+															<c:if test="${not doneLoop}">
+																<c:choose>
+																	<c:when test="${memberLike.pbNum eq bestSellerList.pbNum}">
+																		<%-- 꽉 찬 하트 출력 --%>
+																		<c:set var="heartSelect" value="fa-heart" />
+																		<c:set var="doneLoop" value="true" />
+																	</c:when>
+																	<c:otherwise>
+																		<c:set var="heartSelect" value="fa-heart-o" />
+																	</c:otherwise>
+																</c:choose>
+															</c:if>
+														</c:forEach>
+														<li><a class="heart fa ${heartSelect}"></a></li>
+												</c:otherwise>
+											</c:choose>
+											
 										</ul>
 									</div>
 								</div>
 								<div class="young-product-details mt-20">
 									<h4>
-										<a href="single-product.html">들어는 보셧나 마카롱 케이크</a>
+										<a href="#">${bestSellerList.pName}</a>
 									</h4>
 									<div class="young-product-details-tag">
-										<i class="fa fa-map-marker"></i> <span
-											class="young-product-details-tag-place">서울시 북구</span> <i
-											class="fa fa-tag"></i> <span
-											class="young-product-details-tag-place-detail">#마카롱</span> <span
-											class="young-product-details-tag-place-detail">#마카롱이라구?</span>
-										<span class="young-product-details-tag-place-detail">#말도안돼</span>
+										<i class="fa fa-map-marker"></i> 
+										<span class="young-product-details-tag-place">${bestSellerAddr[status.index]} </span> 
+										<i class="fa fa-tag"></i> 
+										<span class="young-product-details-tag-place-detail">${bestSellerList.pbTag}</span> 
+										<!-- <span class="young-product-details-tag-place-detail">#마카롱이라구?</span>
+										<span class="young-product-details-tag-place-detail">#말도안돼</span> -->
 									</div>
 									<div class="young-product-details-price">
-										<span>33,000 원</span> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i>
+										<span><fmt:formatNumber value="${bestSellerList.pPrice}" pattern="#,###" type="number"/>원</span> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/6.jpg"
-										alt="" /></a> <span class="pro-level">New</span>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>Blashan
-											Brush</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="old-price">$90.00</span> <span class="new-price">
-											- $80.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/1.jpg"
-										alt="" /></a> <span class="pro-level">Sale</span>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Sun Skin</a><span>kajol &amp;
-											eyeliner</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="old-price">$40.00</span> <span class="new-price">
-											- $80.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/2.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="young-product-details mt-20">
-									<h4>
-										<a href="single-product.html">들어는 보셧나 마카롱 케이크</a>
-									</h4>
-									<div class="young-product-details-tag">
-										<i class="fa fa-map-marker"></i> <span
-											class="young-product-details-tag-place">서울시 북구</span> <i
-											class="fa fa-tag"></i> <span
-											class="young-product-details-tag-place-detail">#마카롱</span> <span
-											class="young-product-details-tag-place-detail">#마카롱이라구?</span>
-										<span class="young-product-details-tag-place-detail">#말도안돼</span>
-									</div>
-									<div class="young-product-details-price">
-										<span>33,000 원</span> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/4.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>Blashan
-											Brush</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="new-price">$40.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/1.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>kajol
-											&amp; eyeliner</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="new-price"> $50.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
+						</c:forEach>
+						<!-- 반복문 종료 -->
 					</div>
+<!-- BEST SELLER 끝 -->
+
+<!-- BEST LIKEY 시작 -->
 					<div id="tranding" class="tab-pane fade">
-						<!-- Single Product Start -->
-						<div class="col-md-4">
+						
+						<c:set var="bestLikeyAddr" value="${requestScope.bestLikeyAddr}"/>
+						<c:forEach var="bestLikeyList" items="${requestScope.bestLikeyList}" varStatus="status">
+					
+						<div class="col-md-4 padding_14px">
 							<div class="single-product style-two mb-50">
 								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/2.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
+									<a href="#"><img src="/resources/img/product/${bestLikeyList.pImg}.jpg" alt="" /></a>
+									
+									<!-- 당일구매여부에 따라 당일 마크 부착  -->
+									 <c:if test="${bestLikeyList.pbYN eq 'Y'}">
+											<span class="pro-level">당일</span>
+									 </c:if> 
+									<div class="hover-content text-center" id="pbNumWrap">
+										<input type="hidden" id="pbNum" value="${bestLikeyList.pbNum}" >
 										<ul>
 											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
+											<c:choose>
+												<%-- memberLikeList가 비어있을 때 --%>
+												<c:when test="${empty requestScope.memberLikeList}">
+													<%-- 빈 하트 출력  --%>
+													<li><a class="heart fa fa-heart-o"></a></li>
+												</c:when>
+												<c:otherwise>
+													<%-- 회원의 좋아요 리스트에 있는 번호와 케이크 번호 비교 --%>
+													<c:set var="doneLoop" value="false"/>
+													<c:forEach var="memberLike" items="${requestScope.memberLikeList}" varStatus="status">
+														<%-- 리스트에 있는 번호와 일치하면 --%>
+														<%-- <c:out value="${memberLike.pbNum},${newArrival.pbNum}"/> --%>
+															<c:if test="${not doneLoop}">
+																<c:choose>
+																	<c:when test="${memberLike.pbNum eq bestLikeyList.pbNum}">
+																		<%-- 꽉 찬 하트 출력 --%>
+																		<c:set var="heartSelect" value="fa-heart" />
+																		<c:set var="doneLoop" value="true" />
+																	</c:when>
+																	<c:otherwise>
+																		<c:set var="heartSelect" value="fa-heart-o" />
+																	</c:otherwise>
+																</c:choose>
+															</c:if>
+														</c:forEach>
+														<li><a class="heart fa ${heartSelect}"></a></li>
+												</c:otherwise>
+											</c:choose>
 										</ul>
 									</div>
 								</div>
 								<div class="young-product-details mt-20">
 									<h4>
-										<a href="single-product.html">들어는 보셧나 마카롱 케이크</a>
+										<a href="#">${bestLikeyList.pName}</a>
 									</h4>
 									<div class="young-product-details-tag">
-										<i class="fa fa-map-marker"></i> <span
-											class="young-product-details-tag-place">서울시 북구</span> <i
-											class="fa fa-tag"></i> <span
-											class="young-product-details-tag-place-detail">#마카롱</span> <span
-											class="young-product-details-tag-place-detail">#마카롱이라구?</span>
-										<span class="young-product-details-tag-place-detail">#말도안돼</span>
+										<i class="fa fa-map-marker"></i> 
+										<span class="young-product-details-tag-place">${bestLikeyAddr[status.index]}</span> 
+										<i class="fa fa-tag"></i> 
+										<span class="young-product-details-tag-place-detail">${bestLikeyList.pbTag}</span> 
 									</div>
 									<div class="young-product-details-price">
-										<span>33,000 원</span> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i>
+									<span><fmt:formatNumber value="${bestLikeyList.pPrice}" pattern="#,###" type="number"/>원</span> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/4.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>Blashan
-											Brush</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="new-price">$40.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/1.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>kajol
-											&amp; eyeliner</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="new-price"> $50.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/5.jpg"
-										alt="" /></a>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>kajol
-											&amp; eyeliner</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="new-price"> $50.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/6.jpg"
-										alt="" /></a> <span class="pro-level">New</span>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Beauty Brush</a><span>Blashan
-											Brush</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="old-price">$90.00</span> <span class="new-price">
-											- $80.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
-						<!-- Single Product Start -->
-						<div class="col-md-4">
-							<div class="single-product style-two mb-50">
-								<div class="single-img">
-									<a href="#"><img src="/resources/img/product-tab/1.jpg"
-										alt="" /></a> <span class="pro-level">Sale</span>
-									<div class="hover-content text-center">
-										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											<li><a href="#" class="icon_heart_alt"></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="product-details mt-20">
-									<h4>
-										<a href="single-product.html">Sun Skin</a><span>kajol &amp;
-											eyeliner</span>
-									</h4>
-									<div class="rating-box">
-										<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-											class="fa fa-star"></i>
-									</div>
-									<div class="price-box">
-										<span class="old-price">$40.00</span> <span class="new-price">
-											- $80.00</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Single Product End -->
+						</c:forEach>
 					</div>
+<!-- BEST LIKEY 끝 -->
 				</div>
 			</div>
 		</div>

@@ -4,14 +4,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,11 +17,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.service.ProductBoardService;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
+import com.dal.likeycakey.member.model.vo.MemberLike;
 
 @Controller
 public class HomeController{
@@ -33,30 +31,57 @@ public class HomeController{
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@RequestMapping(value = "/home.ca", method = RequestMethod.GET)
-	public ModelAndView home(ModelAndView mv) {
+	public ModelAndView home(ModelAndView mv, HttpServletRequest request) {
 		
 		
-		
+		System.out.println("home.ca : home controller 도착");
 		// 오늘의 상품
 		ProductBoard todaysCake = todaysCake();
 		// 오늘의 상품 Biz셀렉트
 		BizMember todaysBiz = selectBizMember(todaysCake.getId());
 		// New Arrival 리스트
 		ArrayList<ProductBoard> newArrivalList = newArrivalList();
-		String [] selectBizAddress= {"","","","","",""};
+		// New Arrival 사업장 주소 리스트
+		String [] newArrivalAddr = new String [newArrivalList.size()];
 		for (int i = 0; i < newArrivalList.size(); i++) {
-			selectBizAddress[i] = selectBizAddress(newArrivalList.get(i).getId());
+			newArrivalAddr[i] = selectBizAddress(newArrivalList.get(i).getId());
+		}
+		// BestSeller 리스트
+		ArrayList<ProductBoard> bestSellerList = selectBestSellerList();
+		// BestSeller 사업장 주소 리스트
+		String [] bestSellerAddr = new String[bestSellerList.size()];
+		for (int i = 0; i < bestSellerAddr.length; i++) {
+			bestSellerAddr[i] = selectBizAddress(bestSellerList.get(i).getId());
+		}
+		// BestLikey 리스트
+		ArrayList<ProductBoard> bestLikeyList = selectBestLikeyList();
+		// BestLikey 사업장 주소 리스트
+		String[] bestLikeyAddr = new String[bestLikeyList.size()];
+		for (int i=0; i < bestLikeyAddr.length; i++ ) {
+			bestLikeyAddr[i] = selectBizAddress(bestLikeyList.get(i).getId());
+		}
+		
+		HttpSession session = request.getSession();
+		String id = "user1";
+				//(String) session.getAttribute("id");
+		if(id!=null) {
+			ArrayList<MemberLike> memberLikeList = selectMemberLikeList(id);
+			mv.addObject("memberLikeList", memberLikeList);
 		}
 		
 		mv.addObject("todaysCake", todaysCake)
 		.addObject("todaysBiz", todaysBiz)
 		.addObject("newArrivalList", newArrivalList)
-		.addObject("selectBizAddress", selectBizAddress)
+		.addObject("newArrivalAddr", newArrivalAddr)
+		.addObject("bestSellerList", bestSellerList)
+		.addObject("bestSellerAddr", bestSellerAddr)
+		.addObject("bestLikeyList", bestLikeyList)
+		.addObject("bestLikeyAddr", bestLikeyAddr)
 		.setViewName("home");
 		
 		return mv;
 	}
-	
+
 
 	// Top3 리스트
 	@SuppressWarnings("unchecked")
@@ -133,12 +158,13 @@ public class HomeController{
 		return bizMember;
 	}
 	
-	// newArrival리스트 
+	// NEW ARRIVAL 리스트 
 	public ArrayList<ProductBoard> newArrivalList(){
 		ArrayList<ProductBoard> newArrivalList = pbService.selectNewArrivalList();
 		return newArrivalList;
 	}
 	
+	// 사업자 아이디로 검색해서 주소 자치구까지만 불러오기
 	public String selectBizAddress(String id) {
 		String bizAddress = pbService.selectBizAddress(id);
 		
@@ -146,6 +172,80 @@ public class HomeController{
 		bizAddress = bizAddress.substring(0, gu+1);
 		return bizAddress;
 	}
+	
+	// BEST SELLER 리스트 
+	public ArrayList<ProductBoard> selectBestSellerList() {
+		ArrayList<ProductBoard> selectBestSellerList = pbService.selectBestSellerList();
+		return selectBestSellerList;
+	}
+	
+	// BEST LIKEY 리스트
+	public ArrayList<ProductBoard> selectBestLikeyList() {
+		ArrayList<ProductBoard> selectBestLikeyList = pbService.selectBestLikeyList();
+		return selectBestLikeyList;
+	}
+	
+	// 회원 좋아요 리스트 불러오기
+	private ArrayList<MemberLike> selectMemberLikeList(String id) {
+		ArrayList<MemberLike> selectMemberLikeList = pbService.selectMemberLikeList(id);
+		return selectMemberLikeList;
+	}
+	
+	// 좋아요 누르기
+	@SuppressWarnings("unchecked")
+	@RequestMapping("addHeart.ca")
+	public void addHeart(@RequestParam(value="pbNum") String pbNum, @RequestParam(value="id") String id,
+						HttpServletResponse response) throws IOException {
+		System.out.println("addHaert 메소드 도착 / 게시물 번호는 : " + pbNum + "/아이디는 : " + id);
+		
+		int updateLikeyBoard = pbService.updateLikeyBoard(pbNum);
+		int insertHeartMember = pbService.insertHeartMember(pbNum, id);
+		
+		// 상품 상세게시글, 회원 좋아요 테이블 둘 다 insert, update 됐을 시, 하트 꽉찬하트(♥)로 바뀌도록 설정하기
+		if(insertHeartMember==1 && updateLikeyBoard==1) {
+			
+			JSONObject json = new JSONObject();
+			
+			json.put("result", "success");
+			json.put("pbNum", pbNum);
+			System.out.println("하트 추가 성공 : " + json.toJSONString());
+			response.setContentType("application/json");
+			PrintWriter out = response.getWriter();
+			out.print(json.toJSONString());
+			out.flush();
+			out.close();
+			
+		} 
+	}
+	
+	// 좋아요 취소
+	@SuppressWarnings("unchecked")
+	@RequestMapping("subtractHeart.ca")
+	public void subtractHeart(@RequestParam(value="pbNum") String pbNum, @RequestParam(value="id") String id,
+							  HttpServletResponse response) throws IOException {
+		System.out.println("subtractHeart 메소드 도착 / 게시물 번호는 : " + pbNum + "/아이디는 : " + id);
+		
+		int updateSubtractLikeyBoard = pbService.updateSubtractLikeyBoard(pbNum);
+		int deleteHeartMember = pbService.deleteHeartMember(pbNum, id);
+		
+		
+		if(updateSubtractLikeyBoard == 1 && deleteHeartMember == 1) {
+			JSONObject json = new JSONObject();
+			
+			json.put("result","success");
+			json.put("pbNum", pbNum);
+			
+			System.out.println("하트 삭제 성공 : " + json.toJSONString());
+			response.setContentType("application/json");
+			PrintWriter out = response.getWriter();
+			out.print(json.toJSONString());
+			out.flush();
+			out.close();
+		}
+		// else exception 처리할 것~! 
+	}
+	
+	
 	
 	@RequestMapping(value = "/cakelist.ca", method = RequestMethod.GET)
 	public String cakeList() {

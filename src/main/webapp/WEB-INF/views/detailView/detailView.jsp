@@ -17,7 +17,7 @@
         <!-- Place favicon.ico in the root directory -->		
 		
 		<!-- all css here -->
-        <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+<!--         <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
         <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
         <link rel="stylesheet" href="/resources/css/elegant-font.css">
         <link rel="stylesheet" href="/resources/css/material-design-iconic-font.min.css">
@@ -29,13 +29,17 @@
         <link rel="stylesheet" href="/resources/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="/resources/css/shortcode/shortcodes.css">
         <link rel="stylesheet" href="/resources/css/style.css">
-        <link rel="stylesheet" href="/resources/css/responsive.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/resources/css/responsive.css"> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
        	<link rel="stylesheet" href="/resources/css/young.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
-        
+
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+        
+		<!-- 헤더 -->
+		<jsp:include page="../default/header.jsp" flush="false"/>
+        <!-- 헤더 끝 -->
       
     </head>
     <body class="other-page">
@@ -45,10 +49,6 @@
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        
-		<!-- 헤더 -->
-		<jsp:include page="../default/header.jsp" flush="false"/>
-        <!-- 헤더 끝 -->
         
         <!-- Page Content Wraper Area Start -->
         
@@ -606,7 +606,7 @@
         
         
 		<!-- all js here -->
-              <script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
+<!--         <script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
         <script src="/resources/js/bootstrap.min.js"></script>
         <script src="/resources/js/owl.carousel.min.js"></script>
         <script src="/resources/js/isotope.pkgd.min.js"></script>
@@ -620,7 +620,7 @@
         <script src="/resources/js/jquery.meanmenu.js"></script>
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/main.js"></script>
-        <script src="/resources/js/Form.js"></script>
+        <script src="/resources/js/Form.js"></script> -->
        
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
         
