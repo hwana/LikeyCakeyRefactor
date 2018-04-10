@@ -2,6 +2,8 @@ package com.dal.likeycakey.member.model.vo;
 
 import org.springframework.stereotype.Component;
 
+import com.dal.likeycakey.biz.model.vo.BizMember;
+
 @Component
 public class Member implements java.io.Serializable{
 	// 자바 내부에서 사용하는 자료를 자바 외의 프로그램에서도 인식할 수 있게 바이트로 변환하여
@@ -26,6 +28,7 @@ public class Member implements java.io.Serializable{
 	private int blackCnt;
 	
 	private MemberLike memberLike;
+	private BizMember bizMember;
 
 	public Member() {
 		

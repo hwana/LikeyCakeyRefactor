@@ -59,6 +59,11 @@
 	<update id="updateSubtractLikeyBoard" parameterType="String">
 		UPDATE PRODUCT_BOARD SET P_B_LIKE = P_B_LIKE-1 WHERE P_B_NUM = #{pbNum}
 	</update>
+	
+	<!-- 상품 상세페이지  select -->
+	<select id="selectProductDetail" parameterType="String" resultMap="resultProductBoard">
+		SELECT * FROM PRODUCT_BOARD WHERE P_B_NUM = #{pbNum}
+	</select>
 
    <insert id="insertProductBoard" parameterType="ProductBoard">
  		INSERT INTO PRODUCT_BOARD VALUES 
