@@ -55,10 +55,20 @@ hr {
 #cancle {
 	background: #9bcaba;
 }
+input[type="file"] {
+    display: none;
+}
 </style>
+<script>
+$(document).ready(function(){
+		
+		$("input[id='file']").change(function (e) {
+			var $this = $(this);
+		    $("input[id='inputPhoto']").val($this.val().split('\\').pop());
+		});
+});
 
-
-
+</script>
 </head>
 <body>
 	<article class="container">
@@ -77,11 +87,11 @@ hr {
 							name="photo" placeholder="업체사진">
 
 					</div>
-					<label for="file" class="btn btn-success btn-lg search">
-    								사진등록
-								</label>
-								<input id="file" type="file" name="file"/>
-
+					<label for="file" class="btn search"> 사진등록</label>
+					<input id="file" type="file" name="file"/>
+					
+					
+								
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label" for="inputID">아이디</label>

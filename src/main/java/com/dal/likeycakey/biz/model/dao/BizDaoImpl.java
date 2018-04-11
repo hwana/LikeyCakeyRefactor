@@ -49,6 +49,6 @@ public class BizDaoImpl implements BizDao {
 	@Override
 	public int insertProductBoard(ProductBoard productBoard)  {
 		System.out.println("bizDao의 insertProductBoard입니다");
-		return sqlSession.insert("ProductBoard.insertProductBoard", productBoard);
+		return sqlSession.insert("productBoard.insertProductBoard", productBoard);
 	}
 }

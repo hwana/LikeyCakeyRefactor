@@ -1,8 +1,11 @@
 package com.dal.likeycakey.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.likeycakey.member.model.service.MemberService;
@@ -53,8 +57,28 @@ public class MemberController {
 	
 	// 일반회원 INSERT 해주는 부분
 	@RequestMapping(value="memberInsert.ca", method = RequestMethod.POST)
-	public ModelAndView insertJoin(Member m, ModelAndView mv) {
+	public ModelAndView insertJoin(Member m, ModelAndView mv, @RequestParam(value = "file", required=false) MultipartFile file, 
+			HttpServletRequest request) {
+		
+			
 		try {
+			// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
+			String savePath = root + "\\img\\member";
+			System.out.println("이미지가 저장되는 곳은 " + savePath);
+			
+			if (file != null && !file.isEmpty()) {
+				if (!new File(savePath).exists()) {
+					new File(savePath).mkdir();
+				}
+
+				String originFileName = file.getOriginalFilename();
+				File fileupload = new File(savePath + "\\" + originFileName);
+				file.transferTo(fileupload);
+				m.setPhoto(originFileName.substring(0, originFileName.lastIndexOf('.')));
+			}
+			
 			memberService.insertMember(m);
 			System.out.println("일반회원 가입 성공");
 			mv.setViewName("redirect:home.ca");

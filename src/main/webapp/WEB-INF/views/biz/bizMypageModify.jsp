@@ -4,10 +4,10 @@
 <%@ include file="../default/header.jsp"%>
 <!-- Header Area End -->
 <style>
-
 label {
 	margin-top: 10px;
 }
+
 #join {
 	background: #f6c6c9;
 }
@@ -16,16 +16,30 @@ label {
 	background: #9bcaba;
 }
 
-#verifycode {
+.verifycode {
 	background: #9bcaba;
 	margin-left: 10px;
 }
 
-#search{
-	background : #9bcaba;
-	margin-top:10px;
+.search {
+	background: #9bcaba;
+	margin-top: 10px;
+}
+
+input[type="file"] {
+	display: none;
 }
 </style>
+
+<script>
+	$(document).ready(function() {
+
+		$("input[id='file']").change(function(e) {
+			var $this = $(this);
+			$("input[id='inputPhoto']").val($this.val().split('\\').pop());
+		});
+	});
+</script>
 
 <!-- Page Content Wraper Area Start -->
 <section class="page-content-wrapper">
@@ -81,8 +95,8 @@ label {
 												<input class="form-control" id="inputPhoto" type="text"
 													placeholder="업체사진">
 											</div>
-											<button class="btn btn-success" type="button" id="search">
-												사진등록</button>
+											<label for="file" class="btn search"> 사진등록</label> <input
+												id="file" type="file" name="file" />
 
 										</div>
 										<div class="form-group">
@@ -117,9 +131,7 @@ label {
 													<input type="tel" class="form-control" id="inputNumber"
 														placeholder="- 없이 입력해 주세요" /> <span
 														class="input-group-btn">
-														<button class="btn btn-success" id="verifycode">
-															인증번호 전송
-														</button>
+														<button class="btn verifycode">인증번호 전송</button>
 													</span>
 												</div>
 											</div>
@@ -132,10 +144,8 @@ label {
 													<input class="form-control" id="inputNumberCheck"
 														type="text" placeholder="인증번호"> <span
 														class="input-group-btn">
-														<button class="btn btn-success" type="button"
-															id="verifycode">
-															인증번호 확인
-														</button>
+														<button class="btn verifycode" type="button">
+															인증번호 확인</button>
 													</span>
 												</div>
 												<p class="help-block">전송된 인증번호를 입력해주세요.</p>
