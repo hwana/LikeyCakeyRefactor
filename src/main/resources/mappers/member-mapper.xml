@@ -39,9 +39,14 @@
 	<select id="dupid" parameterType="String" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE M_ID = #{id}
 	</select>
-	
+
 	<select id="selectBizAddress" parameterType="String" resultType="String">
 		SELECT M_BASIC_ADDR FROM MEMBER WHERE M_ID = #{id}
+	</select>
+	
+	<!-- id 찾기 -->
+	<select id = "findId" parameterType="String" resultType="String">
+		select M_ID from MEMBER where M_NAME = #{name} and M_EMAIL = #{email}
 	</select>
 	
 	<!-- 좋아요 누르면 insert -->

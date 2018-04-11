@@ -3,10 +3,12 @@ package com.dal.likeycakey.biz.model.dao;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
 import com.dal.likeycakey.member.model.vo.Member;
+
+
+
 
 @Repository("bizDao")
 public class BizDaoImpl implements BizDao {
@@ -19,6 +21,7 @@ public class BizDaoImpl implements BizDao {
 		System.out.println("here is DAO insertBiz1");
 		int result = sqlSession.insert("Member.insertMember", m);
 		return result;
+
 	}
 	
 	@Override
@@ -49,6 +52,6 @@ public class BizDaoImpl implements BizDao {
 	@Override
 	public int insertProductBoard(ProductBoard productBoard)  {
 		System.out.println("bizDao의 insertProductBoard입니다");
-		return sqlSession.insert("productBoard.insertProductBoard", productBoard);
+		return sqlSession.insert("ProductBoard.insertProductBoard", productBoard);
 	}
 }

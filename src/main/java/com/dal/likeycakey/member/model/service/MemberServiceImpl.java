@@ -14,8 +14,10 @@ public class MemberServiceImpl implements MemberService {
 
 	// 로그인하기위한 서비스
 	@Override
-	public Member loginMember(String id, String passwd) throws Exception {
-		return memberDao.selectMember(id, passwd);
+	public Member forLogin(String id, String passwd) throws Exception {
+		System.out.println("member type : normal");
+		System.out.println("login : success");
+		return memberDao.forLogin(id, passwd);
 	}
 	
 	// ID CHECK
@@ -27,9 +29,16 @@ public class MemberServiceImpl implements MemberService {
 	// member 삽입
 	@Override
 	public int insertMember (Member m) throws Exception {
-		return memberDao.insertMember(m);
+		int result = memberDao.insertMember(m);
+		return result;
 	}
-	
 
+	
+	@Override
+	public String findId(Member m) throws Exception {
+		System.out.println("아이디 찾기 service 진입");
+		String findid = memberDao.findId(m);
+		return findid;
+	}
 
 }
