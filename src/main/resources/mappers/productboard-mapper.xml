@@ -24,6 +24,7 @@
 		<result property="pbWarn" column="P_B_WARN"/>
 		<result property="pbTag" column="P_B_TAG"/>
 		<result property="pbSellCnt" column="P_B_SELLCNT"/>
+		<result property = "pbStatus" column = "P_B_STATUS"/>
 	</resultMap>
 	
 	<!-- 메인 페이지 Top3 -->
@@ -70,7 +71,7 @@
 		( NVL((SELECT MAX(P_B_NUM) + 1 FROM PRODUCT_BOARD),0),
 			#{id}, #{pName}, #{pPrice}, #{pImg},
 			1, 1, 1, 10, #{pbMiniTitle}, #{pbMiniContent},
-			#{pbContent}, 3, 4, #{pbYN}, #{pbWarn}, #{pbTag}, 5)
+			#{pbContent}, 3, 4, #{pbYN}, #{pbWarn}, #{pbTag}, 5, 1)
   	</insert>
   	
 
