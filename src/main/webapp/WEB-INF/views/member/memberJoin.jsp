@@ -101,19 +101,50 @@ html>body>section>div>div>div>form span>.btn-in {
     
 	// 비밀번호 확인
 	function checkPwd(){
-		  var pw1 = $("inputPassword").val();
-		  var pw2 = $("inputPasswordCheck").val();
+		  var pw1 = $("#inputPassword").val();
+		  var pw2 = $("#inputPasswordCheck").val();
+		  var pwcheck = $("#pwcheck").val();
 		  
 		  if(pw1!=null && pw2!=null){
 		  	if(pw1 != pw2){
 		   		document.getElementById('pwcheck_change').style.color = "red";
-		   		document.getElementById('pwcheck_change').innerHTML = "동일한 암호를 입력하세요."; 
+		   		document.getElementById('pwcheck_change').innerHTML = "동일한 암호를 입력하세요.";
+		   		pwcheck = false;
+		   		return pwcheck;
 		  	} else {
 		   		document.getElementById('pwcheck_change').style.color = "blue";
-		   		document.getElementById('pwcheck_change').innerHTML = "암호가 동일합니다."; 
+		   		document.getElementById('pwcheck_change').innerHTML = "암호가 동일합니다.";
+		   		pwcheck = true;
+		   		return true;
 		  	}
 		 }
 	}
+	
+	// 아이디 중복확인 클릭 시 
+	$("#check_id").click(function() {
+		$.ajax({
+			url : "mdupid.ca",
+			data : {
+				id : $("#inputId").val()
+			},
+			dataType : "text",
+			type : "post",
+			success : function(value) {
+				if (value == "ok") {
+					$('#checkMsg').html('<p style="color:blue">사용가능한 아이디입니다.</p>');							
+					$('input[name=name]').focus();
+				} else {
+					$('#checkMsg').html('<p style="color:red">중복된 아이디입니다.</p>');
+					alert("이미 존재하는 아이디입니다. 아이디를 다시 설정하세요");
+					$('#inputId').select();
+				}
+			},
+			error : function(value) {
+				alert("잘못 입력하셨습니다." + value);
+			}
+		});
+		return false;
+	}); // click
 </script>
 
 
@@ -148,6 +179,8 @@ html>body>section>div>div>div>form span>.btn-in {
 										placeholder="아이디" /> <span class="input-group-btn">
 										<input class="btn btn-success btn-in" style="margin: 8px;"
 											id="check_id" type="button" value="중복확인">
+										<!-- 아이디를 중복확인 하였는지에 대한 상태 확인 -->
+										<input type="hidden" id="idcheck" value="false">
 									</span>
 								</div>
 								<div id="checkMsg"></div>
@@ -173,6 +206,8 @@ html>body>section>div>div>div>form span>.btn-in {
 								<p class="help-block" id="pwcheck_change">비밀번호를 한번 더 입력해주세요.</p>
 							</div>
 						</div>
+						
+						<input type="hidden" id="pwcheck" value="false">
 
 
 						<div class="form-group">

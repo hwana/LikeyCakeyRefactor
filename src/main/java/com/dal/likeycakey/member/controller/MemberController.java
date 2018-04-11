@@ -47,29 +47,37 @@ public class MemberController {
 		return "member/memberJoin";
 	}
 	
-	// find id & pw page move
+	// find id & pw page only for move
 	@RequestMapping(value = "findIdpw.ca", method= {RequestMethod.GET, RequestMethod.POST})
 	public String moveFindid(Model model) {
 		return "biz/findIdPw";
 	}
 	
 	// find id & pw
-	@RequestMapping(value = "findingId.ca" , method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	public @ResponseBody String findingId(@ModelAttribute Member m, Model model , HttpServletResponse response)throws Exception {
-		System.out.println("find id");
-		String findid = memberService.findId(m);
-		return findid;
+	@ResponseBody
+	@RequestMapping(value = "findingId.ca" , method = RequestMethod.POST)
+	public void findingId(ModelAndView mv, HttpSession session, Member member, HttpServletResponse response)throws Exception {
+		PrintWriter out = response.getWriter();
+		//데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
+		member = memberService.findId(member.getId(),member.getPasswd()); 
+		
+		
 	}
 	
 	
-	// 회원가입 시 아이디 중복 확인
-    @ResponseBody
-    @RequestMapping(value = "id_check.ca", method = RequestMethod.POST)
-    public String idcheck(HttpServletRequest request, Model model) {
-        String id = request.getParameter("id");
-        int rowcount = memberService.idCheck(id);
-        return String.valueOf(rowcount);
-    }
+	//아이디 중복검사
+		@RequestMapping(value = "mdupid.ca", method = RequestMethod.POST)
+		public void dupid(ModelAndView mv,
+				@RequestParam("id") String id,
+				HttpServletResponse response) throws IOException {			
+			
+			PrintWriter out = response.getWriter();
+			int result = memberService.mdupid(id);
+			if (result > 0) out.print("no");
+			else out.print("ok");
+			out.flush();
+			out.close();
+		}
     
 	
 	
@@ -89,26 +97,24 @@ public class MemberController {
 	}
 	
 	// 로그인 체크
-
-		@RequestMapping(value = "forLogin.ca", method = RequestMethod.POST)
-		public void forLogin(ModelAndView mv, HttpSession session, Member member, HttpServletResponse response) {
-			try {
-				PrintWriter out = response.getWriter();
-				//데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
-				member = memberService.forLogin(member.getId(),member.getPasswd()); 
-				//입력된 아이디를 세션에 저장
-				session.setAttribute("member", member);
-				//결과가 0보다 크면 ok출력
-				int result = 0;
-				if (member != null) {
+	@RequestMapping(value = "forLogin.ca", method = RequestMethod.POST)
+	public void forLogin(ModelAndView mv, HttpSession session, Member member, HttpServletResponse response) {
+		try {
+			PrintWriter out = response.getWriter();
+			//데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
+			member = memberService.forLogin(member.getId(),member.getPasswd()); 
+			//입력된 아이디를 세션에 저장
+			session.setAttribute("member", member);
+			//결과가 0보다 크면 ok출력				
+			int result = 0;
+			if (member != null) {
 					result = 1;
-				} 
-				
-				if(result > 0 ) {
-					out.print("ok");
-				} else {
-					out.print("no");
-				}
+			} 	
+			if(result > 0 ) {
+				out.print("ok");
+			} else {
+				out.print("no");
+			}
 				out.flush();
 				out.close();
 				
