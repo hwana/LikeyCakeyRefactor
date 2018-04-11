@@ -18,45 +18,19 @@ public class Member implements java.io.Serializable{
 
 	private static final long serialVersionUID = 1000300L;
 	
-	@Id    // 테이블의 primary key로 매핑됨
-	@NotNull
-	@Pattern(regexp="", message="아이디는 필수입니다.")
+	
 	private String id;
-	
-	@Column
-	@NotNull
 	private String passwd;
-	
-	@Column
-	@NotNull
-	@Pattern(regexp="\\S{2,6}", message="이름은 2~6자로 입력해주세요")
 	private String name;
-	
 	private int code;
-	
-	@Column
-	@NotNull
-	
 	private String email;
-	
-	@Column
-	@NotNull
 	private String post;
-
-	@Column
-	@NotNull
 	private String addressBasic;
-	@NotNull
 	private String addressDetail;
-	
-	@Column
-	@Pattern(regexp="^\\d{3}-\\d{3,4}-\\d{4}$", message="핸드폰번호를 다시 입력해주세요")
 	private String phone;
-	
 	private String photo;
 	private int status;
 	private int blackCnt;
-	
 	private MemberLike memberLike;
 	private BizMember bizMember;
 
