@@ -1,16 +1,20 @@
 $(function() {
-    $('#findid').click(function(e) {
-		$("#findid-form").delay(100).fadeIn(100);
- 		$("#findpw-form").fadeOut(100);
-		$('#findpw').removeClass('active');
+
+    $('#id-find-link').click(function(e) {
+		$("#id-find").delay(100).fadeIn(100);
+ 		$("#pw-find").fadeOut(100);
+		$('#pw-find-link').removeClass('active');
 		$(this).addClass('active');
+	
 		e.preventDefault();
 	});
-	$('#findpw').click(function(e) {
-		$("#findpw-form").delay(100).fadeIn(100);
- 		$("#findid-form").fadeOut(100);
-		$('#findid').removeClass('active');
+    
+	$('#pw-find-link').click(function(e) {
+		$("#pw-find").delay(100).fadeIn(100);
+ 		$("#id-find").fadeOut(100);
+		$('#id-find-link').removeClass('active');
 		$(this).addClass('active');
+	
 		e.preventDefault();
 	});
 

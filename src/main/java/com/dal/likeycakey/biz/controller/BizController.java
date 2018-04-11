@@ -81,8 +81,6 @@ public class BizController {
 			session.invalidate();
 		}
 		mv.setViewName("home");
-
-
 		return mv;
 	}
 
