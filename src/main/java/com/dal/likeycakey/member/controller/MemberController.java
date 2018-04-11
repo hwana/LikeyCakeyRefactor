@@ -75,15 +75,17 @@ public class MemberController {
 	
 	// 일반회원 INSERT 해주는 부분
 	@RequestMapping(value="memberInsert.ca", method = RequestMethod.POST)
-	public String insertJoin(@Valid Member m, BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			System.out.println("일반회원 : 회원가입 실패");
-			return "home";
+	public ModelAndView insertJoin(Member m, ModelAndView mv) {
+		try {
+			int result = memberService.insertMember(m);
+			mv.setViewName("redirect:home.ca");
+			System.out.println("일반회원 : 등록성공");
+		} catch(Exception e) {
+			mv.setViewName("redirect:home.ca");
+			System.out.println(e);
+			System.out.println("일반회원 : 등록실패");
 		}
-		else {
-			System.out.println("일반회원 : 회원가입 성공");
-			return "home";
-		}
+		return mv;
 	}
 	
 	// 로그인 체크
