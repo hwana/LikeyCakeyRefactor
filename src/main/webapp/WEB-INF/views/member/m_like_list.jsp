@@ -81,8 +81,6 @@
 																	class="pro-level">Sale</span>
 																<div class="hover-content text-center">
 																	<ul>
-																		<li><a href="#" class="icon_refresh"></a></li>
-																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
@@ -116,8 +114,6 @@
 																	src="/resources/img/shop-grid/2.jpg" alt="" /></a>
 																<div class="hover-content text-center">
 																	<ul>
-																		<li><a href="#" class="icon_refresh"></a></li>
-																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
@@ -150,8 +146,6 @@
 																	src="/resources/img/shop-grid/3.jpg" alt="" /></a>
 																<div class="hover-content text-center">
 																	<ul>
-																		<li><a href="#" class="icon_refresh"></a></li>
-																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
@@ -184,8 +178,6 @@
 																	src="/resources/img/shop-grid/4.jpg" alt="" /></a>
 																<div class="hover-content text-center">
 																	<ul>
-																		<li><a href="#" class="icon_refresh"></a></li>
-																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
@@ -218,8 +210,6 @@
 																	src="/resources/img/shop-grid/5.jpg" alt="" /></a>
 																<div class="hover-content text-center">
 																	<ul>
-																		<li><a href="#" class="icon_refresh"></a></li>
-																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
@@ -253,8 +243,6 @@
 																	class="pro-level">New</span>
 																<div class="hover-content text-center">
 																	<ul>
-																		<li><a href="#" class="icon_refresh"></a></li>
-																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
@@ -289,8 +277,6 @@
 																	class="pro-level">New</span>
 																<div class="hover-content text-center">
 																	<ul>
-																		<li><a href="#" class="icon_refresh"></a></li>
-																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
@@ -325,8 +311,6 @@
 																	class="pro-level">New</span>
 																<div class="hover-content text-center">
 																	<ul>
-																		<li><a href="#" class="icon_refresh"></a></li>
-																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"
@@ -361,8 +345,6 @@
 																	class="pro-level">New</span>
 																<div class="hover-content text-center">
 																	<ul>
-																		<li><a href="#" class="icon_refresh"></a></li>
-																		<li><a href="#" class="icon_cart_alt "></a></li>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"
 																			data-toggle="modal" data-target="#productModal"

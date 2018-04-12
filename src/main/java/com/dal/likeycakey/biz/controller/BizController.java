@@ -24,102 +24,93 @@ import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
 import com.dal.likeycakey.member.model.vo.Member;
 
-
 @Controller
 public class BizController {
 
 	@Autowired
-	private BizService bizService; //= new BizServiceImpl();
-	
-	//사업자 로그인
+	private BizService bizService; // = new BizServiceImpl();
+
+	// 사업자 로그인
 	@RequestMapping(value = "bizLogin.ca", method = RequestMethod.GET)
 	public String bizLogin() {
 
 		return "biz/bizLogin";
 	}
 
-
 	// 로그인 체크
 
 	@RequestMapping(value = "loginCheck2.ca", method = RequestMethod.POST)
 	public void loginCheck(ModelAndView mv, HttpSession session, Member member, HttpServletResponse response) {
-	
+
 		try {
 
 			PrintWriter out = response.getWriter();
-			//데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
+			// 데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
 			member = bizService.loginCheck(member.getId(), member.getPasswd());
 			System.out.println(member.getId() + member.getPasswd());
 			session.setAttribute("member", member);
 			int result = 0;
-			if(member!=null) {
+			if (member != null) {
 				result = 1;
 			}
-		
-			//결과가 0보다 크면 ok출력
+
+			// 결과가 0보다 크면 ok출력
 			if (result > 0) {
-				out.print("ok");			
+				out.print("ok");
 			} else {
 				out.print("no");
 			}
 			out.flush();
 			out.close();
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
-		
+
 	}
 
 	// 로그아웃
 	@RequestMapping(value = "logout.ca", method = RequestMethod.GET)
 	public ModelAndView memberLogout(HttpSession session, ModelAndView mv) {
 
-		if (session.getAttribute("id") != null) {
+		if (session.getAttribute("member") != null) {
 			session.invalidate();
 		}
 		mv.setViewName("home");
 
-
 		return mv;
 	}
 
-	
-	//아이디 중복검사
+	// 아이디 중복검사
 	@RequestMapping(value = "dupid.ca", method = RequestMethod.POST)
-	public void dupid(ModelAndView mv,
-			@RequestParam("id") String id,
-			HttpServletResponse response) throws IOException {			
-		
+	public void dupid(ModelAndView mv, @RequestParam("id") String id, HttpServletResponse response) throws IOException {
+
 		PrintWriter out = response.getWriter();
 		int result = bizService.dupid(id);
-		if (result > 0) out.print("no");
-		else out.print("ok");
+		if (result > 0)
+			out.print("no");
+		else
+			out.print("ok");
 		out.flush();
 		out.close();
 	}
-		
-	//사업자 회원가입 페이지로 간다
+
+	// 사업자 회원가입 페이지로 간다
 	@RequestMapping(value = "bizJoin.ca", method = RequestMethod.GET)
 	public String bizJoin() {
-		
-		
+
 		return "biz/bizJoin";
 	}
-	
+
 	// 회원가입한 멤버 등록
-	@RequestMapping(value="bizInsert.ca", method=RequestMethod.POST)
-	public ModelAndView bizInsert(Member m,
-			@RequestParam("bizName") String bizName,
-			@RequestParam("bizPn") String bizPn,
-			@RequestParam("bizNum") String bizNum,
-			@RequestParam("bizDelivery") int bizDelivery,
-			@RequestParam("masterName") String masterName,
-			@RequestParam("bizDeliveryYn") String bizDeliveryYn,
-			@RequestParam("bizCustomYn") String bizCustomYn,
-			 ModelAndView mv) {
+	@RequestMapping(value = "bizInsert.ca", method = RequestMethod.POST)
+	public ModelAndView bizInsert(Member m, @RequestParam("bizName") String bizName,
+			@RequestParam("bizPn") String bizPn, @RequestParam("bizNum") String bizNum,
+			@RequestParam("bizDelivery") int bizDelivery, @RequestParam("masterName") String masterName,
+			@RequestParam("bizDeliveryYn") String bizDeliveryYn, @RequestParam("bizCustomYn") String bizCustomYn,
+			@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request,
+			ModelAndView mv) {
 
 		BizMember bm = new BizMember();
 		bm.setId(m.getId());
@@ -130,8 +121,26 @@ public class BizController {
 		bm.setMasterName(masterName);
 		bm.setBizDeliveryYn(bizDeliveryYn);
 		bm.setBizCustomYn(bizCustomYn);
-		
+
 		try {
+
+			// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
+			String savePath = root + "\\img\\member";
+			System.out.println("이미지가 저장되는 곳은 " + savePath);
+
+			if (file != null && !file.isEmpty()) {
+				if (!new File(savePath).exists()) {
+					new File(savePath).mkdir();
+				}
+
+				
+				String originFileName = file.getOriginalFilename();
+				File fileupload = new File(savePath + "\\" + originFileName);
+				file.transferTo(fileupload);
+				m.setPhoto(originFileName.substring(0, originFileName.lastIndexOf('.')));
+			}
 			int result = bizService.insertBiz(m);
 			int result2 = bizService.insertBiz2(bm);
 			mv.setViewName("redirect:home.ca");
@@ -141,64 +150,56 @@ public class BizController {
 			System.out.println(e);
 			System.out.println("비즈멤버등록실패");
 		}
+
 		return mv;
 	}
-	
-	//사업자 회원정보, 매장정보 수정
+
+	// 사업자 회원정보, 매장정보 수정
 	@RequestMapping(value = "bizMypageModify.ca", method = RequestMethod.GET)
 	public String bizMypageModify() {
-		
-		
+
 		return "biz/bizMypageModify";
 	}
-	
-	//등록된 케이크가 하나도 없는 상태에서 케이크 등록하는 페이지
+
+	// 등록된 케이크가 하나도 없는 상태에서 케이크 등록하는 페이지
 	@RequestMapping(value = "nocakeUpload.ca", method = RequestMethod.GET)
 	public String nocakeUpload() {
-		
-		
+
 		return "biz/nocakeUpload";
 	}
-	
 
-	//등록한 케이크가 있는 상태에서 케이크 등록하는 페이지
+	// 등록한 케이크가 있는 상태에서 케이크 등록하는 페이지
 	@RequestMapping(value = "yescakeUpload.ca", method = RequestMethod.GET)
 	public String yescakeUpload() {
-		
-		
+
 		return "biz/yescakeUpload";
 	}
-	
-	//완제품 케이크 등록 페이지
+
+	// 완제품 케이크 등록 페이지
 	@RequestMapping(value = "productCakeUpload.ca", method = RequestMethod.GET)
 	public String productCakeUpload() {
-		
-		
+
 		return "biz/productCakeUpload";
 	}
-	
-	//productCakeUpload 페이지에서 등록하기를 누르면 실제로 데이터베이스에 값을 저장
+
+	// productCakeUpload 페이지에서 등록하기를 누르면 실제로 데이터베이스에 값을 저장
 	@RequestMapping(value = "cakeInsert.ca", method = RequestMethod.POST)
-	public ModelAndView cakeInsert(
-			HttpSession session,
-			HttpServletRequest request,
-			@RequestParam(value = "file", required=false) MultipartFile file, 
-			@RequestParam("inputtag1") String inputtag1,
-			@RequestParam("inputtag2") String inputtag2,
-			@RequestParam("inputtag3") String inputtag3,
-			@RequestParam("inputtag4") String inputtag4,
-			@RequestParam("inputtag5") String inputtag5,
-			ModelAndView mv,
-			ProductBoard productBoard
-			) throws IOException {
-		
+	public ModelAndView cakeInsert(HttpSession session, HttpServletRequest request,
+			@RequestParam(value = "file", required = false) MultipartFile file,
+			@RequestParam(name = "inputtag1", required = false) String inputtag1,
+			@RequestParam(name = "inputtag2", required = false) String inputtag2,
+			@RequestParam(name = "inputtag3", required = false) String inputtag3,
+			@RequestParam(name = "inputtag4", required = false) String inputtag4,
+			@RequestParam(name = "inputtag5", required = false) String inputtag5, ModelAndView mv,
+			ProductBoard productBoard) throws IOException {
+
 		System.out.println("cakeInsert.ca입니다(배송비 꼭 숫자 넣어주세요!!!!)");
 		// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 		String savePath = root + "\\img\\product";
 		System.out.println("이미지가 저장되는 곳은 " + savePath);
-		
+
 		if (file != null && !file.isEmpty()) {
 			if (!new File(savePath).exists()) {
 				new File(savePath).mkdir();
@@ -214,30 +215,30 @@ public class BizController {
 			file.transferTo(renameFile);
 			productBoard.setpImg(renameFileName.substring(0, renameFileName.lastIndexOf('.')));
 		}
-		
-		//productBoard에 이미지 넣기
+
+		// productBoard에 이미지 넣기
 		String inputtag = "";
-		if(inputtag1 != "") {
+		if (inputtag1 != "") {
 			inputtag = inputtag + "#" + inputtag1;
-			if(inputtag2 != "") {
+			if (inputtag2 != "") {
 				inputtag = inputtag + ", #" + inputtag2;
-				if(inputtag3 != "") {
+				if (inputtag3 != "") {
 					inputtag = inputtag + ", #" + inputtag3;
-					if(inputtag4 != "") {
+					if (inputtag4 != "") {
 						inputtag = inputtag + ", #" + inputtag4;
-						if(inputtag5 != "") {
+						if (inputtag5 != "") {
 							inputtag = inputtag + ", #" + inputtag5;
 						}
 					}
 				}
 			}
 		}
-		
+
 		productBoard.setPbTag(inputtag);
-		
+
 		// 상품정보
-		System.out.println(" 상품정보 : "+productBoard);
-		
+		System.out.println(" 상품정보 : " + productBoard);
+
 		if (bizService.insertProductBoard(productBoard) > 0) {
 			System.out.println("프로덕트 케이크 넣기 성공");
 			mv.setViewName("biz/productCakeUpload");
@@ -248,47 +249,40 @@ public class BizController {
 		}
 		return mv;
 	}
-	
-	//커스텀 케이크 등록 페이지
+
+	// 커스텀 케이크 등록 페이지
 	@RequestMapping(value = "customCakeUpload.ca", method = RequestMethod.GET)
 	public String customCakeUpload(HttpSession session) {
-		
-		
+
 		return "biz/customCakeUpload";
 	}
-	
-	//케이크 등록하기 버튼 클릭 후 완제품케이크를 등록할건지 커스텀 케이크를 등록할건지 선택하는 페이지
+
+	// 케이크 등록하기 버튼 클릭 후 완제품케이크를 등록할건지 커스텀 케이크를 등록할건지 선택하는 페이지
 	@RequestMapping(value = "pcSelect.ca", method = RequestMethod.GET)
 	public String pcSelect() {
-		
-		
+
 		return "biz/pcSelect";
 	}
-	
-	
-	//사업자에게 들어온 문의글 모아보는 페이지
+
+	// 사업자에게 들어온 문의글 모아보는 페이지
 	@RequestMapping(value = "bizQNA.ca", method = RequestMethod.GET)
 	public String bizQNA() {
-		
-		
+
 		return "biz/bizQNA";
 	}
-	
-	//"등록이 완료되었습니다"페이지
+
+	// "등록이 완료되었습니다"페이지
 	@RequestMapping(value = "uploadComplete.ca", method = RequestMethod.GET)
 	public String uploadOK() {
-		
-		
+
 		return "biz/uploadComplete";
 	}
-	
-	//사업자 아이디 패스워드 찾는 페이지
+
+	// 사업자 아이디 패스워드 찾는 페이지
 	@RequestMapping(value = "findIdPw.ca", method = RequestMethod.GET)
 	public String findIdPw() {
-		
-		
+
 		return "biz/findIdPw";
 	}
-	
-	
+
 }

@@ -3,7 +3,6 @@ package com.dal.likeycakey.detailView.model.vo;
 import java.sql.Date;
 
 import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
@@ -155,3 +154,4 @@ public class ProductReview implements java.io.Serializable{
    }
      
 }
+

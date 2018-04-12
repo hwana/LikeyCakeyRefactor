@@ -60,18 +60,24 @@
 				<!-- SECTION TITEL -->
 				<div class="container">
 					<div class="row">
-						<div class="col-md-4 hidden-sm hidden-xs">
-							<div class="single-service middle-border mt-50">
-								<span class="icon_gift"></span>
-								<h4>일반회원</h4>
-								<p>케이크를 찾고 있는 회원</p>
+						<div class="col-md-6 hidden-sm hidden-xs">
+							<div class="single-service middle-border mt-50" style="text-align:center">
+								<a href="memberJoin.ca">
+									<span class="icon_gift"></span>
+									<h4>일반회원</h4>
+									<p>케이크를 찾고 있는 회원</p>
+								</a>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12">
-							<div class="single-service mt-50">
-								<span class="icon_lock_alt"></span>
-								<h4>호스트회원</h4>
-								<p>다양한 케이크를 등록할 수 있는 사업자 회원</p>
+						
+						
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="single-service mt-50" style="text-align:center">
+								<a href="bizJoin.ca">
+									<span class="icon_lock_alt"></span>
+									<h4>호스트회원</h4>
+									<p>다양한 케이크를 등록할 수 있는 사업자 회원</p>
+								</a>
 							</div>
 						</div>
 					</div>

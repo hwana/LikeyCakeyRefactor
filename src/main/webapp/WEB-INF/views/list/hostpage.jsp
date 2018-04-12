@@ -4,6 +4,24 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<c:set var="vendorcakeCount" value="${requestScope.vendorcakeCount}"/>
+<c:set var="vendorreviewCount" value="${requestScope.vendorreviewCount }"/>
+<c:set var="pagecake_current" value="${requestScope.pagecake_current}"/>
+<c:set var="pagereview_current" value="${requestScope.pagereview_current}"/>
+<c:set var="startpagecake" value="${requestScope.startpagecake}"/>
+<c:set var="startpagereview" value="${requestScope.startpagereview}"/>
+<c:set var="endpagecake" value="${requestScope.endpagecake}"/>
+<c:set var="endpagereview" value="${requestScope.endpagereview}"/>
+<c:set var="maxpagecake" value="${requestScope.maxpagecake}"/>
+<c:set var="maxpagereview" value="${requestScope.maxpagereview}"/>
+<c:set var="vendorcakelist" value="${requestScope.vendorcakelist}"/>
+<c:set var="vendorreviewlist" value="${requestScope.vendorreviewlist }"/>
+<c:set var="vendorlocationlist" value="${requestScope.vendorlocationlist}"/>
+<c:set var="reviewimglist" value="${requestScope.reviewimglist }"/>
+<c:set var="reviewcakelist" value="${requestScope.reviewcakelist }"/>
+<c:set var="input_vendor" value="${requestScope.input_vendor}"/>
+<c:set var="member" value="${sessionScope.member}"/>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
@@ -51,8 +69,8 @@
 								<div class="young-host-profile-box" style="transition: transform 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) 0s; transform: translateY(0px);">
 									<span><img src="/resources/img/young/touslesjours.png" alt="" /></span>
                 				    <div>BAKERY</div>
-                        			<p class="young-host-profile-box-name">뚜레주르</p>
-                        			<p class="young-host-profile-box-exp">안녕하세요~ 뚜레주르입니다.</p>
+                        			<p class="young-host-profile-box-name">${input_vendor }</p>
+                        			<p class="young-host-profile-box-exp">안녕하세요~ ${input_vendor }입니다.</p>
                     	        </div>
 							</div>
 						</div>
@@ -62,16 +80,18 @@
 							<div class="tab-content">
 								<div class="text_box first">
                     				<h4 class="h_intro">
-                       					<em>뚜레주르</em>의 케이크 <strong class="txt_primary"><em id="_spaceCount">6개</em></strong>
+                       					<em>${input_vendor }</em>의 케이크 <strong class="txt_primary"><em id="_spaceCount">${vendorcakeCount }개</em></strong>
                     				</h4>
                 				</div>
 								<div id="list" class="shop-right pt-35 tab-pane fade in active">
 									<div class="row">
+										<c:set var="list" value="${vendorlocationlist}" />
+										<c:forEach var="cake" items="${vendorcakelist}" varStatus="loop">	
 										<!-- Single Product Start -->
 										<div class="col-md-6 col-sm-6">
 											<div class="single-product style-two mb-50">
 												<div class="young-single-img">
-													<a href="#"><img src="/resources/img/young/1.jpg" alt="" /></a>
+													<a href="#"><img src="/resources/img/product/${cake.pImg}.jpg" alt="" /></a>
 													<span class="pro-level">당일</span>
 													<div class="hover-content text-center">
 														<ul>
@@ -85,18 +105,15 @@
 													</div>
 												</div>
 												<div class="young-product-details mt-20">
-													<h4><a href="single-product.html">오지게 맛있는 초코케익</a></h4>
+													<h4><a href="single-product.html">${cake.pName }</a></h4>
 													<div class="young-product-details-tag">
 														<i class="fa fa-map-marker"></i>
-														<span class="young-product-details-tag-place">서울시 종로구</span>
+														<span class="young-product-details-tag-place"><c:out value="${list[loop.index]}"/></span>
 														<i class="fa fa-tag"></i>
-														<span class="young-product-details-tag-place-detail">#초코</span>
-														<span class="young-product-details-tag-place-detail">#초코릿</span>
-														<span class="young-product-details-tag-place-detail">#초코렛</span>
-														<span class="young-product-details-tag-place-detail">#달아</span>
-													</div>
+														<span class="young-product-details-tag-place-detail">${cake.pbTag }</span>
+														</div>
 													<div class="young-product-details-price">
-														<span>23,000 원</span>
+														<span>${cake.pPrice }</span>
 														<i class="fa fa-star"></i>
 														<i class="fa fa-star"></i>
 														<i class="fa fa-star"></i>
@@ -107,216 +124,44 @@
 											</div>
 										</div>
 										<!-- Single Product End -->
-										<!-- Single Product Start -->
-										<div class="col-md-6 col-sm-6">
-											<div class="single-product style-two mb-50">
-												<div class="young-single-img">
-													<a href="#"><img src="/resources/img/young/2.jpg" alt="" /></a>
-													<span class="pro-level">당일</span>
-													<div class="hover-content text-center">
-														<ul>
-<!-- 															<li><a href="#" class="icon_refresh"></a></li>
- -->															<li><a href="#" class="icon_cart_alt "></a></li>
-															<li><a href="#" class="icon_heart_alt"></a></li>
-															<!-- <li>
-																<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-															</li> -->
-														</ul>
-													</div>
-												</div>
-												<div class="young-product-details mt-20">
-													<h4><a href="single-product.html">달달 딸기 치즈케이크</a></h4>
-													<div class="young-product-details-tag">
-														<i class="fa fa-map-marker"></i>
-														<span class="young-product-details-tag-place">서울시 강남구</span>
-														<i class="fa fa-tag"></i>
-														<span class="young-product-details-tag-place-detail">#딸기</span>
-														<span class="young-product-details-tag-place-detail">#딸기가조아</span>
-														<span class="young-product-details-tag-place-detail">#너무너무너무너무</span>
-														<span class="young-product-details-tag-place-detail">#달아</span>														</div>
-													<div class="young-product-details-price">
-														<span>34,000 원</span>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- Single Product End -->
-										<!-- Single Product Start -->
-										<div class="col-md-6 col-sm-6">
-											<div class="single-product style-two mb-50">
-												<div class="young-single-img">
-													<a href="#"><img src="/resources/img/young/3.jpg" alt="" /></a>
-													<span class="pro-level">당일</span>
-													<div class="hover-content text-center">
-														<ul>
-															<!-- <li><a href="#" class="icon_refresh"></a></li> -->
-															<li><a href="#" class="icon_cart_alt "></a></li>
-															<li><a href="#" class="icon_heart_alt"></a></li>
-															<!-- <li>
-																<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-															</li> -->
-															</ul>
-													</div>
-												</div>
-												<div class="young-product-details mt-20">
-													<h4><a href="single-product.html">과일 생크림 케이크 무려 두겹이나 있다</a></h4>
-													<div class="young-product-details-tag">
-														<i class="fa fa-map-marker"></i>
-														<span class="young-product-details-tag-place">서울시 동대문구</span>
-															<i class="fa fa-tag"></i>
-														<span class="young-product-details-tag-place-detail">#딸기</span>
-														<span class="young-product-details-tag-place-detail">#블루베리</span>
-														<span class="young-product-details-tag-place-detail">#크림</span>
-														<span class="young-product-details-tag-place-detail">#두겹</span>
-													</div>
-													<div class="young-product-details-price">
-															<span>40,000 원</span>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-													</div>
-													</div>
-											</div>
-										</div>
-										<!-- Single Product End -->
-										<!-- Single Product Start -->
-										<div class="col-md-6 col-sm-6">
-											<div class="single-product style-two mb-50">
-												<div class="young-single-img">
-													<a href="#"><img src="/resources/img/young/4.jpg" alt="" /></a>
-													<span class="pro-level">당일</span>
-													<div class="hover-content text-center">
-														<ul>
-															<!-- <li><a href="#" class="icon_refresh"></a></li> -->
-															<li><a href="#" class="icon_cart_alt "></a></li>																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
-																<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-															</li> -->
-														</ul>
-													</div>
-												</div>
-												<div class="young-product-details mt-20">
-													<h4><a href="single-product.html">들어는 보셧나 마카롱 케이크</a></h4>
-													<div class="young-product-details-tag">
-														<i class="fa fa-map-marker"></i>
-														<span class="young-product-details-tag-place">서울시 북구</span>
-														<i class="fa fa-tag"></i>
-														<span class="young-product-details-tag-place-detail">#마카롱</span>
-														<span class="young-product-details-tag-place-detail">#마카롱이라구?</span>
-														<span class="young-product-details-tag-place-detail">#말도안되</span>
-														<span class="young-product-details-tag-place-detail">#이런게존재</span>
-													</div>
-													<div class="young-product-details-price">
-														<span>33,000 원</span>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- Single Product End -->
-										<!-- Single Product Start -->
-										<div class="col-md-6 col-sm-6">
-											<div class="single-product style-two mb-50">
-												<div class="young-single-img">
-													<a href="#"><img src="/resources/img/young/5.jpg" alt="" /></a>
-													<span class="pro-level">당일</span>
-													<div class="hover-content text-center">
-														<ul>
-															<!-- <li><a href="#" class="icon_refresh"></a></li> -->
-															<li><a href="#" class="icon_cart_alt "></a></li>
-															<li><a href="#" class="icon_heart_alt"></a></li>
-															<!-- <li>
-																<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-															</li> -->
-														</ul>
-													</div>
-												</div>
-												<div class="young-product-details mt-20">
-													<h4><a href="single-product.html">초코 체스판 카스테라</a></h4>
-													<div class="young-product-details-tag">
-														<i class="fa fa-map-marker"></i>
-														<span class="young-product-details-tag-place">서울시 홍대</span>
-														<i class="fa fa-tag"></i>
-														<span class="young-product-details-tag-place-detail">#체크박스</span>
-														<span class="young-product-details-tag-place-detail">#너텔라</span>
-														<span class="young-product-details-tag-place-detail">#카스테라</span>
-														<span class="young-product-details-tag-place-detail">#우유</span>
-													</div>
-													<div class="young-product-details-price">
-														<span>28,000 원</span>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- Single Product End -->
-										<!-- Single Product Start -->
-										<div class="col-md-6 col-sm-6">
-											<div class="single-product style-two mb-50">
-												<div class="young-single-img">
-													<a href="#"><img src="/resources/img/young/6.jpg" alt="" /></a>
-													<span class="pro-level">당일</span>
-													<div class="hover-content text-center">
-														<ul>
-															<!-- <li><a href="#" class="icon_refresh"></a></li> -->
-															<li><a href="#" class="icon_cart_alt "></a></li>
-															<li><a href="#" class="icon_heart_alt"></a></li>
-															<!-- <li>
-																<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-															</li> -->
-														</ul>
-													</div>
-												</div>
-												<div class="young-product-details mt-20">
-													<h4><a href="single-product.html">아이스 레몬 레인보우 케이크</a></h4>
-													<div class="young-product-details-tag">
-														<i class="fa fa-map-marker"></i>
-														<span class="young-product-details-tag-place">서울시 강남구</span>
-														<i class="fa fa-tag"></i>
-														<span class="young-product-details-tag-place-detail">#레몬</span>
-														<span class="young-product-details-tag-place-detail">#레인보우</span>
-														<span class="young-product-details-tag-place-detail">#케달달</span>
-														<span class="young-product-details-tag-place-detail">#상큼</span>
-													</div>
-													<div class="young-product-details-price">
-														<span>39,000 원</span>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- Single Product End -->
+										</c:forEach>
 										<!-- Page Pagination Start -->
 										<div class="col-md-12">
-											<div class="page-pagination text-center pt-50">
-												<ul>
-													<li class="previous"><a href="#"><span class="icon-left" data-icon="&#x23;"></span></a></li>
-													<li class="active"><a href="#">1</a></li>
-													<li><a href="#">2</a></li>
-													<li><a href="#">3</a></li>
-													<li><a href="#">4</a></li>
-													<li><a href="#">5</a></li>
-													<li class="next"><a href="#"><span class="icon-right" data-icon="&#x24;"></span></a></li>
-												</ul>
+											<div class="page-pagination text-center">
+												<c:if test="${pagecake_current <= 1}">
+													<span class="icon-right" data-icon="&#x23;" style="text-decoration:none;"></span>
+												</c:if>
+												<c:if test="${pagecake_current > 1}">
+													<c:url var="blistST" value="hostinfo.ca">
+														<c:param name="page_cake" value="${pagecake_current-1}"/>
+														<c:param name="page_review" value="${pagereview_current}"/>
+														<c:param name="input_vendor_id" value="${input_vendor}"/>
+													</c:url>
+													<a href="${blistST}" style="text-decoration:none;"><span class="icon-right" data-icon="&#x23;" style="text-decoration:none;"></span></a>
+												</c:if>
+												<c:forEach var="p" begin="${startpagecake}" end="${endpagecake}">
+													<c:if test="${p eq pagecake_current}">
+														<font color="#9ababc"><b>${p}</b></font>
+													</c:if>
+													<c:if test="${p ne pagecake_current}">
+														<c:url var="blistchk" value="hostinfo.ca">
+															<c:param name="page_cake" value="${p}"/>
+															<c:param name="page_review" value="${pagereview_current}"/>
+															<c:param name="input_vendor_id" value="${input_vendor}"/>
+														</c:url>
+														<a href="${blistchk}" style="text-decoration:none">${p}</a>
+													</c:if>
+												</c:forEach>
+												<c:if test="${pagecake_current >= maxpagecake}">
+													<span class="icon-left" data-icon="&#x24;" style="text-decoration:none"></span>
+												</c:if><c:if test="${pagecake_current < maxpagecake}">
+												<c:url var="blistEND" value="hostinfo.ca">
+													<c:param name="page_cake" value="${pagecake_current+1}"/>
+													<c:param name="page_review" value="${pagereview_current}"/>
+													<c:param name="input_vendor_id" value="${input_vendor}"/>
+												</c:url>
+													<a href="${blistEND}" style="text-decoration:none"><span class="icon-left" data-icon="&#x24;" style="text-decoration:none"></span></a>
+												</c:if>
 											</div>
 										</div>
 										<!-- Page Pagination End -->
@@ -326,7 +171,7 @@
 								</div>
 								<div class="text_box first">
                     				<h4 class="h_intro">
-                       					이용 후기 <em>246개</em> 평균 평점 <strong class="txt_primary"><em id="_spaceCount">4.4</em></strong>
+                       					이용 후기 <em>${vendorreviewCount }개</em> 평균 평점 <strong class="txt_primary"><em id="_spaceCount">4.4</em></strong>
                     				</h4>
                 				</div>
 								<div id="list" class="shop-right pt-35 tab-pane fade in active young-lesspadding">
@@ -336,22 +181,25 @@
 											<div class="page-pagination text-center pt-50 young-getridofpaddingtop">
 												<div class="young-review-wrap">
 													<ul class="young-review-list">
+														<c:set var="reviewcakelist" value="${reviewcakelist}" />
+														<c:set var="reviewimglist" value="${reviewimglist}" />
+														<c:forEach var="review" items="${vendorreviewlist}" varStatus="loop">	
 														<li class="young-rlist">
 															<span class="young-pfimage">
-																	<img src="/resources/img/young/pika.PNG" alt="" />
+																	<img src="/resources/img/young/${reviewimglist[loop.index]}.JPG" alt="" />
 															</span>
 															<div class="young-review-mine">
 																<strong class="young-guestname">
-																	pikachustyle
+																	${review.id }
 																</strong>
 																<p class="young-preview">
-																	피카츄가 먹기에는 너무 달아요. 커피랑 먹으면 딱이겠네요.
+																	${review.prContent }
 																</p>
 																<div class="young-extraimg">
 																</div>
 																<div class="young-infobase">
-																	<a class="young-infobase-cake">들어는 보셨나 마카롱 케이크</a>
-																	<span class="young-infobase-time">2018.03.20. 21:22:30</span>
+																	<a class="young-infobase-cake"><c:out value="${reviewcakelist[loop.index]}"/></a>
+																	<span class="young-infobase-time">${review.prDate }</span>
 																</div>
 																<span class="young-ratearea">
 																		<i class="fa fa-star"></i>
@@ -362,58 +210,7 @@
 																</span>
 															</div>
 														</li>
-														<li class="young-rlist">
-															<span class="young-pfimage">
-																	<img src="/resources/img/young/firee.png" alt="" />
-															</span>
-															<div class="young-review-mine">
-																<strong class="young-guestname">
-																	FIREEEEEEE
-																</strong>
-																<p class="young-preview">
-																	아이스 케이크가 내가 먹기전에 녹아버려요 어떡해요?
-																</p>
-																<div class="young-extraimg">
-																</div>
-																<div class="young-infobase">
-																	<a class="young-infobase-cake">아이스 레몬 레인보우 케이크</a>
-																	<span class="young-infobase-time">2018.03.20. 21:22:30</span>
-																</div>
-																<span class="young-ratearea">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																</span>
-															</div>
-														</li>
-														<li class="young-rlist">
-															<span class="young-pfimage">
-																<img src="/resources/img/young/ggobu.png" alt="" />
-															</span>
-															<div class="young-review-mine">
-																<strong class="young-guestname">
-																	꼬북꼬북
-																</strong>
-																<p class="young-preview">
-																	꼬부기는 딸기를 좋아해요.
-																</p>
-																<div class="young-extraimg">
-																</div>
-																<div class="young-infobase">
-																	<a class="young-infobase-cake">달달 딸기 치즈케이크</a>
-																	<span class="young-infobase-time">2017.11.20. 21:22:30</span>
-																</div>
-																<span class="young-ratearea">
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																		<i class="fa fa-star"></i>
-																</span>
-															</div>
-														</li>													
+														</c:forEach>											
 													</ul>
 												</div>
 											</div>
@@ -423,16 +220,41 @@
 										</div>
 										<!-- Review Pagination Start -->
 										<div class="col-md-12">
-											<div class="page-pagination text-center pt-50">
-												<ul>
-													<li class="previous"><a href="#"><span class="icon-left" data-icon="&#x23;"></span></a></li>
-													<li class="active"><a href="#">1</a></li>
-													<li><a href="#">2</a></li>
-													<li><a href="#">3</a></li>
-													<li><a href="#">4</a></li>
-													<li><a href="#">5</a></li>
-													<li class="next"><a href="#"><span class="icon-right" data-icon="&#x24;"></span></a></li>
-												</ul>
+											<div class="page-pagination text-center">
+												<c:if test="${pagereview_current <= 1}">
+													<span class="icon-right" data-icon="&#x23;" style="text-decoration:none;"></span>
+												</c:if>
+												<c:if test="${pagereview_current > 1}">
+													<c:url var="blistST2" value="hostinfo.ca">
+														<c:param name="page_review" value="${pagereview_current-1}"/>
+														<c:param name="page_cake" value="${pagecake_current}"/>
+														<c:param name="input_vendor_id" value="${input_vendor}"/>
+													</c:url>
+													<a href="${blistST2}" style="text-decoration:none;"><span class="icon-right" data-icon="&#x23;" style="text-decoration:none;"></span></a>
+												</c:if>
+												<c:forEach var="p" begin="${startpagereview}" end="${endpagereview}">
+													<c:if test="${p eq pagereview_current}">
+														<font color="#9ababc"><b>${p}</b></font>
+													</c:if>
+													<c:if test="${p ne pagereview_current}">
+														<c:url var="blistchk2" value="hostinfo.ca">
+															<c:param name="page_review" value="${p}"/>
+															<c:param name="page_cake" value="${pagecake_current}"/>
+															<c:param name="input_vendor_id" value="${input_vendor}"/>
+														</c:url>
+														<a href="${blistchk2}" style="text-decoration:none">${p}</a>
+													</c:if>
+												</c:forEach>
+												<c:if test="${pagereview_current >= maxpagereview}">
+													<span class="icon-left" data-icon="&#x24;" style="text-decoration:none"></span>
+												</c:if><c:if test="${pagereview_current < maxpagereview}">
+												<c:url var="blistEND2" value="hostinfo.ca">
+													<c:param name="page_review" value="${pagereview_current+1}"/>
+													<c:param name="page_cake" value="${pagecake_current}"/>
+													<c:param name="input_vendor_id" value="${input_vendor}"/>
+												</c:url>
+													<a href="${blistEND2}" style="text-decoration:none"><span class="icon-left" data-icon="&#x24;" style="text-decoration:none"></span></a>
+												</c:if>
 											</div>
 										</div>
 										<!-- Review Pagination End -->

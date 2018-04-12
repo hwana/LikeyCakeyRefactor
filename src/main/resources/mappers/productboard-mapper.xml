@@ -24,6 +24,7 @@
 		<result property="pbWarn" column="P_B_WARN"/>
 		<result property="pbTag" column="P_B_TAG"/>
 		<result property="pbSellCnt" column="P_B_SELLCNT"/>
+		<result property = "pbStatus" column = "P_B_STATUS"/>
 	</resultMap>
 	
 	<!-- 메인 페이지 Top3 -->
@@ -70,7 +71,7 @@
 		( NVL((SELECT MAX(P_B_NUM) + 1 FROM PRODUCT_BOARD),0),
 			#{id}, #{pName}, #{pPrice}, #{pImg},
 			1, 1, 1, 10, #{pbMiniTitle}, #{pbMiniContent},
-			#{pbContent}, 3, 4, #{pbYN}, #{pbWarn}, #{pbTag}, 5)
+			#{pbContent}, 3, 4, #{pbYN}, #{pbWarn}, #{pbTag}, 5, 1)
   	</insert>
   	
 
@@ -92,6 +93,16 @@
 			   OR (P_B_CONTENT LIKE '%' || #{inputsearch} || '%' AND P_B_CONTENT LIKE '%' || #{simplefilter} || '%')
 			   OR (P_B_WARN LIKE '%' || #{inputsearch} || '%' AND P_B_WARN LIKE '%' || #{simplefilter} || '%')
 			   OR (P_B_TAG LIKE '%' || #{inputsearch} || '%' AND P_B_TAG LIKE '%' || #{simplefilter} || '%')
+	</select>
+	
+	<select id="getVendorCakeCount" parameterType="String" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT_BOARD WHERE M_ID = #{inputvendor}	
+	</select>
+	
+	<select id="getVendorReviewCount" parameterType="String" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT * FROM PRODUCT_BOARD a, PRODUCT_REVIEW b WHERE a.P_B_NUM = b.P_B_NUM AND a.M_ID = #{inputvendor}
+		)
 	</select>
 	
 	<select id="selectCakeList" parameterType="String" resultMap="resultProductBoard">
@@ -116,6 +127,14 @@
 			   OR (P_B_WARN LIKE '%' || #{inputsearch} || '%' AND P_B_WARN LIKE '%' || #{simplefilter} || '%')
 			   OR (P_B_TAG LIKE '%' || #{inputsearch} || '%' AND P_B_TAG LIKE '%' || #{simplefilter} || '%')
 		)	
+	</select>
+	
+	<select id="selectVendorCakeList" parameterType="String" resultMap="resultProductBoard">
+		SELECT * FROM PRODUCT_BOARD WHERE M_ID = #{inputvendor}
+	</select>
+	
+	<select id="selectReviewCakeList" parameterType="_int" resultType="String">
+		SELECT P_NAME FROM PRODUCT_BOARD WHERE P_B_NUM = #{pbNum}
 	</select>
 	
 	<select id="selectCakeListwo" parameterType="FilterList" resultMap="resultProductBoard">
