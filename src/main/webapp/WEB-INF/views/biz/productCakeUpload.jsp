@@ -5,7 +5,7 @@
 
 <style>
 	label{margin-top:10px;}
-	#radio{
+	.radio{
 	height : auto;
 	width : auto;
 	font-size : 15px;
@@ -45,12 +45,12 @@ input[type="file"] {
 
 <script>
 	$(document).ready(function(){
-		var cnt = 1;
+		
 		$("input[id='file']").change(function (e) {
 			var $this = $(this);
 		    $("input[id='inputImage']").val($this.val().split('\\').pop());
 		});
-		
+		var cnt = 1;
 		$("#plus").click(function () {
 			var length = $(".inputtag").length;
 					if(length < 5){
@@ -117,15 +117,12 @@ input[type="file"] {
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="inputID">이미지</label>
 								<div class="col-sm-4">
-									<input class="form-control" id="inputImage" type="text"
-										placeholder="이미지" name="inputImage">
+									<input class="form-control" id="inputImage" type="text" placeholder="이미지" name="inputImage">
 								</div>	
-								<!-- <button class="btn btn-success btn-lg" type="button" id="search"> -->
-								<label for="file" class="btn btn-success btn-lg" id="search">
-    								이미지 찾기
-								</label>
+								
+								<label for="file" class="btn btn-success btn-lg" id="search">이미지 찾기</label>
 								<input id="file" type="file" name="file"/>
-								<!-- </button> -->
+								
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="inputCakeName">케이크 이름</label>
@@ -193,12 +190,12 @@ input[type="file"] {
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="inputemail">케이크 당일 구매 여부</label>
 								<div class="col-sm-3 checkbox" name="checkbox">
-									<input class="checkbox-inline" id="radio" name="pbYN" type="radio">
+									<input class="checkbox-inline radio"  name="pbYN" type="radio" value = "Y">
 									&nbsp;가능
 								</div>
 
 								<div class="col-sm-3 checkbox">
-									<input class="checkbox-inline" id="radio" type="radio">
+									<input class="checkbox-inline radio" name="pbYN" type="radio" value = "N">
 									&nbsp;불가능
 								</div>
 							</div>
