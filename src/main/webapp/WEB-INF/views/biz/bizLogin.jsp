@@ -141,14 +141,10 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="panel panel-login" id="panel-login">
-
 				<div class="panel-heading" id="panel-heading">
 					<div class="row">
-						<div class="col-xs-6">
-							<a href="#" class="active" id="normal-member-link">일반회원</a>
-						</div>
-						<div class="col-xs-6">
-							<a href="#" id="biz-member-link">사업가</a>
+						<div class="col-xs-12">
+							<a href="#" id="biz-member-link">로그인</a>
 						</div>
 					</div>
 					<hr>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +37,10 @@
 </head>
 <body class="other-page blog">
 
+<!-- member가 비어있지 않으면 마이페이지의 home_qna 출력 -->
+<c:if test="${!empty member}">
+<c:set var="homeqna" value="${requestScope.}"/>
+
 
 	<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -54,7 +60,7 @@
 					<%@ include file="leftside.jsp" %>
 					<!-- Left Side End -->
 
-
+					<c:set var=""
 					<!-- Right Side Start -->
 					<div class="col-md-10">
 						<span style="border: 2px solid pink;"></span>&nbsp;&nbsp;
@@ -79,7 +85,10 @@
 													<th>조회수</th>
 												</tr>
 											</thead>
+											
+											
 											<tbody>
+												
 												<tr>
 													<td>01</td>
 													<td>도대체 이 홈페이지는</td>
@@ -95,6 +104,8 @@
 													<td>3</td>
 												</tr>
 											</tbody>
+											
+											
 										</table>
 									</div>
 								</div>
@@ -144,5 +155,7 @@
 	<script src="/resources/js/jquery.meanmenu.js"></script>
 	<script src="/resources/js/plugins.js"></script>
 	<script src="/resources/js/main.js"></script>
+</c:if>
 </body>
 </html>
+

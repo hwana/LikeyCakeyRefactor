@@ -1,4 +1,23 @@
 select * from member;
+SELECT * FROM MEMBER_BIZ;
+
+-- MEMBER_BIZ의 MEMBER_CODE를 자동으로 업데이트 해주는 트리거
+create or replace TRIGGER TRG_MEMCODE
+AFTER
+INSERT ON MEMBER_BIZ
+FOR EACH ROW
+DECLARE
+BEGIN
+	DBMS_OUTPUT.PUT_LINE('아이디 : ' || :OLD.M_ID);
+	DBMS_OUTPUT.PUT_LINE('변경 전 코드 값 : ' || :OLD.M_NUM);
+	UPDATE MEMBER
+	SET M_NUM ='3'
+	WHERE M_ID = :OLD.M_ID;
+    DBMS_OUTPUT.PUT_LINE('아이디 : ' || :OLD.M_ID);
+	DBMS_OUTPUT.PUT_LINE('변경 전 코드 값 : ' || :NEW.M_NUM);
+END ;
+/
+
 
 /* SEQ_C_B_NUM */
 CREATE SEQUENCE LIKEYCAKEY.SEQ_C_B_NUM 

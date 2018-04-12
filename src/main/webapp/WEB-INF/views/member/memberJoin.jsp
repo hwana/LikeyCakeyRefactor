@@ -177,7 +177,7 @@ html>body>section>div>div>div>form span>.btn-in {
 								<div class="input-group">
 									<input type="text" class="form-control" id="inputId" name="id"
 										placeholder="아이디" /> <span class="input-group-btn">
-										<input class="btn btn-success btn-in" style="margin: 8px;"
+										<input class="btn btn-success btn-in" style="border:0; height:50px;"
 											id="check_id" type="button" value="중복확인">
 										<!-- 아이디를 중복확인 하였는지에 대한 상태 확인 -->
 										<input type="hidden" id="idcheck" value="false">
@@ -226,7 +226,7 @@ html>body>section>div>div>div>form span>.btn-in {
 									<input type="tel" class="form-control" id="inputPhone"
 										placeholder="-(대시)를 입력해 주세요" name="phone" /> 
 										<span class="input-group-btn">
-										<input class="btn btn-success btn-in" style="margin: 8px;" 
+										<input class="btn btn-success btn-in" style="border:0; height:50px;" 
 											   type="button" value="인증번호 전송">
 									</span>
 								</div>
@@ -241,7 +241,7 @@ html>body>section>div>div>div>form span>.btn-in {
 								<div class="input-group">
 									<input class="form-control" id="inputCpCheck" type="text"
 										placeholder="인증번호"> <span class="input-group-btn">
-										<input type="button" class="btn btn-success btn-in" style="margin: 8px;"
+										<input type="button" class="btn btn-success btn-in" style="border:0; height:50px;"
 											value="인증번호 확인">
 									</span>
 								</div>
@@ -267,7 +267,7 @@ html>body>section>div>div>div>form span>.btn-in {
 									<input class="form-control" id="inputAddrnum" type="text"
 										placeholder="우편번호" name="post"> <span
 										class="input-group-btn">
-										<input type="button" class="btn btn-success btn-in" style="margin: 8px;"
+										<input type="button" class="btn btn-success btn-in" style="border:0; height:50px;"
 											id="post_find" value="우편찾기"  onclick="findPost()">
 									</span>
 								</div>
