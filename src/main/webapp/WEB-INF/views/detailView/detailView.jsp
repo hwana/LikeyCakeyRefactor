@@ -17,7 +17,7 @@
         <!-- Place favicon.ico in the root directory -->		
 		
 		<!-- all css here -->
-        <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+<!--         <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
         <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
         <link rel="stylesheet" href="/resources/css/elegant-font.css">
         <link rel="stylesheet" href="/resources/css/material-design-iconic-font.min.css">
@@ -29,29 +29,32 @@
         <link rel="stylesheet" href="/resources/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="/resources/css/shortcode/shortcodes.css">
         <link rel="stylesheet" href="/resources/css/style.css">
-        <link rel="stylesheet" href="/resources/css/responsive.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/resources/css/responsive.css"> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
        	<link rel="stylesheet" href="/resources/css/young.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
-        
+
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-      
-    </head>
-    <body class="other-page">
 
-         
-
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+		<script type="text/javascript">
+		$(function(){
+			$('.dec').click(function(e)){
+				e.preventDefault();
+				
+				var stat = $('.cart-plus-minus-box').val();
+				var num = parseInt(stat, 10);
+				
+			}
+		})
+		</script>
         
 		<!-- 헤더 -->
 		<jsp:include page="../default/header.jsp" flush="false"/>
         <!-- 헤더 끝 -->
-        
-        <!-- Page Content Wraper Area Start -->
-        
+      
+    </head>
+    <body class="other-page">
         
         <section class="page-content-wrapper ptb-100">
 			<!-- Single Product Top Info Start -->
@@ -74,48 +77,17 @@
 							</ul>
 						</div>
 					</div>
+					
+			<c:set var="pDetail" value="${requestScope.productDetail}"/>
+			<c:set var="pBiz" value="${requestScope.productDetailBiz}"/>
+			
 					<div class="col-md-6">
 						<div class="singlepro-left">
 							<div class="pro-img-tab-content tab-content">
 								<div class="tab-pane active" id="image-1">
 									<div class="simpleLens-big-image-container">
-										<a class="simpleLens-lens-image" data-lightbox="roadtrip" data-lens-image="/resources/img/single-product/1.jpg" href="img/single-product/1.jpg">
-											<img src="/resources/img/single-product/1.jpg" alt="" class="simpleLens-big-image">
-										</a>
-									</div>
-								</div>
-								<div class="tab-pane" id="image-2">
-									<div class="simpleLens-big-image-container">
-										<a class="simpleLens-lens-image" data-lightbox="roadtrip" data-lens-image="/resources/img/single-product/2.jpg" href="img/single-product/2.jpg">
-											<img src="/resources/img/single-product/2.jpg" alt="" class="simpleLens-big-image">
-										</a>
-									</div>
-								</div>
-								<div class="tab-pane" id="image-3">
-									<div class="simpleLens-big-image-container">
-										<a class="simpleLens-lens-image" data-lightbox="roadtrip" data-lens-image="/resources/img/single-product/3.jpg" href="img/single-product/3.jpg">
-											<img src="/resources/img/single-product/3.jpg" alt="" class="simpleLens-big-image">
-										</a>
-									</div>
-								</div>
-								<div class="tab-pane" id="image-4">
-									<div class="simpleLens-big-image-container">
-										<a class="simpleLens-lens-image" data-lightbox="roadtrip" data-lens-image="/resources/img/single-product/4.jpg" href="img/single-product/4.jpg">
-											<img src="/resources/img/single-product/4.jpg" alt="" class="simpleLens-big-image">
-										</a>
-									</div>
-								</div>
-								<div class="tab-pane" id="image-5">
-									<div class="simpleLens-big-image-container">
-										<a class="simpleLens-lens-image" data-lightbox="roadtrip" data-lens-image="/resources/img/single-product/5.jpg" href="img/single-product/2.jpg">
-											<img src="/resources/img/single-product/5.jpg" alt="" class="simpleLens-big-image">
-										</a>
-									</div>
-								</div>
-								<div class="tab-pane" id="image-6">
-									<div class="simpleLens-big-image-container">
-										<a class="simpleLens-lens-image" data-lightbox="roadtrip" data-lens-image="/resources/img/single-product/1.jpg" href="img/single-product/4.jpg">
-											<img src="/resources/img/single-product/1.jpg" alt="" class="simpleLens-big-image">
+										<a class="simpleLens-lens-image" data-lightbox="roadtrip" data-lens-image="/resources/img/product/${pDetail.pImg}.jpg">
+											<img src="/resources/img/product/${pDetail.pImg }.jpg" alt="" class="simpleLens-big-image">
 										</a>
 									</div>
 								</div>
@@ -123,69 +95,26 @@
 							
 							<div class="detail-likes-wrap">
 								<!-- 좋아요 누르면 fa fa-heart-o에서 fa-heart로 변경될 것 -->
-								<a href=# class="detail-likes"><i class="fa fa-heart-o">&nbsp;10 Likes </i></a>
+								<a href=# class="detail-likes"><i class="fa fa-heart-o">&nbsp;${pDetail.pbLike} Likes </i></a>
 							</div>
 							
 							<div class="category mt-50">
 										<h4>TAGS</h4>
 										<div class="tag-list mt-30 text-uppercase">
 											<ul>
-												<li><a href="#">#복숭아</a></li>
-												<li><a href="#">#생크림</a></li>
-												<li><a href="#">#과일</a></li>
-												<li><a href="#">#화이트시트</a></li>
-												<li><a href="#">#빵케이크</a></li>
-												<li><a href="#">#오지는 맛</a></li>
+												<c:forEach var="pbTag" items="${requestScope.pbTag}">
+												<li><a href="#">${pbTag}</a></li>
+												</c:forEach>
 											</ul>
 										</div>
 									</div>
-							
-							<!-- <div class="pro-img-tab-slider indicator-style2 owl-carousel owl-theme owl-loaded owl-drag">
-								
-								
-								
-								
-								
-								
-							 <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-750px, 0px, 0px); transition: 0s; width: 2625px;"><div class="owl-item cloned" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-3" data-toggle="tab"><img src="/resources/img/single-product/3-3.jpg" alt=""></a>
-								</div></div><div class="owl-item cloned" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-4" data-toggle="tab"><img src="/resources/img/single-product/4-4.jpg" alt=""></a>
-								</div></div><div class="owl-item cloned" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-5" data-toggle="tab"><img src="/resources/img/single-product/2-2.jpg" alt=""></a>
-								</div></div><div class="owl-item cloned" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-6" data-toggle="tab"><img src="/resources/img/single-product/4-4.jpg" alt=""></a>
-								</div></div><div class="owl-item active" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-1" data-toggle="tab"><img src="/resources/img/single-product/1-1.jpg" alt=""></a>
-								</div></div><div class="owl-item active" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-2" data-toggle="tab"><img src="/resources/img/single-product/2-2.jpg" alt=""></a>
-								</div></div><div class="owl-item active" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-3" data-toggle="tab"><img src="/resources/img/single-product/3-3.jpg" alt=""></a>
-								</div></div><div class="owl-item active" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-4" data-toggle="tab"><img src="/resources/img/single-product/4-4.jpg" alt=""></a>
-								</div></div><div class="owl-item" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-5" data-toggle="tab"><img src="/resources/img/single-product/2-2.jpg" alt=""></a>
-								</div></div><div class="owl-item" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-6" data-toggle="tab"><img src="/resources/img/single-product/4-4.jpg" alt=""></a>
-								</div></div><div class="owl-item cloned" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-1" data-toggle="tab"><img src="/resources/img/single-product/1-1.jpg" alt=""></a>
-								</div></div><div class="owl-item cloned" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-2" data-toggle="tab"><img src="/resources/img/single-product/2-2.jpg" alt=""></a>
-								</div></div><div class="owl-item cloned" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-3" data-toggle="tab"><img src="/resources/img/single-product/3-3.jpg" alt=""></a>
-								</div></div><div class="owl-item cloned" style="width: 157.5px; margin-right: 30px;"><div class="item">
-									<a href="#image-4" data-toggle="tab"><img src="/resources/img/single-product/4-4.jpg" alt=""></a>
-								</div></div></div></div><div class="owl-nav"><div class="owl-prev"><i class="arrow_carrot-left"></i></div><div class="owl-next"><i class="arrow_carrot-right"></i></div></div>
-								
-								
-								<div class="owl-dots disabled"></div></div> -->
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="singlepro-right">
 							<div class="snglepro-content">
-								<span>복숭아 향이 감도는 화이트 시트 케이크</span>
-								<h3 style="font-size: 2em;"><a href="single-product.html">오!해피 복숭아 케이크</a></h3>
+								<span>${pDetail.pbMiniTitle }</span>
+								<h3 style="font-size: 2em;"><a href="single-product.html">${pDetail.pName}</a></h3>
 								<div class="rating-box">
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
@@ -195,15 +124,22 @@
 									<span>3 Reviews</span>
 								</div>
 								<div class="prce-stock">
-									<h4>\30,000</h4>
-									<h6>뚜레쥬르</h6>
+									<h4><fmt:formatNumber value="${pDetail.pPrice}" pattern="\#,###"/></h4>
+									<h6>${pBiz.bizName}</h6>
 								</div>
-								<p>촉촉한 화이트시트에 아삭아삭한 복숭아와 복숭아 생크림을 샌드하여 향긋한 복숭아맛을 가득 느낄 수 있는 생크림 케이크</p>
+								<p>${pDetail.pbMiniContent}</p>
 								<div class="pro-info">
 									<ul>
 									
 										<!-- 당일 구매 가능 상품 여부 if/else  -->
-										<li>* 당일 구매 가능</li>
+										<c:choose>
+											<c:when test="${pbYN eq 'Y'}">
+												<li>* 당일 구매 가능</li>
+											</c:when>
+											<c:otherwise>
+												<li>* 당일 구매 불가능</li>
+											</c:otherwise>
+										</c:choose>
 										<li>* 한달 내로 예약 가능</li>
 										<li>* 문구 추가 가능</li>
 									</ul>
@@ -211,7 +147,7 @@
 								<div class="input-content mb-50">
 									<div class="quantity">
 									<label>상품 개수</label>
-
+									
 									<!-- 상품 + / - 제이쿼리에서 처리할 것 -->
 										<div class="dec qtybutton">-</div>
 										  <input type="text" value="0" name="qtybutton" class="cart-plus-minus-box">
@@ -256,25 +192,11 @@
 	
 		<!-- 상품 디테일 시작 -->
 		<div class="detail-text-box mt-100 mb-100 ml-150 mr-150">
-			<h2 class="detail-title">오!해피 복숭아 케이크</h2>
+			<h2 class="detail-title">${pDetail.pName}</h2>
 			<h3 class="detail-intro mtb-40">상품 소개</h3>
 			
 			<p class="detail-contents mtb-100">
-				촉촉한 화이트시트에 아삭아삭한 복숭아와 복숭아 생크림을 샌드하여 향긋한 복숭아맛을 가득 느낄 수 있는 생크림 케이크 <br>
-				슈가케이크, 무엇인가요? <br>
-				<br>
-				제과점에서 드시는 고급 파운드케이크 위에 설탕반죽을 씌워만드는 영국 왕실의 케이크로, <br>
-				겉면의 설탕이 당절임 역할을 하여 별도의 방부제나 첨가제를 사용하기 않고도 유통기한 내 변질이 없는 케이크입니다.<br>
-				<br>
-				슈가케이크를 맛있게 드시려면<br>
-				슈가케이크는 설탕 특성상 포장을 뜯어서 상온에 오래 두시면 수분이 말라 딱딱해질 수 있어요. <br>
-				행사 시작 몇 시간 전에 케이크가 포장된 비닐팩을 뜯어 사용하시는 것을 권장해 드려요. 
-				사용하시고 남은 케이크는 냉장보관하시면 좀 더 오래 즐기실 수 있어요.<br>
-				<br>
-				슈가케이크의 보존방법<br>
-				하루이상 보관 후 사용하셔야 하는 경우에는 택배 받으신 박스를 뜯고 내부의 케이크만 꺼내어 냉장고에 보관해주세요 <br>
-				(*케이크가 포장된 비닐은 제거하지 마세요. 냉장고 수분으로 케이크의 글씨 등이 망가질 수 있습니다)<br>
-				사용하시지 몇 시간전에 꺼내어 상온과 온도평형이 되면 비닐을 뜯어주시면 됩니다.<br>
+				${pDetail.pbContent}
 			</p>
 				
 				<h6 class="detail-h6">
@@ -284,8 +206,8 @@
 				</h6>
 
 			<ul class="mtb-40">
-				<li><span class="tit">규격</span> <span class="data">500g*1ea/box</span></li>
-				<li><span class="tit">사이즈</span> <span class="data">(cm) 9*9*6</span></li>
+				<li><span class="tit">규격</span> <span class="data">${pDetail.pSize}</span></li>
+				<li><span class="tit">사이즈</span> <span class="data">${pDetail.pCM}</span></li>
 				<li><span class="tit">보관방법</span> <span class="data">-18˚C 이하</span></li>
 				<li><span class="tit">유통기한</span> <span class="data">제조일로부터 6개월</span></li>
 				
@@ -312,15 +234,15 @@
 					<input type="hidden" name="spcLat" id="spcLat" value="37.518986">
 					<input type="hidden" name="spcLng" id="spcLng" value="127.04174">
 					
-					<p class="shop-name mt-30">뚜레쥬르</p>
-					<p class="shop-address">서울특별시 강남구 학동로55길 22&nbsp;뚜레쥬르 베이커리</p>
+					<p class="shop-name mt-30">${pBiz.bizName}</p>
+					<p class="shop-address">${pBiz.mBasicAddr}&nbsp;${pBiz.mDetailAddr};</p>
 					<p class="shop-homepage">
 						<a href="http://lasomme.com/shop/main/html.php?htmid=proc/smart_view1.htm&amp;tplSkin=standard"
 						   target="_blank" alt="새창열기">http://lasomme.com/shop/main/html.php?htmid=proc/smart_view1.htm&amp;tplSkin=standard</a>
 					</p>
 				</div>
 
-				<div class="row" id="_contact" _spaceid="3425" _spcnm="라쏨">
+				<div class="row" id="_contact" _spaceid="3425" _spcnm="${pBiz.bizName}">
 					<div>
 						<a href=#> 
 							<span class="btn-inner mr-10"><i class="fa fa-phone mr-10"></i>전화걸기</span>
@@ -547,8 +469,8 @@
 						style="background-image: url(https://scloud.pstatic.net/20161202_47/14806634454930axmA_PNG/015.png);"
 						class="pf_left"></div>
 					<div class="pf_right">
-						<strong class="pf_host">HOST</strong> <span class="pf_name">그라운드</span>
-						<p class="pf_txt">합정 파티룸 겸 스튜디오 [GROUND] 입니다.</p>
+						<strong class="pf_host">HOST</strong> <span class="pf_name">${pBiz.bizName}</span>
+						<p class="pf_txt">맛있는 케이크가 많은 곳 [${pBiz.bizName}] 입니다.</p>
 					</div>
 				</div>
 				<a href="#"> <span class="btn-inner"> 호스트 페이지로 이동  <i class="fa fa-arrow-right ml-10"></i></span>
@@ -606,7 +528,7 @@
         
         
 		<!-- all js here -->
-              <script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
+<!--         <script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
         <script src="/resources/js/bootstrap.min.js"></script>
         <script src="/resources/js/owl.carousel.min.js"></script>
         <script src="/resources/js/isotope.pkgd.min.js"></script>
@@ -620,7 +542,7 @@
         <script src="/resources/js/jquery.meanmenu.js"></script>
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/main.js"></script>
-        <script src="/resources/js/Form.js"></script>
+        <script src="/resources/js/Form.js"></script> -->
        
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
         

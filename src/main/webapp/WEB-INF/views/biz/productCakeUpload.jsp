@@ -5,19 +5,17 @@
 
 <style>
 	label{margin-top:10px;}
-	#radio{
+	.radio{
 	height : auto;
 	width : auto;
 	font-size : 15px;
 	margin : auto 0;
 }
-#checkbox{
+.checkbox{
 	margin-top:18px;
 }
 
-#search{
-background : #9bcaba;
-}
+
 
 #join{
 	background : #f6c6c9;
@@ -31,8 +29,7 @@ background : #9bcaba;
 	margin-top : 30px;
 }
 
-#inputtag{
-margin-top:10px;}
+
 
 input[type="file"] {
     display: none;
@@ -41,9 +38,32 @@ input[type="file"] {
 #search{
 	border:none;
 	margin-top:3px;
+	background : #9bcaba;
 }
 
 </style>
+
+<script>
+	$(document).ready(function(){
+		
+		$("input[id='file']").change(function (e) {
+			var $this = $(this);
+		    $("input[id='inputImage']").val($this.val().split('\\').pop());
+		});
+		var cnt = 1;
+		$("#plus").click(function () {
+			var length = $(".inputtag").length;
+					if(length < 5){
+						$('.tag').each(function(){
+							$(this).append('<input class="form-control inputtag" name = "inputtag'+(++cnt)+'" type="text" placeholder="태그입력"><br>');	
+						});
+					}else{
+						alert("태그는 5개까지 입력 가능합니다.");
+					}
+			});
+		});
+	
+</script>
 
 <!-- Page Content Wraper Area Start -->
 <section class="page-content-wrapper">
@@ -62,13 +82,13 @@ input[type="file"] {
 								<div class="category-list mt-20">
 									<ul>
 										<!-- li style="border-bottom:0px;" << 라인 없애기 -->
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="pcSelect.ca"><i
 												class="zmdi zmdi-chevron-right"></i>케이크 등록하기</a></li>
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="bizMypageModify.ca"><i
 												class="zmdi zmdi-chevron-right"></i>사업가 정보 수정</a></li>
 										<li style="border-bottom: 0px;"><a href="#"><i
 												class="zmdi zmdi-chevron-right"></i>주문내역</a></li>
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="bizQNA.ca"><i
 												class="zmdi zmdi-chevron-right"></i>문의글 모음</a></li>
 
 									</ul>
@@ -92,19 +112,17 @@ input[type="file"] {
 					<div class="col-md-10">
 						
 						<form class="form-horizontal" action="cakeInsert.ca" method="POST" enctype="multipart/form-data">
+						<!-- 아이디를 사용해서 아이디에 해당하는 멤버의 쿼리로 주소를 가져옴 -->
 							<input type="hidden" name="id" value="${member.id }"></input>
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="inputID">이미지</label>
 								<div class="col-sm-4">
-									<input class="form-control" id="inputImage" type="text"
-										placeholder="이미지" name="inputImage">
+									<input class="form-control" id="inputImage" type="text" placeholder="이미지" name="inputImage">
 								</div>	
-								<!-- <button class="btn btn-success btn-lg" type="button" id="search"> -->
-								<label for="file" class="btn btn-success btn-lg" id="search">
-    								이미지 찾기
-								</label>
+								
+								<label for="file" class="btn btn-success btn-lg" id="search">이미지 찾기</label>
 								<input id="file" type="file" name="file"/>
-								<!-- </button> -->
+								
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="inputCakeName">케이크 이름</label>
@@ -159,18 +177,11 @@ input[type="file"] {
 							
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="inputCakeInfo">태그</label>
-								<div class="col-sm-6">
-									<input class="form-control" id="inputtag1" name="inputtag1" type="text"
-										placeholder="태그입력">
-									<input class="form-control" id="inputtag2" name="inputtag2" type="text"
-										placeholder="태그입력">
-									<input class="form-control" id="inputtag3" name="inputtag3" type="text"
-										placeholder="태그입력">
-									<input class="form-control" id="inputtag4" name="inputtag4" type="hidden"
-										placeholder="태그입력">
-									<input class="form-control" id="inputtag5" name="inputtag5" type="hidden"
-										placeholder="태그입력">
-									<button class="btn btn-success" type="button" id="search" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
+								<div class="col-sm-6 tag">
+									<input class="form-control inputtag"  name="inputtag1" type="text" placeholder="태그입력">
+								</div>
+								<div class = "col-sm-1">
+								<button class="btn" id = "plus" type="button" style = "border-radius : 50%; margin-top : 20px; margin-left : 45%;" >+</button>
 								</div>
 							</div>
 							
@@ -178,13 +189,13 @@ input[type="file"] {
 							
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="inputemail">케이크 당일 구매 여부</label>
-								<div class="col-sm-3" id="checkbox" name="checkbox">
-									<input class="checkbox-inline" id="radio" name="pbYN" type="radio">
+								<div class="col-sm-3 checkbox" name="checkbox">
+									<input class="checkbox-inline radio"  name="pbYN" type="radio" value = "Y">
 									&nbsp;가능
 								</div>
 
-								<div class="col-sm-3" id="checkbox" >
-									<input class="checkbox-inline" id="radio" type="radio">
+								<div class="col-sm-3 checkbox">
+									<input class="checkbox-inline radio" name="pbYN" type="radio" value = "N">
 									&nbsp;불가능
 								</div>
 							</div>
@@ -205,15 +216,7 @@ input[type="file"] {
 		</div>
 	</div>
 </section>
-<script>
-	$(document).ready(function(){
-		$("input[id='file']").change(function (e) {
-			var $this = $(this);
-		    $("input[id='inputImage']").val($this.val().split('\\').pop());
-		});
-	});
-	
-</script>
+
 </body>
 
 </html>

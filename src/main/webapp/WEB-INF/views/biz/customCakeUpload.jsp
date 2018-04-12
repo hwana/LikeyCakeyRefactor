@@ -15,7 +15,7 @@
 	margin-top:10px;
 }
 
-#search{
+.plus1, .plus2, .plus3{
 background : #9bcaba;
 }
 
@@ -31,7 +31,7 @@ background : #9bcaba;
 	margin-top : 30px;
 }
 
-#inputtag{
+.inputtag{
 margin-top:10px;}
 
 input[type="checkbox"]{
@@ -40,6 +40,47 @@ input[type="checkbox"]{
 	
 }
 </style>
+
+<script>
+	$(document).ready(function(){
+		var cnt = 1;	
+		
+		$(".plus1").click(function () {
+			var length = $(".inputtag1").length;
+					if(length < 5){
+						$('.tag1').each(function(){
+							$(this).append('<input class="form-control inputtag1" name = "inputtag'+(++cnt)+'" type="text" placeholder="시트입력"><br>');	
+						});
+					}else{
+						alert("태그는 5개까지 입력 가능합니다.");
+					}
+			});
+		$(".plus2").click(function () {
+			var length = $(".inputtag2").length;
+					if(length < 5){
+						$('.tag2').each(function(){
+							$(this).append('<input class="form-control inputtag2" name = "inputtag'+(++cnt)+'" type="text" placeholder="토핑입력"><br>');	
+						});
+					}else{
+						alert("태그는 5개까지 입력 가능합니다.");
+					}
+			});
+		
+		$(".plus3").click(function () {
+			var length = $(".inputtag3").length;
+					if(length < 5){
+						$('.tag3').each(function(){
+							$(this).append('<input class="form-control inputtag3" name = "inputtag'+(++cnt)+'" type="text" placeholder="크림입력"><br>');	
+						});
+					}else{
+						alert("태그는 5개까지 입력 가능합니다.");
+					}
+			});
+		
+		
+		});
+	
+</script>
 <!-- Page Content Wraper Area Start -->
 <section class="page-content-wrapper">
 	<div class="container">
@@ -57,13 +98,13 @@ input[type="checkbox"]{
 								<div class="category-list mt-20">
 									<ul>
 										<!-- li style="border-bottom:0px;" << 라인 없애기 -->
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="pcSelect.ca"><i
 												class="zmdi zmdi-chevron-right"></i>케이크 등록하기</a></li>
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="bizMypageModify.ca"><i
 												class="zmdi zmdi-chevron-right"></i>사업가 정보 수정</a></li>
 										<li style="border-bottom: 0px;"><a href="#"><i
 												class="zmdi zmdi-chevron-right"></i>주문내역</a></li>
-										<li style="border-bottom: 0px;"><a href="#"><i
+										<li style="border-bottom: 0px;"><a href="bizQNA.ca"><i
 												class="zmdi zmdi-chevron-right"></i>문의글 모음</a></li>
 
 									</ul>
@@ -90,51 +131,46 @@ input[type="checkbox"]{
 							
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="inputCakeInfo">시트</label>
-								<div class="col-sm-6">
-									<input class="form-control" id="inputtag" type="text"
+								<div class="col-sm-6 tag1">
+									<input class="form-control inputtag1" name = "inputtag1" type="text"
 										placeholder="시트입력">
-										<input class="form-control" id="inputtag" type="text"
-										placeholder="시트입력">
-										<input class="form-control" id="inputtag" type="text"
-										placeholder="시트입력">
-									<button class="btn btn-success" type="button" id="search" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
+								</div>
+								<div class = col-sm-1>
+								<button class="btn plus1" type="button"style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
 								</div>
 							</div>
 							
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="inputCakeInfo">토핑</label>
-								<div class="col-sm-6">
-									<input class="form-control" id="inputtag" type="text"
+								<div class="col-sm-6 tag2">
+									<input class="form-control inputtag2" type="text"
 										placeholder="토핑입력">
-										<input class="form-control" id="inputtag" type="text"
-										placeholder="토핑입력">
-										<input class="form-control" id="inputtag" type="text"
-										placeholder="토핑입력">
-									<button class="btn btn-success" type="button" id="search" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
+								</div>
+								<div class = col-sm-1>
+								<button class="btn plus2" type="button" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
 								</div>
 							</div>
 							
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="inputCakeInfo">크림</label>
-								<div class="col-sm-6">
-									<input class="form-control" id="inputtag" type="text"
+								<div class="col-sm-6 tag3">
+									<input class="form-control inputtag3" type="text"
 										placeholder="크림입력">
-										<input class="form-control" id="inputtag" type="text"
-										placeholder="크림입력">
-										<input class="form-control" id="inputtag" type="text"
-										placeholder="크림입력">
-									<button class="btn btn-success" type="button" id="search" style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
+										
+								</div>
+								<div class = col-sm-1>
+								<button class="btn plus3" type="button"  style = "border-radius : 50%; margin-left : 45%; margin-top : 20px;" >+</button>
 								</div>
 							</div>
 							
 							<div class="form-inline">
 								<label class="col-sm-3 control-label" for="inputCakeInfo">규격</label>
 								<div class="col-sm-6" id = checkbox>
-									<input class="span2" id="inputtag" type="checkbox">1호&nbsp;&nbsp;&nbsp;
-									<input class="span2" id="inputtag" type="checkbox">2호&nbsp;&nbsp;&nbsp;
-									<input class="span2" id="inputtag" type="checkbox">3호&nbsp;&nbsp;&nbsp;
-									<input class="span2" id="inputtag" type="checkbox">4호&nbsp;&nbsp;&nbsp;
-									<input class="span2" id="inputtag" type="checkbox">5호&nbsp;&nbsp;&nbsp;
+									<input class="span2" type="checkbox">1호&nbsp;&nbsp;&nbsp;
+									<input class="span2" type="checkbox">2호&nbsp;&nbsp;&nbsp;
+									<input class="span2" type="checkbox">3호&nbsp;&nbsp;&nbsp;
+									<input class="span2" type="checkbox">4호&nbsp;&nbsp;&nbsp;
+									<input class="span2" type="checkbox">5호&nbsp;&nbsp;&nbsp;
 								</div>
 							</div>
 							

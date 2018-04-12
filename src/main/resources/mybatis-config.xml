@@ -9,9 +9,13 @@
 
 	<typeAliases>		
 		<typeAlias type="com.dal.likeycakey.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.dal.likeycakey.member.model.vo.MemberLike" alias="MemberLike"/>
+		<typeAlias type="com.dal.likeycakey.payment.model.vo.Payment" alias="Payment"/>
 		<typeAlias type="com.dal.likeycakey.biz.model.vo.BizMember" alias="bizMember"/>
 		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductBoard" alias="ProductBoard"/>
-		<typeAlias type="com.dal.likeycakey.payment.model.vo.Payment" alias="Payment"/>
+		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductReview" alias="ProductReview"/>
+		<typeAlias type="com.dal.likeycakey.member.model.vo.BizWithMember" alias="BizWithMember"/>
+		<typeAlias type="com.dal.likeycakey.list.model.vo.FilterList" alias="FilterList"/>
 		<!-- <typeAlias type="org.kh.firstSpring.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="org.kh.firstSpring.board.model.vo.Board" alias="Board"/> -->
 	</typeAliases> 	
@@ -24,6 +28,8 @@
 		<mapper resource="mappers/bizmember-mapper.xml"/>
 		<mapper resource="mappers/productboard-mapper.xml"/>
 		<mapper resource="mappers/admin-mapper.xml"/>
+		<mapper resource="mappers/biz-mapper.xml"/>
+		<mapper resource="mappers/productreview-mapper.xml"/>
 		<mapper resource="mappers/payment-mapper.xml"/>
 	</mappers> 
 

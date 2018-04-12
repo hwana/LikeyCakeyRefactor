@@ -8,11 +8,10 @@ public class ProductBoard implements java.io.Serializable{
    
    private static final long serialVersionUID = 3000000L;
    
-   
    private int pbNum; // 게시글 번호
    private String id; // 회원 아이디
    private String pName; // 케이크 이름
-   private String pPrice; // 케이크 가격
+   private int pPrice; // 케이크 가격
    private String pImg; // 케이크 사진
    private int pSize; // 케이크 호수
    private String pCM; // 케이크 사이즈(cm)
@@ -27,39 +26,47 @@ public class ProductBoard implements java.io.Serializable{
    private String pbWarn; // 케이크 예약시 주의사항 
    private String pbTag; // 케이크 태그
    private int pbSellCnt; // 케이크 팔린 개수
+   private int pbStatus; //상품 삭제 상태
    
    public ProductBoard() {
       super();
       // TODO Auto-generated constructor stub
    }
 
-   public ProductBoard(int pbNum, String id, String pName, String pPrice, String pImg, int pSize, String pCM,
-         int pCount, int pCountLimit, String pbMiniTitle, String pbMiniContent, String pbContent, int pbLike,
-         int pbReadCnt, String pbYN, String pbWarn, String pbTag, int pbSellCnt) {
-      super();
-      this.pbNum = pbNum;
-      this.id = id;
-      this.pName = pName;
-      this.pPrice = pPrice;
-      this.pImg = pImg;
-      this.pSize = pSize;
-      this.pCM = pCM;
-      this.pCount = pCount;
-      this.pCountLimit = pCountLimit;
-      this.pbMiniTitle = pbMiniTitle;
-      this.pbMiniContent = pbMiniContent;
-      this.pbContent = pbContent;
-      this.pbLike = pbLike;
-      this.pbReadCnt = pbReadCnt;
-      this.pbYN = pbYN;
-      this.pbWarn = pbWarn;
-      this.pbTag = pbTag;
-      this.pbSellCnt = pbSellCnt;
-   }
    
    
    
-   public int getPbNum() {
+   
+   public ProductBoard(int pbNum, String id, String pName, int pPrice, String pImg, int pSize, String pCM, int pCount,
+		int pCountLimit, String pbMiniTitle, String pbMiniContent, String pbContent, int pbLike, int pbReadCnt,
+		String pbYN, String pbWarn, String pbTag, int pbSellCnt, int pbStatus) {
+	super();
+	this.pbNum = pbNum;
+	this.id = id;
+	this.pName = pName;
+	this.pPrice = pPrice;
+	this.pImg = pImg;
+	this.pSize = pSize;
+	this.pCM = pCM;
+	this.pCount = pCount;
+	this.pCountLimit = pCountLimit;
+	this.pbMiniTitle = pbMiniTitle;
+	this.pbMiniContent = pbMiniContent;
+	this.pbContent = pbContent;
+	this.pbLike = pbLike;
+	this.pbReadCnt = pbReadCnt;
+	this.pbYN = pbYN;
+	this.pbWarn = pbWarn;
+	this.pbTag = pbTag;
+	this.pbSellCnt = pbSellCnt;
+	this.pbStatus = pbStatus;
+}
+
+
+
+
+
+public int getPbNum() {
       return pbNum;
    }
    public void setPbNum(int pbNum) {
@@ -77,10 +84,10 @@ public class ProductBoard implements java.io.Serializable{
    public void setpName(String pName) {
       this.pName = pName;
    }
-   public String getpPrice() {
+   public int getpPrice() {
       return pPrice;
    }
-   public void setpPrice(String pPrice) {
+   public void setpPrice(int pPrice) {
       this.pPrice = pPrice;
    }
    public String getpImg() {
@@ -169,6 +176,24 @@ public class ProductBoard implements java.io.Serializable{
    public void setPbSellCnt(int pbSellCnt) {
       this.pbSellCnt = pbSellCnt;
    }
+   
+  
+
+public int getPbStatus() {
+	return pbStatus;
+}
+
+
+
+
+
+public void setPbStatus(int pbStatus) {
+	this.pbStatus = pbStatus;
+}
+
+
+
+
 
 @Override
 public String toString() {
@@ -179,6 +204,4 @@ public String toString() {
 			+ pbTag + ", pbSellCnt=" + pbSellCnt + "]";
 }
    
-   
 }
-

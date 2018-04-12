@@ -27,13 +27,16 @@ public class BizServiceImpl implements BizService {
 	}
 	
 	@Override
-	public Member loginCheck(String id, String passwd) {
+	public Member loginCheck(String id, String passwd) throws Exception {
+		System.out.println("SERVICE="+id);
+		System.out.println("SERVICE="+passwd);
 		
-		return bizDao.selectMember(id, passwd);
+		return bizDao.loginCheck(id, passwd);
+
 	}
 	
 	@Override
-	public int dupid(String id)  {
+	public int dupid(String id) {
 		return bizDao.selectMember(id);
 	}
 

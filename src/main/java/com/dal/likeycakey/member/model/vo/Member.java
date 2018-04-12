@@ -1,6 +1,13 @@
 package com.dal.likeycakey.member.model.vo;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 import org.springframework.stereotype.Component;
+
+import com.dal.likeycakey.biz.model.vo.BizMember;
 
 @Component
 public class Member implements java.io.Serializable{
@@ -24,6 +31,8 @@ public class Member implements java.io.Serializable{
 	private String photo;
 	private int status;
 	private int blackCnt;
+	private MemberLike memberLike;
+	private BizMember bizMember;
 
 	public Member() {
 		
@@ -154,11 +163,20 @@ public class Member implements java.io.Serializable{
 		this.status = status;
 	}
 
-	public int getblackCnt() {
+	public int getBlackCnt() {
 		return blackCnt;
 	}
-
+	
 	public void setBlackCnt(int blackCnt) {
 		this.blackCnt = blackCnt;
 	}
+	
+	public MemberLike getMemberLike() {
+		return memberLike;
+	}
+
+	public void setMemberLike(MemberLike memberLike) {
+		this.memberLike = memberLike;
+	}
+
 }
