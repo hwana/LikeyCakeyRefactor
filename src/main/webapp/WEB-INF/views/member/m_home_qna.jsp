@@ -39,8 +39,6 @@
 
 <!-- member가 비어있지 않으면 마이페이지의 home_qna 출력 -->
 <c:if test="${!empty member}">
-<c:set var="homeqna" value="${requestScope.}"/>
-
 
 	<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -60,7 +58,8 @@
 					<%@ include file="leftside.jsp" %>
 					<!-- Left Side End -->
 
-					<c:set var=""
+					<!-- 홈 큐앤에이 시작 -->
+					<c:set var="homeqna" value="${requestScope.homeQna}"/>
 					<!-- Right Side Start -->
 					<div class="col-md-10">
 						<span style="border: 2px solid pink;"></span>&nbsp;&nbsp;
@@ -71,7 +70,7 @@
 							<div
 								class="blog-left-single mb-30 res-mb-30 res-mb-sm-30 res-blog-mt-50">
 								<div class="left-area">
-
+			
 									<!-- 위의 div 4개는 오른쪽 사이드 설정하는 div -->
 									<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
 									<div class="col-md-12">
@@ -85,12 +84,11 @@
 													<th>조회수</th>
 												</tr>
 											</thead>
-											
-											
+											<c:forEach var="qnalist" items="${homeqna}" varStatus="loop">
 											<tbody>
 												
 												<tr>
-													<td>01</td>
+													<td>${homeqna. }</td>
 													<td>도대체 이 홈페이지는</td>
 													<td>캔디걸</td>
 													<td>2018-03-20</td>
@@ -104,8 +102,7 @@
 													<td>3</td>
 												</tr>
 											</tbody>
-											
-											
+											</c:forEach>
 										</table>
 									</div>
 								</div>
