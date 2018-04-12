@@ -71,24 +71,5 @@
 		WHERE
 			M_ID = #{id}
 	</delete>
-  
-	
-<!-- 	<delete id="deleteTotalMember" flushCache="true"
-		statementType="PREPARED">
-		DELETE 
-		FROM
-			MEMBER
-	</delete>
-	
-	<delete id="deleteMember" flushCache="true"
-		statementType="PREPARED">
-		DELETE 
-		FROM
-			MEMBER
-		WHERE
-			ID = #{}
-	</delete>
-
- -->
 
 </mapper>
