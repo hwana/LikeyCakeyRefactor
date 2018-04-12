@@ -53,7 +53,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 			System.out.println("게시글 번호는 " + pbNum);
 			ArrayList<ProductReview> pReviewList  = pbService.selectReviewList(pbNum);
 			System.out.println("리뷰 개수는 : " + pReviewList.size());
-			System.out.println("리뷰 작성 날짜는  : " + pReviewList.get(0).getPrDate());
+			
 			return pReviewList;
 		}
 		

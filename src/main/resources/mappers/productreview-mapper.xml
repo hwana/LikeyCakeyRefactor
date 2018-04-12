@@ -28,9 +28,9 @@
 	
 	<select id="selectReviewList" parameterType="_int" resultMap="resultProductReview">
 		SELECT *
-		FROM PRODUCT_REVIEW R FULL OUTER JOIN P_REVIEW_COM C
-        ON R.P_R_NUM = C.P_R_NUM
-        AND R.P_B_NUM = #{pbNum}
+		FROM PRODUCT_REVIEW R , P_REVIEW_COM C
+        WHERE  R.P_R_NUM = C.P_R_NUM(+)
+        AND R.P_B_NUM=#{pbNum}
 	</select>
 	
 </mapper>

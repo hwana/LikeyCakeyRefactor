@@ -43,87 +43,7 @@
 
 		
 		$(function(){
-			
-			var pbNum = $('#pbNum').val();
-			
-			console.log('게시글 번호는 ' + pbNum);
-			
-			$.ajax({
-				url : "reviewList.ca",
-				type : "post",
-				dataType : "json",
-				data : {
-					'pbNum' : pbNum 
-				},
-				success : function(pReview){
-				 	var jsonStr = JSON.stringify(pReview);
-					var json = JSON.parse(jsonStr);
-					
-					console.log(json[0]);
-					var values = $('.rlist').html();
-					
-					// 리뷰가 있을 경우 
-					if(json[0].prNum){
-						for(var i in json){
-							values += "<div class='rbox_mine'>"
-								   + "<span class='pf_img' style='background-image: url(/resources/img/client/1.png)'></span>"
-								   + "<strong class='guest_name'>"+ json[i].id+"</strong>"
-								   + "<p class='p_review'>"+ json[i].prContent +"</p>"
-								   + "<div class='space_list swiper_list photo_review'>"
-								   + "<div class='flex_wrap column3 fluid'>"
-								   + "<article class='box box_space'>"
-								   +	"<div class='inner'>"
-								   + 		"<a href='/resources/img/single-product/1.jpg' class='_review_img_link' target='_blank'"
-								   +		         "data-img-path='/resources/img/single-product/1.jpg'>"
-							       + 			"<div class='img_box'>"
-								   +			"<span class='img' style='background-image: url(/resources/img/single-product/1.jpg)'></span>"
-								   + 			"<span class='border'></span>"
-							       + 			"</div>"
-							       + 		"</a>"
-							       + 	"</div>"
-							       + "</article>"
-							       + "</div>"
-							       + "</div>"
-							       + "<div class='rbox_info_base'>"
-						    	   + 	"<span class='time_info'>"+ json[i].prDate+"</span>"
-							       + "</div>"
-							       + "<span class='rate_area'> <span class='blind'>평점&nbsp;</span>";
-							prStar = json[i].prStar;
-							for (var j = 0; j < prStar; j++) {
-						    values += 	"<span class='rate active'><i class='fa fa-star'></i></span>";
-							}
-							values += "</div>";
-							
-							// 사업자 댓글이 있을 경우 추가
-							if(json[i].prcNum){
-							    values += "<div class='rbox_reply'>"
-									   + "<p class='p_tit_reply'>"
-									   + "<em>"+ $('#bizName').text() +"</em>님의 댓글"
-									   + "</p>"
-									   + "<p class='p_review'>"+ json[i].prcContent +"</p>"
-									   + "<div class='rbox_info_base'>"
-									   + "<p class='time_info'>"+ json[i].prcDate +"</p>"
-									   + "</div>"
-									   + "</div>"; 
-							}
-						}
-					// 리뷰가 없을 경우	
-					} else {
-						values += "<div class='ptb-150'>"
-							   +  "<p class='qna_result'>등록된 리뷰가 아직 없습니다.</p>"
-							   +  "</div>";
-					}
-					
-					
-					$('.rlist').html(values);
-					
-					
-				},
-				error : function(request,status,error) {
-	    			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	    		}
-				
-			});
+
 			
 // 상품 개수 start			
 			var pPrice = parseInt($('.prce-stock').children('h4').text().replace("\\","").replace(",",""), 10);
@@ -472,106 +392,8 @@
 		});    
 			</script>
 <!-- shop 소개 끝 -->
-
-
-
-		<div class="detail-text-box mt-150">
-			<h3 class="detail-intro mtb-40">네이버 블로그 리뷰</h3>
-			
-		<div class="story_box">
-						<div class="story_list">
-							<!-- [D] .lst_wrap의 가로 사이즈 : lst_stroy 가로 * 개수px-->
-							<div class="lst_wrap">
-							
-								<!-- [D] 썸네일 없을 경우 class="no_thumb" 추가, .lst의 width값 : 브라우저 가로 사이즈 - 20px -->
-								<div class="lst_story ">
-									<a href="http://blog.naver.com/madurh/220876685585" target="_blank" class="inner">
-										<!-- [D] 이미지 inline으로 background 처리 -->
-										
-										<span style="background-image: url(https://scloud.pstatic.net/20170129_215/1485675201358TIWEn_JPEG/KakaoTalk_20161202_193029356.jpg);" class="img_story"></span>
-										
-										<strong class="tit_story">진짜 맛있는 복숭아 케이크</strong>
-										<dl class="editor_story">
-											<dt>출처</dt>
-											<dd>http://blog.naver.com/madurh/220876685585</dd>
-										</dl>
-										<p class="p_story">핫한 복숭아 케이크...먹어보세요! 존맛...</p>
-									</a>
-								</div>
-							
-								<!-- [D] 썸네일 없을 경우 class="no_thumb" 추가, .lst의 width값 : 브라우저 가로 사이즈 - 20px -->
-								<div class="lst_story ">
-									<a href="http://blog.naver.com/2id-t/220878390584" target="_blank" class="inner">
-										<!-- [D] 이미지 inline으로 background 처리 -->
-										
-										<span style="background-image: url(https://scloud.pstatic.net/20170129_80/1485675206167fE7f0_JPEG/20161205_132929.jpg);" class="img_story"></span>
-										
-										<strong class="tit_story">오! 복숭아 케이크 소개</strong>
-										<dl class="editor_story">
-											<dt>출처</dt>
-											<dd>http://blog.naver.com/2id-t/220878390584</dd>
-										</dl>
-										<p class="p_story">안녕하세요. 스폰서 입니다. 이번에 저희가 주문한 복숭아 케이크를...</p>
-									</a>
-								</div>
-							
-								<!-- [D] 썸네일 없을 경우 class="no_thumb" 추가, .lst의 width값 : 브라우저 가로 사이즈 - 20px -->
-								<div class="lst_story ">
-									<a href="http://blog.naver.com/2id-t/220879438622" target="_blank" class="inner">
-										<!-- [D] 이미지 inline으로 background 처리 -->
-										
-										<span style="background-image: url(https://scloud.pstatic.net/20170129_204/1485675211113tc2HQ_JPEG/20161206_132058.jpg);" class="img_story"></span>
-										
-										<strong class="tit_story">복숭아 케이크 중 최고</strong>
-										<dl class="editor_story">
-											<dt>출처</dt>
-											<dd>http://blog.naver.com/2id-t/220879438622</dd>
-										</dl>
-										<p class="p_story">이거 진짜 너무 맛있어요 꼭 먹어보세요..!</p>
-									</a>
-								</div>
-							
-								<!-- [D] 썸네일 없을 경우 class="no_thumb" 추가, .lst의 width값 : 브라우저 가로 사이즈 - 20px -->
-								<div class="lst_story ">
-									<a href="http://blog.naver.com/madurh/220907943695" target="_blank" class="inner">
-										<!-- [D] 이미지 inline으로 background 처리 -->
-										
-										<span style="background-image: url(https://scloud.pstatic.net/20170129_24/1485675215730bG9dp_JPEG/KakaoTalk_Moim_5VRBpSLAramZgqQ4ThJiftqJx8WciR.jpg);" class="img_story"></span>
-										
-										<strong class="tit_story">진심 너무너무 맛있는 복숭아 케이크</strong>
-										<dl class="editor_story">
-											<dt>출처</dt>
-											<dd>http://blog.naver.com/madurh/220907943695</dd>
-										</dl>
-										<p class="p_story">진짜 달고 복숭아 향이 짙게 납니다 강추합니다!</p>
-									</a>
-								</div>
-							
-								<!-- [D] 썸네일 없을 경우 class="no_thumb" 추가, .lst의 width값 : 브라우저 가로 사이즈 - 20px -->
-								<div class="lst_story ">
-									<a href="https://blog.naver.com/2id-t/221205699245" target="_blank" class="inner">
-										<!-- [D] 이미지 inline으로 background 처리 -->
-										
-										<span style="background-image: url(https://scloud.pstatic.net/20180210_122/1518246655801CTuPx_JPEG/KakaoTalk_20180210_153121506.jpg);" class="img_story"></span>
-										
-										<strong class="tit_story">왜 안먹으세요 이케이크</strong>
-										<dl class="editor_story">
-											<dt>출처</dt>
-											<dd>https://blog.naver.com/2id-t/221205699245</dd>
-										</dl>
-										<p class="p_story">존맛이라구!!....</p>
-									</a>
-								</div>
-							
-							</div>
-							<div class="swiper_pagination"></div>
-						</div>
-					</div>
-				
-				
-				
-				
-		</div>
+	
+		<div class="detail-text-box mt-150"> </div>
 <!-- 상품 디테일 끝 -->
 
 
@@ -579,34 +401,22 @@
 		
 		<div class="detail-text-box mt-100 mb-100">
 		<h2 class="detail-intro">
-				이용 후기 <strong class="mint">4개</strong>
+				이용 후기 <strong class="review-cnt mint">4개</strong>
 				<i class="fa fa-circle ml-10 mr-10" style="font-size: 0.2em; color:#999999; vertical-align: middle"></i> 
-				평균 평점 <strong class="mint">5.0</strong>
+				평균 평점 <strong class="review-average mint">5.0</strong>
 		</h2>
 
 		<div>
 			<ul class="review_list" id="review_list">
 				<li class="rlist ">
+					<div class="tab-content">
 				
+				
+					</div>				
 				</li>
 			</ul>
 				<div class="paging text-center">
 				
-					<a href="javascript:void(0);" class="btn_prev_list_end" data-page="-4"> 
-					<i class="fa fa-angle-double-left"></i></a>
-					<a href="javascript:void(0);" class="btn_prev_list" data-page="0">
-					<i class="fa fa-angle-left mr-10"></i></a>
-					
-					<a href="javascript:void(0);" class="num active" data-page="1">1</a>
-					<a href="javascript:void(0);" class="num" data-page="2">2</a>
-					<a href="javascript:void(0);" class="num" data-page="3">3</a>
-					<a href="javascript:void(0);" class="num" data-page="4">4</a>
-					<a href="javascript:void(0);" class="num" data-page="5">5</a>
-					
-					<a href="javascript:void(0);" class="btn_next_list active" data-page="2">
-					<i class="fa fa-angle-double-right ml-10"></i></a>
-					<a href="javascript:void(0);" class="btn_next_list_end active" data-page="6">
-					<i class="fa fa-angle-right"></i></a>
 				</div>
 
 			</div>
