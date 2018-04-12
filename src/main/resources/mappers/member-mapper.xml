@@ -44,6 +44,10 @@
 		SELECT M_BASIC_ADDR FROM MEMBER WHERE M_ID = #{id}
 	</select>
 	
+	<select id="selectReviewImgList" parameterType="String" resultType="String">
+		SELECT M_PHOTO FROM MEMBER WHERE M_ID = #{id}
+	</select>
+
 	<!-- id 찾기 -->
 	<select id = "findId" parameterType="Member" resultMap="resultMember">
 		select M_ID from MEMBER where M_NAME = #{name} and M_EMAIL = #{email}
