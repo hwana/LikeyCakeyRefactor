@@ -14,6 +14,7 @@
 		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductBoard" alias="ProductBoard"/>
 		<typeAlias type="com.dal.likeycakey.member.model.vo.BizWithMember" alias="BizWithMember"/>
 		<typeAlias type="com.dal.likeycakey.list.model.vo.FilterList" alias="FilterList"/>
+		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductReview" alias="productReview"/>
 		<!-- <typeAlias type="org.kh.firstSpring.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="org.kh.firstSpring.board.model.vo.Board" alias="Board"/> -->
 	</typeAliases> 	
@@ -27,6 +28,7 @@
 		<mapper resource="mappers/admin-mapper.xml"/>
 		<mapper resource="mappers/biz-mapper.xml"/>
 		<mapper resource="mappers/memberlike-mapper.xml"/>
+		<mapper resource="mappers/productreview-mapper.xml"/>
 	</mappers> 
 
 </configuration>

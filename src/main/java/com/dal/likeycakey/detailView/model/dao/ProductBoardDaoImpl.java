@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
+import com.dal.likeycakey.detailView.model.vo.ProductReview;
 import com.dal.likeycakey.member.model.vo.BizWithMember;
 import com.dal.likeycakey.member.model.vo.MemberLike;
 
@@ -102,6 +103,11 @@ public class ProductBoardDaoImpl implements ProductBoardDao {
 	@Override
 	public BizWithMember selectProductDetailBiz(String id) {
 		return sqlSession.selectOne("BizWithMember.selectProductDetailBiz", id);
+	}
+
+	@Override
+	public ArrayList<ProductReview> selectReviewList(String pbNum) {
+		return new ArrayList<ProductReview>(sqlSession.selectList("productReview.selectReviewList", Integer.parseInt(pbNum)));
 	}
 
 }

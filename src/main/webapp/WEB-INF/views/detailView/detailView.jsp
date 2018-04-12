@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="/resources/css/shortcode/shortcodes.css">
         <link rel="stylesheet" href="/resources/css/style.css">
         <link rel="stylesheet" href="/resources/css/responsive.css"> -->
+        <link rel="stylesheet" href="/resources/css/na.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
        	<link rel="stylesheet" href="/resources/css/young.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -39,7 +40,93 @@
 		<script src="/resources/js/na.js"></script>
 		
 		<script type="text/javascript">
+
+		
 		$(function(){
+			
+			var pbNum = $('#pbNum').val();
+			
+			console.log('게시글 번호는 ' + pbNum);
+			
+			$.ajax({
+				url : "reviewList.ca",
+				type : "post",
+				dataType : "json",
+				data : {
+					'pbNum' : pbNum 
+				},
+				success : function(pReview){
+				 	var jsonStr = JSON.stringify(pReview);
+					var json = JSON.parse(jsonStr);
+					
+					console.log(json[0]);
+					var values = $('.rlist').html();
+					
+					// 리뷰가 있을 경우 
+					if(json[0].prNum){
+						for(var i in json){
+							values += "<div class='rbox_mine'>"
+								   + "<span class='pf_img' style='background-image: url(/resources/img/client/1.png)'></span>"
+								   + "<strong class='guest_name'>"+ json[i].id+"</strong>"
+								   + "<p class='p_review'>"+ json[i].prContent +"</p>"
+								   + "<div class='space_list swiper_list photo_review'>"
+								   + "<div class='flex_wrap column3 fluid'>"
+								   + "<article class='box box_space'>"
+								   +	"<div class='inner'>"
+								   + 		"<a href='/resources/img/single-product/1.jpg' class='_review_img_link' target='_blank'"
+								   +		         "data-img-path='/resources/img/single-product/1.jpg'>"
+							       + 			"<div class='img_box'>"
+								   +			"<span class='img' style='background-image: url(/resources/img/single-product/1.jpg)'></span>"
+								   + 			"<span class='border'></span>"
+							       + 			"</div>"
+							       + 		"</a>"
+							       + 	"</div>"
+							       + "</article>"
+							       + "</div>"
+							       + "</div>"
+							       + "<div class='rbox_info_base'>"
+						    	   + 	"<span class='time_info'>"+ json[i].prDate+"</span>"
+							       + "</div>"
+							       + "<span class='rate_area'> <span class='blind'>평점&nbsp;</span>";
+							prStar = json[i].prStar;
+							for (var j = 0; j < prStar; j++) {
+						    values += 	"<span class='rate active'><i class='fa fa-star'></i></span>";
+							}
+							values += "</div>";
+							
+							// 사업자 댓글이 있을 경우 추가
+							if(json[i].prcNum){
+							    values += "<div class='rbox_reply'>"
+									   + "<p class='p_tit_reply'>"
+									   + "<em>"+ $('#bizName').text() +"</em>님의 댓글"
+									   + "</p>"
+									   + "<p class='p_review'>"+ json[i].prcContent +"</p>"
+									   + "<div class='rbox_info_base'>"
+									   + "<p class='time_info'>"+ json[i].prcDate +"</p>"
+									   + "</div>"
+									   + "</div>"; 
+							}
+						}
+					// 리뷰가 없을 경우	
+					} else {
+						values += "<div class='ptb-150'>"
+							   +  "<p class='qna_result'>등록된 리뷰가 아직 없습니다.</p>"
+							   +  "</div>";
+					}
+					
+					
+					$('.rlist').html(values);
+					
+					
+				},
+				error : function(request,status,error) {
+	    			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	    		}
+				
+			});
+			
+// 상품 개수 start			
+			var pPrice = parseInt($('.prce-stock').children('h4').text().replace("\\","").replace(",",""), 10);
 			$('.dec').click(function(e){
 				e.preventDefault();
 				var stat = $('.cart-plus-minus-box').val();
@@ -47,7 +134,10 @@
 				num--;
 				if(num<0) num=0;
 				$('.cart-plus-minus-box').val(num);
-			})
+				var totalPrice = pPrice * num;
+				$('.totalPrice').text(totalPrice+'원');
+				
+			});
 			
 			$('.inc').click(function(e){
 				e.preventDefault();
@@ -60,7 +150,37 @@
 				}
 				
 				$('.cart-plus-minus-box').val(num);
-			})
+				var totalPrice = pPrice * num;
+				$('.totalPrice').text(totalPrice+'원');
+			});
+// 상품 개수 end		
+			
+			
+// 전화 걸기 모달 창 start --------------------------------------
+
+			  var callOpen = $("#callOpen");
+			  var callLink = $(".callLink");
+			  var whiteContent = $(".white_content");
+			  var marginLeft = whiteContent.outerWidth()/2;
+			  var marginTop = whiteContent.outerHeight()/2; 
+
+			  callLink.click(function(e){
+				e.preventDefault();  
+				callOpen.fadeIn("slow");
+				//whiteContent.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
+			    //$(this).blur();
+			   // $(".btn-call-close").focus(); 
+			    return false;
+			  });
+
+			  $(".btn-call-close").click(function(e){
+				  e.preventDefault();  
+				  callOpen.fadeOut("slow");
+				  //callLink.focus();
+			  });	
+			  
+// 전화 걸기 모달 창  end --------------------------------------
+			
 		})
 		</script>
         
@@ -145,7 +265,7 @@
 								</div>
 								<div class="prce-stock">
 									<h4><fmt:formatNumber value="${pDetail.pPrice}" pattern="\#,###"/></h4>
-									<h6>${pBiz.bizName}</h6>
+									<h6 id="bizName">${pBiz.bizName}</h6>
 								</div>
 								<p>${pDetail.pbMiniContent}</p>
 								<div class="pro-info">
@@ -153,7 +273,7 @@
 									
 										<!-- 당일 구매 가능 상품 여부 if/else  -->
 										<c:choose>
-											<c:when test="${pbYN eq 'Y'}">
+											<c:when test="${pDetail.pbYN eq 'Y'}">
 												<li>* 당일 구매 가능</li>
 											</c:when>
 											<c:otherwise>
@@ -165,16 +285,6 @@
 									</ul>
 								</div>
 								<div class="input-content mb-50">
-									<div class="quantity">
-									<label>상품 개수</label>
-									
-									<!-- 상품 + / - 제이쿼리에서 처리할 것 -->
-										<div class="dec qtybutton">-</div>
-										  <input type="text" value="0" name="qtybutton" class="cart-plus-minus-box">
-										 <div class="inc qtybutton">+</div>
-										 
-										 
-									</div>
 									
 									<div class="detail-input">
 									<label for="fromDate">문구 추가</label> 
@@ -186,18 +296,42 @@
 									<input class="cake-reserve detail-text mt-10" placeholder="예약 날짜를 선택해 주세요." type="text" id="cake-reserve">
 									</div>
 									
+									<div class="quantity mt-10">
+									<label>상품 개수</label>
+									<!-- 상품 + / - 제이쿼리에서 처리할 것 -->
+										<div class="dec qtybutton">-</div>
+										  <input type="text" value="0" name="qtybutton" class="cart-plus-minus-box pl-20 pr-20">
+										 <div class="inc qtybutton">+</div>
+									</div>
+									
+									<div class="detail-input">
+									<label>배송비</label> 
+									<span>
+										<c:choose>
+											<c:when test="${pBiz.bizDeliveryYn eq 'Y'}">
+												<!-- 배송 가능하면 배송비 표시 -->
+												<c:set var="delivery" value="${pBiz.bizDelivery}원"/>
+											</c:when>
+											<c:otherwise>
+												<!-- 배송 불가능하면 배송 불가 표시-->
+												<c:set var="delivery" value="배송 불가능한 상품입니다."/>
+											</c:otherwise>
+										</c:choose>
+									<label style="clear:none; margin-left:20px;">${delivery}</label>
+									</span>
+									</div>
+									
+									
+									<div class="detail-input">
+									<label>총 &nbsp;가격</label> 
+									<span><label class="totalPrice" style="clear:none; margin-left:10px;">0원</label></span>
+									</div>
+									
 									<div class="detail-input">
 									<button type="submit" class="detail-btn">구매하기</button>
 									<button type="submit" class="detail-btn">장바구니 담기</button>
 									</div>
 									
-								</div>
-								<div class="sngle-pro-socl">
-									<ul>
-										<li><a href="#" class="social_facebook"></a></li>
-										<li><a href="#" class="social_googleplus"></a></li>
-										<li><a href="#" class="social_twitter"></a></li>
-									</ul>
 								</div>
 							</div>
 						</div>
@@ -210,7 +344,7 @@
 
 	<hr class="ml-100 mr-100">
 	
-		<!-- 상품 디테일 시작 -->
+<!-- 상품 디테일 시작 -->
 		<div class="detail-text-box mt-100 mb-100 ml-150 mr-150">
 			<h2 class="detail-title">${pDetail.pName}</h2>
 			<h3 class="detail-intro mtb-40">상품 소개</h3>
@@ -226,8 +360,8 @@
 				</h6>
 
 			<ul class="mtb-40">
-				<li><span class="tit">규격</span> <span class="data">${pDetail.pSize}</span></li>
-				<li><span class="tit">사이즈</span> <span class="data">${pDetail.pCM}</span></li>
+				<li><span class="tit">규격</span> <span class="data">${pDetail.pSize}호</span></li>
+				<li><span class="tit">사이즈</span> <span class="data">(cm)${pDetail.pCM}</span></li>
 				<li><span class="tit">보관방법</span> <span class="data">-18˚C 이하</span></li>
 				<li><span class="tit">유통기한</span> <span class="data">제조일로부터 6개월</span></li>
 				
@@ -255,30 +389,89 @@
 					<input type="hidden" name="spcLng" id="spcLng" value="127.04174">
 					
 					<p class="shop-name mt-30">${pBiz.bizName}</p>
-					<p class="shop-address">${pBiz.mBasicAddr}&nbsp;${pBiz.mDetailAddr};</p>
-					<p class="shop-homepage">
-						<a href="http://lasomme.com/shop/main/html.php?htmid=proc/smart_view1.htm&amp;tplSkin=standard"
-						   target="_blank" alt="새창열기">http://lasomme.com/shop/main/html.php?htmid=proc/smart_view1.htm&amp;tplSkin=standard</a>
-					</p>
+					<p class="shop-address">${pBiz.mBasicAddr}&nbsp;${pBiz.mDetailAddr}</p>
 				</div>
 
 				<div class="row" id="_contact" _spaceid="3425" _spcnm="${pBiz.bizName}">
-					<div>
-						<a href=#> 
+					
+					<div> 
+						<a href=#callOpen class="callLink"> 
 							<span class="btn-inner mr-10"><i class="fa fa-phone mr-10"></i>전화걸기</span>
 						</a>
-						<a href=#> 
+						
+						<!-- 길찾기 누르면 해당 가게가 목적지로 설정됨 -->
+						<a id="roadFind"> 
 							<span class="btn-inner"><i class="fa fa-location-arrow mr-10"></i>길찾기</span>
 						</a>
 					</div>
+						
+						<div id="callOpen">
+						<div class="mask">
+						</div>
+						<div class="white_content">
+							  <div>
+							  	<p class="pop_guide_txt mb-30">
+							  	"LikeyCakey를 통해 연락드렸어요~"
+							  	<br>라고 말씀하시면 더 친절하게 
+							  	<br>안내 받으실 수 있습니다! 
+							  	</p>
+							  	<hr>
+							  	<p class="shop-name">${pBiz.bizName}</p>
+							  	<h4 class="mb-20">${pBiz.bizPn}</h4>
+								<hr>	  	
+							  	
+							  	<button type="button" class="btn btn-call-close">닫기</button>
+							  </div>
+						</div>
+						</div>
+					
 				</div>
 			</div>
 
-			<!-- 지도  -->
-			<img id="_detailStaticMap" class="lazy"
-				src="https://ssl.map.naver.com/staticmap/image?version=1.1&amp;crs=EPSG:4326&amp;center=127.04174,37.518986&amp;level=12&amp;baselayer=default&amp;overlayer=ol_vc_an&amp;exception=blank&amp;markers_icon=type,scloud,127.04174,37.518986&amp;scale=1&amp;caller=scloud&amp;format=jpeg&amp;dataversion=142.0&amp;w=761&amp;h=640"
-				width="80%" height="100%">
-			<!-- shop 소개 끝 -->
+<!-- 지도  시작 -->
+			<div id="map" style="width:840px;height:400px; pointer-events:auto;"></div>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36cabc0a509368e0120f98820eb971c0&libraries=services"></script>
+			<script>
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
+
+		// 지도를 생성합니다    
+		var map = new daum.maps.Map(mapContainer, mapOption); 
+
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new daum.maps.services.Geocoder();
+
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch($('.shop-address').text(), function(result, status) {
+
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === daum.maps.services.Status.OK) {
+
+		        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+				
+		        $('#roadFind').attr('href', 'http://map.daum.net/link/to/'+ $('.shop-address').text() + ',' + result[0].y + ',' + result[0].x)
+		        
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new daum.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new daum.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+ $('.shop-name.mt-30').text()+'</div>'
+		        });
+		        infowindow.open(map, marker);
+
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		});    
+			</script>
+<!-- shop 소개 끝 -->
 
 
 
@@ -379,10 +572,10 @@
 				
 				
 		</div>
-		<!-- 상품 디테일 끝 -->
+<!-- 상품 디테일 끝 -->
 
 
-		<!-- 리뷰 시작 -->
+<!-- 리뷰 시작 -->
 		
 		<div class="detail-text-box mt-100 mb-100">
 		<h2 class="detail-intro">
@@ -394,52 +587,7 @@
 		<div>
 			<ul class="review_list" id="review_list">
 				<li class="rlist ">
-					<div class="rbox_mine">
-						<span class="pf_img"
-							style="background-image: url(/resources/img/client/1.png)"></span>
-						<strong class="guest_name">ohhapp***</strong>
-						<p class="p_review">완전 최고!! 정말 맛있습니다!!! 배송도 원하는 시간에 오고 짱이에요 추천합니다~!</p>
-
-							<div class="space_list swiper_list photo_review">
-								<div class="flex_wrap column3 fluid">
-									<article class="box box_space">
-										<div class="inner">
-											<a href="/resources/img/single-product/1.jpg"
-												class="_review_img_link" target="_blank"
-												data-img-path="/resources/img/single-product/1.jpg">
-												<div class="img_box">
-													<span class="img"
-														style="background-image: url(/resources/img/single-product/1.jpg)">
-													</span> <span class="border"></span>
-												</div>
-											</a>
-										</div>
-									</article>
-								</div>
-							</div>
-							
-							
-							<div class="rbox_info_base">
-							<span class="time_info">2017.01.02. 12:21:25</span>
-						</div>
-						<span class="rate_area"> <span class="blind">평점</span> 
-						<span class="rate active"><i class="fa fa-star"></i></span>
-							<span class="rate active"><i class="fa fa-star"></i></span>
-							<span class="rate active"><i class="fa fa-star"></i></span>
-							<span class="rate active"><i class="fa fa-star"></i></span>
-							<span class="rate active"><i class="fa fa-star"></i></span>
-						</span>
-					</div>
-					<div class="rbox_reply">
-						<p class="p_tit_reply">
-							<em>웰리스하우스</em>님의 댓글
-						</p>
-						<p class="p_review">후기 감사드립니다 ^^ 즐거운 연말 모임이 되셨다니 정말 기쁩니다 !!
-							2017년 항상 좋은 일 가득하시고, 다음에 또 찾아주세요 :) 새해 복 많이 받으세요~!!</p>
-						<div class="rbox_info_base">
-							<p class="time_info">2017.01.02. 16:34:23</p>
-						</div>
-					</div>
+				
 				</li>
 			</ul>
 				<div class="paging text-center">
@@ -464,9 +612,9 @@
 			</div>
 	</div>
 
-		<!-- 리뷰 끝 -->
+<!-- 리뷰 끝 -->
 		
-		<!-- 문의 시작 -->
+<!-- 문의 시작 -->
 		<div class="detail-text-box mb-70" id="qna" style="">
 			<h2 class="detail-intro">
 				Q&amp;A&nbsp; <strong><em>0</em>개</strong>  		
@@ -477,10 +625,10 @@
 				<p class="qna_result">등록된 질문이 아직 없습니다.</p>
 			</div>
 		</div>
-		<!-- 문의 끝 -->
+<!-- 문의 끝 -->
 		
 		
-		<!-- 호스트 프로필 시작 -->
+<!-- 호스트 프로필 시작 -->
 		<div class="host_profile mb-100">
 			<div class="inner">
 
@@ -498,9 +646,9 @@
 
 			</div>
 		</div>
-		<!-- 호스트 프로필 끝 -->
+<!-- 호스트 프로필 끝 -->
 		
-		<!-- 호스트의 다른 케이크  시작 -->
+<!-- 호스트의 다른 케이크  시작 -->
 		<div class="detail-text-box mb-100" id="qna" style="">
 			<h2 class="detail-intro"> 뚜레쥬르의 다른 케이크 </h2>
 		</div>
@@ -538,13 +686,13 @@
 			</div>
 		</div>
 		</div>
-		<!-- 호스트의 다른 케이크  시작 -->
+<!-- 호스트의 다른 케이크  시작 -->
 		</div>
 	</section>
 		
-        <!-- 푸터 -->
+<!-- 푸터 -->
         <jsp:include page="../default/footer.jsp" flush="false"/>
-        <!-- 푸터 끝 -->
+<!-- 푸터 끝 -->
         
         
 		<!-- all js here -->

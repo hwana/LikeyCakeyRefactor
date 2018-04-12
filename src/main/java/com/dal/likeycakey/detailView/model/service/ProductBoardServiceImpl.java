@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.dao.ProductBoardDao;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
+import com.dal.likeycakey.detailView.model.vo.ProductReview;
 import com.dal.likeycakey.member.model.vo.BizWithMember;
 import com.dal.likeycakey.member.model.vo.MemberLike;
 
@@ -127,6 +128,11 @@ public class ProductBoardServiceImpl implements ProductBoardService {
 	@Override
 	public BizWithMember selectProductDetailBiz(String id) {
 		return pbDao.selectProductDetailBiz(id);
+	}
+
+	@Override
+	public ArrayList<ProductReview> selectReviewList(String pbNum) {
+		return pbDao.selectReviewList(pbNum);
 	}
 
 
