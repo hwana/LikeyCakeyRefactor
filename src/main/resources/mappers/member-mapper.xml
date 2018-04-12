@@ -44,6 +44,10 @@
 		SELECT M_BASIC_ADDR FROM MEMBER WHERE M_ID = #{id}
 	</select>
 	
+	<select id="selectReviewImgList" parameterType="String" resultType="String">
+		SELECT M_PHOTO FROM MEMBER WHERE M_ID = #{id}
+	</select>
+	
 	<!-- 좋아요 누르면 insert -->
 	<insert id="insertHeartMember" parameterType="hashmap" >
 		INSERT INTO MEMBER_LIKE (P_B_NUM, M_ID, LIKE_NO)
