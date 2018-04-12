@@ -10,6 +10,7 @@
 	<typeAliases>		
 		<typeAlias type="com.dal.likeycakey.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.dal.likeycakey.member.model.vo.MemberLike" alias="MemberLike"/>
+		<typeAlias type="com.dal.likeycakey.payment.model.vo.Payment" alias="Payment"/>
 		<typeAlias type="com.dal.likeycakey.biz.model.vo.BizMember" alias="bizMember"/>
 		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductBoard" alias="ProductBoard"/>
 		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductReview" alias="ProductReview"/>
@@ -19,6 +20,7 @@
 		<typeAlias type="org.kh.firstSpring.board.model.vo.Board" alias="Board"/> -->
 	</typeAliases> 	
 	
+
 	<!-- 마이바티스 DataSource 설정은 root-context.xml을 참조한다. -->
 	
 	<mappers>
@@ -28,6 +30,8 @@
 		<mapper resource="mappers/admin-mapper.xml"/>
 		<mapper resource="mappers/biz-mapper.xml"/>
 		<mapper resource="mappers/productreview-mapper.xml"/>
+		<mapper resource="mappers/payment-mapper.xml"/>
 	</mappers> 
+
 
 </configuration>

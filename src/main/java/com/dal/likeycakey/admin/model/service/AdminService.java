@@ -9,15 +9,16 @@ public interface AdminService {
 
 
 	
-	public int getListCount() ;
+	public int getListCount() throws Exception;
 	
-	public ArrayList<Member> selectList(int currentPage, int limit) ;
+	public ArrayList<Member> selectList(int currentPage, int limit) throws Exception;
 	
-	public Member selectOne(String id);
+	public Member selectOne(String id) throws Exception;
 	
-	public int updateMember(Member m) ;
+	public int updateMember(Member m) throws Exception;
 	
-	public int deleteTotalMember() ;
-	public int deleteMember(String id) ;
+	public int deleteTotalMember() throws Exception;
+	
+	public int deleteMember(String id) throws Exception;
 	
 }

@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="list" value="${requestScope.list}" />
+<c:set var="member" value="${sessionScope.member}" />
 
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -98,12 +100,14 @@
 													</tr>
 												</thead>
 												<tbody>
+												<c:forEach var="o" items="${list}" varStatus="status">
 													<tr>
 														<td ><a href="#"><img
 																src="/resources/img/product/3.jpg" alt=""></a></td>
 														<td class="product-name">
 															<p style="font-weight: bold;">똔똔씨의 케잌가게</p>
 															<span>산타할아버지 초코케이크(구매수량 2개)</span>
+															<span>상품 문구 : 엄마 사랑해요</span>
 															</td>
 														
 														<td >
@@ -116,7 +120,7 @@
 														
 														</td>
 														<td>
-														<p style="font-weight: bold;">입금 기한</p>
+														<p style="font-weight: bold;">예약 날짜</p>
 															<span>2018.03.24 18:00</span>
 													
 														</td>
@@ -151,6 +155,64 @@
 												
 														</td>
 													</tr>
+													</c:forEach>
+													
+													<tr>
+														<td ><a href="#"><img
+																src="/resources/img/product/3.jpg" alt=""></a></td>
+														<td class="product-name">
+															<p style="font-weight: bold;">똔똔씨의 케잌가게</p>
+															<span>산타할아버지 초코케이크(구매수량 2개)</span>
+															<span>상품 문구 : 엄마 사랑해요</span>
+															</td>
+														
+														<td >
+														<p style="font-weight: bold;">주문 날짜</p>
+															<span>2018.03.44 12:34:33</span>
+														</td>
+														<td >
+															<p style="font-weight: bold;">총 금액</p>
+															<span>70,000</span>
+														
+														</td>
+														<td>
+														<p style="font-weight: bold;">예약 날짜</p>
+															<span>2018.03.24 18:00</span>
+													
+														</td>
+														<td class="product-price" ><span>
+														<a href="#">배송 상태(택배 현황과 연결하기)</a></span></td>
+														<td class="product-subtotal">
+														
+														<!-- 배송지 수정 버튼 시작 -->
+														<div class="pink_button">
+															<input type="button" value="구매취소" style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
+														</div>
+														<!-- 배송지 수정 버튼 끝 -->
+														
+														</td>
+													</tr>
+													<tr>
+														<td class="product-thumbnail">
+														
+														<p style="font-weight: bold;">주문번호</p>
+															<span>2032626747</span>
+														
+														
+														<td colspan="6">배송지 정보 : 김은송, (444-222)경기도 수원시 영통구 삼대 한보아파트
+														<br>
+														<!-- 배송지 수정 버튼 시작 -->
+														<div class="pink_button">
+															<input type="button" value="배송지 수정" style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
+														</div>
+														<!-- 배송지 수정 버튼 끝 -->
+												
+												</div>
+												
+														</td>
+													</tr>
+													
+													
 												</tbody>
 											</table>
 										</div>

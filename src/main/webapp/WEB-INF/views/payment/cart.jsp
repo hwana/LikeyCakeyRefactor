@@ -4,6 +4,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+
+<c:set var="list" value="${requestScope.list}" />
+<c:set var="member" value="${sessionScope.member}" />
+<c:set var="totalPrice" scope="page" />
+<c:set var="totalDeliveryPrice" scope="page" />
+<fmt:parseNumber var="totalPrice" integerOnly="true" type="number"
+	value="${totalPrice}" />
+<fmt:parseNumber var="totalDeliveryPrice" integerOnly="true"
+	type="number" value="${totalDeliveryPrice}" />
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -37,7 +46,95 @@
 <link rel="stylesheet" href="/resources/css/responsive.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
+<script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var checkAll;
+		var delMembers = new Array();
+		//1.수량이 바뀔 때마다, 총 가격이 바뀌는 이벤트 시작//
+		$("input[name=poCount]").change(
+				function() {
+					var poNumber = $(this).closest("tr").find("input[name=poNum]")
+							.val();
+					var poCount = $(this).closest("tr").find(
+							"input[name=poCount]").val();
+					var pbPrice = $(this).closest("tr").find(
+							"input[name=pbPrice]").val();
+
+					/* alert("수량 업데이트를 실행합니다." + poNumber + poCount + pbPrice); */
+					$.ajax({
+						url : "cartUpdate.ca",
+						type : "post",
+						data : {
+							poNumber : poNumber,
+							poCount : poCount,
+							pbPrice : pbPrice
+						},
+						success : function(value) {//
+							if (value == "ok") {
+								/* alert("수량 업데이트에 성공했습니다."); */
+								location.reload();
+							} else {
+								alert("수량 업데이트에 실패했습니다.");
+							}
+						},
+						error : function(value) {
+							alert("잘못 입력하셨습니다." + value);
+						}
+					});//AJAX
+					return false;
+				}); //click
+
+		//1.수량이 바뀔 때마다, 해당 제품의 총 가격과 전체 총 가격이 바뀌는 이벤트 시작//
+		
+		
+		//2. 카트 삭제 이벤트 시작//
+		$("a[name=deleteButton]").click(
+				function() {
+					var poNumber = $(this).closest("tr").find("input[name=poNum]")
+							.val();
+
+					alert("카트 삭제를 실행합니다." + poNumber);
+					$.ajax({
+						url : "cartDelete.ca",
+						type : "post",
+						data : {
+							poNumber : poNumber
+						},
+						success : function(value) {//
+							if (value == "ok") {
+								alert("삭제에 성공했습니다.");
+								location.reload();
+							} else {
+								alert("삭제에 실패했습니다.");
+							}
+						},
+						error : function(value) {
+							alert("잘못 입력하셨습니다." + value);
+						}
+					});//AJAX
+					return false;
+				}); //click
+
+		//2. 카트 삭제 이벤트 끝//
+		
+		
+		
+		$("#checkout").click(
+				function() {
+					var length = ${fn:length(list)};
+					alert(length);
+					if(length==0){
+						alert("결제할 상품이 없습니다.");
+					}else{
+						location.href="checkoutList.ca";	
+					}
+					return false;
+				}); //click
+
+	}); //ready
+</script>
+
 </head>
 
 <style>
@@ -100,36 +197,39 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td class="product-thumbnail"><a href="#"><img
-																src="/resources/img/product/3.jpg" alt=""></a></td>
-														<td class="product-name"><a
-															href="product-details.htm">
-																<p style="font-weight: bold;">똔똔씨의 케잌가게</p>
-														</a> <span>산타할아버지 초코케이크(구매수량 2개)</span></td>
-														<td class="product-price"><span class="amount">35,000</span></td>
-														<td class="product-quantity"><input type="number"
-															value="2"></td>
-														<td class="product-subtotal">70,000</td>
-														<td class="product-subtotal">2018.03.24 18:00</td>
-														<td class="product-subtotal">2,500</td>
-														<td class="product-remove"><a href="#"><i
-																class="fa fa-times"></i></a></td>
-													</tr>
-													<tr>
-														<td class="product-thumbnail"><a href="#"><img
-																src="/resources/img/product/4.jpg" alt=""></a></td>
-														<td class="product-name"><a
-															href="product-details.htm">Vestibulum dictum magna</a></td>
-														<td class="product-price"><span class="amount">$50.00</span></td>
-														<td class="product-quantity"><input type="number"
-															value="1"></td>
-														<td class="product-subtotal">$50.00</td>
-														<td class="product-subtotal">2018.04.28 13:44</td>
-														<td class="product-subtotal">무료 배송</td>
-														<td class="product-remove"><a href="#"> <i
-																class="fa fa-times"></i></a></td>
-													</tr>
+													<c:forEach var="p" items="${list}" varStatus="status">
+
+														<tr>
+
+
+															<td class="product-thumbnail"><a href="#"><img
+																	src="/resources/img/product/3.jpg" alt=""></a></td>
+															<td class="product-name">
+																<p style="font-weight: bold;">${p.mbBizName}</p> <span>${p.pbName}(구매수량
+																	${p.poCnt}개)</span> <input class="hidden" name="poNum"
+																value="${p.poNum}"> <input class="hidden"
+																name="pbPrice" value="${p.pbPrice}">
+															</td>
+															<td class="product-price"><span class="amount">${p.pbPrice}</span>
+															</td>
+															<td class="product-quantity"><input type="number"
+																id="poCnt" name="poCount" min="1" max="10"
+																value="${p.poCnt}"></td>
+
+															<td class="product-subtotal" id="poPrice"
+																name="smallTotalPrice">${p.poPrice}</td>
+
+															<c:set var="totalPrice" scope="page"
+																value="${totalPrice+p.poPrice}" />
+															<td class="product-subtotal">${p.poBookDate}</td>
+															<td class="product-subtotal" name="BizDelivery">${p.poBizDelivery}</td>
+															<c:set var="totalDeliveryPrice" scope="page"
+																value="${totalDeliveryPrice+p.poBizDelivery}" />
+															<td class="product-remove"><a href="#"
+																name="deleteButton"><i class="fa fa-times"></i></a></td>
+														</tr>
+													</c:forEach>
+
 												</tbody>
 											</table>
 										</div>
@@ -139,21 +239,16 @@
 
 										<div class="row">
 											<div class="col-md-8 col-sm-7 col-xs-12">
-												<br>
-												<br>
-												<br>
-												<br>
-												<br>
-												<br>
+												<br> <br> <br> <br> <br> <br>
 												<div class="buttons-cart">
-												
-														<div class="pink_button">
-															<input type="button" value="구매하기" style="width: 200px;">
-															<input type="button" value="쇼핑 계속하기"
-																style="width: 200px;">
-															<!--  <a href="#" style="width:200px; text-align:center">쇼핑 계속하기</a> -->
-														</div>
-												
+
+													<div class="pink_button">
+														<input type="button" id="checkout" value="구매하기"
+															style="width: 200px;"> <input type="button"
+															value="쇼핑 계속하기" style="width: 200px;">
+														<!--  <a href="#" style="width:200px; text-align:center">쇼핑 계속하기</a> -->
+													</div>
+
 												</div>
 
 											</div>
@@ -165,15 +260,15 @@
 														<tbody>
 															<tr class="cart-subtotal">
 																<th>상품 금액</th>
-																<td><span class="amount">70,000</span></td>
+																<td><span class="amount">${totalPrice}</span></td>
 															</tr>
 															<tr class="cart-subtotal">
 																<th>배송 금액</th>
-																<td><span class="amount">2,500</span></td>
+																<td><span class="amount">${totalDeliveryPrice}</span></td>
 															</tr>
 															<tr class="order-total">
 																<th>Total</th>
-																<td><strong><span class="amount">72,500</span></strong>
+																<td><strong><span class="amount">${totalPrice+totalDeliveryPrice}</span></strong>
 																</td>
 															</tr>
 														</tbody>
@@ -199,94 +294,10 @@
 		<!-- checkout-area end -->
 	</section>
 	<!-- Page Content Wraper Area End -->
+
+
 	<!-- Fotter Area Start -->
-	<footer>
-		<!-- Footer Top Area End -->
-		<div class="fotter-area dark-gray-bg ptb-100">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3 col-sm-4 col-xs-12">
-						<div class="address-area res-mb-sm-30">
-							<a href="/resources/index.html">shopzon</a>
-							<p>Lorem ipsum dolor sit amet, consemi cteta dipisi cing
-								elit, sed do eiusmod tempor.</p>
-							<div class="contact-social mt-40">
-								<ul>
-									<li><a href="#" class="social_facebook "></a></li>
-									<li><a href="#" class="social_twitter "></a></li>
-									<li><a href="#" class="social_googleplus"></a></li>
-									<li><a href="#" class="social_linkedin "></a></li>
-									<li><a href="#" class="social_instagram "></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-4 col-xs-12 xs-res-mrbtm">
-						<div class="footer-menu res-mb-sm-30">
-							<h4>MY ACCOUNT</h4>
-							<ul>
-								<li><a href="#">FAQs</a></li>
-								<li><a href="#">Payments</a></li>
-								<li><a href="#">Track Your Order</a></li>
-								<li><a href="#">Return Polcy</a></li>
-								<li><a href="#">Warranty</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-3 hidden-sm hidden-xs">
-						<div class="footer-menu">
-							<h4>SHOP GUIDE</h4>
-							<ul>
-								<li><a href="#">Hot Sale</a></li>
-								<li><a href="#">Best Sellar</a></li>
-								<li><a href="#">Suppliers</a></li>
-								<li><a href="#">Our Store</a></li>
-								<li><a href="#">Deal of The Day</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-4 col-xs-12 xs-res-mrbtm">
-						<div class="footer-menu">
-							<h4>CONTACT INFO</h4>
-							<div class="contact-details">
-								<ul>
-									<li><span class="icon_pin"></span>
-										<p>Lusmod tempor incididunt</p></li>
-									<li><span class="icon_mail"></span>
-										<p>Lusmod incidiunt wesbvu</p></li>
-									<li><span class="icon_phone "></span>
-										<p>(256) 987 654 321</p></li>
-									<li><span class="icon_clock_alt"></span>
-										<p>8.00 am-6.00 pm</p></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Footer Top Area End -->
-		<!-- Footer Bottom Area Start -->
-		<div class="footer-bottom-area black-bg">
-			<div class="container">
-				<div class="row ">
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<p>
-							Copyright &copy; 2017.Company name All rights reserved.More
-							Templates <a href="http://www.cssmoban.com/" target="_blank"
-								title="模板之家">模板之家</a> - Collect from <a
-								href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a><a
-								target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-						</p>
-					</div>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<img src="/resources/img/icon/payment.png" alt="" />
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Footer Bottom Area End -->
-	</footer>
+	<%@ include file="../default/footer.jsp"%>
 	<!-- Fotter Area End -->
 
 	<!-- all js here -->
