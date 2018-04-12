@@ -554,10 +554,44 @@
 					PG = 'kakao';
 					Pay_Method = 'card';
 				} 
-
+				/*  $.ajax({
+						url : "/payment.ca", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+						type : 'POST',
+							data : {
+							imp_uid : 'test',
+							totalPrice : '<c:out value="${total}"/>',
+							method : PG,
+							recName : $("#recName").val(),
+							recCP : $("#recCP").val(),
+							recPost : $("#recPost").val(),
+							recBasicAddr : $("#recBasicAddr").val(),
+							recDetailAddr : $("#recDetailAddr").val(),
+							recMemo : $("#recMemo").val()
+							
+						//기타 필요한 데이터가 있으면 추가 전달
+						} ,
+						success : 
+							function(data) {
+								//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+								if (data == "ok") {
+									var msg = '결제가 완료되었습니다.';
+									msg += '\n이 내용은 테스트 용도 입니다.';
+									alert(msg);
+								} else {
+									alert('아직 제대로 결제가 되지 않았습니다.');
+									//[3] 아직 제대로 결제가 되지 않았습니다.
+									//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+								}
+								location.href="/checkoutSuccess.ca";
+						},
+						error : function(data) {
+							console.log(data);
+							//alert("잘못 입력하셨습니다." + data);
+						} 
+					});
+ */
 				
-				/* alert("결제 시작 : "+pg+pay_method+<c:out value='${member.name}'/>+<c:out value='${totalPrice+totalDeliveryPrice}'/>); */
-				IMP.request_pay(
+				 IMP.request_pay(
 								{
 									pg : PG,
 									pay_method : Pay_Method,
@@ -574,10 +608,9 @@
 										$.ajax({
 													url : "/payment.ca", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
 													type : 'POST',
-													dataType : 'json',
+													dataType : 'text',
 													data : {
 														imp_uid : rsp.imp_uid,
-														/* date : new Date().getTime(),  */
 														totalPrice : '<c:out value="${total}"/>',
 														method : PG,
 														recName : $("#recName").val(),
@@ -592,7 +625,7 @@
 													success : 
 														function(data) {
 															//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-															if (everythings_fine) {
+															if (data == "ok") {
 																var msg = '결제가 완료되었습니다.';
 																msg += '\n고유ID : '
 																		+ rsp.imp_uid;
@@ -611,11 +644,10 @@
 															location.href="/checkoutSuccess.ca";
 													},
 													error : function(data) {
-														console.log(data);
-														//alert("잘못 입력하셨습니다." + data);
+														//console.log(data);
+														alert("잘못 입력하셨습니다." + data);
 													} 
-												});//ajax
-												/* .done(
+												})/* .done(
 														function(data) {
 															//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 															if (everythings_fine) {
@@ -636,13 +668,13 @@
 																//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 															}
 															location.href="/checkoutSuccess.ca";
-														});  */
+														}); */
 									} else {
 										var msg = '결제에 실패하였습니다.';
 										msg += '에러내용 : ' + rsp.error_msg;
 										alert(msg);
 									}
-								});//IMP
+								}); //IMP
 			}//else
 		})
 		;//submit check()

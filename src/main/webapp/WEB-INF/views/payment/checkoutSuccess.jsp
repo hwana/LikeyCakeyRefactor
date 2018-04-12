@@ -107,11 +107,11 @@
 													</tr>
 													<tr>
 														<td rowspan="3" class="product-thumbnail">${payment.imp_uid}</td>
-														<td rowspan="2" class="product-thumbnail">${payment.pay_price}</td>
+														<td rowspan="2" class="product-thumbnail">${payment.pay_price}원</td>
 													</tr>
 													<tr></tr>
 													<tr>
-														<td class="product-thumbnail">${payment.pay_method}</td>
+														<td class="product-thumbnail">결제 방법 : ${payment.pay_method}</td>
 													</tr>
 													
 												</tbody>
@@ -140,7 +140,7 @@
 													</tr>
 													<tr>
 														<td class="product-thumbnail eceff8">입금금액</td>
-														<td class="product-name">${payment.pay_price}</td>
+														<td class="product-name">${payment.pay_price}원</td>
 
 													</tr>
 													<tr>
@@ -180,7 +180,7 @@
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 										<div class="pink_button">
-											<input type="button" value="구매내역보기">
+											<input type="button" value="구매내역보기" onclick='window.location.href="/buyList.ca"'>
 										</div>
 									</div>
 
