@@ -33,6 +33,15 @@ public class BizMember {
 		this.bizCustomYn = bizCustomYn;
 	}
 
+	public BizMember(String id) {
+		this.id = id;
+	}
+
+	public BizMember(String id, String masterName) {
+		this.id = id;
+		this.masterName = masterName;
+	}
+
 	public String getId() {
 		return id;
 	}

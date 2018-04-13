@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dal.likeycakey.biz.model.service.BizService;
 import com.dal.likeycakey.biz.model.vo.BizMember;
+import com.dal.likeycakey.detailView.model.vo.CustomBoard;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
 import com.dal.likeycakey.member.model.vo.Member;
 
@@ -46,7 +48,7 @@ public class BizController {
 			PrintWriter out = response.getWriter();
 			// 데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
 			member = bizService.loginCheck(member.getId(), member.getPasswd());
-			System.out.println(member.getId() + member.getPasswd());
+			
 			session.setAttribute("member", member);
 			int result = 0;
 			if (member != null) {
@@ -134,10 +136,10 @@ public class BizController {
 					new File(savePath).mkdir();
 				}
 
-				
 				String originFileName = file.getOriginalFilename();
 				File fileupload = new File(savePath + "\\" + originFileName);
 				file.transferTo(fileupload);
+				System.out.println("이미지 저장 완료");
 				m.setPhoto(originFileName.substring(0, originFileName.lastIndexOf('.')));
 			}
 			int result = bizService.insertBiz(m);
@@ -153,11 +155,60 @@ public class BizController {
 		return mv;
 	}
 
-	// 사업자 회원정보, 매장정보 수정
+	// 사업자 회원정보, 매장정보 수정 페이지 이동
 	@RequestMapping(value = "bizMypageModify.ca", method = RequestMethod.GET)
-	public String bizMypageModify() {
-
+	public String bizMypageModify(Model model, HttpSession session) {
+		Member m = ((Member)session.getAttribute("member"));
+		String bm2 = bizService.getBiz(new BizMember(m.getId()));
+		model.addAttribute("mastername",bm2);
+		
 		return "biz/bizMypageModify";
+	}
+
+	// 사업자 회원정보, 매장정보 수정
+	@RequestMapping(value = "bizModify.ca", method = RequestMethod.POST)
+	public ModelAndView bizModify(@RequestParam(value = "file", required = false) MultipartFile file,
+			HttpServletRequest request, @RequestParam("masterName") String masterName,
+			@RequestParam("passwd") String passwd, @RequestParam("phone") String phone,
+			ModelAndView mv, HttpSession session) {
+		
+		Member m = (Member)session.getAttribute("member");
+		m.setPasswd(passwd);
+		m.setPhone(phone);
+		
+		BizMember bm = new BizMember(m.getId(), masterName);
+
+		
+		try {
+			if (file != null && !file.isEmpty()) {
+			// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
+			String savePath = root + "\\img\\member";
+		
+			System.out.println("이미지가 저장되는 곳은 " + savePath);
+			
+			if (!new File(savePath).exists()) {
+				new File(savePath).mkdir();
+			}
+			
+			String originFileName = file.getOriginalFilename();
+			File fileupload = new File(savePath + "\\" + originFileName);
+			file.transferTo(fileupload);
+			new File(savePath + "\\" +m.getPhoto()).delete();
+			m.setPhoto(originFileName);
+			}
+			
+			int result = bizService.bizModify(m);
+			int result2 = bizService.bizModify2(bm);
+			session.setAttribute("member", m);
+			mv.setViewName("redirect:home.ca");
+			System.out.println("비즈 마이페이지 수정 성공");
+
+		} catch (Exception e) {
+			System.out.println("비즈 마이페이지 수정 실패" + e);
+		}
+		return mv;
 	}
 
 	// 등록된 케이크가 하나도 없는 상태에서 케이크 등록하는 페이지
@@ -249,11 +300,51 @@ public class BizController {
 		return mv;
 	}
 
-	// 커스텀 케이크 등록 페이지
+	// 커스텀 케이크 등록 페이지로 이동
 	@RequestMapping(value = "customCakeUpload.ca", method = RequestMethod.GET)
 	public String customCakeUpload(HttpSession session) {
 
 		return "biz/customCakeUpload";
+	}
+
+	@RequestMapping(value = "customCakeInsert.ca", method = RequestMethod.POST)
+	public ModelAndView customCakeInsert(ModelAndView mv, 
+			CustomBoard customboard,
+			@RequestParam(name = "inputtag1", required = false) String inputtag1,
+			@RequestParam(name = "inputtag2", required = false) String inputtag2,
+			@RequestParam(name = "inputtag3", required = false) String inputtag3,
+			@RequestParam(name = "inputtag4", required = false) String inputtag4,
+			@RequestParam(name = "inputtag5", required = false) String inputtag5) {
+		
+			
+			try {
+				String inputtag = "";
+				if (inputtag1 != "") {
+					inputtag = inputtag + "#" + inputtag1;
+					if (inputtag2 != "") {
+						inputtag = inputtag + ", #" + inputtag2;
+						if (inputtag3 != "") {
+							inputtag = inputtag + ", #" + inputtag3;
+							if (inputtag4 != "") {
+								inputtag = inputtag + ", #" + inputtag4;
+								if (inputtag5 != "") {
+									inputtag = inputtag + ", #" + inputtag5;
+								}
+							}
+						}
+					}
+				}
+
+				customboard.setCbTag(inputtag);
+				bizService.customInsert(customboard);
+				mv.setViewName("redirect:home.ca");
+				System.out.println("커스텀 케이크 보드 insert 성공!");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("커스텀 케이크 보드 insert 실패...   " + e);
+			}
+		
+		return mv;
 	}
 
 	// 케이크 등록하기 버튼 클릭 후 완제품케이크를 등록할건지 커스텀 케이크를 등록할건지 선택하는 페이지

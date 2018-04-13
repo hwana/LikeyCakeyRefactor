@@ -46,5 +46,12 @@
 	</select>
 
 	
+	<!-- 사업자 회원정보 수정 -->
+	<update id="updateMypage" parameterType="Member" flushCache="true" statementType="PREPARED">
+		UPDATE MEMBER
+		SET M_PHOTO = #{photo}, M_PW = #{passwd}, M_CP = #{phone} 
+		WHERE M_ID = #{id}
+	</update>
+	
 </mapper>
 
