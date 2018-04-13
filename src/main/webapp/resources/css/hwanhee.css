@@ -52,7 +52,7 @@
 	color : black;
 }
 
-.login-submit {
+#biz_login {
 	background-color: #f6c6c9;
 	outline: none;
 	color: #fff;
@@ -62,8 +62,25 @@
 	text-transform: uppercase;
 	border-color: #f6c6c9;
 }
-.login-submit:hover,
-.login-submit:focus {
+#biz_login:hover,
+#biz_login:focus {
+	color: #fff;
+	background-color: #f6c6c9;
+	border-color: #f6c6c9;
+}
+
+#nor_login {
+	background-color: #f6c6c9;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: 40px;
+	font-weight: normal;
+	text-transform: uppercase;
+	border-color: #f6c6c9;
+}
+#nor_login:hover,
+#nor_login:focus {
 	color: #fff;
 	background-color: #f6c6c9;
 	border-color: #f6c6c9;

@@ -97,8 +97,7 @@ $(document)
 											$("#inputName").focus();
 											return false;
 
-										} else if (!nameP.test($("#inputName")
-												.val())) {
+										} else if (!nameP.test($("#inputName").val())) {
 											alert("대표자 이름은 한글만 입력가능합니다.");
 											$("#inputName").val("");
 											$("#inputName").focus();

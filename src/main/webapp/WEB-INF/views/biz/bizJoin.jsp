@@ -159,7 +159,7 @@ $(document).ready(function(){
 					<label class="col-sm-3 control-label" for="inputPost">우편번호</label>
 					<div class="col-sm-4">
 						<input class="form-control" id="inputPost" type="text"
-							placeholder="우편번호">
+							placeholder="우편번호" name = post>
 					</div>
 
 					<button class="btn search" type="button"
