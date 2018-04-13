@@ -95,6 +95,16 @@
 			   OR (P_B_TAG LIKE '%' || #{inputsearch} || '%' AND P_B_TAG LIKE '%' || #{simplefilter} || '%')
 	</select>
 	
+	<select id="getVendorCakeCount" parameterType="String" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT_BOARD WHERE M_ID = #{inputvendor}	
+	</select>
+	
+	<select id="getVendorReviewCount" parameterType="String" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT * FROM PRODUCT_BOARD a, PRODUCT_REVIEW b WHERE a.P_B_NUM = b.P_B_NUM AND a.M_ID = #{inputvendor}
+		)
+	</select>
+	
 	<select id="selectCakeList" parameterType="String" resultMap="resultProductBoard">
 		SELECT * FROM (
 			SELECT * FROM PRODUCT_BOARD 
@@ -119,9 +129,15 @@
 		)	
 	</select>
 	
+	<select id="selectVendorCakeList" parameterType="String" resultMap="resultProductBoard">
+		SELECT * FROM PRODUCT_BOARD WHERE M_ID = #{inputvendor}
+	</select>
+	
+	<select id="selectReviewCakeList" parameterType="_int" resultType="String">
+		SELECT P_NAME FROM PRODUCT_BOARD WHERE P_B_NUM = #{pbNum}
+	</select>
+	
 	<select id="selectCakeListwo" parameterType="FilterList" resultMap="resultProductBoard">
-		SELECT * FROM (
-			SELECT * FROM (
 				SELECT * FROM PRODUCT_BOARD 
 					WHERE (P_NAME LIKE '%' || #{inputsearch} || '%')
 				   OR (P_B_MINI_TITLE LIKE '%' || #{inputsearch} || '%')
@@ -129,9 +145,8 @@
 				   OR (P_B_CONTENT LIKE '%' || #{inputsearch} || '%')
 				   OR (P_B_WARN LIKE '%' || #{inputsearch} || '%')
 				   OR (P_B_TAG LIKE '%' || #{inputsearch} || '%')
-			)
+				
 			ORDER BY #{orderfilter}
-		)	
 	</select>
 
 </mapper>

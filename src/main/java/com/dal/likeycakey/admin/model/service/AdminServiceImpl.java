@@ -17,31 +17,31 @@ public class AdminServiceImpl implements AdminService {
 	AdminDao adminDao;
 	
 	@Override
-	public int getListCount() {
+	public int getListCount() throws Exception{
 		return adminDao.getListCount();
 	}
 
 	@Override
-	public ArrayList<Member> selectList(int currentPage, int limit) {
+	public ArrayList<Member> selectList(int currentPage, int limit) throws Exception{
 		return adminDao.selectList(currentPage, limit);
 	}
 	@Override
-	public Member selectOne(String id) {
+	public Member selectOne(String id) throws Exception{
 		return adminDao.selectOne(id);
 	}
 	@Override
-	public int updateMember(Member m) {
+	public int updateMember(Member m) throws Exception{
 		return adminDao.updateMember(m);	
 		
 	}
 	@Override
-	public int deleteMember(String id) {
+	public int deleteMember(String id) throws Exception{
 		
 		return adminDao.deleteMember(id);
 	}
 
 	@Override
-	public int deleteTotalMember() {
+	public int deleteTotalMember() throws Exception{
 		// TODO Auto-generated method stub
 		return adminDao.deleteTotalMember();
 	}

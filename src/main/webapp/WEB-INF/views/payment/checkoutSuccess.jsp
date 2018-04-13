@@ -4,6 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+
+<c:set var="payment" value="${requestScope.payment}" />
+<c:set var="member" value="${sessionScope.member}" />
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -103,12 +106,12 @@
 
 													</tr>
 													<tr>
-														<td rowspan="3" class="product-thumbnail">40322224455</td>
-														<td rowspan="2" class="product-thumbnail">72,500원</td>
+														<td rowspan="3" class="product-thumbnail">${payment.imp_uid}</td>
+														<td rowspan="2" class="product-thumbnail">${payment.pay_price}원</td>
 													</tr>
 													<tr></tr>
 													<tr>
-														<td class="product-thumbnail">무통장 입금 72,500원</td>
+														<td class="product-thumbnail">결제 방법 : ${payment.pay_method}</td>
 													</tr>
 													
 												</tbody>
@@ -130,25 +133,19 @@
 												
 												<tbody>
 												
+		
 													<tr>
-														<td class="product-thumbnail eceff8">입금은행</td>
-														<td class="product-name">
-															하나은행
-														</td>
-
-													</tr>
-													<tr>
-														<td class="product-thumbnail eceff8">예금계좌</td>
-														<td class="">403-22224444-55555(예금주 : 김환희)</td>
+														<td class="product-thumbnail eceff8">예금주</td>
+														<td class="">${member.name}</td>
 													</tr>
 													<tr>
 														<td class="product-thumbnail eceff8">입금금액</td>
-														<td class="product-name">72,500</td>
+														<td class="product-name">${payment.pay_price}원</td>
 
 													</tr>
 													<tr>
-														<td class="product-thumbnail eceff8">입금기한</td>
-														<td class="product-name">2018.03.32 18:22:44</td>
+														<td class="product-thumbnail eceff8">결제 일시</td>
+														<td class="product-name">${payment.pay_date}</td>
 
 													</tr>
 													
@@ -183,7 +180,7 @@
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 										<div class="pink_button">
-											<input type="button" value="구매내역보기">
+											<input type="button" value="구매내역보기" onclick='window.location.href="/buyList.ca"'>
 										</div>
 									</div>
 
