@@ -11,7 +11,6 @@
 <c:set var="maxPage" value="${requestScope.maxPage}" />
 <c:set var="list" value="${requestScope.list}" />
 <c:set var="member" value="${sessionScope.member}" />
-<c:set var="deleteList" value="${requestScope.deleteList}" />
 
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -95,7 +94,9 @@
 			} else {
 				$("input[name=check]").prop("checked", false);
 				checkAll = false;
+				delMembers.splice(0, delMembers.length);//배열의 엘리먼트를 삭제하는 코드 추가
 				console.log(checkAll);
+				console.log(delMembers);
 			}
 		});
 
@@ -114,12 +115,6 @@
 				    return n != mem;
 				}); 
 				 
-				
-				/*  const idx = delMembers.findIndex($(this).closest("tr").find("#mid").val());
- 				
- 			 delMembers.slice(idx, 1) ; 
- */
-				/*  delete delMembers[$(this).closest("tr").find("#mid").val()]; */
 				console.log(delMembers);
 			}
 		});
@@ -325,7 +320,7 @@ td {
 								</div>
 							</div>
 							<!-- 회원 정보 보기끝 -->
-							<br> <br> <br>
+							<br>
 
 							<!-- 버튼 시작 -->
 							<div class="row">
