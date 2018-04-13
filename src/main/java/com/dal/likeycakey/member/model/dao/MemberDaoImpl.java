@@ -39,8 +39,9 @@ public class MemberDaoImpl implements MemberDao {
 
 	// member update 할 수 있는 DAO
 	@Override
-	public int updateMember(Member m) throws Exception{
-		return sqlSession.insert("Member.updateMember", m);
+	public int updateMember(Member m) throws Exception {
+		int result = sqlSession.update("Member.updateMember", m);
+		return result;
 	}
 	
 	// member delete 할 수 있는 DAO
@@ -55,5 +56,11 @@ public class MemberDaoImpl implements MemberDao {
 	public Member forLogin(String id, String passwd) throws Exception {
 		System.out.println("일반회원 로그인");
 		return sqlSession.selectOne("Member.loginCheck", new Member(id, passwd));
+	}
+
+	@Override
+	public int updatePassword(Member m) throws Exception {
+		int result = sqlSession.update("Member.updatePassword", m);
+		return result;
 	}
 }

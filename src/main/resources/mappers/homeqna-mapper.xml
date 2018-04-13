@@ -21,7 +21,7 @@
 	</insert>
 	
 	<!-- 게시글 리스트 불러오기 -->
-	<select id="listAll" resultType="Homeqna">
+	<select id="listAll" resultMap="resultHomeqna">
 		SELECT H_Q_NUM, H_Q_TITLE, H_Q_CONTENT, M_ID, H_Q_DATE FROM HOME_QNA
 		ORDER BY H_Q_NUM DESC, H_Q_DATE DESC
 	</select>

@@ -44,6 +44,20 @@
 	<select id = "findId" parameterType="Member" resultMap="resultMember">
 		select M_ID from MEMBER where M_NAME = #{name} and M_EMAIL = #{email}
 	</select>
+	
+	<!-- 일반 회원정보 수정 -->
+	<update id="updateMember" parameterType="Member" flushCache="true" statementType="PREPARED">
+		UPDATE MEMBER
+		SET M_CP = #{phone}, M_POST = #{post}, M_BASIC_ADDR = #{addressBasic},
+		M_DETAIL_ADDR = #{addressDetail}, M_PHOTO = #{photo}
+		WHERE M_ID = #{id}
+	</update>
+	
+	<update id="updatePassword" parameterType="Member" flushCache="true" statementType="PREPARED">
+		UPDATE MEMBER
+		SET M_PW = #{passwd}
+		WHERE M_ID = #{id}
+	</update>
 
 	
 	<!-- 사업자 회원정보 수정 -->

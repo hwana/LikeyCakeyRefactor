@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="list" value="${requestScope.list}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,8 +31,8 @@
 
 .table>thead>tr>th {
 	text-align: center;
-	color : white;
-	border : 0px;
+	color: white;
+	border: 0px;
 }
 
 .table-hover>tbody>tr:hover {
@@ -61,8 +64,24 @@ div>#paging {
 /* 익스플로러 10 이상, 최신 모던 브라우저에서 지원 */
 @
 keyframes blink {
-	from {color: white;}
-30% { color : yellow; }
+	from {color: white;
+}
+
+30%
+{
+color
+
+ 
+
+:
+
+ 
+
+yellow
+
+
+;
+}
 to {
 	color: red;
 	font-weight: bold;
@@ -74,34 +93,35 @@ to {
 </style>
 
 <script>
-/**
- * Page클래스의 paging메서드
- */
-// pageBlock에 포함되는 페이지 숫자 출력하고, 링크를 달아준다.
-for(i = startPage; i <= endPage; i++) {
-  if(i == pageNum) {
-    sb.append("&nbsp;&nbsp;<b><font color='#668cff' size='4'>");
-    sb.append(i);
-    sb.append("</font></b>");
-  } else {
-    sb.append("&nbsp;&nbsp;<a href='list.bbs?pageNum=");
-    sb.append(i);
-    sb.append("'>");
-    sb.append(i);
-    sb.append("</a>");
-  }
-}
+	/**
+	 * Page클래스의 paging메서드
+	 */
+	// pageBlock에 포함되는 페이지 숫자 출력하고, 링크를 달아준다.
+	for (i = startPage; i <= endPage; i++) {
+		if (i == pageNum) {
+			sb.append("&nbsp;&nbsp;<b><font color='#668cff' size='4'>");
+			sb.append(i);
+			sb.append("</font></b>");
+		} else {
+			sb.append("&nbsp;&nbsp;<a href='list.bbs?pageNum=");
+			sb.append(i);
+			sb.append("'>");
+			sb.append(i);
+			sb.append("</a>");
+		}
+	}
 </script>
 
 
 </head>
 <body>
 	<%@ include file="../default/header.jsp"%>
-	
-	<div id="container" style="padding-top : 10px; margin-top : 10px;">
-		<div id="list">
-			<b>게시판 (전체 글: ${totalCount})</b>
-		</div>
+
+	<div id="container" style="padding-top: 10px; margin-top: 10px;">
+		<span style="border: 2px solid pink;"></span>&nbsp;&nbsp;
+		<h1 style="display: inline; margin-top: 0">
+			<small><b>홈페이지 문의게시판</b></small>
+		</h1>
 
 		<c:if test="${member.id == null }">
 			<div id="write"></div>
@@ -124,21 +144,20 @@ for(i = startPage; i <= endPage; i++) {
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="row" items="${list}">
+					<c:forEach var="qna" items="${list}" varStatus="status">
 						<tr>
-							<td>${row.hqNum}</td>
-							<td id="title"><c:if test="${article.depth > 0}">&nbsp;&nbsp;</c:if> 
-							<a href="homeqnaView.ca?hqNum=${row.hqNum}&pageNum=${hqNum}">${row.hqTitle}</a>
-								</td>
-							<td>${member.id}</td>
-							<td>${row.hqDate}</td>
+							<td>${qna.hqNum}</td>
+							<td id="title"><a href="homeqnaView.ca?hqNum=${qna.hqNum}">${qna.hqTitle}</a>
+							</td>
+							<td>${qna.id}</td>
+							<td>
+								<!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 --> <fmt:formatDate
+									value="${qna.hqDate}" pattern="yyyy-MM-dd HH:mm" />
+							</td>
 						<tr>
 					</c:forEach>
 				</tbody>
 			</table>
-
-			<!-- Paging 처리 -->
-			<div id="paging">${pageCode}</div>
 		</div>
 	</div>
 	<%@ include file="../default/footer.jsp"%>

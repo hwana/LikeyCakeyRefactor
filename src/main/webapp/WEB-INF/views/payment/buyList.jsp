@@ -58,13 +58,13 @@
 	<header></header>
 	<!-- Header Area End -->
 	<!-- Page Content Wraper Area Start -->
-	<section class="page-content-wrapper pt-100 pb-40">
+<!-- 	<section class="page-content-wrapper pt-100 pb-40">
 
-		<!-- checkout-area start -->
+		checkout-area start
 		<div class="checkout-area">
 			<div class="container">
 				<div class="row">
-					<form action="#">
+					<form action="#"> -->
 
 						<div class="checkbox-form">
 
@@ -255,13 +255,13 @@
 						
 
 						</div>
-
+<!-- 
 					</form>
 				</div>
 			</div>
 		</div>
-		<!-- checkout-area end -->
-	</section>
+		
+	</section> -->
 	<!-- Page Content Wraper Area End -->
 	<!-- Fotter Area Start -->
 	<footer>

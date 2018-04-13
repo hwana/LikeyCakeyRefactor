@@ -84,6 +84,27 @@
 					}
 				}).open();
 	}
+
+	// 비밀번호 확인
+	function checkPwd() {
+		var pw1 = $("#inputPassword").val();
+		var pw2 = $("#inputPasswordCheck").val();
+		var pwcheck = $("#pwcheck").val();
+
+		if (pw1 != null && pw2 != null) {
+			if (pw1 != pw2) {
+				document.getElementById('pwcheck_change').style.color = "red";
+				document.getElementById('pwcheck_change').innerHTML = "동일한 암호를 입력하세요.";
+				pwcheck = false;
+				return pwcheck;
+			} else {
+				document.getElementById('pwcheck_change').style.color = "blue";
+				document.getElementById('pwcheck_change').innerHTML = "암호가 동일합니다.";
+				pwcheck = true;
+				return true;
+			}
+		}
+	}
 </script>
 </head>
 <body class="other-page blog">
@@ -112,7 +133,7 @@
 					<div class="col-md-10">
 						<span style="border: 2px solid pink;"></span>&nbsp;&nbsp;
 						<h1 style="display: inline; margin-top: 0">
-							<small><b>회원정보수정</b></small>
+							<small><b>비밀번호수정</b></small>
 						</h1>
 						<div class="blog-details-area">
 							<div
@@ -123,97 +144,28 @@
 									<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
 									<div class="col-md-12">
 										<form class="form-horizontal" action="memberModify.ca" method="post">
-											<div class="form-group">
-												<label class="col-sm-3 control-label" for="inputName">이름</label>
-												<div class="col-sm-6">
-													<input class="form-control" id="inputName" type="text"
-														placeholder="이름" value="${member.name}" readonly>
-												</div>
-											</div>
-
 
 											<div class="form-group">
-												<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
+												<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 												<div class="col-sm-6">
-													<input class="form-control" id="inputEmail" type="text"
-														placeholder="이메일" value="${member.email}" readonly>
+													<input class="form-control" id="inputPassword"
+														type="password" placeholder="비밀번호"
+														value="${member.passwd}">
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-sm-3 control-label" for="inputPhone">핸드폰</label>
+												<label class="col-sm-3 control-label"
+													for="inputPasswordCheck">비밀번호 확인</label>
 												<div class="col-sm-6">
-													<input class="form-control" id="inputPhone" type="text"
-														placeholder="핸드폰 번호" value="${member.phone}">
+													<input class="form-control" id="inputPasswordCheck"
+														type="password" placeholder="비밀번호 확인"
+														value="${member.passwd}">
+													<p class="help-block">비밀번호를 바꾸시려면 새로운 번호를 동일하게 입력해주세요.</p>
 												</div>
 											</div>
 
-
-											<div class="form-group">
-												<label class="col-sm-3 control-label" for="inputAddrnum">
-													우편번호 </label>
-												<div class="col-sm-6">
-													<div class="input-group">
-														<input class="form-control" id="inputAddrnum" type="text"
-															placeholder="우편번호" name="post" value="${member.post }">
-														<span class="input-group-btn"> <input type="button"
-															class="btn btn-success btn-in"
-															style="background-color: #9bcaba; border: 0; height: 50px;"
-															id="post_find" value="우편찾기" onclick="findPost()">
-														</span>
-													</div>
-												</div>
-											</div>
-
-
-											<div class="form-group">
-												<label class="col-sm-3 control-label" for="inputAddrB">기본주소</label>
-												<div class="col-sm-6">
-													<input class="form-control" type="text" placeholder="기본주소"
-														id="inputAddrB" name="addressBasic"
-														value="${member.addressBasic }">
-												</div>
-											</div>
-
-
-
-											<div class="form-group">
-												<label class="col-sm-3 control-label" for="inputAddrD">상세주소</label>
-												<div class="col-sm-6">
-													<input class="form-control" type="text" id="inputAddrD"
-														placeholder="나머지 주소를 입력해주세요" name="addressDetail"
-														value="${member.addressDetail }">
-												</div>
-											</div>
-
-
-											<!-- 사진등록 -->
-											<div class="form-group">
-												<label class="col-sm-3 control-label" for="inputPhoto">사진등록</label>
-												<div class="col-sm-6">
-													<input class="form-control" type="file" id="inputFile" value="${member.photo}">
-												</div>
-											</div>
-
-											<!-- <div class="form-group">
-												<label class="col-sm-3 control-label" for="inputNumberCheck">인증번호
-													확인</label>
-												<div class="col-sm-6">
-													<div class="input-group">
-														<input class="form-control" id="inputNumberCheck"
-															type="text" placeholder="인증번호"> <span
-															class="input-group-btn">
-															<button class="btn btn-success"
-																style="background-color: #9bcaba; font-size: 12px; margin-left: 5px"
-																type="button">
-																인증번호 확인 <i class="fa fa-edit spaceLeft"></i>
-															</button>
-														</span>
-													</div>
-													<p class="help-block">전송된 인증번호를 입력해주세요.</p>
-												</div>
-											</div> -->
-
+											
 											<div class="form-group">
 												<div class="col-sm-12 text-center">
 													<button class="btn btn-primary" type="submit"

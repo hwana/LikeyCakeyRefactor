@@ -25,12 +25,14 @@ public class HomeqnaDaoImpl implements HomeqnaDao {
 	// 게시글 리스트 불러오기
 	@Override
 	public ArrayList<Homeqna> listAll() throws Exception {
+		System.out.println("WELCOME TO DAO HOME_QNA");
 		return new ArrayList<Homeqna>(sqlSession.selectList("homeqna.listAll"));
 	}
 	
 	// 게시글 상세보기
 	@Override
 	public Homeqna read(int hqNum) throws Exception {
+		System.out.println("WELCOME TO DAO HOME_QNA_READ");
 		return sqlSession.selectOne("homeqna.view", hqNum);
 	}
 	

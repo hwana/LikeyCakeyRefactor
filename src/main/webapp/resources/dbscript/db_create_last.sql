@@ -2,6 +2,8 @@ select * from member;
 SELECT * FROM MEMBER_BIZ;
 select * from HOME_QNA;
 
+
+
 INSERT INTO STATUS (S_NUM, S_STATUS) VALUES(0,'구매취소');
 
 -- MEMBER_BIZ의 MEMBER_CODE를 자동으로 업데이트 해주는 트리거

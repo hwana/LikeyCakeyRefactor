@@ -1,6 +1,7 @@
 package com.dal.likeycakey.qna.controller;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -22,21 +23,18 @@ public class HomeqnaController {
 	
 	@Autowired
 	private HomeqnaService homeqnaService;
-	// 홈큐앤에이 페이지로 이동하기만 하는 컨트롤러
-	@RequestMapping(value = "homeqna.ca")
-	public String onlymoveqnalist(Model model) {
-		return "qna/homeQna";
-	}
-	
-	
+	// 홈큐앤에이 페이지로 이동	
 	// home qna 리스트를 불러오는 컨트롤러
-	@RequestMapping(value="homeqna_list.ca")
+	@RequestMapping(value="homeqna.ca")
 	public ModelAndView list() throws Exception {
+		System.out.println("list 도착");
 		ArrayList<Homeqna> list = homeqnaService.listAll();
 		// ModelAndView
+		System.out.println(list.size());
+		System.out.println(list.get(0).getId());
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("qna/homeQna"); // 뷰를 homeQna.jsp로 설정
 		mv.addObject("list", list); // 데이터를 저장
+		mv.setViewName("qna/homeQna"); // 뷰를 homeQna.jsp로 설정
 		return mv;
 	}
 	

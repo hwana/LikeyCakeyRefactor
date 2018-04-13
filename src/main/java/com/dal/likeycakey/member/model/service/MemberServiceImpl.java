@@ -37,11 +37,25 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberDao.insertMember(m);
 		return result;
 	}
+	
+	// update
+	@Override
+	public int updateMember(Member m) throws Exception {
+		int result = memberDao.updateMember(m);
+		return result;
+	}
 
 	@Override
 	public Member findId(String email, String name) throws Exception {
 		System.out.println("아이디 찾기 service 진입");
 		return memberDao.findId(email, name);
+	}
+
+	@Override
+	public int updatePassword(Member m) throws Exception {
+		System.out.println("패스워드 변경 서비스");
+		int result = memberDao.updatePassword(m);
+		return result;
 	}
 
 }

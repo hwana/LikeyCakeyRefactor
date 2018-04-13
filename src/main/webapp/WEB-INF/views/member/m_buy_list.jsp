@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>LikeyCakey HOME Q&A</title>
+<title>구입내역</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -65,54 +65,18 @@
 					<div class="col-md-10">
 						<span style="border: 2px solid pink;"></span>&nbsp;&nbsp;
 						<h1 style="display: inline; margin-top: 0">
-							<small><b>홈페이지 문의글</b></small>
+							<small><b>구입내역</b></small>
 						</h1>
 						<div class="blog-details-area">
-							<div
-								class="blog-left-single mb-30 res-mb-30 res-mb-sm-30 res-blog-mt-50">
-								<div class="left-area">
-			
+							<div class="blog-left-single mb-30 res-mb-30 res-mb-sm-30 res-blog-mt-50">
 									<!-- 위의 div 4개는 오른쪽 사이드 설정하는 div -->
 									<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
 									<div class="col-md-12">
-										<table class="table table-hover">
-											<thead>
-												<tr>
-													<th>번호</th>
-													<th>제목</th>
-													<th>작성자</th>
-													<th>날짜</th>
-													<th>조회수</th>
-												</tr>
-											</thead>
-											<c:forEach var="row" items="${list}" varStatus="loop">
-											<tbody>
-												
-												<tr>
-													<td>${row.qNum}</td>
-													<td>도대체 이 홈페이지는</td>
-													<td>캔디걸</td>
-													<td>2018-03-20</td>
-													<td>5</td>
-												</tr>
-												<tr>
-													<td>02</td>
-													<td>대박이네요</td>
-													<td>캔디보이</td>
-													<td>2018-03-21</td>
-													<td>3</td>
-												</tr>
-											</tbody>
-											</c:forEach>
-										</table>
+										<%@ include file ="../payment/buyList.jsp" %> 
 									</div>
-								</div>
+									<!-- Right Side End -->
 							</div>
 						</div>
-					</div>
-					<!-- Right Side End -->
-
-
 
 					<!-- 페이징 처리 필요하면 이거 틀 사용해서 만들기!!! -->
 					<!-- Page Pagination Start -->
@@ -129,7 +93,7 @@
 						</div>
 					</div> -->
 					<!-- Page Pagination End -->
-				</div>
+					</div>
 			</div>
 		</div>
 	</section>
@@ -156,4 +120,3 @@
 </c:if>
 </body>
 </html>
-

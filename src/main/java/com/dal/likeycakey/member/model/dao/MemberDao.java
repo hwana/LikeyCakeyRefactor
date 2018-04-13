@@ -7,4 +7,5 @@ public interface MemberDao {
 	public Member forLogin(String id, String passwd) throws Exception;
 	public int selectMember(String id);
 	public Member findId(String email, String name) throws Exception;
+	public int updatePassword(Member m) throws Exception;
 }
