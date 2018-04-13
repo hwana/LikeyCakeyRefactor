@@ -97,6 +97,8 @@ for(i = startPage; i <= endPage; i++) {
 </head>
 <body>
 	<%@ include file="../default/header.jsp"%>
+	
+	<c:set var="list" value="${requestScope.list}"/>
 	<div id="container" style="padding-top : 10px; margin-top : 10px;">
 		<div id="list">
 			<b>게시판 (전체 글: ${totalCount})</b>
