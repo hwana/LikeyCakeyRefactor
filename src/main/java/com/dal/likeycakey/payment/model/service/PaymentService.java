@@ -19,6 +19,10 @@ public interface PaymentService {
 	public int updateProductOrder(Payment payment) throws Exception;
 
 	public Payment paymentSuccess(String m_id) throws Exception;
+
+	public int getBuyListCount(String m_id) throws Exception;
+
+	public ArrayList<Payment> selectBuyList(int currentPage, int limit, String m_id) throws Exception;
 	
 	/*public ArrayList<Member> selectList(int currentPage, int limit) throws Exception;
 	

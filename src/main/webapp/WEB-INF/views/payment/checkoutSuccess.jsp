@@ -145,7 +145,7 @@
 													</tr>
 													<tr>
 														<td class="product-thumbnail eceff8">결제 일시</td>
-														<td class="product-name">2${payment.pay_date}</td>
+														<td class="product-name">${payment.pay_date}</td>
 
 													</tr>
 													

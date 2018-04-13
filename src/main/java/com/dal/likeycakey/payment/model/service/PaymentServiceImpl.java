@@ -52,6 +52,18 @@ public class PaymentServiceImpl implements PaymentService {
 		return paymentDao.paymentSuccess(m_id);
 	}
 
+	@Override
+	public int getBuyListCount(String m_id) throws Exception {
+		System.out.println("PaymentServiceImpl : getBuyListCount 도착");
+		return paymentDao.getBuyListCount(m_id);
+	}
+
+	@Override
+	public ArrayList<Payment> selectBuyList(int currentPage, int limit, String m_id) throws Exception {
+		System.out.println("PaymentServiceImpl : selectBuyList 도착");
+		return paymentDao.selectBuyList(currentPage, limit, m_id);
+	}
+
 	
 
 }
