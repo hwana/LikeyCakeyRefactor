@@ -64,9 +64,9 @@
 				var stat = $('.cart-plus-minus-box').val();
 				var num = parseInt(stat, 10);
 				num++;
-				if(num>10) {
-					alert('10개 이상 구매하실 수 없습니다.');
-					num=10;
+				if(num>3) {
+					alert('3개 이상 구매하실 수 없습니다.');
+					num=3;
 				}
 				
 				$('.cart-plus-minus-box').val(num);
@@ -170,18 +170,26 @@
 									</div>
 						</div>
 					</div>
+					
+			<c:set var="pReviewListSize" value="${requestScope.pReviewListSize}"/>
+			<c:set var="pReviewAverage" value="${requestScope.averageStar}"/>
+			<fmt:formatNumber value="${pReviewListSize}" type="number" var="pReviewNum"/>
+			<fmt:formatNumber value="${pReviewAverage}" type="number" var="pReviewAverNum"/>
+			<c:set var="pReviewStarGrey" value="${5-pReviewAverNum}"/>
+			
 					<div class="col-md-6">
 						<div class="singlepro-right">
 							<div class="snglepro-content">
 								<span>${pDetail.pbMiniTitle }</span>
 								<h3 style="font-size: 2em;"><a>${pDetail.pName}</a></h3>
 								<div class="rating-box">
+								<c:forEach begin="1" end="${pReviewAverage}">
 									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<span>3 Reviews</span>
+								</c:forEach>
+								<c:forEach var="grey" begin="1" end="${pReviewStarGrey}">
+									<i class="fa fa-star" style="color:#dbdbdb;"></i>
+								</c:forEach>
+									<span>${pReviewNum} Reviews</span>
 								</div>
 								<div class="prce-stock">
 									<h4><fmt:formatNumber value="${pDetail.pPrice}" pattern="\#,###"/></h4>
@@ -207,13 +215,13 @@
 								<div class="input-content mb-50">
 									
 									<div class="detail-input">
-									<label for="fromDate">문구 추가</label> 
-									<input class="detail-text mt-10" placeholder="케이크에 추가하실 문구를 입력해주세요." type="text">
+									<label>문구 추가</label> 
+									<input class="detail-text mt-10" id="productAddText" placeholder="케이크에 추가하실 문구를 입력해주세요." type="text">
 									</div>
 									
 									<div class="detail-input">
 									<label for="fromDate">예약 날짜</label> 
-									<input class="cake-reserve detail-text mt-10" placeholder="예약 날짜를 선택해 주세요." type="text" id="cake-reserve">
+									<input class="cake-reserve detail-text mt-10" id="productReserve" placeholder="예약 날짜를 선택해 주세요." type="text" id="cake-reserve">
 									</div>
 									
 									<div class="quantity mt-10">
@@ -248,8 +256,8 @@
 									</div>
 									
 									<div class="detail-input">
-									<button type="submit" class="detail-btn">구매하기</button>
-									<button type="submit" class="detail-btn">장바구니 담기</button>
+									<button class="detail-btn" id="addCart">장바구니 담기</button>
+									<button class="detail-btn" id="directCheckout">구매하기</button>
 									</div>
 									
 								</div>
@@ -534,14 +542,10 @@
 
     		//시작일.
     		$('#cake-reserve').datepicker({
-    			dateFormat : "yy-mm-dd", // 날짜의 형식
+    			dateFormat : "yy/mm/dd", // 날짜의 형식
     			changeMonth : true, // 월을 이동하기 위한 선택상자 표시여부
-    			//minDate : 1, // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
-    			//onClose : function(selectedDate) {
-    				// 시작일(fromDate) datepicker가 닫힐때
-    				// 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-    				//$("#toDate").datepicker("option", "minDate", selectedDate);
-    			//}
+    			minDate : 1, // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+    			maxDate: "+1m +1w" 
     		});
 
     		$("#ake-reserve").on("change", function() {
