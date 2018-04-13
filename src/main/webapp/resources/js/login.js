@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	$('#biz-member-link').click(function(e) {
 		$("#register-form").delay(100).fadeIn(100);
