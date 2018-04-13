@@ -12,6 +12,11 @@
 		<typeAlias type="com.dal.likeycakey.member.model.vo.MemberLike" alias="MemberLike"/>
 		<typeAlias type="com.dal.likeycakey.biz.model.vo.BizMember" alias="bizMember"/>
 		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductBoard" alias="ProductBoard"/>
+		<typeAlias type="com.dal.likeycakey.detailView.model.vo.CustomBoard" alias="CustomBoard"/>
+		<typeAlias type="com.dal.likeycakey.detailView.model.vo.CustomCream" alias="CustomCream"/>
+		<typeAlias type="com.dal.likeycakey.detailView.model.vo.CustomSheet" alias="CustomSheet"/>
+		<typeAlias type="com.dal.likeycakey.detailView.model.vo.CustomTopping" alias="CustomTopping"/>
+		<typeAlias type="com.dal.likeycakey.detailView.model.vo.CustomSize" alias="CustomSize"/>
 		<typeAlias type="com.dal.likeycakey.member.model.vo.BizWithMember" alias="BizWithMember"/>
 		<typeAlias type="com.dal.likeycakey.list.model.vo.FilterList" alias="FilterList"/>
 		<!-- <typeAlias type="org.kh.firstSpring.notice.model.vo.Notice" alias="Notice"/>
@@ -24,6 +29,7 @@
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/bizmember-mapper.xml"/>
 		<mapper resource="mappers/productboard-mapper.xml"/>
+		<mapper resource="mappers/customboard-mapper.xml"/>
 		<mapper resource="mappers/admin-mapper.xml"/>
 		<mapper resource="mappers/biz-mapper.xml"/>
 	</mappers> 

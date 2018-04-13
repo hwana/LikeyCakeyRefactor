@@ -114,6 +114,67 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		
+		// 일반회원 아이디 저장하기
+		// 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
+	    var userInputId1 = getCookie("userInputId");
+	    $(".id").val(userInputId1); 
+	    console.log("0"+userInputId1);
+	    if($(".id").val() != ""){ // 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
+	        $(".remember").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
+	        console.log("1"+userInputId1);
+	    }
+	     
+	    $(".remember").change(function(){ // 체크박스에 변화가 있다면,
+	        if($(".remember").is(":checked")){ // ID 저장하기 체크했을 때,
+	            var userInputId1 = $(".id").val();
+	            setCookie("userInputId1", userInputId1, 7); // 7일 동안 쿠키 보관
+	            console.log("2"+userInputId1);
+	        }else{ // ID 저장하기 체크 해제 시,
+	            deleteCookie("userInputId1");
+	        }
+	    });
+	     
+	    // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
+	    $(".id").keyup(function(){ // ID 입력 칸에 ID를 입력할 때,
+	        if($(".remember").is(":checked")){ // ID 저장하기를 체크한 상태라면,
+	            var userInputId = $(".id").val();
+	            
+	            setCookie("userInputId1", userInputId1, 7); // 7일 동안 쿠키 보관
+	            console.log("3"+userInputId1);
+	        }
+	    });
+	    
+	 // 사업자 아이디 저장하기
+	 // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
+	    var userInputId2 = getCookie("userInputId2");
+	    $("#username").val(userInputId2); 
+	    console.log("0"+userInputId2);
+	    if($("#username").val() != ""){ // 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
+	        $(".remember").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
+	        console.log("1"+userInputId2);
+	    }
+	     
+	    $(".remember").change(function(){ // 체크박스에 변화가 있다면,
+	        if($(".remember").is(":checked")){ // ID 저장하기 체크했을 때,
+	            var userInputId2 = $("#username").val();
+	            setCookie("userInputId2", userInputId2, 7); // 7일 동안 쿠키 보관
+	            console.log("2"+userInputId2);
+	        }else{ // ID 저장하기 체크 해제 시,
+	            deleteCookie("userInputId2");
+	        }
+	    });
+	     
+	    // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
+	    $("#username").keyup(function(){ // ID 입력 칸에 ID를 입력할 때,
+	        if($(".remember").is(":checked")){ // ID 저장하기를 체크한 상태라면,
+	            var userInputId = $("#username").val();
+	            
+	            setCookie("userInputId2", userInputId2, 7); // 7일 동안 쿠키 보관
+	            console.log("3"+userInputId2);
+	        }
+	    });
+	    
 		$("#biz_login").click(function() {
 			//.serialize를 사용하여 폼에 저장된 모든 데이터를 가져온다.
 			var form_data = $("#register-form").serialize();
@@ -160,6 +221,34 @@
 			});//ajax
 		});//submit
 	});//ready
+	
+	 
+	function setCookie(cookieName, value, exdays){
+	    var exdate = new Date();
+	    exdate.setDate(exdate.getDate() + exdays);
+	    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+	    document.cookie = cookieName + "=" + cookieValue;
+	}
+	 
+	function deleteCookie(cookieName){
+	    var expireDate = new Date();
+	    expireDate.setDate(expireDate.getDate() - 1);
+	    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+	}
+	 
+	function getCookie(cookieName) {
+	    cookieName = cookieName + '=';
+	    var cookieData = document.cookie;
+	    var start = cookieData.indexOf(cookieName);
+	    var cookieValue = '';
+	    if(start != -1){
+	        start += cookieName.length;
+	        var end = cookieData.indexOf(';', start);
+	        if(end == -1)end = cookieData.length;
+	        cookieValue = cookieData.substring(start, end);
+	    }
+	    return unescape(cookieValue);
+	}
 </script>
 
 
@@ -190,7 +279,7 @@
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="id">아이디</label>
 									<div class="col-xs-8">
-										<input type="text" name="id" tabindex="1" class="form-control"
+										<input type="text" name="id" tabindex="1" class="form-control id"
 											placeholder="아이디를 입력하세요." value="">
 									</div>
 
@@ -205,7 +294,7 @@
 									<div class="col-xs-8 col-xs-offset-2">
 
 										<input type="button" name="login-submit"
-											tabindex="4" class="form-control btn btn-login login-submit" value="로그인"
+											tabindex="4" class="form-control btn btn-login" value="로그인"
 											id="nor_login">
 
 									</div>
@@ -260,7 +349,7 @@
 									<div class="col-xs-8 col-xs-offset-2">
 
 										<input type="button" name="login-submit" tabindex="4"
-											class="form-control btn btn-login login-submit" id="biz_login" value="로그인">
+											class="form-control btn btn-login" id="biz_login" value="로그인">
 									</div>
 								</div>
 								<div class="row text-center">
@@ -302,53 +391,6 @@
 </div>
 <script type="text/javascript" src="resources/js/login.js"></script>
 <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
-<script>
-	$(document).ready(function() {
-		
-		 var id = $("#username").val();
-		 $.cookie('id',id);//쿠키의이름, 저장하고자 하는 쿠키값
-		console.log("1"+id);
-		 //최초 쿠키에 id라는 쿠키값이 존재하면
-	    if(id != undefined) {
-	        //아이디에 쿠키값을 담는다
-	        $("#username").val(id);
-	        //아이디저장 체크박스 체크를 해놓는다
-	        $(".remember").prop("checked",true);
-	        console.log("2"+id);
-	    }
-		 
-		$(".login-submit").click(function() {
-			//.serialize를 사용하여 폼에 저장된 모든 데이터를 가져온다.
-			var form_data = $("#register-form").serialize();
-			$.ajax({
-				type : "POST",
-				url : "loginCheck2.ca",
-				dataType : "text",
-				data : form_data,
-				success : function(data) {
-					if (data == "ok") {
-						alert("로그인에 성공하셨습니다.")
-						location.href = "home.ca?id=" + username.value;
-					} else {
-						$(".message").html("아이디 또는 비밀번호가 잘못되었습니다.");
-					}
-					
-					//아이디저장 체크되어있으면 쿠키저장
-		            if($(".remember").prop("checked")) {
-		                $.cookie('id', $("#username").val(),{
-		                	expires : 2
-		                });
-		                console.log("3"+id);
-		            //아이디저장 미체크면 쿠키에 정보가 있던간에 삭제
-		            } else {
-		                $.removeCookie('id');
-		            }
-				}
-			});//ajax
-		});//click
-	});
-</script>
-
 </body>
 
 </html>
