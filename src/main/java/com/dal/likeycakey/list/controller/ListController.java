@@ -92,6 +92,7 @@ public class ListController {
 			.addObject("startpage", startpage)
 			.addObject("endpage", endpage)
 			.addObject("cakeCount", cakeCount)
+			.addObject("simple_filter", simplefilter)
 			.addObject("locationlist", locationlist);
 			mv.setViewName("list/cakelist");
 			
@@ -104,11 +105,12 @@ public class ListController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "cakeOrder.ca", method = RequestMethod.GET)
-	public ModelAndView cakeOrder(
+	@RequestMapping(value = "cakeSort.ca", method = RequestMethod.GET)
+	public ModelAndView cakeSort(
 			@RequestParam("input_search") String inputsearch,
 			@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "order_filter", required = false) String orderfilter,
+			@RequestParam(value = "simple_filter", required = false) String simplefilter,
+			@RequestParam(value = "orderfilter", required = true) String orderfilter,
 			ModelAndView mv) {
 		
 		// 페이지 값 처리용
@@ -126,7 +128,8 @@ public class ListController {
 		
 		// 전체 목록 갯수와 해당 페이지별 목록을 리턴
 		try {
-			cakeCount = listService.getCakeCount(inputsearch);
+			FilterList filterlist = new FilterList(inputsearch, simplefilter, orderfilter);
+			cakeCount = listService.getCakeCount(filterlist);
 			System.out.println("태그관련케이크 개수 : " + cakeCount);
 		} catch (Exception e){
 			System.out.println("태그관련케이크 개수를 불러오는데 실패 ");
@@ -135,14 +138,8 @@ public class ListController {
 		
 		// 케이크 불러오기
 		ArrayList<ProductBoard> cakelist;
-		if (orderfilter != null) {
-			FilterList filterlist = new FilterList(inputsearch, orderfilter);
-			cakelist = listService.selectCakeListwithOrder(filterlist, currentPage, limit);
-		}
-		else {
-			cakelist = listService.selectCakeList(inputsearch, currentPage, limit);
-		}
-		
+		cakelist = listService.selectCakeListwithOrder(new FilterList(inputsearch, simplefilter, orderfilter), currentPage, limit);
+				
 		ArrayList<String> locationlist = new ArrayList<String>();
 		for(int i=0; i<cakelist.size(); i++) {
 			locationlist.add(listService.selectLocationList(cakelist.get(i).getId()));
@@ -170,6 +167,7 @@ public class ListController {
 			.addObject("startpage", startpage)
 			.addObject("endpage", endpage)
 			.addObject("cakeCount", cakeCount)
+			.addObject("simple_filter", simplefilter)
 			.addObject("locationlist", locationlist);
 			mv.setViewName("list/cakelist");
 			
@@ -178,6 +176,17 @@ public class ListController {
 			mv.addObject("input_search", inputsearch);
 			mv.setViewName("list/cakelist");
 		}
+		
+		if (Integer.parseInt(orderfilter)==1)
+			mv.addObject("orderfilter", "최신 업로드 순");
+		else if (Integer.parseInt(orderfilter)==2)
+			mv.addObject("orderfilter", "베스트 케이크 순");
+		else if (Integer.parseInt(orderfilter)==3)
+			mv.addObject("orderfilter", "가격 낮은 순");
+		else if (Integer.parseInt(orderfilter)==4)
+			mv.addObject("orderfilter", "가격 높은 순");
+		else if (Integer.parseInt(orderfilter)==5)
+			mv.addObject("orderfilter", "이용후기 많은 순");
 		
 		return mv;
 	}

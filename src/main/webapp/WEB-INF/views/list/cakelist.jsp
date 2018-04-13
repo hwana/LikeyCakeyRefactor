@@ -12,6 +12,8 @@
 <c:set var="cakelist" value="${requestScope.cakelist}"/>
 <c:set var="locationlist" value="${requestScope.locationlist}"/>
 <c:set var="input_search" value="${requestScope.input_search}"/>
+<c:set var="simplefilter" value="${requestScope.simple_filter}"/>
+<c:set var="orderfilter" value="${requestScope.orderfilter }"/>
 <c:set var="member" value="${sessionScope.member}"/>
 
 <!DOCTYPE html>
@@ -126,46 +128,27 @@
 									</ul>
 								</div>
 								<div class="young_sorting_filter">
-									<label for="young_sorting_filterin">최신 업로드 순&nbsp;<i class="fa fa-angle-down"></i></label> 
-									<select name="" id="young_sorting_filterin">
-										<option value="${newestorder}">
-											<c:url var="newestorder" value="home.ca">
-												<c:param name="page" value="1"/>
-												<c:param name="input_search" value="${input_search}"/>
-											</c:url>
-											최신 업로드 순
+									<c:if test="${empty orderfilter}">
+										<label for="young_sorting_filterin">최신 업로드 순&nbsp;<i class="fa fa-angle-down"></i></label> 
+									</c:if>
+									<c:if test="${!empty orderfilter }">
+										<label for="young_sorting_filterin">${orderfilter }&nbsp;<i class="fa fa-angle-down"></i></label> 
+									</c:if>
+									<select id="young_sorting_filterin" >
+										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&input_search=${input_search }&simple_filter=${simplefilter}&orderfilter=1">
+												최신 업로드 순
 										</option>
-										<option value="${mostlikeorder}">
-											<c:url var="mostlikeorder" value="home.ca">
-												<c:param name="page" value="1"/>
-												<c:param name="input_search" value="${input_search}"/>
-												<c:param name="order_filter" value="P_B_LIKE DESC"/>
-											</c:url>
-											베스트 케이크 순
+										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&input_search=${input_search }&simple_filter=${simplefilter}&orderfilter=2">
+												베스트 케이크 순
 										</option>
-										<option value="${cheapest}">
-											<c:url var="cheapest" value="home.ca">
-												<c:param name="page" value="1"/>
-												<c:param name="input_search" value="${input_search}"/>
-												<c:param name="order_filter" value="P_PRICE ASC"/>
-											</c:url>
-											가격 낮은 순
+										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&input_search=${input_search }&simple_filter=${simplefilter}&orderfilter=3">
+												가격 낮은 순
 										</option>
-										<option value="${expensive}">
-											<c:url var="expensive" value="home.ca">
-												<c:param name="page" value="1"/>
-												<c:param name="input_search" value="${input_search}"/>
-												<c:param name="order_filter" value="P_PRICE DESC"/>
-											</c:url>
-											가격 높은 순
+										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&input_search=${input_search }&simple_filter=${simplefilter}&orderfilter=4">
+												가격 높은 순
 										</option>
-										<option value="${mostreview}">
-											<c:url var="mostreview" value="home.ca">
-												<c:param name="page" value="1"/>
-												<c:param name="input_search" value="${input_search}"/>
-												<c:param name="order_filter" value="P_B_READCOUNT DESC"/>
-											</c:url>
-											이용후기 많은 순
+										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&input_search=${input_search }&simple_filter=${simplefilter}&orderfilter=5">
+												이용후기 많은 순
 										</option>
 									</select>
 								</div>

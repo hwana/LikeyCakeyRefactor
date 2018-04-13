@@ -27,7 +27,16 @@ public class FilterList implements java.io.Serializable{
 		super();
 		this.inputsearch = inputsearch;
 		this.simplefilter = simplefilter;
-		this.orderfilter = orderfilter;
+		if(Integer.parseInt(orderfilter)==1)
+			setOrderfilter("P_B_NUM DESC");
+		else if(Integer.parseInt(orderfilter)==2)
+			setOrderfilter("P_B_LIKE DESC");
+		else if(Integer.parseInt(orderfilter)==3)
+			setOrderfilter("P_PRICE");
+		else if(Integer.parseInt(orderfilter)==4)
+			setOrderfilter("P_PRICE DESC");
+		else if(Integer.parseInt(orderfilter)==5)
+			setOrderfilter("P_B_SELLCNT DESC");
 	}
 
 	public String getInputsearch() {
