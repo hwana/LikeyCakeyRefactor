@@ -73,8 +73,14 @@ $(function(){
 					       + "</div>"
 					       + "<span class='rate_area'> <span class='blind'>평점&nbsp;</span>";
 					prStar = json[i].prStar;
+					greyStar = 5 - prStar;
 					for (var j = 0; j < prStar; j++) {
 				    values += 	"<span class='rate active'><i class='fa fa-star'></i></span>";
+					}
+					if(greyStar != 0){
+						for (var j = 0; j < greyStar; j++) {
+						    values += 	"<i class='fa fa-star' style='color:#dbdbdb;'></i>";
+							}
 					}
 					values += "</div>";
 					// 사업자 댓글이 있을 경우 추가
@@ -169,6 +175,23 @@ $(function(){
 	
 //리뷰 select end -----------------------
 	
+	$('#addCart').click(function(e){
+		e.preventDefault();
+		$.ajax({
+			url : "productAddCart.ca",
+			type : "post",
+			dataType : "json",
+			data : {
+				'pbNum' : pbNum,
+				
+				
+			},
+			
+			success : function(pReview){
+			}	
+		});
+		
+	});
 	
 	$('.heart').click(function(){
 		

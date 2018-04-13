@@ -34,6 +34,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 		public ModelAndView detailView(@RequestParam("pbNum") String pbNum, ModelAndView mv) {
 			
 			ProductBoard productDetail = selectProductDetail(pbNum);
+			ArrayList<ProductReview> pReviewList  = pbService.selectReviewList(pbNum);
+			
+			double addStar = 0;
+			for (int i = 0; i < pReviewList.size(); i++) {
+				addStar += pReviewList.get(i).getPrStar();
+			}
+			int averageStar = (int) Math.ceil(addStar/(double)pReviewList.size());
+			
 			String tagMinus = productDetail.getPbTag().replace("#", "");
 			String tag[] = tagMinus.split(",");
 			BizWithMember productDetailBiz = selectProductDetailBiz(productDetail.getId());
@@ -41,6 +49,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 			mv.addObject("productDetail", productDetail)
 			.addObject("pbTag", tag)
 			.addObject("productDetailBiz", productDetailBiz)
+			.addObject("pReviewListSize", pReviewList.size())
+			.addObject("averageStar", averageStar)
 			.setViewName("detailView/detailView");
 			
 			return mv;
@@ -69,6 +79,16 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 			return selectProductDetail;
 		}
 
+		/*@RequestMapping("productAddCart.ca")
+		private void productAddCart() {
+			int result = pbService.insertProductAddCart();
+			if(result == 1) {
+				String resultCommet = "장바구니에 담기를 성공했습니다."
+			}
+			
+				
+		}*/
+	
 		@RequestMapping(value="custom.ca", method=RequestMethod.GET)
 		public String customDetail(Model model) {
 			
