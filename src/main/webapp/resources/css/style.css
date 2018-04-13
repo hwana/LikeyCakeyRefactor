@@ -1607,9 +1607,8 @@ ul.size-widget li:last-child a {
   font-size: 14px;
   height: 40px;
   line-height: 14px;
-  padding: 8px;
   transition: all 0.3s ease 0s;
-  width: 7%;
+  width:11%;
   text-align: center;
 }
 .snglepro-content > span {
@@ -3312,6 +3311,7 @@ position: absolute;
 /* 상품 개수 ~ 버튼 까지 wrap */
 .detail-input {
 	width:100%;
+	display: inline-block;
 }
 
 /* 구매하기, 장바구니 담기 버튼 */
@@ -3460,7 +3460,7 @@ position: absolute;
 
 /* 시간 */
 .rlist .rbox_info_base .time_info {
- 	font-size: 0.8em;
+ 	font-size: 1em;
  	color: #c0c0c0;
 
 }
