@@ -56,8 +56,8 @@ public class Payment implements java.io.Serializable {
 	private String recBasicAddr;	//수령인 기본 주소
 	private String recDetailAddr;	//수령인 상세 주소
 	private String recMemo;//수령 메모
-	
-	
+	private int    s_num;	//주문 진행 상태
+	private String s_status; //주문 현황
 	
 	
 	
@@ -68,6 +68,22 @@ public class Payment implements java.io.Serializable {
 	
 
 	
+	public String getS_status() {
+		return s_status;
+	}
+
+	public void setS_status(String s_status) {
+		this.s_status = s_status;
+	}
+
+	public int getS_num() {
+		return s_num;
+	}
+
+	public void setS_num(int s_num) {
+		this.s_num = s_num;
+	}
+
 	public String getRecMemo() {
 		return recMemo;
 	}

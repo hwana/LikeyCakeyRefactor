@@ -138,8 +138,6 @@
 	</select>
 	
 	<select id="selectCakeListwo" parameterType="FilterList" resultMap="resultProductBoard">
-		SELECT * FROM (
-			SELECT * FROM (
 				SELECT * FROM PRODUCT_BOARD 
 					WHERE (P_NAME LIKE '%' || #{inputsearch} || '%')
 				   OR (P_B_MINI_TITLE LIKE '%' || #{inputsearch} || '%')
@@ -147,9 +145,8 @@
 				   OR (P_B_CONTENT LIKE '%' || #{inputsearch} || '%')
 				   OR (P_B_WARN LIKE '%' || #{inputsearch} || '%')
 				   OR (P_B_TAG LIKE '%' || #{inputsearch} || '%')
-			)
+				
 			ORDER BY #{orderfilter}
-		)	
 	</select>
 
 </mapper>

@@ -213,7 +213,7 @@
 															<td class="product-price"><span class="amount">${p.pbPrice}</span>
 															</td>
 															<td class="product-quantity"><input type="number"
-																id="poCnt" name="poCount" min="1" max="10"
+																id="poCnt" name="poCount" min="1" max="3"
 																value="${p.poCnt}"></td>
 
 															<td class="product-subtotal" id="poPrice"

@@ -366,7 +366,7 @@
 							<div class="row">
 								<h3>결제 수단</h3>
 								<div class="col-md-12 col-sm-12 col-xs-12">
-									<div class="table-content table-responsive">
+									<div class="table-content tabl,e-responsive">
 										<table>
 											<tbody>
 												<tr>
@@ -436,7 +436,7 @@
 							<br> <br> <br>
 							<!-- 버튼 시작 -->
 							<div class="row">
-								<div class="col-md-4" style="width: 20%; margin-left: 30%">
+								<div class="col-md-4 col-sm-5 col-xs-5" style="width: 20%; margin-left: 30%">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 
@@ -446,7 +446,7 @@
 									</div>
 								</div>
 
-								<div class="col-md-4" style="width: 20%;">
+								<div class="col-md-4 col-sm-5 col-xs-5" style="width: 20%;">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 										<div class="pink_button">
