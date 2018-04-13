@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
+import com.dal.likeycakey.detailView.model.vo.ProductReview;
 import com.dal.likeycakey.member.model.vo.BizWithMember;
 import com.dal.likeycakey.member.model.vo.MemberLike;
 
@@ -36,6 +37,8 @@ public interface ProductBoardDao {
 	public ProductBoard selectProductDetail(String pbNum);
 
 	public BizWithMember selectProductDetailBiz(String id);
+
+	public ArrayList<ProductReview> selectReviewList(String pbNum);
 	
 	
 
