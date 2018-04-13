@@ -21,12 +21,12 @@
 		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductReview" alias="ProductReview"/>
 		<typeAlias type="com.dal.likeycakey.member.model.vo.BizWithMember" alias="BizWithMember"/>
 		<typeAlias type="com.dal.likeycakey.list.model.vo.FilterList" alias="FilterList"/>
+		<typeAlias type="com.dal.likeycakey.qna.model.vo.Homeqna" alias="Homeqna"/>
 		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductReview" alias="productReview"/>
 		<!-- <typeAlias type="org.kh.firstSpring.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="org.kh.firstSpring.board.model.vo.Board" alias="Board"/> -->
 	</typeAliases> 	
 	
-
 	<!-- 마이바티스 DataSource 설정은 root-context.xml을 참조한다. -->
 	
 	<mappers>
@@ -36,10 +36,10 @@
 		<mapper resource="mappers/customboard-mapper.xml"/>
 		<mapper resource="mappers/admin-mapper.xml"/>
 		<mapper resource="mappers/biz-mapper.xml"/>
-		<mapper resource="mappers/memberlike-mapper.xml"/>
 		<mapper resource="mappers/productreview-mapper.xml"/>
+		<mapper resource="mappers/memberlike-mapper.xml"/>
+		<mapper resource="mappers/homeqna-mapper.xml"/>
 		<mapper resource="mappers/payment-mapper.xml"/>
 	</mappers> 
-
 
 </configuration>

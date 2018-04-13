@@ -41,7 +41,7 @@
 	</select>
 
 	<!-- id 찾기 -->
-	<select id = "findId" parameterType="String" resultType="String">
+	<select id = "findId" parameterType="Member" resultMap="resultMember">
 		select M_ID from MEMBER where M_NAME = #{name} and M_EMAIL = #{email}
 	</select>
 
