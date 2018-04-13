@@ -17,7 +17,7 @@
 <!-- <script type='text/javascript'>
 	//<![CDATA[
 	// 사용할 앱의 JavaScript 키를 설정해 주세요.
-	Kakao.init('YOUR APP KEY');
+	Kakao.init('40a1519b1664a63360f87490b7164bf3');
 	function loginWithKakao() {
 		// 로그인 창을 띄웁니다.
 		Kakao.Auth.login({
@@ -110,29 +110,37 @@
 					});
 </script>
 
-<script>
+<!--항상 최신 버전의 SDK를 사용합니다.-->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '{your-app-id}',
-      cookie     : true,
-      xfbml      : true,
-      version    : '{latest-api-version}'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+<!-- facebook login api -->
+<script>
+	<script>
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId : '{415535308873910}',
+			cookie : true,
+			xfbml : true,
+			version : '{latest-api-version}'
+		});
+
+		FB.AppEvents.logPageView();
+		FB.getLoginStatus(function(response) {
+		    statusChangeCallback(response);
+		});
+	};
+
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {
+			return;
+		}
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
 </script>
 
 <%@ include file="../default/header.jsp"%>
@@ -205,18 +213,25 @@
 								<div id="kakao-logged-group"></div>
 								<div id="kakao-profile"></div>
 								<%@include file="../member/naverLogin.jsp"%>
+								<div id="fb-root"></div>
+								<script>
+									(function(d, s, id) {
+										var js, fjs = d.getElementsByTagName(s)[0];
+										if (d.getElementById(id))
+											return;
+										js = d.createElement(s);
+										js.id = id;
+										js.src = 'https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.12&appId=415535308873910&autoLogAppEvents=1';
+										fjs.parentNode.insertBefore(js, fjs);
+									}(document, 'script', 'facebook-jssdk'));
+								</script>
+								<div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
 
 							</form>
 
 							<!-- API 간편 로그인 - kakao -->
-							<!-- 						<div style="margin: 0 auto">
-								<a id="custom-login-btn" href="javascript:loginWithKakao()">
-									<img
-									src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"
-									width="200" />
-								</a>
-							</div>
--->
+							<a id="kakao-login-btn"></a>
+
 						</div>
 					</div>
 				</div>
