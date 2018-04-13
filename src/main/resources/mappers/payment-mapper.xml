@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <!DOCTYPE mapper PUBLIC
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -24,6 +25,15 @@
 		<result property="pay_price" column="pay_price" />
 		<result property="imp_uid" column="imp_uid" />
 		<result property="m_id" column="m_id" />
+		
+		<result property="recPost" column="P_O_REC_POST" />
+		<result property="recName" column="P_O_REC_NAME" />
+		<result property="recCP" column="P_O_REC_CP" />
+		<result property="recBasicAddr" column="P_O_REC_BASIC_ADDR" />
+		<result property="recDetailAddr" column="P_O_REC_DETAIL_ADDR" />
+		<result property="recMemo" column="P_O_MEMO" />
+		<result property="s_num" column="S_NUM" />
+		<result property="s_status" column="s_status" />
 	</resultMap>
 
 
@@ -138,42 +148,62 @@
 	</select>
 	
 	
-<!-- 	<select id="selectOne" resultMap="resultAdminMember">
-		SELECT
-			*
-		FROM
-			MEMBER
-		WHERE
-			M_ID = #{id}
+	
+	
+	<select id="getBuyListCount" resultType="_int">
+		SELECT 
+			COUNT(*) 
+		FROM 
+			PRODUCT_ORDER
+		where
+			m_id = #{m_id}
+		and
+			S_NUM >=3
+		
 	</select>
-
-	<update id="updateMember" parameterType="Member" flushCache="true"
-		statementType="PREPARED">
-		UPDATE 
-			MEMBER 
-		SET 
-			M_NAME = #{name},
-			M_PW = #{passwd},
-			M_NUM=#{code}, 
-			M_EMAIL =#{email},
-			M_CP = #{phone},
-			M_STATUS =#{status},
-			M_BLACKCNT = #{blackCnt}
-		WHERE 
-			M_ID = #{id}
-	</update>
 	
-	
-	<delete id="deleteTotalMember" parameterType="string" flushCache="true" statementType="PREPARED">
-	DELETE FROM MEMBER
-  </delete>
-  
-  <delete id="deleteMember" flushCache="true" statementType="PREPARED">
-		DELETE 
+	<select id="selectBuyList" resultMap="resultPayment">
+		SELECT
+			PO.P_O_NUM, <!-- 주문번호 -->
+			PO.P_B_NUM, <!-- 참고게시글번호 -->
+			PO.BIZ_DELIVERY, <!-- 배송비 -->
+			PO.P_O_DATE, <!-- 주문일자 -->
+			PO.P_O_BOOKDATE, <!-- 예약날짜 -->
+			PO.P_O_CNT, <!-- 주문수량 -->
+			PO.P_O_PRICE,<!--  총 상품가격 -->
+			PO.P_O_TEXT, <!-- 맞춤형 문구 -->
+			
+			MB.BIZ_NAME, <!-- 사업장이름(가게이름) -->
+			PB.P_NAME, <!-- 제품 이름 -->
+			PB.P_IMG,	<!-- 제품 이미지 -->
+			
+			PO.P_O_REC_NAME,  <!-- 받는 사람 이름 -->
+			PO.P_O_REC_CP,  <!-- 받는 사람 전화번호 -->
+			PO.P_O_REC_POST,  <!-- 받는 사람 우편번호 -->
+			PO.P_O_REC_BASIC_ADDR,  <!-- 기본 주소 -->
+			PO.P_O_REC_DETAIL_ADDR,  <!-- 상세 주소 -->
+			PO.S_NUM,             <!-- 주문 진행 상태 -->
+			PO.P_O_MEMO,    <!-- 배송 메모 -->		
+			s.s_status	<!-- 주문 단계 설명 -->
 		FROM
-			MEMBER
+			PRODUCT_ORDER PO,
+			MEMBER_BIZ MB,
+			PRODUCT_BOARD PB,
+			STATUS S
 		WHERE
-			M_ID = #{id}
-	</delete> -->
+			PO.M_ID = #{m_id}
+		AND
+			PO.S_NUM >=3
+		AND
+			MB.M_ID = PB.M_ID
+		AND
+			PB.P_B_NUM = PO.P_B_NUM
+		and
+			po.s_num = s.s_num
+		ORDER BY 
+			po.p_o_date desc
+		
+	</select>
+	
 
 </mapper>
