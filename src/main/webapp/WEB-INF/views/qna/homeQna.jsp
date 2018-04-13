@@ -98,7 +98,6 @@ for(i = startPage; i <= endPage; i++) {
 <body>
 	<%@ include file="../default/header.jsp"%>
 	
-	<c:set var="list" value="${requestScope.list}"/>
 	<div id="container" style="padding-top : 10px; margin-top : 10px;">
 		<div id="list">
 			<b>게시판 (전체 글: ${totalCount})</b>
@@ -125,14 +124,14 @@ for(i = startPage; i <= endPage; i++) {
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="homeqna" items="${requestScope.Homeqna}">
+					<c:forEach var="row" items="${list}">
 						<tr>
-							<td>${homeqna.hqNum}</td>
+							<td>${row.hqNum}</td>
 							<td id="title"><c:if test="${article.depth > 0}">&nbsp;&nbsp;</c:if> 
-							<a href="homeqnaView.ca?hqNum=${homeqna.hqNum}&pageNum=${hqNum}">${homeqna.hqTitle}</a>
+							<a href="homeqnaView.ca?hqNum=${row.hqNum}&pageNum=${hqNum}">${row.hqTitle}</a>
 								</td>
 							<td>${member.id}</td>
-							<td>${homeqna.hqDate}</td>
+							<td>${row.hqDate}</td>
 						<tr>
 					</c:forEach>
 				</tbody>

@@ -1,5 +1,6 @@
 package com.dal.likeycakey.qna.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -23,8 +24,8 @@ public class HomeqnaDaoImpl implements HomeqnaDao {
 	
 	// 게시글 리스트 불러오기
 	@Override
-	public List<Homeqna> listAll() throws Exception {
-		return sqlSession.selectList("homeqna.listAll");
+	public ArrayList<Homeqna> listAll() throws Exception {
+		return new ArrayList<Homeqna>(sqlSession.selectList("homeqna.listAll"));
 	}
 	
 	// 게시글 상세보기

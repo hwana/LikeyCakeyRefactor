@@ -1,5 +1,6 @@
 package com.dal.likeycakey.qna.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class HomeqnaServiceImpl implements HomeqnaService {
 	}
 	
 	@Override
-	public List<Homeqna> listAll() throws Exception {
+	public ArrayList<Homeqna> listAll() throws Exception {
 		return homeqnaDao.listAll();
 	}
 	
