@@ -1,5 +1,7 @@
 package com.dal.likeycakey.qna.model.vo;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,6 +12,7 @@ public class Homeqna implements java.io.Serializable {
 	private String id; // 회원 아이디
 	private String hqContent; // 게시글 내용
 	private String hqTitle; // 게시글 제목
+	private Date hqDate; // 게시글 작성일
 	private int hqreRef; // 원글 참조번호
 	private int hqreLev; // 답글 레벨
 	private int hqreSeq; // 답글 시퀀스
@@ -19,12 +22,13 @@ public class Homeqna implements java.io.Serializable {
 		super();
 	}
 	
-	public Homeqna(int hqNum, String id, String hqContent, String hqTitle,
+	public Homeqna(int hqNum, String id, String hqContent, String hqTitle, Date hqDate,
 			int hqreRef, int hqreLev, int hqreSeq) {
 		this.hqNum = hqNum;
 		this.id = id;
 		this.hqContent = hqContent;
 		this.hqTitle = hqTitle;
+		this.hqDate = hqDate;
 		this.hqreRef = hqreRef;
 		this.hqreLev = hqreLev;
 		this.hqreSeq = hqreSeq;
@@ -60,6 +64,14 @@ public class Homeqna implements java.io.Serializable {
 	
 	public void setHqTitle(String hqTitle) {
 		this.hqTitle = hqTitle;
+	}
+	
+	public Date getHqDate() {
+		return hqDate;
+	}
+	
+	public void setHqDate(Date hqDate) {
+		this.hqDate = hqDate;
 	}
 	
 	public int getHqreRef() {

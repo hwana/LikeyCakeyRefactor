@@ -113,30 +113,6 @@
 <%@ include file="../default/header.jsp"%>
 
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#biz_login").click(function() {
-			//.serialize를 사용하여 폼에 저장된 모든 데이터를 가져온다.
-			var form_data = $("#register-form").serialize();
-			$.ajax({
-				type : "POST",
-				url : "loginCheck2.ca",
-				dataType : "text",
-				data : form_data,
-				success : function(data) {
-					if (data == "ok") {
-						alert("로그인에 성공하셨습니다.")
-						location.href = "home.ca?id=" + username.value;
-					} else {
-						$(".message").html("아이디 또는 비밀번호가 잘못되었습니다.");
-					}
-				}
-			});//ajax
-		});//submit
-	});//ready
-</script>
-
-
 <div class="container" id="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">

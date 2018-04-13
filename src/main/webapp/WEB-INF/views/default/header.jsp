@@ -104,8 +104,8 @@
 													class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
 										</ul></li>
 									<li><a href="contact.html">MY PAGE</a></li>
-									<li><a href="contact.html">NOTICE</a></li>
-									<li><a href="contact.html">Q & A</a></li>
+									<li><a href="notice.ca">NOTICE</a></li>
+									<li><a href="homeqna.ca">Q & A</a></li>
 								</ul>
 							</nav>
 							<!-- Product Cart -->
@@ -199,8 +199,8 @@
 														class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
 											</ul></li>
 										<li><a href="memberMypage.ca">MY PAGE</a></li>
-										<li><a href="contact.html">NOTICE</a></li>
-										<li><a href="contact.html">CONTACT</a></li>
+										<li><a href="notice.ca">NOTICE</a></li>
+										<li><a href="homeqna.ca">Q & A</a></li>
 									</ul>
 								</nav>
 							</div>

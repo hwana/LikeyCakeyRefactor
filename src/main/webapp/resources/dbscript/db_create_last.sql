@@ -1,5 +1,6 @@
 select * from member;
 SELECT * FROM MEMBER_BIZ;
+select * from HOME_QNA;
 
 -- MEMBER_BIZ의 MEMBER_CODE를 자동으로 업데이트 해주는 트리거
 create or replace TRIGGER TRG_MEMCODE

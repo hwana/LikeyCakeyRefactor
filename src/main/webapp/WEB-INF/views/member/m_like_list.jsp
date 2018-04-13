@@ -80,6 +80,7 @@
 																	src="/resources/img/shop-grid/1.jpg" alt="" /></a> <span
 																	class="pro-level">Sale</span>
 																<div class="hover-content text-center">
+																
 																	<ul>
 																		<li><a href="#" class="icon_heart_alt"></a></li>
 																		<li><a title="Quick View" href="#"

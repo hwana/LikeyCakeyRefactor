@@ -90,10 +90,7 @@ public class MemberController {
 	@RequestMapping(value="memberInsert.ca", method = RequestMethod.POST)
 	public ModelAndView insertJoin(Member m, ModelAndView mv, @RequestParam(value = "file", required=false) MultipartFile file, 
 			HttpServletRequest request) {
-		
-			
 		try {
-
 			// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
 			String root = request.getSession().getServletContext().getRealPath("resources");
 			// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
@@ -104,18 +101,14 @@ public class MemberController {
 				if (!new File(savePath).exists()) {
 					new File(savePath).mkdir();
 				}
-
 				String originFileName = file.getOriginalFilename();
 				File fileupload = new File(savePath + "\\" + originFileName);
 				file.transferTo(fileupload);
 				m.setPhoto(originFileName.substring(0, originFileName.lastIndexOf('.')));
 			}
-			
 			memberService.insertMember(m);
 			System.out.println("일반회원 가입 성공");
-
 			int result = memberService.insertMember(m);
-
 			mv.setViewName("redirect:home.ca");
 			System.out.println("일반회원 : 등록성공");
 		} catch(Exception e) {
@@ -182,4 +175,10 @@ public class MemberController {
 	public String onlymovepostscript(Model model) {
 		return "member/m_my_postscript";
 	}
+	
+	@RequestMapping(value = "memberBuylist.ca")
+	public String onlymovebuylist(Model model) {
+		return "member/memberBuylist";
+	}
+
 }
