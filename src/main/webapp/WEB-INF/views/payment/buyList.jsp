@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:set var="list" value="${requestScope.list}" />
+<c:set var="buyList" value="${requestScope.buyList}" />
 <c:set var="member" value="${sessionScope.member}" />
 
 <!doctype html>
@@ -100,55 +100,81 @@
 													</tr>
 												</thead>
 												<tbody>
-												<c:forEach var="o" items="${list}" varStatus="status">
+												<c:forEach var="o" items="${buyList}" varStatus="status">
 													<tr>
 														<td ><a href="#"><img
 																src="/resources/img/product/3.jpg" alt=""></a></td>
 														<td class="product-name">
-															<p style="font-weight: bold;">똔똔씨의 케잌가게</p>
-															<span>산타할아버지 초코케이크(구매수량 2개)</span>
-															<span>상품 문구 : 엄마 사랑해요</span>
+															<p style="font-weight: bold;">${o.mbBizName}</p>
+															<span>${o.pbName}(구매수량 ${o.poCnt}개)</span>
+															<br>
+															상품 문구 : ${o.poText}
+															<!-- 상품 문구 변경 버튼 시작 -->
+														<c:if test="${o.s_num <4 }">
+														<c:set var="pNum" scope="request" value="${o.poNum}"/>
+														<div class="pink_button">
+															<input type="button" value="상품문구 변경" 
+															onclick='window.open("/poTextUpdateView.ca","상품 문구 변경","width=600,height=650,location=no,status=no,scrollbars=yes")'
+															style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
+														</div>
+														</c:if>
+														<!-- 상품 문구 변경 버튼 끝 -->
 															</td>
 														
 														<td >
 														<p style="font-weight: bold;">주문 날짜</p>
-															<span>2018.03.44 12:34:33</span>
+															<span>${o.poDate}</span>
 														</td>
-														<td >
+														<td style=" width:10%">
 															<p style="font-weight: bold;">총 금액</p>
-															<span>70,000</span>
+															<span>${o.poPrice+o.poBizDelivery}원</span>
 														
 														</td>
 														<td>
 														<p style="font-weight: bold;">예약 날짜</p>
-															<span>2018.03.24 18:00</span>
+															<span>${o.poBookDate}</span>
 													
 														</td>
 														<td class="product-price" ><span>
-														<a href="#">배송 상태(택배 현황과 연결하기)</a></span></td>
+														${o.s_status}</span>
+														<!-- 배송추적 버튼 시작 -->
+														<c:if test="${o.s_num eq 5 }">
+														<div class="pink_button">
+															<input type="button" value="배송 추적" 
+															onclick='window.open("/delivery.ca","배송","width=600,height=650,location=no,status=no,scrollbars=yes")'
+															style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
+														</div>
+														</c:if>
+														<!-- 배송 추적 버튼 끝 -->
+														</td>
 														<td class="product-subtotal">
 														
-														<!-- 배송지 수정 버튼 시작 -->
+														<!-- 구매취소 버튼 시작 -->
+														<c:if test="${o.s_num < 4}">
 														<div class="pink_button">
 															<input type="button" value="구매취소" style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
 														</div>
-														<!-- 배송지 수정 버튼 끝 -->
+														</c:if>
+														<!-- 구매취소 버튼 끝 -->
 														
 														</td>
 													</tr>
-													<tr>
+													<tr style="border-bottom:solid grey 2px;">
 														<td class="product-thumbnail">
 														
 														<p style="font-weight: bold;">주문번호</p>
-															<span>2032626747</span>
+															<span>${o.poNum}2034532</span>
 														
 														
-														<td colspan="6">배송지 정보 : 김은송, (444-222)경기도 수원시 영통구 삼대 한보아파트
-														<br>
+														<td colspan="6">배송지 정보 : ${o.recName}, (${o.recPost})${o.recBasicAddr} ${o.recDetailAddr}<br>
 														<!-- 배송지 수정 버튼 시작 -->
+														<c:if test="${o.s_num < 5}">
 														<div class="pink_button">
-															<input type="button" value="배송지 수정" style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
+															<input type="button" value="배송지 수정" 
+															onclick='window.open("/recPostUpdateView.ca","배송지 수정","width=600,height=650,location=no,status=no,scrollbars=yes")'
+															style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
 														</div>
+														</c:if>
 														<!-- 배송지 수정 버튼 끝 -->
 												
 												</div>
@@ -162,7 +188,7 @@
 																src="/resources/img/product/3.jpg" alt=""></a></td>
 														<td class="product-name">
 															<p style="font-weight: bold;">똔똔씨의 케잌가게</p>
-															<span>산타할아버지 초코케이크(구매수량 2개)</span>
+															<span>산타할아버지 초코케이크(구매수량 2개)</span><br>
 															<span>상품 문구 : 엄마 사랑해요</span>
 															</td>
 														
