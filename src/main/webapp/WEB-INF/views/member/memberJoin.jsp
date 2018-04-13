@@ -104,19 +104,27 @@ html>body>section>div>div>div>form span>.btn-in {
 		  var pw1 = $("#inputPassword").val();
 		  var pw2 = $("#inputPasswordCheck").val();
 		  var pwcheck = $("#pwcheck").val();
+		  var pwP = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; // 비밀번호
 		  
 		  if(pw1!=null && pw2!=null){
-		  	if(pw1 != pw2){
-		   		document.getElementById('pwcheck_change').style.color = "red";
-		   		document.getElementById('pwcheck_change').innerHTML = "동일한 암호를 입력하세요.";
-		   		pwcheck = false;
-		   		return pwcheck;
-		  	} else {
-		   		document.getElementById('pwcheck_change').style.color = "blue";
-		   		document.getElementById('pwcheck_change').innerHTML = "암호가 동일합니다.";
-		   		pwcheck = true;
-		   		return true;
-		  	}
+			  if(!pwP.test($("#inputPassword").val())) {
+					alert("비밀번호 형식은 영어, 숫자포함 6~20 자리 입니다.");
+					$("#inputPassword").val("");
+					$("#inputPassword").focus();
+					return false;
+			  } else {
+				  if(pw1 != pw2){
+				   		document.getElementById('pwcheck_change').style.color = "red";
+				   		document.getElementById('pwcheck_change').innerHTML = "동일한 암호를 입력하세요.";
+				   		pwcheck = false;
+				   		return pwcheck;
+				  	} else {
+				   		document.getElementById('pwcheck_change').style.color = "blue";
+				   		document.getElementById('pwcheck_change').innerHTML = "암호가 동일합니다.";
+				   		pwcheck = true;
+				   		return true;
+				  	}
+			  }
 		 }
 	}
 	

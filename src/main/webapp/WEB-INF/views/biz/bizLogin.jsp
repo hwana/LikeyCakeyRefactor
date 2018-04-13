@@ -158,8 +158,7 @@
 					</div>
 					<hr>
 				</div>
-
-
+				
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-lg-12">
@@ -209,9 +208,12 @@
 										<a href="#" class="forgot-password">아이디/비밀번호 찾기</a>
 									</div>
 								</div>
+								
+								
+								
 
-								<div id="kakao-logged-group"></div>
-								<div id="kakao-profile"></div>
+								<!-- <div id="kakao-logged-group"></div>
+								<div id="kakao-profile"></div> -->
 								<%@include file="../member/naverLogin.jsp"%>
 								<div id="fb-root"></div>
 								<script>
@@ -226,11 +228,8 @@
 									}(document, 'script', 'facebook-jssdk'));
 								</script>
 								<div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-
+								
 							</form>
-
-							<!-- API 간편 로그인 - kakao -->
-							<a id="kakao-login-btn"></a>
 
 						</div>
 					</div>
