@@ -25,9 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dal.likeycakey.admin.model.service.AdminService;
 import com.dal.likeycakey.member.model.vo.Member;
 
-/**
- * Handles requests for the application home page.
- */
+
 @Controller
 public class AdminController {
 
@@ -226,7 +224,7 @@ public class AdminController {
 		return mv;
 	}
 
-	/* 1_3. 관리자_사업장 선택 삭제 */
+	/* 2_3. 관리자_사업장 선택 삭제 */
 	@RequestMapping(value = "/adminBizDelete.ca", method = RequestMethod.GET)
 	public ModelAndView adminBizDelete(Member m, ModelAndView mv) {
 
