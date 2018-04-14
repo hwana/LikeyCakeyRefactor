@@ -1,7 +1,5 @@
 package com.dal.likeycakey.member.model.service;
 
-import java.util.ArrayList;
-
 import com.dal.likeycakey.member.model.vo.Member;
 
 public interface MemberService {
@@ -11,5 +9,5 @@ public interface MemberService {
 	public Member findId(String email, String name) throws Exception;
 	public int mdupid(String id);
 	public int updateMember(Member m) throws Exception;
-	public int updatePassword(Member m)throws Exception;
+	public void updatePassword(Member m)throws Exception;
 }

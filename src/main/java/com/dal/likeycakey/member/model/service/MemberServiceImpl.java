@@ -41,8 +41,8 @@ public class MemberServiceImpl implements MemberService {
 	// update
 	@Override
 	public int updateMember(Member m) throws Exception {
-		int result = memberDao.updateMember(m);
-		return result;
+		System.out.println("회원정보 업데이트 서비스");
+		return memberDao.updateMember(m);
 	}
 
 	@Override
@@ -51,11 +51,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.findId(email, name);
 	}
 
+	
+	// 비밀번호 변경
 	@Override
-	public int updatePassword(Member m) throws Exception {
+	public void updatePassword(Member m) throws Exception {
 		System.out.println("패스워드 변경 서비스");
-		int result = memberDao.updatePassword(m);
-		return result;
+		memberDao.updatePassword(m);
 	}
 
 }

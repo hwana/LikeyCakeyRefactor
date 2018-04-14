@@ -49,9 +49,7 @@ html>body>section>div>div>div>form span>.btn-in {
 </style>
 
 <!-- 유효성 검사를 위한 자바스크립트 -->
-<script type="text/javascript"
-		src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
-
+<script type="text/javascript" src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
 
 <!-- 주소 API -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -129,9 +127,9 @@ html>body>section>div>div>div>form span>.btn-in {
 	}
 	
 	// 아이디 중복확인 클릭 시 
-	$("#check_id").click(function() {
+	function check_id(){
 		$.ajax({
-			url : "mdupid.ca",
+			url : 'mdupid.ca',
 			data : {
 				id : $("#inputId").val()
 			},
@@ -152,7 +150,7 @@ html>body>section>div>div>div>form span>.btn-in {
 			}
 		});
 		return false;
-	}); // click
+	}
 </script>
 
 
@@ -186,7 +184,7 @@ html>body>section>div>div>div>form span>.btn-in {
 									<input type="text" class="form-control" id="inputId" name="id"
 										placeholder="아이디" /> <span class="input-group-btn">
 										<input class="btn btn-success btn-in" style="border:0; height:50px;"
-											id="check_id" type="button" value="중복확인">
+											id="check_id" type="button"value="중복확인" onclick="check_id()">
 										<!-- 아이디를 중복확인 하였는지에 대한 상태 확인 -->
 										<input type="hidden" id="idcheck" value="false">
 									</span>
