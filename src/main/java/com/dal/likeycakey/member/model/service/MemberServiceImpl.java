@@ -1,10 +1,13 @@
 package com.dal.likeycakey.member.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dal.likeycakey.member.model.dao.MemberDao;
 import com.dal.likeycakey.member.model.vo.Member;
+import com.dal.likeycakey.qna.model.vo.Homeqna;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -54,9 +57,15 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 비밀번호 변경
 	@Override
-	public void updatePassword(Member m) throws Exception {
+	public int updatePassword(Member m) throws Exception {
 		System.out.println("패스워드 변경 서비스");
-		memberDao.updatePassword(m);
+		return memberDao.updatePassword(m);
 	}
-
+	
+	// 홈큐앤에이 리스트 출력
+	@Override
+	public ArrayList<Homeqna> homeqlist(Member m) throws Exception {
+		System.out.println("WELCOME TO SERVICE HOME_QNA 리스트 출력");
+		return memberDao.homeqlist(m);
+	}
 }

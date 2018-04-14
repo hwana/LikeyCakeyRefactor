@@ -38,7 +38,6 @@
 <body class="other-page blog">
 
 <!-- member가 비어있지 않으면 마이페이지의 home_qna 출력 -->
-<c:if test="${!empty member}">
 
 	<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -82,25 +81,17 @@
 													<th>제목</th>
 													<th>작성자</th>
 													<th>날짜</th>
-													<th>조회수</th>
 												</tr>
 											</thead>
-											<c:forEach var="row" items="${list}" varStatus="loop">
+											<c:forEach var="qna" items="${list}" varStatus="status">
 											<tbody>
 												
 												<tr>
-													<td>${row.qNum}</td>
-													<td>도대체 이 홈페이지는</td>
-													<td>캔디걸</td>
-													<td>2018-03-20</td>
-													<td>5</td>
-												</tr>
-												<tr>
-													<td>02</td>
-													<td>대박이네요</td>
-													<td>캔디보이</td>
-													<td>2018-03-21</td>
-													<td>3</td>
+													<td>${qna.hqNum}</td>
+													<td>${qna.hqTitle }</td>
+													<td>${qna.id }</td>
+													<td><!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 --> <fmt:formatDate
+									value="${qna.hqDate}" pattern="yyyy-MM-dd HH:mm" /></td>
 												</tr>
 											</tbody>
 											</c:forEach>
@@ -153,7 +144,6 @@
 	<script src="/resources/js/jquery.meanmenu.js"></script>
 	<script src="/resources/js/plugins.js"></script>
 	<script src="/resources/js/main.js"></script>
-</c:if>
 </body>
 </html>
 

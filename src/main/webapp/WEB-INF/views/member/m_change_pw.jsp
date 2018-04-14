@@ -95,13 +95,14 @@
 									<!-- 위의 div 4개는 오른쪽 사이드 설정하는 div -->
 									<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
 									<div class="col-md-12">
-										<form class="form-horizontal" action="memberPwchange.ca" method="post">
+										<form class="form-horizontal" action="memberPwchange.ca"
+											method="post">
 
 											<div class="form-group">
 												<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 												<div class="col-sm-6">
 													<input class="form-control" id="inputPassword"
-														type="password" placeholder="비밀번호">
+														type="password" placeholder="비밀번호" name="passwd">
 												</div>
 											</div>
 
@@ -110,21 +111,22 @@
 													for="inputPasswordCheck">비밀번호 확인</label>
 												<div class="col-sm-6">
 													<input class="form-control" id="inputPasswordCheck"
-														type="password" placeholder="비밀번호 확인" onkeyup="checkPwd();">
-													<p class="help-block">비밀번호를 바꾸시려면 새로운 번호를 동일하게 입력해주세요.</p>
+														type="password" placeholder="비밀번호 확인" onkeyup="checkPwd()">
+													<p class="help-block" id="pwcheck_change">비밀번호를 바꾸시려면
+														새로운 번호를 동일하게 입력해주세요.</p>
 												</div>
 											</div>
 
-											
+
 											<div class="form-group">
 												<div class="col-sm-12 text-center">
-													<button class="btn btn-primary" type="submit"
-														style="background-color: #f6c6c9">
-														비밀번호 변경<i class="fa fa-check spaceLeft"></i>
-													</button>
-													<button class="btn btn-danger" type="submit">
-														리셋<i class="fa fa-times spaceLeft"></i>
-													</button>
+													<input class="btn btn-primary" type="submit" id="chpw"
+														style="background-color: #f6c6c9; border: 0px; width: 200px;"
+														value="비밀번호 변경"> 
+													<input type="reset"
+														class="btn btn-danger" id="cancel"
+														style="background-color: #9bcaba; border: 0px; width: 200px;"
+														value="입력 취소">
 												</div>
 											</div>
 										</form>
@@ -177,5 +179,6 @@
 	<script src="/resources/js/jquery.meanmenu.js"></script>
 	<script src="/resources/js/plugins.js"></script>
 	<script src="/resources/js/main.js"></script>
+	<script src="/resources/js/pwchange.js"></script>
 </body>
 </html>

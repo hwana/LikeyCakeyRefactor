@@ -29,6 +29,7 @@
 
 	<context:component-scan base-package="com.dal.likeycakey" />
 
-
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="com.dal.likeycakey.naver.NaverLoginBO" />
 
 </beans:beans>

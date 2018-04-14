@@ -1,6 +1,9 @@
 package com.dal.likeycakey.member.model.service;
 
+import java.util.ArrayList;
+
 import com.dal.likeycakey.member.model.vo.Member;
+import com.dal.likeycakey.qna.model.vo.Homeqna;
 
 public interface MemberService {
 	public int insertMember(Member m) throws Exception;
@@ -9,5 +12,6 @@ public interface MemberService {
 	public Member findId(String email, String name) throws Exception;
 	public int mdupid(String id);
 	public int updateMember(Member m) throws Exception;
-	public void updatePassword(Member m)throws Exception;
+	public int updatePassword(Member m)throws Exception;
+	public ArrayList<Homeqna> homeqlist(Member m) throws Exception;
 }

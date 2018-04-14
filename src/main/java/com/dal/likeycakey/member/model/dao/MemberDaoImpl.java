@@ -1,5 +1,6 @@
 package com.dal.likeycakey.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dal.likeycakey.member.model.vo.Member;
+import com.dal.likeycakey.qna.model.vo.Homeqna;
 
 @Repository("memberDao")
 public class MemberDaoImpl implements MemberDao {
@@ -60,7 +62,14 @@ public class MemberDaoImpl implements MemberDao {
 	
 	// 비밀번호를 수정할 수 있는 DAO
 	@Override
-	public void updatePassword(Member m) throws Exception {
-		sqlSession.update("Member.updatePassword", m);
+	public int updatePassword(Member m) throws Exception {
+		return sqlSession.update("Member.updatePassword", m);
 	}
+	
+	// 게시글 리스트 불러오기
+		@Override
+		public ArrayList<Homeqna> homeqlist(Member m) throws Exception {
+			System.out.println("WELCOME TO DAO 홈큐 리스트");
+			return new ArrayList<Homeqna>(sqlSession.selectList("homeqna.m_listAll", m));
+		}
 }

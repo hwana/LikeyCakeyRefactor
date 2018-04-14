@@ -3,9 +3,8 @@ package com.dal.likeycakey.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,24 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 // @Controller 를 사용하기 위한 import
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.member.model.service.MemberService;
 import com.dal.likeycakey.member.model.vo.Member;
+import com.dal.likeycakey.qna.model.vo.Homeqna;
 
 @Controller
 public class MemberController {
@@ -67,7 +58,7 @@ public class MemberController {
 		member = memberService.findId(member.getId(), member.getPasswd());
 
 	}
-	
+
 	// 아이디 중복확인
 	@RequestMapping(value = "mdupid.ca", method = RequestMethod.POST)
 	public void dupid(ModelAndView mv, @RequestParam("id") String id, HttpServletResponse response) throws IOException {
@@ -157,32 +148,60 @@ public class MemberController {
 
 	// 비밀번호 수정
 	@RequestMapping(value = "memberPwchange.ca", method = RequestMethod.POST)
-	public String changePassword (HttpSession session, String passwd) throws Exception {
-
+	public ModelAndView changePassword(HttpSession session, @RequestParam("passwd") String passwd, ModelAndView mv)
+			throws Exception {
 		Member m = (Member) session.getAttribute("member");
 		m.setPasswd(passwd);
-		memberService.updatePassword(m);
-		System.out.println("비밀번호 수정 컨트롤러");
-		return "member/checkok";
+		try {
+			int result = memberService.updatePassword(m);
+			session.setAttribute("member", m);
+			mv.setViewName("redirect:memberPw.ca");
+			System.out.println("비밀번호 수정 성공");
+		} catch (Exception e) {
+			System.out.println("비밀번호 수정 실패");
+		}
+		return mv;
 	}
 
 	// 회원정보 수정
 	@RequestMapping(value = "memberModify.ca", method = RequestMethod.POST)
-	public ModelAndView memberModify(Member m, HttpSession session) throws Exception {
-		ModelAndView mv = null;
-		System.out.println(m);
-		Member login_info = (Member) session.getAttribute("member");
-		if(login_info == null) {
-			mv = new ModelAndView("biz_login", "error_message", "로그인 후 회원정보 수정이 가능합니다.");
-		} else {
-			try {
-				System.out.println("회원정보 업데이트");
-				memberService.updateMember(m);
-				//login_info.setPassword(m.getPassword());
-				session.setAttribute("member", m);
-			} catch(SQLException e) {
-				e.printStackTrace();
+	public ModelAndView memberModify(@RequestParam(value = "file", required = false) MultipartFile file,
+			HttpServletRequest request, @RequestParam("post") String post,
+			@RequestParam("addressBasic") String addressBasic, @RequestParam("phone") String phone,
+			@RequestParam("addressDetail") String addressDetail, ModelAndView mv, HttpSession session) {
+		Member m = (Member) session.getAttribute("member");
+		m.setPost(post);
+		m.setAddressBasic(addressBasic);
+		m.setAddressDetail(addressDetail);
+		m.setPhone(phone);
+
+		try {
+			if (file != null && !file.isEmpty()) {
+				// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
+				String root = request.getSession().getServletContext().getRealPath("resources");
+				// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
+				String savePath = root + "\\img\\member";
+
+				System.out.println("이미지가 저장되는 곳은 " + savePath);
+
+				if (!new File(savePath).exists()) {
+					new File(savePath).mkdir();
+				}
+
+				String originFileName = file.getOriginalFilename();
+				File fileupload = new File(savePath + "\\" + originFileName);
+				file.transferTo(fileupload);
+				new File(savePath + "\\" + m.getPhoto()).delete();
+				m.setPhoto(originFileName);
 			}
+
+			int result = memberService.updateMember(m);
+			session.setAttribute("member", m);
+			mv.setViewName("redirect:memberMypage.ca");
+			System.out.println("일반회원 정보 수정 성공");
+
+		} catch (Exception e) {
+			System.out.println("일반회원 정보 수정 실패" + e);
 		}
 		return mv;
 	}
@@ -193,10 +212,15 @@ public class MemberController {
 		return "member/m_buy_list";
 	}
 
-	//
+	// home qna
 	@RequestMapping(value = "m_home_qna.ca")
-	public String onlymovehomeq(Model model) {
-		return "member/m_home_qna";
+	public ModelAndView homeq(Member m) throws Exception {
+		System.out.println("홈큐 컨트롤러 도착");
+		ArrayList<Homeqna> list = memberService.homeqlist(m);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list", list); // 데이터를 저장
+		mv.setViewName("member/m_home_qna"); // 뷰를 homeQna.jsp로 설정
+		return mv;
 	}
 
 	@RequestMapping(value = "m_product_qna.ca")
@@ -209,10 +233,6 @@ public class MemberController {
 		return "member/m_like_list";
 	}
 
-	@RequestMapping(value = "m_my_postscript.ca")
-	public String onlymovepostscript(Model model) {
-		return "member/m_my_postscript";
-	}
 
 	@RequestMapping(value = "memberBuylist.ca")
 	public String onlymovebuylist(Model model) {

@@ -127,7 +127,7 @@
 												<label class="col-sm-3 control-label" for="inputName">이름</label>
 												<div class="col-sm-6">
 													<input class="form-control" id="inputName" type="text"
-														placeholder="이름" value="${member.name}" readonly>
+														placeholder="이름" value="${member.name}" readonly name="name">
 												</div>
 											</div>
 
@@ -136,7 +136,7 @@
 												<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
 												<div class="col-sm-6">
 													<input class="form-control" id="inputEmail" type="text"
-														placeholder="이메일" value="${member.email}" readonly>
+														placeholder="이메일" name="email" value="${member.email}" readonly>
 												</div>
 											</div>
 
@@ -144,7 +144,7 @@
 												<label class="col-sm-3 control-label" for="inputPhone">핸드폰</label>
 												<div class="col-sm-6">
 													<input class="form-control" id="inputPhone" type="text"
-														placeholder="핸드폰 번호" value="${member.phone}">
+														placeholder="핸드폰 번호" name="phone" value="${member.phone}">
 												</div>
 											</div>
 
@@ -191,7 +191,7 @@
 											<div class="form-group">
 												<label class="col-sm-3 control-label" for="inputPhoto">사진등록</label>
 												<div class="col-sm-6">
-													<input class="form-control" type="file" id="inputFile" value="${member.photo}">
+													<input class="form-control" type="file" name= "photo" id="inputFile" value="${member.photo}">
 												</div>
 											</div>
 
@@ -216,13 +216,13 @@
 
 											<div class="form-group">
 												<div class="col-sm-12 text-center">
-													<button class="btn btn-primary" type="submit"
-														style="background-color: #f6c6c9">
-														정보수정<i class="fa fa-check spaceLeft"></i>
-													</button>
-													<button class="btn btn-danger" type="submit">
-														수정취소<i class="fa fa-times spaceLeft"></i>
-													</button>
+													<input class="btn btn-primary" type="submit" id="join"
+														style="background-color: #f6c6c9; border: 0px; width: 200px;"
+														value="회원정보수정"> 
+													<input type="reset"
+														class="btn btn-danger" id="cancel"
+														style="background-color: #9bcaba; border: 0px; width: 200px;"
+														value="정보입력취소">
 												</div>
 											</div>
 										</form>
@@ -275,5 +275,7 @@
 	<script src="/resources/js/jquery.meanmenu.js"></script>
 	<script src="/resources/js/plugins.js"></script>
 	<script src="/resources/js/main.js"></script>
+	<!-- 유효성검사 자바스크립트 -->
+	<script src="/resources/js/modifyMember.js"></script>
 </body>
 </html>
