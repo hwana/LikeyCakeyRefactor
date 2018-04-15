@@ -46,6 +46,15 @@
 		<div class="menu-area mt-60">
 			<div class="container">
 				<div class="row">
+			
+				<!-- 로그인, 회원가입 / 로그아웃, 마이페이지 -->
+					<c:set var="member" value="${sessionScope.member}" />
+					<c:if test="${empty member}">
+						<div class="sign-wrapper">
+							<a class="sign-button" href = "mem_choice.ca">Sign-Up</a><a class="sign-button" href = "bizLogin.ca">Log-in</a> 
+						</div>
+					</c:if>
+					
 					<div class="col-md-3 col-sm-12">
 						<div class="logo-area text-center text-uppercase res-logo-sm">
 							<a href="home.ca"><img src="/resources/img/icon/logo.png"
@@ -111,8 +120,8 @@
 													class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
 										</ul></li>
 									<li><a href="contact.html">MY PAGE</a></li>
-									<li><a href="contact.html">NOTICE</a></li>
-									<li><a href="contact.html">Q & A</a></li>
+									<li><a href="notice.ca">NOTICE</a></li>
+									<li><a href="homeqna.ca">Q & A</a></li>
 								</ul>
 							</nav>
 							<!-- Product Cart -->
@@ -206,8 +215,8 @@
 														class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
 											</ul></li>
 										<li><a href="memberMypage.ca">MY PAGE</a></li>
-										<li><a href="contact.html">NOTICE</a></li>
-										<li><a href="contact.html">CONTACT</a></li>
+										<li><a href="notice.ca">NOTICE</a></li>
+										<li><a href="homeqna.ca">Q & A</a></li>
 									</ul>
 								</nav>
 							</div>

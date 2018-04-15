@@ -41,10 +41,22 @@
 	</select>
 
 	<!-- id 찾기 -->
-	<select id = "findId" parameterType="String" resultType="String">
+	<select id = "findId" parameterType="Member" resultMap="resultMember">
 		select M_ID from MEMBER where M_NAME = #{name} and M_EMAIL = #{email}
 	</select>
 
+	
+	<!-- 사업자 회원정보 수정 -->
+	<update id="updateMypage" parameterType="Member" flushCache="true" statementType="PREPARED">
+		UPDATE MEMBER
+		SET M_PHOTO = #{photo}, M_PW = #{passwd}, M_CP = #{phone} 
+		WHERE M_ID = #{id}
+	</update>
+	
+	<!-- 멤버 정보 멤버 id로 불러오기 -->
+	<select id="selectMemberInfo" parameterType="String" resultMap="resultMember">
+		SELECT * FROM MEMBER WHERE M_ID=#{id}
+	</select>
 	
 </mapper>
 

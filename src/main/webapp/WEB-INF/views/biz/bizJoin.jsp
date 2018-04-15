@@ -84,7 +84,7 @@ $(document).ready(function(){
 					<label class="col-sm-3 control-label" for="inputPhoto">업체사진</label>
 					<div class="col-sm-4">
 						<input class="form-control" id="inputPhoto" type="text"
-							name="photo" placeholder="업체사진">
+							name="photo" placeholder="업체사진" readOnly>
 
 					</div>
 					<label for="file" class="btn search"> 사진등록</label>
@@ -159,7 +159,7 @@ $(document).ready(function(){
 					<label class="col-sm-3 control-label" for="inputPost">우편번호</label>
 					<div class="col-sm-4">
 						<input class="form-control" id="inputPost" type="text"
-							placeholder="우편번호">
+							placeholder="우편번호" name = post>
 					</div>
 
 					<button class="btn search" type="button"

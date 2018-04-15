@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
+import com.dal.likeycakey.detailView.model.vo.ProductOrder;
 import com.dal.likeycakey.detailView.model.vo.ProductReview;
 import com.dal.likeycakey.member.model.vo.BizWithMember;
 import com.dal.likeycakey.member.model.vo.MemberLike;
@@ -49,6 +50,14 @@ public interface ProductBoardService {
 	public BizWithMember selectProductDetailBiz(String id);
 
 	public ArrayList<ProductReview> selectReviewList(String pbNum);
+
+	public int insertProductAddCart(ProductOrder productOrder);
+
+	public int updatePReviewReply(ProductReview productReview);
+
+	public int delectPReviewReply(ProductReview productReview);
+
+	public int insertPReviewReply(ProductReview productReview);
 
 	
 }

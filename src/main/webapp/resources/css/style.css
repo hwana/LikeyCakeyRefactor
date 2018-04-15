@@ -3157,7 +3157,6 @@ input::-webkit-input-placeholder { color: #d7d7d7; }
 
 
 /* 제목 */
-
 .detail-text-box li{
 	position: relative;
     padding: 10px 0 8px;
@@ -3343,14 +3342,35 @@ position: absolute;
 }
 
 .rbox_mine {
-	    padding: 0 0 3% 10%;
+	    padding: 0 0 3% 15%;
 	    position: relative;
 }
 
 /* 호스트 댓글 */
 .rlist .rbox_reply {
-	 padding: 0 0 3% 10%;
+	 padding: 3% 0 1% 15%;
+	 position: relative;
+	 background: #f9f9f9;
+	 border-top: solid 1px #ececec;
+	 border-bottom: solid 1px #ececec;
+	 margin-bottom: 5%;
 }
+
+.rlist .rbox_reply .reply-btn {
+	position : absolute;
+	top: 0;
+	right: 5%; 
+}
+
+.rlist .rbox_reply .reply-btn a {
+	color : #9a9a9a;
+	cursor:pointer;
+}
+
+.rlist .rbox_reply .reply-btn a:hover{
+	color : #f6c6c9;
+}
+
 
 /* 호스트 댓글 이름 */
 .rlist .p_tit_reply {
@@ -3377,7 +3397,7 @@ position: absolute;
 
 /* 손님 이름 */
 .rlist .guest_name {
-    margin-right: 10%;
+    margin-right: 2%;
     font-size: 1.5em;
     line-height: 1.5em;
     font-family: "NanumBarunGothic",sans-serif;
@@ -3457,12 +3477,14 @@ position: absolute;
 	background-color: white;
 }
 
+.rbox_info_base{
+	position:relative;
+}
 
 /* 시간 */
 .rlist .rbox_info_base .time_info {
  	font-size: 1em;
  	color: #c0c0c0;
-
 }
 
 /* 페이지네이션 */

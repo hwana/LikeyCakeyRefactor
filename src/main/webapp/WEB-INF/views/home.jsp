@@ -171,7 +171,7 @@
 									
 									
 									<li><a href="notice.ca">NOTICE</a></li>
-									<li><a href="contact.html">Q &amp; A</a></li>
+									<li><a href="homeqna.ca">Q &amp; A</a></li>
 								</ul>
 							</nav>
 							<!-- Product Cart -->
@@ -405,7 +405,7 @@
 						<div class="col-md-4 col-sm-6">
 							<div class="single-product style-two mb-50">
 								<div class="single-img">
-									<a href="#"><img src="/resources/img/product/${newArrival.pImg}.jpg" alt="" /></a> 
+									<a href="detail.ca?pbNum=${newArrival.pbNum}"><img src="/resources/img/product/${newArrival.pImg}.jpg" alt="" /></a> 
 							 
 							 <!-- 당일구매여부에 따라 당일 마크 부착  -->
 							 <c:if test="${newArrival.pbYN eq 'Y'}">
@@ -415,7 +415,8 @@
 									<div class="hover-content text-center" id="pbNumWrap">
 										<input type="hidden" id="pbNum" value="${newArrival.pbNum}" >
 										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
+											<li></li>
+											<li></li>
 											<c:choose>
 												<%-- memberLikeList가 비어있을 때 --%>
 												<c:when test="${empty requestScope.memberLikeList}">
@@ -485,7 +486,7 @@
 						<div class="col-md-4 col-sm-6">
 							<div class="single-product style-two mb-50">
 								<div class="single-img">
-									<a href="#"><img src="/resources/img/product/${bestSellerList.pImg}.jpg" alt="" /></a>
+									<a href="detail.ca?pbNum=${bestSellerList.pbNum}"><img src="/resources/img/product/${bestSellerList.pImg}.jpg" alt="" /></a>
 							
 							<!-- 당일구매여부에 따라 당일 마크 부착  -->
 							 <c:if test="${bestSellerList.pbYN eq 'Y'}">
@@ -494,8 +495,7 @@
 									<div class="hover-content text-center" id="pbNumWrap">
 										<input type="hidden" id="pbNum" value="${bestSellerList.pbNum}" >
 										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											
+											<li></li>
 											<c:choose>
 												<%-- memberLikeList가 비어있을 때 --%>
 												<c:when test="${empty requestScope.memberLikeList}">
@@ -530,7 +530,7 @@
 								</div>
 								<div class="young-product-details mt-20">
 									<h4>
-										<a href="#">${bestSellerList.pName}</a>
+										<a href="detail.ca?pbNum=${bestSellerList.pbNum}">${bestSellerList.pName}</a>
 									</h4>
 									<div class="young-product-details-tag">
 										<i class="fa fa-map-marker"></i> 
@@ -565,7 +565,7 @@
 						<div class="col-md-4 padding_14px">
 							<div class="single-product style-two mb-50">
 								<div class="single-img">
-									<a href="#"><img src="/resources/img/product/${bestLikeyList.pImg}.jpg" alt="" /></a>
+									<a href="detail.ca?pbNum=${bestLikeyList.pbNum}"><img src="/resources/img/product/${bestLikeyList.pImg}.jpg" alt="" /></a>
 									
 									<!-- 당일구매여부에 따라 당일 마크 부착  -->
 									 <c:if test="${bestLikeyList.pbYN eq 'Y'}">
@@ -608,7 +608,7 @@
 								</div>
 								<div class="young-product-details mt-20">
 									<h4>
-										<a href="#">${bestLikeyList.pName}</a>
+										<a href="detail.ca?pbNum=${bestLikeyList.pbNum}">${bestLikeyList.pName}</a>
 									</h4>
 									<div class="young-product-details-tag">
 										<i class="fa fa-map-marker"></i> 
@@ -697,13 +697,13 @@
 					<div class="instragam-single">
 						<a href="#"><img src="/resources/img/instragram/2.jpg" alt="" /></a>
 						<h3 class="tag-text">
-							<a>#고소한</a>
+							<a>#상큼한</a>
 						</h3>
 						<div class="instragam-content text-center text-white">
 							<a class="popup-instragram"
 								href="/resources/img/instragram/1.jpg"></a>
 							<h3 class="tag-text">
-								<a>#고소한</a>
+								<a>#상큼한</a>
 							</h3>
 						</div>
 					</div>
@@ -714,13 +714,13 @@
 					<div class="instragam-single">
 						<a href="#"><img src="/resources/img/instragram/3.jpg" alt="" /></a>
 						<h3 class="tag-text">
-							<a>#고소한</a>
+							<a>#생크림</a>
 						</h3>
 						<div class="instragam-content text-center text-white">
 							<a class="popup-instragram"
 								href="/resources/img/instragram/1.jpg"></a>
 							<h3 class="tag-text">
-								<a>#고소한</a>
+								<a>##생크림</a>
 							</h3>
 						</div>
 					</div>
@@ -731,13 +731,13 @@
 					<div class="instragam-single">
 						<a href="#"><img src="/resources/img/instragram/4.jpg" alt="" /></a>
 						<h3 class="tag-text">
-							<a>#고소한</a>
+							<a>#무스</a>
 						</h3>
 						<div class="instragam-content text-center text-white">
 							<a class="popup-instragram"
 								href="/resources/img/instragram/1.jpg"></a>
 							<h3 class="tag-text">
-								<a>#고소한</a>
+								<a>#무스</a>
 							</h3>
 						</div>
 					</div>

@@ -24,15 +24,16 @@ public class MemberDaoImpl implements MemberDao {
 	
 	// id 찾기
 	@Override
-	public String findId(Member m) throws Exception {
+	public Member findId(String email, String name) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("아이디 찾기 dao 진입");
-		return sqlSession.selectOne("Member.findId" , m);
+		return sqlSession.selectOne("Member.findId" , new Member(email, name));
 	}
 	
 	// member idcheck 할 수 있는 DAO
+	@Override
 	public int selectMember(String id) {
-		return sqlSession.selectOne("Member.idCheck", id);
+		return sqlSession.selectOne("Member.dupid", id);
 	}
 	
 
@@ -54,5 +55,10 @@ public class MemberDaoImpl implements MemberDao {
 	public Member forLogin(String id, String passwd) throws Exception {
 		System.out.println("일반회원 로그인");
 		return sqlSession.selectOne("Member.loginCheck", new Member(id, passwd));
+	}
+
+	@Override
+	public Member selectMemberInfo(String id) {
+		return sqlSession.selectOne("Member.selectMemberInfo", id);
 	}
 }

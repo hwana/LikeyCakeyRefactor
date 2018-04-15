@@ -117,6 +117,10 @@ public class Member implements java.io.Serializable{
 		this.passwd = passwd;
 	}
 	
+	
+	
+	
+
 	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,
 			String addressDetail, String phone, String photo) {
 		super();

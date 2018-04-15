@@ -62,9 +62,7 @@ input[type="file"] {
 												class="zmdi zmdi-chevron-right"></i>사업가 정보 수정</a></li>
 										<li style="border-bottom: 0px;"><a href="#"><i
 												class="zmdi zmdi-chevron-right"></i>주문내역</a></li>
-										<li style="border-bottom: 0px;"><a href="#"><i
-												class="zmdi zmdi-chevron-right"></i>문의글 모음</a></li>
-
+										
 									</ul>
 								</div>
 							</div>
@@ -87,23 +85,23 @@ input[type="file"] {
 								<!-- 위의 div 4개는 오른쪽 사이드 설정하는 div -->
 								<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
 								<div class="col-md-12">
-									<form class="form-horizontal">
-
+									<form class="form-horizontal" action = "bizModify.ca" method = "POST" enctype="multipart/form-data">
+										<input type="hidden" name="id" value="${member.id }">
 										<div class="form-group">
 											<label class="col-sm-3 control-label" for="inputPhoto">업체사진</label>
 											<div class="col-sm-4">
 												<input class="form-control" id="inputPhoto" type="text"
-													placeholder="업체사진">
+													placeholder="업체사진" name="photo" value="${member.photo}" readOnly>
 											</div>
 											<label for="file" class="btn search"> 사진등록</label> <input
 												id="file" type="file" name="file" />
-
+										
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 											<div class="col-sm-6">
 												<input class="form-control" id="inputPassword"
-													type="password" placeholder="비밀번호">
+													type="password" placeholder="비밀번호" name="passwd">
 												<p class="help-block">숫자, 특수문자 포함 8자 이상</p>
 											</div>
 										</div>
@@ -116,12 +114,15 @@ input[type="file"] {
 												<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
 											</div>
 										</div>
+										
 										<div class="form-group">
 											<label class="col-sm-3 control-label" for="inputMasterName">담당자
 												이름</label>
+											
+											
 											<div class="col-sm-6">
 												<input class="form-control" id="inputMasterName" type="text"
-													placeholder="담당자 이름">
+													placeholder="담당자 이름" name="masterName" value = "${mastername}"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -129,7 +130,7 @@ input[type="file"] {
 											<div class="col-sm-6">
 												<div class="input-group">
 													<input type="tel" class="form-control" id="inputNumber"
-														placeholder="- 없이 입력해 주세요" /> <span
+														placeholder="- 포함하여 입력하세요"  name="phone" value = "${member.phone }"/> <span
 														class="input-group-btn">
 														<button class="btn verifycode">인증번호 전송</button>
 													</span>
@@ -156,11 +157,11 @@ input[type="file"] {
 											<div class="col-sm-12 text-center">
 												<button class="btn btn-primary btn-lg" type="submit"
 													id="join">
-													정보수정<i class="fa fa-check spaceLeft"></i>
+													정보수정
 												</button>
 												<button class="btn btn-danger btn-lg" type="submit"
 													id="cancle">
-													수정취소<i class="fa fa-times spaceLeft"></i>
+													수정취소
 												</button>
 											</div>
 										</div>
@@ -201,6 +202,6 @@ input[type="file"] {
 
 
 </body>
-
+	<script src="/resources/js/biz_modify.js"></script>
 </html>
 <%@ include file="../default/footer.jsp"%>
