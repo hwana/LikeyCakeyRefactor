@@ -24,6 +24,7 @@
 		<typeAlias type="com.dal.likeycakey.qna.model.vo.Homeqna" alias="Homeqna"/>
 		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductReview" alias="productReview"/>
 		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductOrder" alias="ProductOrder"/>
+		<typeAlias type="com.dal.likeycakey.detailView.model.vo.ProductQna" alias="productQna"/>
 		<!-- <typeAlias type="org.kh.firstSpring.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="org.kh.firstSpring.board.model.vo.Board" alias="Board"/> -->
 	</typeAliases> 	
@@ -42,6 +43,7 @@
 		<mapper resource="mappers/homeqna-mapper.xml"/>
 		<mapper resource="mappers/payment-mapper.xml"/>
 		<mapper resource="mappers/productorder-mapper.xml"/>
+		<mapper resource="mappers/productqna-mapper.xml"/>
 	</mappers> 
 
 </configuration>

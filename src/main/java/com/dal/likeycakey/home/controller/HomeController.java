@@ -62,8 +62,7 @@ public class HomeController{
 		}
 		
 		HttpSession session = request.getSession();
-		String id = "user1";
-				//(String) session.getAttribute("id");
+		String id = (String) session.getAttribute("id");
 		if(id!=null) {
 			ArrayList<MemberLike> memberLikeList = selectMemberLikeList(id);
 			mv.addObject("memberLikeList", memberLikeList);

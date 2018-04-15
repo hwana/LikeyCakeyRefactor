@@ -131,6 +131,8 @@
 					
 			<c:set var="pDetail" value="${requestScope.productDetail}"/>
 			<c:set var="pBiz" value="${requestScope.productDetailBiz}"/>
+			<!-- 댓글 달기 버튼 id 비교할 hidden태그 -->
+			<input type="hidden" value="${pBiz.id}" class="pBizId"/>
 			
 					<div class="col-md-6">
 						<div class="singlepro-left">
@@ -417,7 +419,7 @@
 					이용 후기 <strong class="review-cnt mint">4개</strong> 
 					<i class="fa fa-circle ml-10 mr-10" style="font-size: 0.2em; color: #999999; 
 					   vertical-align: middle"></i>
-					평균 평점 <strong class="review-average mint">5.0</strong>
+					평균 평점 <strong class="review-average mint">0점</strong>
 				</h2>
 
 				<div>
@@ -430,43 +432,78 @@
 				</div>
 			</div>
 
-			<div  class="modalOpen" id="replyOpen">
+			<div class="modalOpen" id="replyOpen">
 				<div class="mask"></div>
 				<div class="white_content">
 					<div>
-									<h4 style="text-align:left;" class="modal-title">댓글 수정하기</h4>
-									<hr style="margin:0">
-									<input type="hidden" class='reply-prNum'>
-									<div class="modal-caption">
-										<label class="ml-10"> 댓글 </label>
-										<div class="reply-length-wrap"><em class="reply-length">0</em>자/<em>200</em>자</div>
-									</div>
-												<textarea name="" class="replyContent"
-													placeholder="등록할 댓글을 입력해주세요." maxlength="200">
+						<h4 style="text-align: left;" class="modal-title">댓글 수정하기</h4>
+						<hr style="margin: 0">
+						<input type="hidden" class='reply-prNum'>
+						<div class="modal-caption">
+							<label class="ml-10"> 댓글 </label>
+							<div class="reply-length-wrap">
+								<em class="reply-length">0</em>자/<em>200</em>자
+							</div>
+						</div>
+						<textarea name="" class="replyContent"
+							placeholder="등록할 댓글을 입력해주세요." maxlength="200">
 												</textarea>
-								<div class="reply-btn-relative">
-									<div class="reply-btn-wrap">
-										<button type="button" class="btn btn-reply-close" style="background-color:#9a9a9a">취소</button>
-										<button type="button" class="btn btn-reply-submit">수정</button>
-									</div>
-								</div>
+						<div class="reply-btn-relative">
+							<div class="reply-btn-wrap">
+								<button type="button" class="btn btn-reply-close"
+									style="background-color: #9a9a9a">취소</button>
+								<button type="button" class="btn btn-reply-submit">수정</button>
+							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 
 			<!-- 리뷰 끝 -->
 		
 <!-- 문의 시작 -->
-		<div class="detail-text-box width-80 mb-70" id="qna" style="">
+<!-- 		<div class="detail-text-box width-80 mb-70" id="qna" style="">
 			<h2 class="detail-intro">
-				Q&amp;A&nbsp; <strong><em>0</em>개</strong>  		
-				<!-- 모달창 처리하기  -->
+				Q&amp;A&nbsp; <strong><em class="qna-cnt">0</em>개</strong>  		
+				모달창 처리하기 
 				<a href="#" class="btn_qna_write"><i class="fa fa-pencil mr-10"></i> <span>질문 작성하기</span></a>
 			</h2>
-			<div class="ptb-150">
-				<p class="qna_result">등록된 질문이 아직 없습니다.</p>
-			</div>
-		</div>
+
+				<div>
+					<ul class="review_list" id="review_list">
+						<li class="rlist ">
+							<div class="tab-content">
+								<div class='rbox_mine'>
+									<input type='hidden' value='"+ json[i].prNum +"'
+										class='reviewNum'> <span class='pf_img'
+										style='background-image: url(/resources/img/client/1.png)'></span>
+									<strong class='guest_name'></strong>
+									<p class='p_review'></p>
+									<div class='rbox_info_base'>
+										<a class='review-reply-insert-btn'>&nbsp;댓글 달기 &nbsp;<i
+											class='fa fa-comment mr-10'></i></a> <span class='time_info'>2018.03.31</span>
+									</div>
+								</div>
+								<div class='rbox_reply'>
+									<input type='hidden' value='"+ json[i].prNum +"' class='prNum'>
+									<p class='p_tit_reply'>
+										<em>뚜레주르</em>님의 댓글
+									</p>
+									<p class='p_review'>굳굳</p>
+									<div class='rbox_info_base'>
+										<p class='time_info'>2018/04/13</p>
+										<span class='reply-btn'> <a href='#replyOpen'
+											class='replyUpdate mr-10'>수정</a><a class='replyDelete'>삭제</a>
+										</span>
+									</div>
+								</div>
+								<p class="qna_result">등록된 질문이 아직 없습니다.</p>
+							</div>
+						</li>
+					</ul>
+					<div class="paging text-center"></div>
+				</div>
+			</div> -->
 <!-- 문의 끝 -->
 		
 		
