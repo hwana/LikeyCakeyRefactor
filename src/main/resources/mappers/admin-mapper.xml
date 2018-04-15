@@ -13,6 +13,14 @@
 		<result property="phone" column="M_CP" />
 		<result property="status" column="M_STATUS" />
 		<result property="blackCnt" column="M_BLACKCNT" />
+		
+		<result property="bizName" column="BIZ_NAME " />
+		<result property="bizPN" column="BIZ_PN " />
+		<result property="bizNum" column="BIZ_NUM " />
+		<result property="bizDelivery" column="BIZ_DELIVERY " />
+		<result property="masterName" column="MASTER_NAME " />
+		<result property="bizDeliveryYN" column="BIZ_DELIVERY_YN " />
+		<result property="bizCustomYN" column="BIZ_CUSTOM_YN  " />
 	</resultMap>
 
 	<select id="getListCount" resultType="_int">
@@ -32,6 +40,14 @@
 				MEMBER 
 			ORDER BY 
 				M_NUM)
+	</select>
+	
+	
+	<select id="selectBizList" resultMap="resultAdminMember">
+		SELECT 
+			* 
+		FROM 
+			MEMBER_BIZ
 	</select>
 	
 	<select id="selectOne" resultMap="resultAdminMember">

@@ -77,10 +77,14 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public Member selectMemberInfo(String id) {
+		return sqlSession.selectOne("Member.selectMemberInfo", id);
+	}
 
 	@Override
 	public List<Member> findId(Member m) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

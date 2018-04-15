@@ -64,13 +64,9 @@ input[type="checkbox"] {
 																function() {
 																	$(this)
 																			.append(
-																					'<div class = "form-group"><div class="col-sm-2 col-sm-offset-3"><input class="form-control shNum" name = "shNum'
+																					'<div class = "form-group"><div class="col-sm-2 col-sm-offset-3"><input class="form-control shNum" name = "shNum" type="text"placeholder="번호입력" value = "'
 																							+ (value)
-																							+ '" type="text"placeholder="번호입력" value = "'
-																							+ (value)
-																							+ '" readOnly></div><div class="col-sm-2"><input class="form-control" name = "shName'
-																							+ (value)
-																							+ '" type="text" placeholder="종류입력"></div><div class="col-sm-2"><input class="form-control" name = "shPrice'
+																							+ '" readOnly></div><div class="col-sm-2"><input class="form-control" name = "shName" type="text" placeholder="종류입력"></div><div class="col-sm-2"><input class="form-control" name = "shPrice'
 																							+ (value)
 																							+ '" type="text" placeholder="추가가격"></div></div>');
 																	value++;
@@ -89,13 +85,9 @@ input[type="checkbox"] {
 																function() {
 																	$(this)
 																			.append(
-																					'<div class = "form-group"><div class="col-sm-2 col-sm-offset-3"><input class="form-control tpNum" name = "tpNum'
+																					'<div class = "form-group"><div class="col-sm-2 col-sm-offset-3"><input class="form-control tpNum" name = "tpNum" type="text"placeholder="번호입력" value = "'
 																							+ (value2)
-																							+ '" type="text"placeholder="번호입력" value = "'
-																							+ (value2)
-																							+ '" readOnly></div><div class="col-sm-2"><input class="form-control" name = "tpName'
-																							+ (value2)
-																							+ '" type="text" placeholder="종류입력"></div><div class="col-sm-2"><input class="form-control" name = "tpPrice'
+																							+ '" readOnly></div><div class="col-sm-2"><input class="form-control" name = "tpName" type="text" placeholder="종류입력"></div><div class="col-sm-2"><input class="form-control" name = "tpPrice'
 																							+ (value2)
 																							+ '" type="text" placeholder="추가가격"></div></div>');
 																	value2++;
@@ -115,13 +107,9 @@ input[type="checkbox"] {
 																function() {
 																	$(this)
 																			.append(
-																					'<div class = "form-group"><div class="col-sm-2 col-sm-offset-3"><input class="form-control crNum" name = "crNum'
+																					'<div class = "form-group"><div class="col-sm-2 col-sm-offset-3"><input class="form-control crNum" name = "crNum" type="text"placeholder="번호입력" value = "'
 																							+ (value3)
-																							+ '" type="text"placeholder="번호입력" value = "'
-																							+ (value3)
-																							+ '" readOnly></div><div class="col-sm-2"><input class="form-control" name = "crName'
-																							+ (value3)
-																							+ '" type="text" placeholder="종류입력"></div><div class="col-sm-2"><input class="form-control" name = "crPrice'
+																							+ '" readOnly></div><div class="col-sm-2"><input class="form-control" name = "crName" type="text" placeholder="종류입력"></div><div class="col-sm-2"><input class="form-control" name = "crPrice'
 																							+ (value3)
 																							+ '" type="text" placeholder="추가가격"></div></div>');
 																	value3++;
@@ -130,24 +118,74 @@ input[type="checkbox"] {
 												alert("크림입력은 5개까지 가능합니다.");
 											}
 										});
-						
+
 						$(".plus4")
-						.click(
+								.click(
+										function() {
+											var length = $(".inputtag").length;
+											if (length < 5) {
+												$('.tag4')
+														.each(
+																function() {
+																	$(this)
+																			.append(
+																					'<div class="form-group"><div class="col-sm-6 col-sm-offset-3"><input class="form-control inputtag" name = "inputtag'
+																							+ (value4)
+																							+ '" type="text" placeholder="태그입력"><br></div></div>');
+																	value4++;
+																});
+											} else {
+												alert("태그입력은 5개까지 가능합니다.");
+											}
+										});
+
+						$("#join").click(
 								function() {
-									var length = $(".inputtag").length;
-									if (length < 5) {
-										$('.tag4')
-												.each(
-														function() {
-															$(this)
-																	.append(
-																			'<div class="form-group"><div class="col-sm-6 col-sm-offset-3"><input class="form-control inputtag" name = "inputtag'+(value4)+'" type="text" placeholder="태그입력"><br></div></div>');
-															value4++;
-														});
-									} else {
-										alert("태그입력은 5개까지 가능합니다.");
+									if ($('input:checkbox[id="sizeName1"]').is(
+											":checked") == true) {
+										if ($("#sizePrice1").val() == "") {
+											alert("호수에 해당하는 가격을 입력하세요");
+											return false;
+										}
+
 									}
-								});
+
+									if ($('input:checkbox[id="sizeName2"]').is(
+											":checked") == true) {
+										if ($("#sizePrice2").val() == "") {
+											alert("호수에 해당하는 가격을 입력하세요");
+											return false;
+										}
+
+									}
+
+									if ($('input:checkbox[id="sizeName3"]').is(
+											":checked") == true) {
+										if ($("#sizePrice3").val() == "") {
+											alert("호수에 해당하는 가격을 입력하세요");
+											return false;
+										}
+
+									}
+
+									if ($('input:checkbox[id="sizeName4"]').is(
+											":checked") == true) {
+										if ($("#sizePrice4").val() == "") {
+											alert("호수에 해당하는 가격을 입력하세요");
+											return false;
+										}
+
+									}
+
+									if ($('input:checkbox[id="sizeName5"]').is(
+											":checked") == true) {
+										if ($("#sizePrice5").val() == "") {
+											alert("호수에 해당하는 가격을 입력하세요");
+											return false;
+										}
+
+									}
+								})
 
 					});
 </script>
@@ -175,8 +213,7 @@ input[type="checkbox"] {
 												class="zmdi zmdi-chevron-right"></i>사업가 정보 수정</a></li>
 										<li style="border-bottom: 0px;"><a href="#"><i
 												class="zmdi zmdi-chevron-right"></i>주문내역</a></li>
-										<li style="border-bottom: 0px;"><a href="bizQNA.ca"><i
-												class="zmdi zmdi-chevron-right"></i>문의글 모음</a></li>
+								
 
 									</ul>
 								</div>
@@ -265,18 +302,18 @@ input[type="checkbox"] {
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="inputCakeInfo">시트</label>
 									<div class="col-sm-2">
-										<input class="form-control shNum" name="shNum1" type="text"
+										<input class="form-control shNum" name="shNum" type="text"
 											placeholder="번호입력" value="1" readOnly>
 									</div>
 
 									<div class="col-sm-2">
-										<input class="form-control" name="shName1" type="text"
+										<input class="form-control" name="shName" type="text"
 											placeholder="종류입력">
 									</div>
 
 									<div class="col-sm-2">
-										<input class="form-control" name="shPrice1"
-											type="text" placeholder="추가가격">
+										<input class="form-control" name="shPrice1" type="text"
+											placeholder="추가가격">
 									</div>
 									<div class=col-sm-1>
 										<button class="btn plus1" type="button"
@@ -291,18 +328,18 @@ input[type="checkbox"] {
 								<div class="form-group">
 									<label class="col-sm-3 control-label" for="inputCakeInfo">토핑</label>
 									<div class="col-sm-2">
-										<input class="form-control tpNum" name="tpNum1" type="text"
+										<input class="form-control tpNum" name="tpNum" type="text"
 											placeholder="번호입력" value="1" readOnly>
 									</div>
 
 									<div class="col-sm-2">
-										<input class="form-control" name="tpName1" type="text"
+										<input class="form-control" name="tpName" type="text"
 											placeholder="종류입력">
 									</div>
 
 									<div class="col-sm-2">
-										<input class="form-control" name="tpPrice1"
-											type="text" placeholder="추가가격">
+										<input class="form-control" name="tpPrice1" type="text"
+											placeholder="추가가격">
 									</div>
 									<div class=col-sm-1>
 										<button class="btn plus2" type="button"
@@ -312,52 +349,99 @@ input[type="checkbox"] {
 							</div>
 
 							<div class="form-group tag3">
-							<div class="form-group">
-								<label class="col-sm-3 control-label" for="inputCakeInfo">크림</label>
-								<div class="col-sm-2">
-										<input class="form-control crNum" name="crNum1" type="text"
+								<div class="form-group">
+									<label class="col-sm-3 control-label" for="inputCakeInfo">크림</label>
+									<div class="col-sm-2">
+										<input class="form-control crNum" name="crNum" type="text"
 											placeholder="번호입력" value="1" readOnly>
 									</div>
 
 									<div class="col-sm-2">
-										<input class="form-control" name="crName1" type="text"
+										<input class="form-control" name="crName" type="text"
 											placeholder="종류입력">
 									</div>
 
 									<div class="col-sm-2">
-										<input class="form-control" name="crPrice1"
-											type="text" placeholder="추가가격">
+										<input class="form-control" name="crPrice1" type="text"
+											placeholder="추가가격">
 									</div>
-								<div class=col-sm-1>
-									<button class="btn plus3" type="button"
-										style="border-radius: 50%; margin-left: 45%; margin-top: 20px;">+</button>
+									<div class=col-sm-1>
+										<button class="btn plus3" type="button"
+											style="border-radius: 50%; margin-left: 45%; margin-top: 20px;">+</button>
+									</div>
 								</div>
 							</div>
+
+							<div class="form-group tag4">
+								<div class="form-group">
+									<label class="col-sm-3 control-label" for="inputCakeInfo">태그</label>
+									<div class="col-sm-6">
+										<input class="form-control inputtag" name="inputtag1"
+											type="text" placeholder="태그입력">
+									</div>
+									<div class="col-sm-1">
+										<button class="btn plus4" type="button"
+											style="border-radius: 50%; margin-top: 20px; margin-left: 45%;">+</button>
+									</div>
+								</div>
 							</div>
-							
-							<div class = "form-group tag4">
+
+
 							<div class="form-group">
-								<label class="col-sm-3 control-label" for="inputCakeInfo">태그</label>
-								<div class="col-sm-6">
-									<input class="form-control inputtag" name="inputtag1"
-										type="text" placeholder="태그입력">
-								</div>
-								<div class="col-sm-1">
-									<button class="btn plus4" type="button"
-										style="border-radius: 50%; margin-top: 20px; margin-left: 45%;">+</button>
-								</div>
-							</div>
-							</div>
-							
-							
-							<div class="form-inline">
-								<label class="col-sm-3 control-label" for="inputCakeInfo">규격</label>
-								<div class="col-sm-6" id=checkbox>
-									<input class="span2" type="checkbox" name="size1" value="1호">1호&nbsp;&nbsp;&nbsp;
-									<input class="span2" type="checkbox" name="size2" value="2호">2호&nbsp;&nbsp;&nbsp;
-									<input class="span2" type="checkbox" name="size3" value="3호">3호&nbsp;&nbsp;&nbsp;
-									<input class="span2" type="checkbox" name="size4" value="4호">4호&nbsp;&nbsp;&nbsp;
-									<input class="span2" type="checkbox" name="size5" value="5호">5호&nbsp;&nbsp;&nbsp;
+								<label class="col-sm-9 col-sm-offset-3"><strong>케이크의
+										호수를 체크한 후 해당하는 가격을 입력하세요.</strong></label> <label
+									class="col-sm-3 control-label" for="inputCakeInfo">규격</label>
+								<div class="col-sm-9" id=checkbox>
+									<div class="col-sm-12">
+										<input type="hidden" name="sizeNum" value = "1" /> <input class="span"
+											type="checkbox" id="sizeName1" name="sizeName" value="1호"
+											style="margin-top: 20px;" />&nbsp;&nbsp;&nbsp;1호
+										<div class="col-sm-4">
+											<input class="form-control" type="text" name="sizePrice1"
+												id="sizePrice1" value = "0"/><br>
+										</div>
+									</div>
+
+									<div class="col-sm-12">
+										<input type="hidden" name="sizeNum" value = "2"/> <input class="span"
+											type="checkbox" name="sizeName" id="sizeName2" value="2호"
+											style="margin-top: 20px;" />&nbsp;&nbsp;&nbsp;2호
+										<div class="col-sm-4">
+											<input class="form-control" type="text" name="sizePrice2"
+												id="sizePrice2" value = "0" /><br>
+										</div>
+									</div>
+
+									<div class="col-sm-12">
+										<input type="hidden" name="sizeNum" value = "3"/> <input class="span"
+											type="checkbox" name="sizeName" id="sizeName3" value="3호"
+											style="margin-top: 20px;" />&nbsp;&nbsp;&nbsp;3호
+										<div class="col-sm-4">
+											<input class="form-control" type="text" name="sizePrice3"
+												id="sizePrice3" value = "0"/><br>
+										</div>
+									</div>
+
+									<div class="col-sm-12">
+										<input type="hidden" name="sizeNum" value = "4"/> <input class="span"
+											type="checkbox" name="sizeName" id="sizeName4" value="4호"
+											style="margin-top: 20px;" />&nbsp;&nbsp;&nbsp;4호
+										<div class="col-sm-4">
+											<input class="form-control" type="text" name="sizePrice4"
+												id="sizePrice4" value = "0" /><br>
+										</div>
+									</div>
+
+									<div class="col-sm-12">
+										<input type="hidden" name="sizeNum" value = "5"/> <input class="span"
+											type="checkbox" name="sizeName" id="sizeName5" value="5호"
+											style="margin-top: 20px;" />&nbsp;&nbsp;&nbsp;5호
+										<div class="col-sm-4">
+											<input class="form-control" type="text" name="sizePrice5"
+												id="sizePrice5" value = "0"/><br>
+										</div>
+									</div>
+
 								</div>
 							</div>
 

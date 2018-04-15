@@ -25,11 +25,10 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public ArrayList<Member> selectList(int currentPage, int limit) throws Exception{
+	public ArrayList<Member> selectList() throws Exception{
 		System.out.println("adminDao.selectList 도착");
-		int offset = (currentPage - 1) * limit;
-		RowBounds rows = new RowBounds(offset, limit);
-		return new ArrayList<Member>(sqlSession.selectList("AdminMapper.selectList", null, rows));
+
+		return new ArrayList<Member>(sqlSession.selectList("AdminMapper.selectList"));
 	}
 	
 	@Override
@@ -54,6 +53,12 @@ public class AdminDaoImpl implements AdminDao {
 	public int deleteTotalMember() throws Exception{
 		// TODO Auto-generated method stub
 		return sqlSession.delete("AdminMapper.deleteTotalMember");
+	}
+
+	@Override
+	public ArrayList<Member> selectBizList() throws Exception {
+		// TODO Auto-generated method stub
+		return new ArrayList<Member>(sqlSession.selectList("AdminMapper.selectBizList"));
 	}
 	
 

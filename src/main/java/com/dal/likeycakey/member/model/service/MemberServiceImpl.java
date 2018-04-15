@@ -72,6 +72,11 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.updateMember(m);
 	}
 	
+	@Override
+	public Member selectMemberInfo(String id) {
+		return memberDao.selectMemberInfo(id);
+	}
+	
 	// id 찾기
 	@Override
 	public ArrayList<String> findId(Member m) throws Exception {

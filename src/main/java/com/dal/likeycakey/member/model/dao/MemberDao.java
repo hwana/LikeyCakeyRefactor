@@ -10,6 +10,7 @@ public interface MemberDao {
 	public int deleteMember(String id) throws Exception;
 	public Member forLogin(String id, String passwd) throws Exception;
 	public int selectMember(String id);
+	public Member selectMemberInfo(String id);
 	public Member findId(String email, String name) throws Exception;
 	public int updatePassword(Member m) throws Exception;
 	public ArrayList<Homeqna> homeqlist(Member m) throws Exception;

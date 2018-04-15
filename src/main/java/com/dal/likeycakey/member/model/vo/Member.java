@@ -1,6 +1,7 @@
 package com.dal.likeycakey.member.model.vo;
 
 
+
 import org.springframework.stereotype.Component;
 
 import com.dal.likeycakey.biz.model.vo.BizMember;
@@ -29,6 +30,82 @@ public class Member implements java.io.Serializable{
 	private int blackCnt;
 	private MemberLike memberLike;
 	private BizMember bizMember;
+	
+	private int bizDelivery;
+	private String bizName;
+	public BizMember getBizMember() {
+		return bizMember;
+	}
+
+	public void setBizMember(BizMember bizMember) {
+		this.bizMember = bizMember;
+	}
+
+	public int getBizDelivery() {
+		return bizDelivery;
+	}
+
+	public void setBizDelivery(int bizDelivery) {
+		this.bizDelivery = bizDelivery;
+	}
+
+	public String getBizName() {
+		return bizName;
+	}
+
+	public void setBizName(String bizName) {
+		this.bizName = bizName;
+	}
+
+	public String getBizPN() {
+		return bizPN;
+	}
+
+	public void setBizPN(String bizPN) {
+		this.bizPN = bizPN;
+	}
+
+	public String getBizNum() {
+		return bizNum;
+	}
+
+	public void setBizNum(String bizNum) {
+		this.bizNum = bizNum;
+	}
+
+	public String getMasterName() {
+		return masterName;
+	}
+
+	public void setMasterName(String masterName) {
+		this.masterName = masterName;
+	}
+
+	public String getBizDeliveryYN() {
+		return bizDeliveryYN;
+	}
+
+	public void setBizDeliveryYN(String bizDeliveryYN) {
+		this.bizDeliveryYN = bizDeliveryYN;
+	}
+
+	public String getBizCustomYN() {
+		return bizCustomYN;
+	}
+
+	public void setBizCustomYN(String bizCustomYN) {
+		this.bizCustomYN = bizCustomYN;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	private String bizPN;
+	private String bizNum;
+	private String masterName;
+	private String bizDeliveryYN;
+	private String bizCustomYN;
 
 	public Member() {
 		

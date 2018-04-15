@@ -23,6 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dal.likeycakey.biz.model.service.BizService;
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.vo.CustomBoard;
+import com.dal.likeycakey.detailView.model.vo.CustomCream;
+import com.dal.likeycakey.detailView.model.vo.CustomSheet;
+import com.dal.likeycakey.detailView.model.vo.CustomSize;
+import com.dal.likeycakey.detailView.model.vo.CustomTopping;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
 import com.dal.likeycakey.member.model.vo.Member;
 
@@ -48,7 +52,7 @@ public class BizController {
 			PrintWriter out = response.getWriter();
 			// 데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
 			member = bizService.loginCheck(member.getId(), member.getPasswd());
-			
+
 			session.setAttribute("member", member);
 			int result = 0;
 			if (member != null) {
@@ -158,10 +162,10 @@ public class BizController {
 	// 사업자 회원정보, 매장정보 수정 페이지 이동
 	@RequestMapping(value = "bizMypageModify.ca", method = RequestMethod.GET)
 	public String bizMypageModify(Model model, HttpSession session) {
-		Member m = ((Member)session.getAttribute("member"));
+		Member m = ((Member) session.getAttribute("member"));
 		String bm2 = bizService.getBiz(new BizMember(m.getId()));
-		model.addAttribute("mastername",bm2);
-		
+		model.addAttribute("mastername", bm2);
+
 		return "biz/bizMypageModify";
 	}
 
@@ -169,36 +173,35 @@ public class BizController {
 	@RequestMapping(value = "bizModify.ca", method = RequestMethod.POST)
 	public ModelAndView bizModify(@RequestParam(value = "file", required = false) MultipartFile file,
 			HttpServletRequest request, @RequestParam("masterName") String masterName,
-			@RequestParam("passwd") String passwd, @RequestParam("phone") String phone,
-			ModelAndView mv, HttpSession session) {
-		
-		Member m = (Member)session.getAttribute("member");
+			@RequestParam("passwd") String passwd, @RequestParam("phone") String phone, ModelAndView mv,
+			HttpSession session) {
+
+		Member m = (Member) session.getAttribute("member");
 		m.setPasswd(passwd);
 		m.setPhone(phone);
-		
+
 		BizMember bm = new BizMember(m.getId(), masterName);
 
-		
 		try {
 			if (file != null && !file.isEmpty()) {
-			// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
-			String root = request.getSession().getServletContext().getRealPath("resources");
-			// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
-			String savePath = root + "\\img\\member";
-		
-			System.out.println("이미지가 저장되는 곳은 " + savePath);
-			
-			if (!new File(savePath).exists()) {
-				new File(savePath).mkdir();
+				// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
+				String root = request.getSession().getServletContext().getRealPath("resources");
+				// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
+				String savePath = root + "\\img\\member";
+
+				System.out.println("이미지가 저장되는 곳은 " + savePath);
+
+				if (!new File(savePath).exists()) {
+					new File(savePath).mkdir();
+				}
+
+				String originFileName = file.getOriginalFilename();
+				File fileupload = new File(savePath + "\\" + originFileName);
+				file.transferTo(fileupload);
+				new File(savePath + "\\" + m.getPhoto()).delete();
+				m.setPhoto(originFileName);
 			}
-			
-			String originFileName = file.getOriginalFilename();
-			File fileupload = new File(savePath + "\\" + originFileName);
-			file.transferTo(fileupload);
-			new File(savePath + "\\" +m.getPhoto()).delete();
-			m.setPhoto(originFileName);
-			}
-			
+
 			int result = bizService.bizModify(m);
 			int result2 = bizService.bizModify2(bm);
 			session.setAttribute("member", m);
@@ -308,42 +311,248 @@ public class BizController {
 	}
 
 	@RequestMapping(value = "customCakeInsert.ca", method = RequestMethod.POST)
-	public ModelAndView customCakeInsert(ModelAndView mv, 
-			CustomBoard customboard,
+	public ModelAndView customCakeInsert(ModelAndView mv, CustomBoard customboard, CustomCream customcream,
+			CustomSheet customsheet, CustomTopping customtopping, CustomSize customsize,
 			@RequestParam(name = "inputtag1", required = false) String inputtag1,
 			@RequestParam(name = "inputtag2", required = false) String inputtag2,
 			@RequestParam(name = "inputtag3", required = false) String inputtag3,
 			@RequestParam(name = "inputtag4", required = false) String inputtag4,
-			@RequestParam(name = "inputtag5", required = false) String inputtag5) {
+			@RequestParam(name = "inputtag5", required = false) String inputtag5,
+			@RequestParam(name = "shPrice1", required = false) String shPrice1,
+			@RequestParam(name = "shPrice2", required = false) String shPrice2,
+			@RequestParam(name = "shPrice3", required = false) String shPrice3,
+			@RequestParam(name = "shPrice4", required = false) String shPrice4,
+			@RequestParam(name = "shPrice5", required = false) String shPrice5,
+			@RequestParam(name = "crPrice1", required = false) String crPrice1,
+			@RequestParam(name = "crPrice2", required = false) String crPrice2,
+			@RequestParam(name = "crPrice3", required = false) String crPrice3,
+			@RequestParam(name = "crPrice4", required = false) String crPrice4,
+			@RequestParam(name = "crPrice5", required = false) String crPrice5,
+			@RequestParam(name = "tpPrice1", required = false) String tpPrice1,
+			@RequestParam(name = "tpPrice2", required = false) String tpPrice2,
+			@RequestParam(name = "tpPrice3", required = false) String tpPrice3,
+			@RequestParam(name = "tpPrice4", required = false) String tpPrice4,
+			@RequestParam(name = "tpPrice5", required = false) String tpPrice5,
+			@RequestParam(name = "sizePrice1", required = false) String sizePrice1,
+			@RequestParam(name = "sizePrice2", required = false) String sizePrice2,
+			@RequestParam(name = "sizePrice3", required = false) String sizePrice3,
+			@RequestParam(name = "sizePrice4", required = false) String sizePrice4,
+			@RequestParam(name = "sizePrice5", required = false) String sizePrice5) {
+
+		String temp1[] = null;
+		String temp2[] = null;
+		String temp3[] = null;
+		String temp4[] = null;
+		String temp11[] = null;
+		String temp22[] = null;
+		String temp33[] = null;
+		String temp44[] = null;
 		
-			
-			try {
-				String inputtag = "";
-				if (inputtag1 != "") {
-					inputtag = inputtag + "#" + inputtag1;
-					if (inputtag2 != "") {
-						inputtag = inputtag + ", #" + inputtag2;
-						if (inputtag3 != "") {
-							inputtag = inputtag + ", #" + inputtag3;
-							if (inputtag4 != "") {
-								inputtag = inputtag + ", #" + inputtag4;
-								if (inputtag5 != "") {
-									inputtag = inputtag + ", #" + inputtag5;
-								}
+		int temp111 = 0;
+		int temp222 = 0;
+		int temp333 = 0;
+		int temp444 = 0;
+		int temp555 = 0;
+
+		try {
+			// Num temp
+			temp1 = customsheet.getShNum().split(",");
+			temp2 = customcream.getCrNum().split(",");
+			temp3 = customtopping.getTpNum().split(",");
+			temp4 = customsize.getSizeNum().split(",");
+
+			// Name temp
+			temp11 = customsheet.getShName().split(",");
+			temp22 = customcream.getCrName().split(",");
+			temp33 = customtopping.getTpName().split(",");
+			temp44 = customsize.getSizeName().split(",");
+
+			if (shPrice1 != null) {
+				temp111 = Integer.parseInt(shPrice1);
+				customsheet.setShNum(temp1[0]);
+				customsheet.setShName(temp11[0]);
+				customsheet.setShPrice(temp111);
+				bizService.customSheetInsert(customsheet);
+
+				if (shPrice2 != null) {
+					temp222 = Integer.parseInt(shPrice2);
+					customsheet.setShNum(temp1[1]);
+					customsheet.setShName(temp11[1]);
+					customsheet.setShPrice(temp222);
+					bizService.customSheetInsert(customsheet);
+
+					if (shPrice3 != null) {
+						temp333 = Integer.parseInt(shPrice3);
+						customsheet.setShNum(temp1[2]);
+						customsheet.setShName(temp11[2]);
+						customsheet.setShPrice(temp333);
+						bizService.customSheetInsert(customsheet);
+
+						if (shPrice4 != null) {
+							temp444 = Integer.parseInt(shPrice4);
+							customsheet.setShNum(temp1[3]);
+							customsheet.setShName(temp11[3]);
+							customsheet.setShPrice(temp444);
+							bizService.customSheetInsert(customsheet);
+
+							if (shPrice5 != null) {
+								temp555 = Integer.parseInt(shPrice5);
+								customsheet.setShNum(temp1[4]);
+								customsheet.setShName(temp11[4]);
+								customsheet.setShPrice(temp555);
+								bizService.customSheetInsert(customsheet);
 							}
 						}
 					}
 				}
-
-				customboard.setCbTag(inputtag);
-				bizService.customInsert(customboard);
-				mv.setViewName("redirect:home.ca");
-				System.out.println("커스텀 케이크 보드 insert 성공!");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				System.out.println("커스텀 케이크 보드 insert 실패...   " + e);
 			}
-		
+
+			if (crPrice1 != null) {
+				temp111 = Integer.parseInt(crPrice1);
+				customcream.setCrNum(temp2[0]);
+				customcream.setCrName(temp22[0]);
+				customcream.setCrPrice(temp111);
+				bizService.customCreamInsert(customcream);
+
+				if (crPrice2 != null) {
+					temp222 = Integer.parseInt(crPrice2);
+					customcream.setCrNum(temp2[1]);
+					customcream.setCrName(temp22[1]);
+					customcream.setCrPrice(temp222);
+					bizService.customCreamInsert(customcream);
+
+					if (crPrice3 != null) {
+						temp333 = Integer.parseInt(crPrice3);
+						customcream.setCrNum(temp2[2]);
+						customcream.setCrName(temp22[2]);
+						customcream.setCrPrice(temp333);
+						bizService.customCreamInsert(customcream);
+
+						if (crPrice4 != null) {
+							temp444 = Integer.parseInt(crPrice4);
+							customcream.setCrNum(temp2[3]);
+							customcream.setCrName(temp22[3]);
+							customcream.setCrPrice(temp444);
+							bizService.customCreamInsert(customcream);
+
+							if (crPrice5 != null) {
+								temp555 = Integer.parseInt(crPrice5);
+								customcream.setCrNum(temp2[4]);
+								customcream.setCrName(temp22[4]);
+								customcream.setCrPrice(temp555);
+								bizService.customCreamInsert(customcream);
+							}
+						}
+					}
+				}
+			}
+
+			if (tpPrice1 != null) {
+				temp111 = Integer.parseInt(tpPrice1);
+				customtopping.setTpNum(temp3[0]);
+				customtopping.setTpName(temp33[0]);
+				customtopping.setTpPrice(temp111);
+				bizService.customToppingInsert(customtopping);
+
+				if (tpPrice2 != null) {
+					temp222 = Integer.parseInt(tpPrice2);
+					customtopping.setTpNum(temp3[1]);
+					customtopping.setTpName(temp33[1]);
+					customtopping.setTpPrice(temp222);
+					bizService.customToppingInsert(customtopping);
+
+					if (tpPrice3 != null) {
+						temp333 = Integer.parseInt(tpPrice3);
+						customtopping.setTpNum(temp3[2]);
+						customtopping.setTpName(temp33[2]);
+						customtopping.setTpPrice(temp333);
+						bizService.customToppingInsert(customtopping);
+
+						if (tpPrice4 != null) {
+							temp444 = Integer.parseInt(tpPrice4);
+							customtopping.setTpNum(temp3[3]);
+							customtopping.setTpName(temp33[3]);
+							customtopping.setTpPrice(temp444);
+							bizService.customToppingInsert(customtopping);
+
+							if (tpPrice5 != null) {
+								temp555 = Integer.parseInt(tpPrice5);
+								customtopping.setTpNum(temp3[4]);
+								customtopping.setTpName(temp33[4]);
+								customtopping.setTpPrice(temp555);
+								bizService.customToppingInsert(customtopping);
+							}
+						}
+					}
+				}
+			}
+
+			if (sizePrice1 != null) {
+				temp111 = Integer.parseInt(sizePrice1);
+				customsize.setSizeNum(temp4[0]);
+				customsize.setSizeName(temp44[0]);
+				customsize.setSizePrice(temp111);
+				bizService.customSizeInsert(customsize);
+			}else if(sizePrice1 == null) {
+				
+			}
+			if (sizePrice2 != null) {
+				temp222 = Integer.parseInt(sizePrice2);
+				customsize.setSizeNum(temp4[1]);
+				customsize.setSizeName(temp44[1]);
+				customsize.setSizePrice(temp222);
+				bizService.customSizeInsert(customsize);
+			}
+			if (sizePrice3 != null) {
+				temp333 = Integer.parseInt(sizePrice3);
+				customsize.setSizeNum(temp4[2]);
+				customsize.setSizeName(temp44[2]);
+				customsize.setSizePrice(temp333);
+				bizService.customSizeInsert(customsize);
+			}
+			if (sizePrice4 != null) {
+				temp444 = Integer.parseInt(sizePrice4);
+				customsize.setSizeNum(temp4[3]);
+				customsize.setSizeName(temp44[3]);
+				customsize.setSizePrice(temp444);
+				bizService.customSizeInsert(customsize);
+			}
+			if (sizePrice5 != null) {
+				temp555 = Integer.parseInt(sizePrice5);
+				customsize.setSizeNum(temp4[4]);
+				customsize.setSizeName(temp44[4]);
+				customsize.setSizePrice(temp555);
+				bizService.customSizeInsert(customsize);
+
+			}
+
+			String inputtag = "";
+			if (inputtag1 != null) {
+				inputtag = inputtag + "#" + inputtag1;
+				if (inputtag2 != null) {
+					inputtag = inputtag + ", #" + inputtag2;
+					if (inputtag3 != null) {
+						inputtag = inputtag + ", #" + inputtag3;
+						if (inputtag4 != null) {
+							inputtag = inputtag + ", #" + inputtag4;
+							if (inputtag5 != null) {
+								inputtag = inputtag + ", #" + inputtag5;
+							}
+						}
+					}
+				}
+			}
+
+			customboard.setCbTag(inputtag);
+			bizService.customBoardInsert(customboard);
+
+			System.out.println("커스텀 케이크 보드 insert 성공!");
+			mv.setViewName("redirect:uploadComplete.ca");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("커스텀 케이크 보드 insert 실패...   " + e);
+		}
+
 		return mv;
 	}
 

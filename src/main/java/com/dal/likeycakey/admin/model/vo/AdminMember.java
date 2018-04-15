@@ -19,6 +19,81 @@ package com.dal.likeycakey.admin.model.vo;
 		private String photo;
 		private int status;
 		private int blackCnt;
+		
+		private int bizDelivery;
+		private String bizName;
+		private String bizPN;
+		private String bizNum;
+		private String masterName;
+		private String bizDeliveryYN;
+		private String bizCustomYN;
+
+		
+		
+		
+		public int getBizDelivery() {
+			return bizDelivery;
+		}
+
+		public void setBizDelivery(int bizDelivery) {
+			this.bizDelivery = bizDelivery;
+		}
+
+		public String getBizName() {
+			return bizName;
+		}
+
+		public void setBizName(String bizName) {
+			this.bizName = bizName;
+		}
+
+		public String getBizPN() {
+			return bizPN;
+		}
+
+		public void setBizPN(String bizPN) {
+			this.bizPN = bizPN;
+		}
+
+		public String getBizNum() {
+			return bizNum;
+		}
+
+		public void setBizNum(String bizNum) {
+			this.bizNum = bizNum;
+		}
+
+		public String getMasterName() {
+			return masterName;
+		}
+
+		public void setMasterName(String masterName) {
+			this.masterName = masterName;
+		}
+
+		public String getBizDeliveryYN() {
+			return bizDeliveryYN;
+		}
+
+		public void setBizDeliveryYN(String bizDeliveryYN) {
+			this.bizDeliveryYN = bizDeliveryYN;
+		}
+
+		public String getBizCustomYN() {
+			return bizCustomYN;
+		}
+
+		public void setBizCustomYN(String bizCustomYN) {
+			this.bizCustomYN = bizCustomYN;
+		}
+
+		public static long getSerialversionuid() {
+			return serialVersionUID;
+		}
+
+		public int getBlackCnt() {
+			return blackCnt;
+		}
 
 		public String getId() {
 			return id;

@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<c:set var="list" value="${requestScope.list}" />
+<c:set var="member" value="${sessionScope.member}" />
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -117,7 +118,7 @@ td{
 												</thead>
 												<tbody>
 												
-												<foreach item="item" index="index" collection="list">
+												<c:forEach var="b" items="${list}" varStatus="status">
 												
 													<!-- 회원 1 시작 -->
 													<tr>
@@ -126,25 +127,25 @@ td{
 														</td>
 
 														<td><input type="text" 
-															class="text" value="admin"
+															class="text" value="${b.id}"
 															></td>
 														<td><input type="text"
-															placeholder="" class="text" value="admin"></td>
+															placeholder="" class="text" value="${b.bizName}"></td>
 														<td><input type="text"
-															placeholder="" class="text" value="김은송"></td>
+															placeholder="" class="text" value="${b.bizPN}"></td>
 														<td><input type="text"
-															placeholder="" class="text" value="admin@naver.com">
+															placeholder="" class="text" value="${b.bizNum}">
 														</td>
 														<td><input type="text"
-															placeholder="" class="text" value="010-1111-2222">
+															placeholder="" class="text" value="${member.email}">
 
 														</td>
 														<td><input type="text"
-															placeholder="" class="text" value="010-1111-2222">
+															placeholder="" class="text" value="${b.bizDeliveryYN}">
 
 														</td>
 														<td><input type="text"
-															placeholder="" class="text" value="010-1111-2222">
+															placeholder="" class="text" value="${b.masterName}">
 
 														</td>
 														<td>
@@ -161,7 +162,7 @@ td{
 													</tr>
 													<!--  회원 1 끝 -->
 													
-													</foreach>
+													</c:forEach>
 
 
 

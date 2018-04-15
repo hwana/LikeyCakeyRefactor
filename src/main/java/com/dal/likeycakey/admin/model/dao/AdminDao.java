@@ -8,7 +8,7 @@ public interface AdminDao {
 	
 	public int getListCount() throws Exception;
 	
-	public ArrayList<Member> selectList(int currentPage, int limit) throws Exception;
+	public ArrayList<Member> selectList() throws Exception;
 	
 	public Member selectOne(String id) throws Exception;
 	
@@ -17,5 +17,7 @@ public interface AdminDao {
 	public int deleteMember(String id) throws Exception;
 	
 	public int deleteTotalMember() throws Exception;
+
+	public ArrayList<Member> selectBizList() throws Exception;
 }
 
