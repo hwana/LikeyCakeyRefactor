@@ -552,7 +552,12 @@
             </div>
         </div>
         <!--End of Quickview Product-->	
-	   
+		<script>  
+	   $("#young_sorting_filterin").change(function()
+		{
+    		document.location.href = $(this).val();
+		});
+	   </script>	 
 		<!-- all js here -->
         <script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
         <script src="/resources/js/bootstrap.min.js"></script>
