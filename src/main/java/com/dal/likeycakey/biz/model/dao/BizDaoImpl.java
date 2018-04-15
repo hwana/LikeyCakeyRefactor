@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.vo.CustomBoard;
+import com.dal.likeycakey.detailView.model.vo.CustomCream;
+import com.dal.likeycakey.detailView.model.vo.CustomSheet;
+import com.dal.likeycakey.detailView.model.vo.CustomSize;
+import com.dal.likeycakey.detailView.model.vo.CustomTopping;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
 
 import com.dal.likeycakey.member.model.vo.Member;
@@ -72,7 +76,7 @@ public class BizDaoImpl implements BizDao {
 	}
 
 	@Override
-	public int customInsert(CustomBoard customboard) throws Exception {
+	public int customBoardInsert(CustomBoard customboard) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("customBoard.insertCustomBoard",customboard);
 	}
@@ -81,5 +85,32 @@ public class BizDaoImpl implements BizDao {
 	public String getBiz(BizMember bm) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("bizMember.selectBiz", bm);
+	}
+
+	@Override
+	public int customCreamInsert(CustomCream customcream) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("customBoard.insertCustomCream",customcream);
+	}
+
+
+	@Override
+	public int customSheetInsert(CustomSheet customsheet) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("customBoard.insertCustomSheet",customsheet);
+	}
+	
+
+
+	@Override
+	public int customToppingInsert(CustomTopping customtopping) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("customBoard.insertCustomTopping",customtopping);
+	}
+
+	@Override
+	public int customSizeInsert(CustomSize customsize) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("customBoard.insertCustomSize",customsize);
 	}
 }

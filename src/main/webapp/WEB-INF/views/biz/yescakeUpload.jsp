@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../default/header.jsp"%>
 
+
+<c:set var="vendorcakelist" value="${requestScope.vendorcakelist}"/>
+<c:set var="member" value="${sessionScope.member}"/>
+
 <style>
 #cakeupload{
 
@@ -35,8 +39,7 @@
 												class="zmdi zmdi-chevron-right"></i>사업가 정보 수정</a></li>
 										<li style="border-bottom: 0px;"><a href="#"><i
 												class="zmdi zmdi-chevron-right"></i>주문내역</a></li>
-										<li style="border-bottom: 0px;"><a href="bizQNA.ca"><i
-												class="zmdi zmdi-chevron-right"></i>문의글 모음</a></li>
+								
 
 									</ul>
 								</div>
@@ -56,9 +59,10 @@
 				</div>
 				<br>
 				<div class = "col-md-2" >
-				<button class="btn pull-right" id = "cakeupload">케이크 등록하기</button>
+				<button class="btn pull-right" id = "cakeupload" onclick="location.href='pcSelect.ca'">케이크 등록하기</button>
 				</div>
 				<div class = "col-md-10">
+				
 				<table class = "table table-hover">
 					<thead>
 					<tr>
@@ -69,24 +73,14 @@
 					</tr>
 					</thead>
 					<tbody>
+					<c:forEach var="cake" items="${vendorcakelist}" varStatus="loop">
 					<tr>
 					<th>1234</th>
-					<th>달콤 촉촉 초코케이크</th>
-					<th>13,000원</th>
-					<th>가능</th>
+					<th>${cake.pName }</th>
+					<th>${cake.pPrice }</th>
+					<th>${cake.p }</th>
 					</tr>
-					<tr>
-					<th>1235</th>
-					<th>마카롱케이크</th>
-					<th>29,000원</th>
-					<th>불가능</th>
-					</tr>
-					<tr>
-					<th>1234</th>
-					<th>딸기 케이크</th>
-					<th>30,000원</th>
-					<th>가능</th>
-					</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 				</div>
