@@ -4,10 +4,10 @@ public class CustomTopping {
 	private String tpNum;	//토핑번호
 	private String id;		//사업자 회원 아이디
 	private String tpName;	//토핑 종류
-	private String tpPrice; //토핑 추가 가격
+	private int tpPrice; //토핑 추가 가격
 	
 	
-	public CustomTopping(String tpNum, String id, String tpName, String tpPrice) {
+	public CustomTopping(String tpNum, String id, String tpName, int tpPrice) {
 		super();
 		this.tpNum = tpNum;
 		this.id = id;
@@ -36,10 +36,10 @@ public class CustomTopping {
 	public void setTpName(String tpName) {
 		this.tpName = tpName;
 	}
-	public String getTpPrice() {
+	public int getTpPrice() {
 		return tpPrice;
 	}
-	public void setTpPrice(String tpPrice) {
+	public void setTpPrice(int tpPrice) {
 		this.tpPrice = tpPrice;
 	}
 	

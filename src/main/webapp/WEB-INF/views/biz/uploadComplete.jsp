@@ -67,8 +67,7 @@ label{
 												class="zmdi zmdi-chevron-right"></i>사업가 정보 수정</a></li>
 										<li style="border-bottom: 0px;"><a href="#"><i
 												class="zmdi zmdi-chevron-right"></i>주문내역</a></li>
-										<li style="border-bottom: 0px;"><a href="bizQNA.ca"><i
-												class="zmdi zmdi-chevron-right"></i>문의글 모음</a></li>
+										
 
 									</ul>
 								</div>
@@ -88,8 +87,8 @@ label{
 						</div>
 						<br>
 						<div>
-							<a href="#" class=submitcake>등록된 케이크 확인하기</a>
-							<a href="#" class=submithome>홈으로 돌아가기</a>
+							<a href="yescakeUpload.ca" class=submitcake>등록된 케이크 확인하기</a>
+							<a href="home.ca" class=submithome>홈으로 돌아가기</a>
 						</div>
 					</div>
 				</div>
