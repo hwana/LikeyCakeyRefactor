@@ -79,4 +79,20 @@
 		(#{sizeNum}, #{id}, #{sizeName}, #{sizePrice})
 	</insert>
 	
+	<select id="selectCustomCakeList" resultMap="resultCustomBoard">
+		SELECT * FROM CUSTOM_BOARD
+	</select>
+	
+	<select id="selectCreamList" parameterType="String" resultType="String">
+		SELECT CR_NAME FROM CUSTOM_CREAM WHERE M_ID=#{id}
+	</select>
+	
+	<select id="selectSheetList" parameterType="String" resultType="String">
+		SELECT SH_NAME FROM CUSTOM_SHEET WHERE M_ID=#{id}
+	</select>
+	
+	<select id="selectToppingList" parameterType="String" resultType="String">
+		SELECT TP_NAME FROM CUSTOM_TOPPING WHERE M_ID=#{id}
+	</select>
+	
   </mapper>

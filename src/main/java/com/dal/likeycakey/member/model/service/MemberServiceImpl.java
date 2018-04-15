@@ -3,10 +3,7 @@ package com.dal.likeycakey.member.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.dal.likeycakey.member.model.dao.MemberDao;
@@ -18,6 +15,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDao memberDao;
+
 
 	// 로그인하기위한 서비스
 	@Override
@@ -44,8 +42,6 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberDao.insertMember(m);
 		return result;
 	}
-		
-		
 
 	// update
 	@Override
