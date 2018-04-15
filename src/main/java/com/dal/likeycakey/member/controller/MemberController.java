@@ -52,29 +52,37 @@ public class MemberController {
 		return "member/memberJoin";
 	}
 	
-	// find id & pw page move
+	// find id & pw page only for move
 	@RequestMapping(value = "findIdpw.ca", method= {RequestMethod.GET, RequestMethod.POST})
 	public String moveFindid(Model model) {
 		return "biz/findIdPw";
 	}
 	
 	// find id & pw
-	@RequestMapping(value = "findingId.ca" , method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-	public @ResponseBody String findingId(@ModelAttribute Member m, Model model , HttpServletResponse response)throws Exception {
-		System.out.println("find id");
-		String findid = memberService.findId(m);
-		return findid;
+	@ResponseBody
+	@RequestMapping(value = "findingId.ca" , method = RequestMethod.POST)
+	public void findingId(ModelAndView mv, HttpSession session, Member member, HttpServletResponse response)throws Exception {
+		PrintWriter out = response.getWriter();
+		//데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
+		member = memberService.findId(member.getId(),member.getPasswd()); 
+		
+		
 	}
 	
 	
-	// 회원가입 시 아이디 중복 확인
-    @ResponseBody
-    @RequestMapping(value = "id_check.ca", method = RequestMethod.POST)
-    public String idcheck(HttpServletRequest request, Model model) {
-        String id = request.getParameter("id");
-        int rowcount = memberService.idCheck(id);
-        return String.valueOf(rowcount);
-    }
+	//아이디 중복검사
+		@RequestMapping(value = "mdupid.ca", method = RequestMethod.POST)
+		public void dupid(ModelAndView mv,
+				@RequestParam("id") String id,
+				HttpServletResponse response) throws IOException {			
+			
+			PrintWriter out = response.getWriter();
+			int result = memberService.mdupid(id);
+			if (result > 0) out.print("no");
+			else out.print("ok");
+			out.flush();
+			out.close();
+		}
     
 	
 	
@@ -82,10 +90,7 @@ public class MemberController {
 	@RequestMapping(value="memberInsert.ca", method = RequestMethod.POST)
 	public ModelAndView insertJoin(Member m, ModelAndView mv, @RequestParam(value = "file", required=false) MultipartFile file, 
 			HttpServletRequest request) {
-		
-			
 		try {
-
 			// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
 			String root = request.getSession().getServletContext().getRealPath("resources");
 			// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
@@ -96,18 +101,14 @@ public class MemberController {
 				if (!new File(savePath).exists()) {
 					new File(savePath).mkdir();
 				}
-
 				String originFileName = file.getOriginalFilename();
 				File fileupload = new File(savePath + "\\" + originFileName);
 				file.transferTo(fileupload);
 				m.setPhoto(originFileName.substring(0, originFileName.lastIndexOf('.')));
 			}
-			
 			memberService.insertMember(m);
 			System.out.println("일반회원 가입 성공");
-
 			int result = memberService.insertMember(m);
-
 			mv.setViewName("redirect:home.ca");
 			System.out.println("일반회원 : 등록성공");
 		} catch(Exception e) {
@@ -119,26 +120,24 @@ public class MemberController {
 	}
 	
 	// 로그인 체크
-
-		@RequestMapping(value = "forLogin.ca", method = RequestMethod.POST)
-		public void forLogin(ModelAndView mv, HttpSession session, Member member, HttpServletResponse response) {
-			try {
-				PrintWriter out = response.getWriter();
-				//데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
-				member = memberService.forLogin(member.getId(),member.getPasswd()); 
-				//입력된 아이디를 세션에 저장
-				session.setAttribute("member", member);
-				//결과가 0보다 크면 ok출력
-				int result = 0;
-				if (member != null) {
+	@RequestMapping(value = "forLogin.ca", method = RequestMethod.POST)
+	public void forLogin(ModelAndView mv, HttpSession session, Member member, HttpServletResponse response) {
+		try {
+			PrintWriter out = response.getWriter();
+			//데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
+			member = memberService.forLogin(member.getId(),member.getPasswd()); 
+			//입력된 아이디를 세션에 저장
+			session.setAttribute("member", member);
+			//결과가 0보다 크면 ok출력				
+			int result = 0;
+			if (member != null) {
 					result = 1;
-				} 
-				
-				if(result > 0 ) {
-					out.print("ok");
-				} else {
-					out.print("no");
-				}
+			} 	
+			if(result > 0 ) {
+				out.print("ok");
+			} else {
+				out.print("no");
+			}
 				out.flush();
 				out.close();
 				
@@ -176,4 +175,10 @@ public class MemberController {
 	public String onlymovepostscript(Model model) {
 		return "member/m_my_postscript";
 	}
+	
+	@RequestMapping(value = "memberBuylist.ca")
+	public String onlymovebuylist(Model model) {
+		return "member/memberBuylist";
+	}
+
 }

@@ -31,21 +31,68 @@
         <link rel="stylesheet" href="/resources/css/style.css">
         <link rel="stylesheet" href="/resources/css/responsive.css"> -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
-       	<link rel="stylesheet" href="/resources/css/young.css">
-        <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
-
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-
+        <link rel="stylesheet" href="/resources/css/na.css">
+       	<link rel="stylesheet" href="/resources/css/young.css">
+	
+        <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
+		<script src="/resources/js/na.js"></script>
+		
 		<script type="text/javascript">
 		$(function(){
-			$('.dec').click(function(e)){
+
+// 상품 개수 start			
+			var pPrice = parseInt($('.prce-stock').children('h4').text().replace("\\","").replace(",",""), 10);
+			$('.dec').click(function(e){
 				e.preventDefault();
-				
 				var stat = $('.cart-plus-minus-box').val();
 				var num = parseInt(stat, 10);
+				num--;
+				if(num<0) num=0;
+				$('.cart-plus-minus-box').val(num);
+				var totalPrice = pPrice * num;
+				$('.totalPrice').text(totalPrice+'원');
 				
-			}
+			});
+			
+			$('.inc').click(function(e){
+				e.preventDefault();
+				var stat = $('.cart-plus-minus-box').val();
+				var num = parseInt(stat, 10);
+				num++;
+				if(num>3) {
+					alert('3개 이상 구매하실 수 없습니다.');
+					num=3;
+				}
+				
+				$('.cart-plus-minus-box').val(num);
+				var totalPrice = pPrice * num;
+				$('.totalPrice').text(totalPrice+'원');
+			});
+// 상품 개수 end		
+			
+			
+// 전화 걸기 모달 창 start --------------------------------------
+
+			  var callOpen = $("#callOpen");
+			  var callLink = $(".callLink");
+
+			  callLink.click(function(e){
+				e.preventDefault();  
+				callOpen.fadeIn("slow");
+			    return false;
+			  });
+
+			  $(".btn-call-close").click(function(e){
+				  e.preventDefault();  
+				  callOpen.fadeOut("slow");
+			  });	
+			  
+			  
+			  
+// 전화 걸기 모달 창  end --------------------------------------
+			
 		})
 		</script>
         
@@ -55,7 +102,11 @@
       
     </head>
     <body class="other-page">
-        
+
+		 <!-- 현재 페이지 주소 값 currentPage에 저장 -->          
+         <c:set var="currentPage" value="${pageContext.request.requestURL}"/>
+   		 <input type="hidden" value="${currentPage}" class="currentPage"/>
+    
         <section class="page-content-wrapper ptb-100">
 			<!-- Single Product Top Info Start -->
 			<div class="container">
@@ -80,6 +131,8 @@
 					
 			<c:set var="pDetail" value="${requestScope.productDetail}"/>
 			<c:set var="pBiz" value="${requestScope.productDetailBiz}"/>
+			<!-- 댓글 달기 버튼 id 비교할 hidden태그 -->
+			<input type="hidden" value="${pBiz.id}" class="pBizId"/>
 			
 					<div class="col-md-6">
 						<div class="singlepro-left">
@@ -95,7 +148,8 @@
 							
 							<div class="detail-likes-wrap">
 								<!-- 좋아요 누르면 fa fa-heart-o에서 fa-heart로 변경될 것 -->
-								<a href=# class="detail-likes"><i class="fa fa-heart-o">&nbsp;${pDetail.pbLike} Likes </i></a>
+								<input type="hidden" id="pbNum" value="${pDetail.pbNum}" >
+								<a class="detail-likes"><i class="heart fa fa-heart-o"></i>&nbsp;${pDetail.pbLike} Likes </a>
 							</div>
 							
 							<div class="category mt-50">
@@ -103,29 +157,37 @@
 										<div class="tag-list mt-30 text-uppercase">
 											<ul>
 												<c:forEach var="pbTag" items="${requestScope.pbTag}">
-												<li><a href="#">${pbTag}</a></li>
+												<li><a href="cakeSearch.ca?input_search=%23${pbTag}">#${pbTag}</a></li>
 												</c:forEach>
 											</ul>
 										</div>
 									</div>
 						</div>
 					</div>
+					
+			<c:set var="pReviewListSize" value="${requestScope.pReviewListSize}"/>
+			<c:set var="pReviewAverage" value="${requestScope.averageStar}"/>
+			<fmt:formatNumber value="${pReviewListSize}" type="number" var="pReviewNum"/>
+			<fmt:formatNumber value="${pReviewAverage}" type="number" var="pReviewAverNum"/>
+			<c:set var="pReviewStarGrey" value="${5-pReviewAverNum}"/>
+			
 					<div class="col-md-6">
 						<div class="singlepro-right">
 							<div class="snglepro-content">
 								<span>${pDetail.pbMiniTitle }</span>
-								<h3 style="font-size: 2em;"><a href="single-product.html">${pDetail.pName}</a></h3>
+								<h3 style="font-size: 2em;"><a>${pDetail.pName}</a></h3>
 								<div class="rating-box">
+								<c:forEach begin="1" end="${pReviewAverage}">
 									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<span>3 Reviews</span>
+								</c:forEach>
+								<c:forEach var="grey" begin="1" end="${pReviewStarGrey}">
+									<i class="fa fa-star" style="color:#dbdbdb;"></i>
+								</c:forEach>
+									<span>${pReviewNum} Reviews</span>
 								</div>
 								<div class="prce-stock">
 									<h4><fmt:formatNumber value="${pDetail.pPrice}" pattern="\#,###"/></h4>
-									<h6>${pBiz.bizName}</h6>
+									<h6 id="bizName">${pBiz.bizName}</h6>
 								</div>
 								<p>${pDetail.pbMiniContent}</p>
 								<div class="pro-info">
@@ -133,7 +195,7 @@
 									
 										<!-- 당일 구매 가능 상품 여부 if/else  -->
 										<c:choose>
-											<c:when test="${pbYN eq 'Y'}">
+											<c:when test="${pDetail.pbYN eq 'Y'}">
 												<li>* 당일 구매 가능</li>
 											</c:when>
 											<c:otherwise>
@@ -145,39 +207,69 @@
 									</ul>
 								</div>
 								<div class="input-content mb-50">
-									<div class="quantity">
-									<label>상품 개수</label>
-									
-									<!-- 상품 + / - 제이쿼리에서 처리할 것 -->
-										<div class="dec qtybutton">-</div>
-										  <input type="text" value="0" name="qtybutton" class="cart-plus-minus-box">
-										 <div class="inc qtybutton">+</div>
-										 
-										 
-									</div>
 									
 									<div class="detail-input">
-									<label for="fromDate">문구 추가</label> 
-									<input class="detail-text mt-10" placeholder="케이크에 추가하실 문구를 입력해주세요." type="text">
+									<label>문구 추가</label> 
+									<input class="detail-text mt-10" id="productAddText" placeholder="케이크에 추가하실 문구를 입력해주세요." type="text">
 									</div>
+									
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+        <script>
+        $(function() {
+    		//datepicker 한국어로 사용하기 위한 언어설정
+    		$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+    		//시작일.
+    		$('.cake-reserve').datepicker({
+    			dateFormat : "yy-mm-dd", // 날짜의 형식
+    			changeMonth : true, // 월을 이동하기 위한 선택상자 표시여부
+    			minDate : 1, // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+    			maxDate: "+1m +1w" 
+    		});
+    		});
+        </script>
 									
 									<div class="detail-input">
 									<label for="fromDate">예약 날짜</label> 
-									<input class="cake-reserve detail-text mt-10" placeholder="예약 날짜를 선택해 주세요." type="text" id="cake-reserve">
+									<input class="cake-reserve detail-text mt-10" id="productReserve" placeholder="예약 날짜를 선택해 주세요." type="text" id="cake-reserve">
+									</div>
+									
+									<div class="quantity mt-10">
+									<label>상품 개수</label>
+									<!-- 상품 + / - 제이쿼리에서 처리할 것 -->
+										<div class="dec qtybutton">-</div>
+										  <input type="text" value="0" name="qtybutton" class="cart-plus-minus-box pl-20 pr-20">
+										 <div class="inc qtybutton">+</div>
 									</div>
 									
 									<div class="detail-input">
-									<button type="submit" class="detail-btn">구매하기</button>
-									<button type="submit" class="detail-btn">장바구니 담기</button>
+									<label>배송비</label> 
+									<span>
+										<c:choose>
+											<c:when test="${pBiz.bizDeliveryYn eq 'Y'}">
+												<!-- 배송 가능하면 배송비 표시 -->
+												<c:set var="delivery" value="${pBiz.bizDelivery}원"/>
+											</c:when>
+											<c:otherwise>
+												<!-- 배송 불가능하면 배송 불가 표시-->
+												<c:set var="delivery" value="배송 불가능한 상품입니다."/>
+											</c:otherwise>
+										</c:choose>
+									<label class="delivery" style="clear:none; margin-left:20px;">${delivery}</label>
+									</span>
 									</div>
 									
-								</div>
-								<div class="sngle-pro-socl">
-									<ul>
-										<li><a href="#" class="social_facebook"></a></li>
-										<li><a href="#" class="social_googleplus"></a></li>
-										<li><a href="#" class="social_twitter"></a></li>
-									</ul>
+									
+									<div class="detail-input">
+									<label>총 &nbsp;가격</label> 
+									<span><label class="totalPrice" style="clear:none; margin-left:10px;">0원</label></span>
+									</div>
+									
+									<div class="detail-input">
+									<button class="detail-btn" id="addCart">장바구니 담기</button>
+									<button class="detail-btn" id="directCheckout">구매하기</button>
+									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -190,7 +282,7 @@
 
 	<hr class="ml-100 mr-100">
 	
-		<!-- 상품 디테일 시작 -->
+<!-- 상품 디테일 시작 -->
 		<div class="detail-text-box mt-100 mb-100 ml-150 mr-150">
 			<h2 class="detail-title">${pDetail.pName}</h2>
 			<h3 class="detail-intro mtb-40">상품 소개</h3>
@@ -206,8 +298,8 @@
 				</h6>
 
 			<ul class="mtb-40">
-				<li><span class="tit">규격</span> <span class="data">${pDetail.pSize}</span></li>
-				<li><span class="tit">사이즈</span> <span class="data">${pDetail.pCM}</span></li>
+				<li><span class="tit">규격</span> <span class="data">${pDetail.pSize}호</span></li>
+				<li><span class="tit">사이즈</span> <span class="data">(cm)${pDetail.pCM}</span></li>
 				<li><span class="tit">보관방법</span> <span class="data">-18˚C 이하</span></li>
 				<li><span class="tit">유통기한</span> <span class="data">제조일로부터 6개월</span></li>
 				
@@ -235,232 +327,187 @@
 					<input type="hidden" name="spcLng" id="spcLng" value="127.04174">
 					
 					<p class="shop-name mt-30">${pBiz.bizName}</p>
-					<p class="shop-address">${pBiz.mBasicAddr}&nbsp;${pBiz.mDetailAddr};</p>
-					<p class="shop-homepage">
-						<a href="http://lasomme.com/shop/main/html.php?htmid=proc/smart_view1.htm&amp;tplSkin=standard"
-						   target="_blank" alt="새창열기">http://lasomme.com/shop/main/html.php?htmid=proc/smart_view1.htm&amp;tplSkin=standard</a>
-					</p>
+					<p class="shop-address">${pBiz.mBasicAddr}&nbsp;${pBiz.mDetailAddr}</p>
 				</div>
 
 				<div class="row" id="_contact" _spaceid="3425" _spcnm="${pBiz.bizName}">
-					<div>
-						<a href=#> 
+					
+					<div> 
+						<a href=#callOpen class="callLink"> 
 							<span class="btn-inner mr-10"><i class="fa fa-phone mr-10"></i>전화걸기</span>
 						</a>
-						<a href=#> 
+						
+						<!-- 길찾기 누르면 해당 가게가 목적지로 설정됨 -->
+						<a id="roadFind"> 
 							<span class="btn-inner"><i class="fa fa-location-arrow mr-10"></i>길찾기</span>
 						</a>
 					</div>
+						
+						<div class="modalOpen" id="callOpen">
+							<div class="mask">
+							</div>
+						<div class="white_content">
+							  <div>
+							  	<p class="pop_guide_txt mb-30">
+							  	"LikeyCakey를 통해 연락드렸어요~"
+							  	<br>라고 말씀하시면 더 친절하게 
+							  	<br>안내 받으실 수 있습니다! 
+							  	</p>
+							  	<hr>
+							  	<p class="shop-name">${pBiz.bizName}</p>
+							  	<h4 class="mb-20">${pBiz.bizPn}</h4>
+								<hr>	  	
+							  	
+							  	<button type="button" class="btn btn-call-close">닫기</button>
+							  </div>
+						</div>
+						</div>
+					
 				</div>
 			</div>
 
-			<!-- 지도  -->
-			<img id="_detailStaticMap" class="lazy"
-				src="https://ssl.map.naver.com/staticmap/image?version=1.1&amp;crs=EPSG:4326&amp;center=127.04174,37.518986&amp;level=12&amp;baselayer=default&amp;overlayer=ol_vc_an&amp;exception=blank&amp;markers_icon=type,scloud,127.04174,37.518986&amp;scale=1&amp;caller=scloud&amp;format=jpeg&amp;dataversion=142.0&amp;w=761&amp;h=640"
-				width="80%" height="100%">
-			<!-- shop 소개 끝 -->
+<!-- 지도  시작 -->
+			<div id="map" style="width:840px;height:400px; pointer-events:auto;"></div>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36cabc0a509368e0120f98820eb971c0&libraries=services"></script>
+			<script>
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
 
+		// 지도를 생성합니다    
+		var map = new daum.maps.Map(mapContainer, mapOption); 
 
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new daum.maps.services.Geocoder();
 
-		<div class="detail-text-box mt-150">
-			<h3 class="detail-intro mtb-40">네이버 블로그 리뷰</h3>
-			
-		<div class="story_box">
-						<div class="story_list">
-							<!-- [D] .lst_wrap의 가로 사이즈 : lst_stroy 가로 * 개수px-->
-							<div class="lst_wrap">
-							
-								<!-- [D] 썸네일 없을 경우 class="no_thumb" 추가, .lst의 width값 : 브라우저 가로 사이즈 - 20px -->
-								<div class="lst_story ">
-									<a href="http://blog.naver.com/madurh/220876685585" target="_blank" class="inner">
-										<!-- [D] 이미지 inline으로 background 처리 -->
-										
-										<span style="background-image: url(https://scloud.pstatic.net/20170129_215/1485675201358TIWEn_JPEG/KakaoTalk_20161202_193029356.jpg);" class="img_story"></span>
-										
-										<strong class="tit_story">진짜 맛있는 복숭아 케이크</strong>
-										<dl class="editor_story">
-											<dt>출처</dt>
-											<dd>http://blog.naver.com/madurh/220876685585</dd>
-										</dl>
-										<p class="p_story">핫한 복숭아 케이크...먹어보세요! 존맛...</p>
-									</a>
-								</div>
-							
-								<!-- [D] 썸네일 없을 경우 class="no_thumb" 추가, .lst의 width값 : 브라우저 가로 사이즈 - 20px -->
-								<div class="lst_story ">
-									<a href="http://blog.naver.com/2id-t/220878390584" target="_blank" class="inner">
-										<!-- [D] 이미지 inline으로 background 처리 -->
-										
-										<span style="background-image: url(https://scloud.pstatic.net/20170129_80/1485675206167fE7f0_JPEG/20161205_132929.jpg);" class="img_story"></span>
-										
-										<strong class="tit_story">오! 복숭아 케이크 소개</strong>
-										<dl class="editor_story">
-											<dt>출처</dt>
-											<dd>http://blog.naver.com/2id-t/220878390584</dd>
-										</dl>
-										<p class="p_story">안녕하세요. 스폰서 입니다. 이번에 저희가 주문한 복숭아 케이크를...</p>
-									</a>
-								</div>
-							
-								<!-- [D] 썸네일 없을 경우 class="no_thumb" 추가, .lst의 width값 : 브라우저 가로 사이즈 - 20px -->
-								<div class="lst_story ">
-									<a href="http://blog.naver.com/2id-t/220879438622" target="_blank" class="inner">
-										<!-- [D] 이미지 inline으로 background 처리 -->
-										
-										<span style="background-image: url(https://scloud.pstatic.net/20170129_204/1485675211113tc2HQ_JPEG/20161206_132058.jpg);" class="img_story"></span>
-										
-										<strong class="tit_story">복숭아 케이크 중 최고</strong>
-										<dl class="editor_story">
-											<dt>출처</dt>
-											<dd>http://blog.naver.com/2id-t/220879438622</dd>
-										</dl>
-										<p class="p_story">이거 진짜 너무 맛있어요 꼭 먹어보세요..!</p>
-									</a>
-								</div>
-							
-								<!-- [D] 썸네일 없을 경우 class="no_thumb" 추가, .lst의 width값 : 브라우저 가로 사이즈 - 20px -->
-								<div class="lst_story ">
-									<a href="http://blog.naver.com/madurh/220907943695" target="_blank" class="inner">
-										<!-- [D] 이미지 inline으로 background 처리 -->
-										
-										<span style="background-image: url(https://scloud.pstatic.net/20170129_24/1485675215730bG9dp_JPEG/KakaoTalk_Moim_5VRBpSLAramZgqQ4ThJiftqJx8WciR.jpg);" class="img_story"></span>
-										
-										<strong class="tit_story">진심 너무너무 맛있는 복숭아 케이크</strong>
-										<dl class="editor_story">
-											<dt>출처</dt>
-											<dd>http://blog.naver.com/madurh/220907943695</dd>
-										</dl>
-										<p class="p_story">진짜 달고 복숭아 향이 짙게 납니다 강추합니다!</p>
-									</a>
-								</div>
-							
-								<!-- [D] 썸네일 없을 경우 class="no_thumb" 추가, .lst의 width값 : 브라우저 가로 사이즈 - 20px -->
-								<div class="lst_story ">
-									<a href="https://blog.naver.com/2id-t/221205699245" target="_blank" class="inner">
-										<!-- [D] 이미지 inline으로 background 처리 -->
-										
-										<span style="background-image: url(https://scloud.pstatic.net/20180210_122/1518246655801CTuPx_JPEG/KakaoTalk_20180210_153121506.jpg);" class="img_story"></span>
-										
-										<strong class="tit_story">왜 안먹으세요 이케이크</strong>
-										<dl class="editor_story">
-											<dt>출처</dt>
-											<dd>https://blog.naver.com/2id-t/221205699245</dd>
-										</dl>
-										<p class="p_story">존맛이라구!!....</p>
-									</a>
-								</div>
-							
-							</div>
-							<div class="swiper_pagination"></div>
-						</div>
-					</div>
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch($('.shop-address').text(), function(result, status) {
+
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === daum.maps.services.Status.OK) {
+
+		        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 				
-				
-				
-				
-		</div>
-		<!-- 상품 디테일 끝 -->
+		        $('#roadFind').attr('href', 'http://map.daum.net/link/to/'+ $('.shop-address').text() + ',' + result[0].y + ',' + result[0].x)
+		        
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new daum.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new daum.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+ $('.shop-name.mt-30').text()+'</div>'
+		        });
+		        infowindow.open(map, marker);
+
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		});    
+			</script>
+<!-- shop 소개 끝 -->
+		<div class="detail-text-box mt-150"> </div>
 
 
-		<!-- 리뷰 시작 -->
-		
-		<div class="detail-text-box mt-100 mb-100">
-		<h2 class="detail-intro">
-				이용 후기 <strong class="mint">4개</strong>
-				<i class="fa fa-circle ml-10 mr-10" style="font-size: 0.2em; color:#999999; vertical-align: middle"></i> 
-				평균 평점 <strong class="mint">5.0</strong>
-		</h2>
+<!-- 리뷰 시작 -->
+			<div class="detail-text-box width-80 mt-100 mb-100">
+				<h2 class="detail-intro">
+					이용 후기 <strong class="review-cnt mint">4개</strong> 
+					<i class="fa fa-circle ml-10 mr-10" style="font-size: 0.2em; color: #999999; 
+					   vertical-align: middle"></i>
+					평균 평점 <strong class="review-average mint">0점</strong>
+				</h2>
 
-		<div>
-			<ul class="review_list" id="review_list">
-				<li class="rlist ">
-					<div class="rbox_mine">
-						<span class="pf_img"
-							style="background-image: url(/resources/img/client/1.png)"></span>
-						<strong class="guest_name">ohhapp***</strong>
-						<p class="p_review">완전 최고!! 정말 맛있습니다!!! 배송도 원하는 시간에 오고 짱이에요 추천합니다~!</p>
-
-							<div class="space_list swiper_list photo_review">
-								<div class="flex_wrap column3 fluid">
-									<article class="box box_space">
-										<div class="inner">
-											<a href="/resources/img/single-product/1.jpg"
-												class="_review_img_link" target="_blank"
-												data-img-path="/resources/img/single-product/1.jpg">
-												<div class="img_box">
-													<span class="img"
-														style="background-image: url(/resources/img/single-product/1.jpg)">
-													</span> <span class="border"></span>
-												</div>
-											</a>
-										</div>
-									</article>
-								</div>
-							</div>
-							
-							
-							<div class="rbox_info_base">
-							<span class="time_info">2017.01.02. 12:21:25</span>
-						</div>
-						<span class="rate_area"> <span class="blind">평점</span> 
-						<span class="rate active"><i class="fa fa-star"></i></span>
-							<span class="rate active"><i class="fa fa-star"></i></span>
-							<span class="rate active"><i class="fa fa-star"></i></span>
-							<span class="rate active"><i class="fa fa-star"></i></span>
-							<span class="rate active"><i class="fa fa-star"></i></span>
-						</span>
-					</div>
-					<div class="rbox_reply">
-						<p class="p_tit_reply">
-							<em>웰리스하우스</em>님의 댓글
-						</p>
-						<p class="p_review">후기 감사드립니다 ^^ 즐거운 연말 모임이 되셨다니 정말 기쁩니다 !!
-							2017년 항상 좋은 일 가득하시고, 다음에 또 찾아주세요 :) 새해 복 많이 받으세요~!!</p>
-						<div class="rbox_info_base">
-							<p class="time_info">2017.01.02. 16:34:23</p>
-						</div>
-					</div>
-				</li>
-			</ul>
-				<div class="paging text-center">
-				
-					<a href="javascript:void(0);" class="btn_prev_list_end" data-page="-4"> 
-					<i class="fa fa-angle-double-left"></i></a>
-					<a href="javascript:void(0);" class="btn_prev_list" data-page="0">
-					<i class="fa fa-angle-left mr-10"></i></a>
-					
-					<a href="javascript:void(0);" class="num active" data-page="1">1</a>
-					<a href="javascript:void(0);" class="num" data-page="2">2</a>
-					<a href="javascript:void(0);" class="num" data-page="3">3</a>
-					<a href="javascript:void(0);" class="num" data-page="4">4</a>
-					<a href="javascript:void(0);" class="num" data-page="5">5</a>
-					
-					<a href="javascript:void(0);" class="btn_next_list active" data-page="2">
-					<i class="fa fa-angle-double-right ml-10"></i></a>
-					<a href="javascript:void(0);" class="btn_next_list_end active" data-page="6">
-					<i class="fa fa-angle-right"></i></a>
+				<div>
+					<ul class="review_list" id="review_list">
+						<li class="rlist ">
+							<div class="tab-content"></div>
+						</li>
+					</ul>
+					<div class="paging text-center"></div>
 				</div>
-
 			</div>
-	</div>
 
-		<!-- 리뷰 끝 -->
+			<div class="modalOpen" id="replyOpen">
+				<div class="mask"></div>
+				<div class="white_content">
+					<div>
+						<h4 style="text-align: left;" class="modal-title">댓글 수정하기</h4>
+						<hr style="margin: 0">
+						<input type="hidden" class='reply-prNum'>
+						<div class="modal-caption">
+							<label class="ml-10"> 댓글 </label>
+							<div class="reply-length-wrap">
+								<em class="reply-length">0</em>자/<em>200</em>자
+							</div>
+						</div>
+						<textarea name="" class="replyContent"
+							placeholder="등록할 댓글을 입력해주세요." maxlength="200">
+												</textarea>
+						<div class="reply-btn-relative">
+							<div class="reply-btn-wrap">
+								<button type="button" class="btn btn-reply-close"
+									style="background-color: #9a9a9a">취소</button>
+								<button type="button" class="btn btn-reply-submit">수정</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 리뷰 끝 -->
 		
-		<!-- 문의 시작 -->
-		<div class="detail-text-box mb-70" id="qna" style="">
+<!-- 문의 시작 -->
+<!-- 		<div class="detail-text-box width-80 mb-70" id="qna" style="">
 			<h2 class="detail-intro">
-				Q&amp;A&nbsp; <strong><em>0</em>개</strong>  		
-				<!-- 모달창 처리하기  -->
+				Q&amp;A&nbsp; <strong><em class="qna-cnt">0</em>개</strong>  		
+				모달창 처리하기 
 				<a href="#" class="btn_qna_write"><i class="fa fa-pencil mr-10"></i> <span>질문 작성하기</span></a>
 			</h2>
-			<div class="ptb-150">
-				<p class="qna_result">등록된 질문이 아직 없습니다.</p>
-			</div>
-		</div>
-		<!-- 문의 끝 -->
+
+				<div>
+					<ul class="review_list" id="review_list">
+						<li class="rlist ">
+							<div class="tab-content">
+								<div class='rbox_mine'>
+									<input type='hidden' value='"+ json[i].prNum +"'
+										class='reviewNum'> <span class='pf_img'
+										style='background-image: url(/resources/img/client/1.png)'></span>
+									<strong class='guest_name'></strong>
+									<p class='p_review'></p>
+									<div class='rbox_info_base'>
+										<a class='review-reply-insert-btn'>&nbsp;댓글 달기 &nbsp;<i
+											class='fa fa-comment mr-10'></i></a> <span class='time_info'>2018.03.31</span>
+									</div>
+								</div>
+								<div class='rbox_reply'>
+									<input type='hidden' value='"+ json[i].prNum +"' class='prNum'>
+									<p class='p_tit_reply'>
+										<em>뚜레주르</em>님의 댓글
+									</p>
+									<p class='p_review'>굳굳</p>
+									<div class='rbox_info_base'>
+										<p class='time_info'>2018/04/13</p>
+										<span class='reply-btn'> <a href='#replyOpen'
+											class='replyUpdate mr-10'>수정</a><a class='replyDelete'>삭제</a>
+										</span>
+									</div>
+								</div>
+								<p class="qna_result">등록된 질문이 아직 없습니다.</p>
+							</div>
+						</li>
+					</ul>
+					<div class="paging text-center"></div>
+				</div>
+			</div> -->
+<!-- 문의 끝 -->
 		
 		
-		<!-- 호스트 프로필 시작 -->
+<!-- 호스트 프로필 시작 -->
 		<div class="host_profile mb-100">
 			<div class="inner">
 
@@ -478,9 +525,9 @@
 
 			</div>
 		</div>
-		<!-- 호스트 프로필 끝 -->
+<!-- 호스트 프로필 끝 -->
 		
-		<!-- 호스트의 다른 케이크  시작 -->
+<!-- 호스트의 다른 케이크  시작 -->
 		<div class="detail-text-box mb-100" id="qna" style="">
 			<h2 class="detail-intro"> 뚜레쥬르의 다른 케이크 </h2>
 		</div>
@@ -518,13 +565,13 @@
 			</div>
 		</div>
 		</div>
-		<!-- 호스트의 다른 케이크  시작 -->
+<!-- 호스트의 다른 케이크  시작 -->
 		</div>
 	</section>
 		
-        <!-- 푸터 -->
+<!-- 푸터 -->
         <jsp:include page="../default/footer.jsp" flush="false"/>
-        <!-- 푸터 끝 -->
+<!-- 푸터 끝 -->
         
         
 		<!-- all js here -->
@@ -543,35 +590,7 @@
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/main.js"></script>
         <script src="/resources/js/Form.js"></script> -->
-       
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
         
-        <script>
-        $(function() {
-    		//datepicker 한국어로 사용하기 위한 언어설정
-    		$.datepicker.setDefaults($.datepicker.regional['ko']);
-
-    		// 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
-    		// 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
-
-    		//시작일.
-    		$('#cake-reserve').datepicker({
-    			dateFormat : "yy-mm-dd", // 날짜의 형식
-    			changeMonth : true, // 월을 이동하기 위한 선택상자 표시여부
-    			//minDate : 1, // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
-    			//onClose : function(selectedDate) {
-    				// 시작일(fromDate) datepicker가 닫힐때
-    				// 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-    				//$("#toDate").datepicker("option", "minDate", selectedDate);
-    			//}
-    		});
-
-    		$("#ake-reserve").on("change", function() {
-    			start = $(this).val();
-    			start_array = start.split("-")[2];
-    		});
-
-    		});
-        </script>
+      
     </body>
 </html>

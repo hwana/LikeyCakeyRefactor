@@ -24,4 +24,15 @@
 	<select id="selectBizMember" parameterType="bizMember" resultMap="resultMember">
 		SELECT count(*) FROM MEMBER_BIZ WHERE M_ID=#{id}
 	</select>
+	
+	<select id="selectBiz" parameterType="bizMember" resultType="String">
+		SELECT MASTER_NAME FROM MEMBER_BIZ WHERE M_ID=#{id}
+	</select>
+	
+	<!-- 사업자 회원정보 수정 -->
+	<update id="updateMypage" parameterType="bizMember" flushCache="true" statementType="PREPARED">
+		UPDATE MEMBER_BIZ
+		SET MASTER_NAME = #{masterName}
+		WHERE M_ID = #{id}
+	</update>
 </mapper>

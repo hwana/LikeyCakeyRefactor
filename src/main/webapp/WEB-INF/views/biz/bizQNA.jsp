@@ -26,8 +26,7 @@
 												class="zmdi zmdi-chevron-right"></i>사업가 정보 수정</a></li>
 										<li style="border-bottom: 0px;"><a href="#"><i
 												class="zmdi zmdi-chevron-right"></i>주문내역</a></li>
-										<li style="border-bottom: 0px;"><a href="bizQNA.ca"><i
-												class="zmdi zmdi-chevron-right"></i>문의글 모음</a></li>
+										
 
 									</ul>
 								</div>

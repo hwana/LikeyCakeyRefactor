@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.dal.likeycakey.biz.model.vo.BizMember;
 import com.dal.likeycakey.detailView.model.vo.ProductBoard;
+import com.dal.likeycakey.detailView.model.vo.ProductOrder;
+import com.dal.likeycakey.detailView.model.vo.ProductReview;
 import com.dal.likeycakey.member.model.vo.BizWithMember;
 import com.dal.likeycakey.member.model.vo.MemberLike;
 
@@ -68,7 +70,7 @@ public class ProductBoardDaoImpl implements ProductBoardDao {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("pbNum", pbNum);
 		map.put("id", id);
-		return sqlSession.insert("Member.insertHeartMember", map);
+		return sqlSession.insert("MemberLike.insertHeartMember", map);
 	}
 
 	@Override
@@ -78,7 +80,7 @@ public class ProductBoardDaoImpl implements ProductBoardDao {
 
 	@Override
 	public ArrayList<MemberLike> selectMemberLikeList(String id) {
-		return new ArrayList<MemberLike>(sqlSession.selectList("Member.selectMemberLikeList", id));
+		return new ArrayList<MemberLike>(sqlSession.selectList("MemberLike.selectMemberLikeList", id));
 	}
 
 	@Override
@@ -91,7 +93,7 @@ public class ProductBoardDaoImpl implements ProductBoardDao {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("pbNum", pbNum);
 		map.put("id", id);
-		return sqlSession.delete("Member.deleteHeartMember", map);
+		return sqlSession.delete("MemberLike.deleteHeartMember", map);
 	}
 
 	@Override
@@ -102,6 +104,31 @@ public class ProductBoardDaoImpl implements ProductBoardDao {
 	@Override
 	public BizWithMember selectProductDetailBiz(String id) {
 		return sqlSession.selectOne("BizWithMember.selectProductDetailBiz", id);
+	}
+
+	@Override
+	public ArrayList<ProductReview> selectReviewList(String pbNum) {
+		return new ArrayList<ProductReview>(sqlSession.selectList("productReview.selectReviewList", Integer.parseInt(pbNum)));
+	}
+
+	@Override
+	public int insertProductAddCart(ProductOrder productOrder) {
+		return sqlSession.insert("ProductOrder.insertProductAddCart", productOrder);
+	}
+
+	@Override
+	public int updatePReviewReply(ProductReview productReview) {
+		return sqlSession.update("productReview.updatePReviewReply", productReview);
+	}
+
+	@Override
+	public int delectPReviewReply(ProductReview productReview) {
+		return sqlSession.delete("productReview.delectPReviewReply", productReview);
+	}
+
+	@Override
+	public int insertPReviewReply(ProductReview productReview) {
+		return sqlSession.insert("productReview.insertPReviewReply", productReview);
 	}
 
 }

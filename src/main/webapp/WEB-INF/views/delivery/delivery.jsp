@@ -217,7 +217,7 @@ th{
 										<label><span class="required"></span></label>
 
 										<div class="pink_button">
-											<input type="button" value="닫기">
+											<input type="button" value="닫기" onclick='self.close()'>
 										</div>
 									</div>
 								</div>

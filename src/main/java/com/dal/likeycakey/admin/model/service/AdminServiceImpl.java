@@ -22,8 +22,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public ArrayList<Member> selectList(int currentPage, int limit) throws Exception{
-		return adminDao.selectList(currentPage, limit);
+	public ArrayList<Member> selectList() throws Exception{
+		return adminDao.selectList();
 	}
 	@Override
 	public Member selectOne(String id) throws Exception{
@@ -44,6 +44,12 @@ public class AdminServiceImpl implements AdminService {
 	public int deleteTotalMember() throws Exception{
 		// TODO Auto-generated method stub
 		return adminDao.deleteTotalMember();
+	}
+
+	@Override
+	public ArrayList<Member> selectBizList() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.selectBizList();
 	}
 	
 	

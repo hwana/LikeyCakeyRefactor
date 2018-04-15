@@ -50,12 +50,14 @@ input[type="file"] {
 			var $this = $(this);
 		    $("input[id='inputImage']").val($this.val().split('\\').pop());
 		});
-		var cnt = 1;
+		
+		var value = 1;
 		$("#plus").click(function () {
 			var length = $(".inputtag").length;
 					if(length < 5){
 						$('.tag').each(function(){
-							$(this).append('<input class="form-control inputtag" name = "inputtag'+(++cnt)+'" type="text" placeholder="태그입력"><br>');	
+							$(this).append('<div class = "form-group"><div class="col-sm-6 col-sm-offset-3"><input class="form-control inputtag" name = "inputtag'+(value)+'" type="text" placeholder="태그입력"><br></div></div>');
+							value++;
 						});
 					}else{
 						alert("태그는 5개까지 입력 가능합니다.");
@@ -88,8 +90,7 @@ input[type="file"] {
 												class="zmdi zmdi-chevron-right"></i>사업가 정보 수정</a></li>
 										<li style="border-bottom: 0px;"><a href="#"><i
 												class="zmdi zmdi-chevron-right"></i>주문내역</a></li>
-										<li style="border-bottom: 0px;"><a href="bizQNA.ca"><i
-												class="zmdi zmdi-chevron-right"></i>문의글 모음</a></li>
+									
 
 									</ul>
 								</div>
@@ -174,17 +175,17 @@ input[type="file"] {
 										placeholder="주의사항을 입력해 주세요." rows = 6 style = "resize : none"></textarea>
 								</div>
 							</div>
-							
+							<div class = "form-group tag">
 							<div class="form-group">
 								<label class="col-sm-3 control-label" for="inputCakeInfo">태그</label>
-								<div class="col-sm-6 tag">
+								<div class="col-sm-6">
 									<input class="form-control inputtag"  name="inputtag1" type="text" placeholder="태그입력">
 								</div>
 								<div class = "col-sm-1">
 								<button class="btn" id = "plus" type="button" style = "border-radius : 50%; margin-top : 20px; margin-left : 45%;" >+</button>
 								</div>
 							</div>
-							
+							</div>
 							
 							
 							<div class="form-group">

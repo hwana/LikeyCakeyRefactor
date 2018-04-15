@@ -35,8 +35,9 @@
        	<link rel="stylesheet" href="/resources/css/young.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
     
-    
     <script type="text/javascript" src="/resources/js/jquery-3.2.1.min.js"></script>
+    <script src="/resources/js/na.js"></script>
+    
     <script type="text/javascript">
     $(function() {
     	
@@ -72,76 +73,7 @@
     		}
 	  	});
     	
-    	/* 좋아요 클릭했을 때 */
-    	$('.heart').click(function(){
-    		var id = 'user1';
-    		console.log("게시글 번호는" + $(this).parent().parent().parent().children('#pbNum').val());
-    		var pbNum = $(this).parent().parent().parent().children('#pbNum').val();
-    		<%-- <%=(String)session.getAttribute("id")%> --%>
-    		/* 로그인 상태가 아닐 경우 */
-    		if(!id){
-    			alert('로그인이 필요한 서비스입니다.');
-    		/* 로그인 상태일 경우 - 빈하트   일시 하트 채우고 인서트, 업데이트 +1
-    				      	    꽉찬하트 일시 하트 비우고 딜리트, 업데이트-1  */
-    		}else{
-    			/* 빈하트일 경우  */
-    			if($(this).attr('class')=='heart fa fa-heart-o'){
-    				/* 좋아요 성공했을 경우 하트 채우기 */
-    	    		$.ajax({
-    	    			url : "addHeart.ca",
-    	        		type : "post",
-    	        		dataType : "json",
-    	        		data : {
-    	        			'pbNum' : pbNum,
-    	        			'id'	: id
-    	        		},
-    	        		success : function(result){
-    	        			console.log('좋아요 누른 값 보내기 성공');
-    	        			
-    	        			var jsonStr = JSON.stringify(result);
-		        			var json = JSON.parse(jsonStr);
-		        			
-		        			if(json.result=="success"){
-		        				console.log('좋아요 인서트 성공');
-		        				$('input[value*='+json.pbNum+']').parent().find('.heart').attr('class', 'heart fa fa-heart');
-		        			}
-    	        		},
-    	        		error : function(request,status,error) {
-    	        			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-    	        		}
-    	    			
-    	    		});
-    				
-    				/* 꽉찬 하트일 경우 */
-    			} else {
-    				/* MEMBER_LIKE 삭제하고 PRODUCT_BOARD P_B_LIKE UPDATE 하기 */
-    				$.ajax({
-    	    			url : "subtractHeart.ca",
-    	        		type : "post",
-    	        		dataType : "json",
-    	        		data : {
-    	        			'pbNum' : pbNum,
-    	        			'id'	: id
-    	        		},
-    	        		success : function(result){
-    	        			console.log('좋아요 취소 누른 값 보내기 성공');
-    	        			
-    	        			var jsonStr = JSON.stringify(result);
-		        			var json = JSON.parse(jsonStr);
-		        			
-		        			if(json.result=="success"){
-		        				console.log('좋아요 취소 성공');
-		        				$('input[value*='+json.pbNum+']').parent().find('.heart').attr('class', 'heart fa fa-heart-o');
-		        			}
-    	        		},
-    	        		error : function(request,status,error) {
-    	        			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-    	        		}
-    	    			
-    	    		});
-    			}
-    		}
-    	});
+    
     });
     </script>
     
@@ -150,9 +82,15 @@
     <body>
     
     <!-- session에 아이디 값이 있을 경우 변수 선언하기-->
-    <%-- <c:if test="${!empty sessionScope.userId}"> --%>
-   		 <c:set var="id" value="user1"/>
-   <%--  </c:if> --%>
+    <c:if test="${!empty sessionScope.member}">
+    	 <c:set var="member" value="${sessionScope.member}" />
+   		 <c:set var="id" value="${member.id}"/>
+   		 <input type="hidden" value="${id}" class="memberId"/>
+    </c:if>
+    
+	<!--현재 페이지 주소 값 currentPage 변수에 저장 -->    
+    <c:set var="currentPage" value="${pageContext.request.requestURL}"/>
+    <input type="hidden" value="${currentPage}" class="currentPage"/>
     
     	<!-- Header Area Start -->
 		<header>
@@ -233,7 +171,7 @@
 									
 									
 									<li><a href="notice.ca">NOTICE</a></li>
-									<li><a href="contact.html">Q &amp; A</a></li>
+									<li><a href="homeqna.ca">Q &amp; A</a></li>
 								</ul>
 							</nav>
 							<!-- Product Cart -->
@@ -467,7 +405,7 @@
 						<div class="col-md-4 col-sm-6">
 							<div class="single-product style-two mb-50">
 								<div class="single-img">
-									<a href="#"><img src="/resources/img/product/${newArrival.pImg}.jpg" alt="" /></a> 
+									<a href="detail.ca?pbNum=${newArrival.pbNum}"><img src="/resources/img/product/${newArrival.pImg}.jpg" alt="" /></a> 
 							 
 							 <!-- 당일구매여부에 따라 당일 마크 부착  -->
 							 <c:if test="${newArrival.pbYN eq 'Y'}">
@@ -477,7 +415,8 @@
 									<div class="hover-content text-center" id="pbNumWrap">
 										<input type="hidden" id="pbNum" value="${newArrival.pbNum}" >
 										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
+											<li></li>
+											<li></li>
 											<c:choose>
 												<%-- memberLikeList가 비어있을 때 --%>
 												<c:when test="${empty requestScope.memberLikeList}">
@@ -547,7 +486,7 @@
 						<div class="col-md-4 col-sm-6">
 							<div class="single-product style-two mb-50">
 								<div class="single-img">
-									<a href="#"><img src="/resources/img/product/${bestSellerList.pImg}.jpg" alt="" /></a>
+									<a href="detail.ca?pbNum=${bestSellerList.pbNum}"><img src="/resources/img/product/${bestSellerList.pImg}.jpg" alt="" /></a>
 							
 							<!-- 당일구매여부에 따라 당일 마크 부착  -->
 							 <c:if test="${bestSellerList.pbYN eq 'Y'}">
@@ -556,8 +495,7 @@
 									<div class="hover-content text-center" id="pbNumWrap">
 										<input type="hidden" id="pbNum" value="${bestSellerList.pbNum}" >
 										<ul>
-											<li><a href="#" class="icon_cart_alt "></a></li>
-											
+											<li></li>
 											<c:choose>
 												<%-- memberLikeList가 비어있을 때 --%>
 												<c:when test="${empty requestScope.memberLikeList}">
@@ -592,7 +530,7 @@
 								</div>
 								<div class="young-product-details mt-20">
 									<h4>
-										<a href="#">${bestSellerList.pName}</a>
+										<a href="detail.ca?pbNum=${bestSellerList.pbNum}">${bestSellerList.pName}</a>
 									</h4>
 									<div class="young-product-details-tag">
 										<i class="fa fa-map-marker"></i> 
@@ -627,7 +565,7 @@
 						<div class="col-md-4 padding_14px">
 							<div class="single-product style-two mb-50">
 								<div class="single-img">
-									<a href="#"><img src="/resources/img/product/${bestLikeyList.pImg}.jpg" alt="" /></a>
+									<a href="detail.ca?pbNum=${bestLikeyList.pbNum}"><img src="/resources/img/product/${bestLikeyList.pImg}.jpg" alt="" /></a>
 									
 									<!-- 당일구매여부에 따라 당일 마크 부착  -->
 									 <c:if test="${bestLikeyList.pbYN eq 'Y'}">
@@ -670,7 +608,7 @@
 								</div>
 								<div class="young-product-details mt-20">
 									<h4>
-										<a href="#">${bestLikeyList.pName}</a>
+										<a href="detail.ca?pbNum=${bestLikeyList.pbNum}">${bestLikeyList.pName}</a>
 									</h4>
 									<div class="young-product-details-tag">
 										<i class="fa fa-map-marker"></i> 
@@ -759,13 +697,13 @@
 					<div class="instragam-single">
 						<a href="#"><img src="/resources/img/instragram/2.jpg" alt="" /></a>
 						<h3 class="tag-text">
-							<a>#고소한</a>
+							<a>#상큼한</a>
 						</h3>
 						<div class="instragam-content text-center text-white">
 							<a class="popup-instragram"
 								href="/resources/img/instragram/1.jpg"></a>
 							<h3 class="tag-text">
-								<a>#고소한</a>
+								<a>#상큼한</a>
 							</h3>
 						</div>
 					</div>
@@ -776,13 +714,13 @@
 					<div class="instragam-single">
 						<a href="#"><img src="/resources/img/instragram/3.jpg" alt="" /></a>
 						<h3 class="tag-text">
-							<a>#고소한</a>
+							<a>#생크림</a>
 						</h3>
 						<div class="instragam-content text-center text-white">
 							<a class="popup-instragram"
 								href="/resources/img/instragram/1.jpg"></a>
 							<h3 class="tag-text">
-								<a>#고소한</a>
+								<a>##생크림</a>
 							</h3>
 						</div>
 					</div>
@@ -793,13 +731,13 @@
 					<div class="instragam-single">
 						<a href="#"><img src="/resources/img/instragram/4.jpg" alt="" /></a>
 						<h3 class="tag-text">
-							<a>#고소한</a>
+							<a>#무스</a>
 						</h3>
 						<div class="instragam-content text-center text-white">
 							<a class="popup-instragram"
 								href="/resources/img/instragram/1.jpg"></a>
 							<h3 class="tag-text">
-								<a>#고소한</a>
+								<a>#무스</a>
 							</h3>
 						</div>
 					</div>

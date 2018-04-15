@@ -15,6 +15,9 @@
 		<result property="prBlack" column="P_R_BLACK"/>
 		<result property="prFile" column="P_R_FILE"/>
 		<result property="prStar" column="P_R_STAR"/>
+		<result property="prcNum" column="P_R_C_NUM"/>
+		<result property="prcContent" column="P_R_C_CONTENT"/>
+		<result property="prcDate" column="P_R_C_DATE"/>
 	</resultMap>
 	
 		
@@ -23,5 +26,25 @@
 		FROM PRODUCT_BOARD A, PRODUCT_REVIEW B WHERE A.P_B_NUM = B.P_B_NUM AND A.M_ID = #{inputvendor} 
 	</select>
 	
+	<select id="selectReviewList" parameterType="_int" resultMap="resultProductReview">
+		SELECT *
+		FROM PRODUCT_REVIEW R , P_REVIEW_COM C
+        WHERE  R.P_R_NUM = C.P_R_NUM(+)
+        AND R.P_B_NUM=#{pbNum}
+        ORDER BY R.P_R_NUM DESC
+	</select>
+	
+	<update id="updatePReviewReply" parameterType="ProductReview">
+		UPDATE P_REVIEW_COM SET P_R_C_CONTENT = #{prcContent} WHERE P_R_NUM = #{prNum} AND P_B_NUM = #{pbNum}
+	</update>
+	
+	<delete id="delectPReviewReply" parameterType="ProductReview">
+		DELETE P_REVIEW_COM WHERE P_R_NUM=#{prNum} AND P_B_NUM=#{pbNum}
+	</delete>
+	
+	<insert id="insertPReviewReply" parameterType="ProductReview">
+		INSERT INTO P_REVIEW_COM VALUES(SEQ_P_R_C_NUM.NEXTVAL, #{prNum}, #{prcContent}, SYSDATE, #{pbNum})
+	</insert>
+
 	
 </mapper>

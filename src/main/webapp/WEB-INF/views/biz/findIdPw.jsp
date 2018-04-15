@@ -36,6 +36,28 @@
 		        }
 		    });
 		}); // 아이디 찾기 끝
+		
+		
+		$("#forgot-find-pw").click(function(){
+			var id = $('#id').val();
+		 	var name = $('#name').val();
+
+		 	var postData = {'email' : email , 'name' : name};
+
+			$.ajax({
+		        url:'findingId.ca',
+		        type:'POST',
+		        data: postData,
+		        dataType : "json",
+
+		        success:function(data){
+		       	 	$("#found_id").append("<h1>"+"회원님의 정보로 등록된 이메일은 : "+ data +" 입니다.</h1>")
+		        },
+		        error: function (XMLHttpRequest, textStatus, errorThrown){
+		        	alert('정보를 다시 입력해주시길 바랍니다.' );
+		        }
+		    });
+		}); // 아이디 찾기 끝
 	});//ready
 </script>
 
@@ -65,10 +87,10 @@
 								class="form-horizontal" method="post" role="form"
 								style="display: block;">
 								<div class="form-group">
-									<label class="col-xs-3 text-right" id="id">이메일</label>
+									<label class="col-xs-3 text-right" id="email" for="email">이메일</label>
 									<div class="col-xs-8">
-										<input type="text" name="email" tabindex="1"
-											class="form-control" placeholder="가입 이메일을 입력하세요." value="">
+										<input type="text" name="email" tabindex="1" id="email"
+											class="form-control" placeholder="가입 이메일을 입력하세요.">
 									</div>
 
 									<label class="col-xs-3 text-right">이름</label>
@@ -112,7 +134,8 @@
 									<div class="col-xs-8 col-xs-offset-2">
 
 										<input type="button" name="login-submit" tabindex="4"
-											class="form-control btn btn-login login-submit" value="비밀번호 찾기">
+											class="form-control btn btn-login login-submit" value="비밀번호 찾기"
+											id="forgot-find-pw">
 									</div>
 								</div>
 							</form>

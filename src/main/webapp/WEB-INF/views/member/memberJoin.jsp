@@ -101,19 +101,58 @@ html>body>section>div>div>div>form span>.btn-in {
     
 	// 비밀번호 확인
 	function checkPwd(){
-		  var pw1 = $("inputPassword").val();
-		  var pw2 = $("inputPasswordCheck").val();
+		  var pw1 = $("#inputPassword").val();
+		  var pw2 = $("#inputPasswordCheck").val();
+		  var pwcheck = $("#pwcheck").val();
+		  var pwP = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; // 비밀번호
 		  
 		  if(pw1!=null && pw2!=null){
-		  	if(pw1 != pw2){
-		   		document.getElementById('pwcheck_change').style.color = "red";
-		   		document.getElementById('pwcheck_change').innerHTML = "동일한 암호를 입력하세요."; 
-		  	} else {
-		   		document.getElementById('pwcheck_change').style.color = "blue";
-		   		document.getElementById('pwcheck_change').innerHTML = "암호가 동일합니다."; 
-		  	}
+			  if(!pwP.test($("#inputPassword").val())) {
+					alert("비밀번호 형식은 영어, 숫자포함 6~20 자리 입니다.");
+					$("#inputPassword").val("");
+					$("#inputPassword").focus();
+					return false;
+			  } else {
+				  if(pw1 != pw2){
+				   		document.getElementById('pwcheck_change').style.color = "red";
+				   		document.getElementById('pwcheck_change').innerHTML = "동일한 암호를 입력하세요.";
+				   		pwcheck = false;
+				   		return pwcheck;
+				  	} else {
+				   		document.getElementById('pwcheck_change').style.color = "blue";
+				   		document.getElementById('pwcheck_change').innerHTML = "암호가 동일합니다.";
+				   		pwcheck = true;
+				   		return true;
+				  	}
+			  }
 		 }
 	}
+	
+	// 아이디 중복확인 클릭 시 
+	$("#check_id").click(function() {
+		$.ajax({
+			url : "mdupid.ca",
+			data : {
+				id : $("#inputId").val()
+			},
+			dataType : "text",
+			type : "post",
+			success : function(value) {
+				if (value == "ok") {
+					$('#checkMsg').html('<p style="color:blue">사용가능한 아이디입니다.</p>');							
+					$('input[name=name]').focus();
+				} else {
+					$('#checkMsg').html('<p style="color:red">중복된 아이디입니다.</p>');
+					alert("이미 존재하는 아이디입니다. 아이디를 다시 설정하세요");
+					$('#inputId').select();
+				}
+			},
+			error : function(value) {
+				alert("잘못 입력하셨습니다." + value);
+			}
+		});
+		return false;
+	}); // click
 </script>
 
 
@@ -146,8 +185,10 @@ html>body>section>div>div>div>form span>.btn-in {
 								<div class="input-group">
 									<input type="text" class="form-control" id="inputId" name="id"
 										placeholder="아이디" /> <span class="input-group-btn">
-										<input class="btn btn-success btn-in" style="margin: 8px;"
+										<input class="btn btn-success btn-in" style="border:0; height:50px;"
 											id="check_id" type="button" value="중복확인">
+										<!-- 아이디를 중복확인 하였는지에 대한 상태 확인 -->
+										<input type="hidden" id="idcheck" value="false">
 									</span>
 								</div>
 								<div id="checkMsg"></div>
@@ -173,6 +214,8 @@ html>body>section>div>div>div>form span>.btn-in {
 								<p class="help-block" id="pwcheck_change">비밀번호를 한번 더 입력해주세요.</p>
 							</div>
 						</div>
+						
+						<input type="hidden" id="pwcheck" value="false">
 
 
 						<div class="form-group">
@@ -191,7 +234,7 @@ html>body>section>div>div>div>form span>.btn-in {
 									<input type="tel" class="form-control" id="inputPhone"
 										placeholder="-(대시)를 입력해 주세요" name="phone" /> 
 										<span class="input-group-btn">
-										<input class="btn btn-success btn-in" style="margin: 8px;" 
+										<input class="btn btn-success btn-in" style="border:0; height:50px;" 
 											   type="button" value="인증번호 전송">
 									</span>
 								</div>
@@ -206,7 +249,7 @@ html>body>section>div>div>div>form span>.btn-in {
 								<div class="input-group">
 									<input class="form-control" id="inputCpCheck" type="text"
 										placeholder="인증번호"> <span class="input-group-btn">
-										<input type="button" class="btn btn-success btn-in" style="margin: 8px;"
+										<input type="button" class="btn btn-success btn-in" style="border:0; height:50px;"
 											value="인증번호 확인">
 									</span>
 								</div>
@@ -232,7 +275,7 @@ html>body>section>div>div>div>form span>.btn-in {
 									<input class="form-control" id="inputAddrnum" type="text"
 										placeholder="우편번호" name="post"> <span
 										class="input-group-btn">
-										<input type="button" class="btn btn-success btn-in" style="margin: 8px;"
+										<input type="button" class="btn btn-success btn-in" style="border:0; height:50px;"
 											id="post_find" value="우편찾기"  onclick="findPost()">
 									</span>
 								</div>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +37,8 @@
 </head>
 <body class="other-page blog">
 
+<!-- member가 비어있지 않으면 마이페이지의 home_qna 출력 -->
+<c:if test="${!empty member}">
 
 	<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -54,7 +58,8 @@
 					<%@ include file="leftside.jsp" %>
 					<!-- Left Side End -->
 
-
+					<!-- 홈 큐앤에이 시작 -->
+					<c:set var="homeqna" value="${requestScope.homeQna}"/>
 					<!-- Right Side Start -->
 					<div class="col-md-10">
 						<span style="border: 2px solid pink;"></span>&nbsp;&nbsp;
@@ -65,7 +70,7 @@
 							<div
 								class="blog-left-single mb-30 res-mb-30 res-mb-sm-30 res-blog-mt-50">
 								<div class="left-area">
-
+			
 									<!-- 위의 div 4개는 오른쪽 사이드 설정하는 div -->
 									<!-- 여기서부터 마이페이지에 들어가는 내용 변경하기 -->
 									<div class="col-md-12">
@@ -79,9 +84,11 @@
 													<th>조회수</th>
 												</tr>
 											</thead>
+											<c:forEach var="qnalist" items="${homeqna}" varStatus="loop">
 											<tbody>
+												
 												<tr>
-													<td>01</td>
+													<td>${homeqna. }</td>
 													<td>도대체 이 홈페이지는</td>
 													<td>캔디걸</td>
 													<td>2018-03-20</td>
@@ -95,6 +102,7 @@
 													<td>3</td>
 												</tr>
 											</tbody>
+											</c:forEach>
 										</table>
 									</div>
 								</div>
@@ -144,5 +152,7 @@
 	<script src="/resources/js/jquery.meanmenu.js"></script>
 	<script src="/resources/js/plugins.js"></script>
 	<script src="/resources/js/main.js"></script>
+</c:if>
 </body>
 </html>
+

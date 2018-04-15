@@ -5,7 +5,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set var="list" value="${requestScope.list}" />
+<c:set var="coList" value="${requestScope.coList}" />
 <c:set var="member" value="${sessionScope.member}" />
+<c:set var="next" value="${requestScope.next}" />
 <c:set var="totalPrice" scope="page" />
 <c:set var="totalDeliveryPrice" scope="page" />
 <fmt:parseNumber var="totalPrice" integerOnly="true" type="number"
@@ -109,6 +111,7 @@
 	}
 </script>
 <!-- 주소 라이브러리 script 코드 끝 -->
+
 <!-- 내가 만든 script 코드 시작 -->
 <script type="text/javascript">
 	$(function() {
@@ -192,7 +195,7 @@
 			<div class="container">
 				<div class="row">
 					<form action="#" id="payForm">
-
+						
 						<div class="checkbox-form">
 
 							<!-- 결제 방법 창 -->
@@ -211,6 +214,7 @@
 
 							</div>
 							<!-- 결제 방법 창 -->
+							<input type="hidden" id="next" value="${next}">
 							<br> <br>
 							<!-- 장바구니 시작 -->
 							<div class="row">
@@ -237,19 +241,56 @@
 															href="#"><img src="/resources/img/product/3.jpg"
 																style="height: 120px; width: 120px;" alt=""></a></td>
 														<td class="product-name" style="height: 130px;">
-															<p style="font-weight: bold;">${p.mbBizName}</p> <span>${p.pbName}(구매수량
+															<p style="font-weight: bold;">${p.mbBizName}</p> 
+															<span>${p.pbName}(구매수량
 																: ${p.poCnt}개)</span>
+															
+																
 														</td>
 														<td class="product-price" style="height: 130px;"><span
 															class="amount">${p.pbPrice}</span></td>
 														<td class="product-subtotal" style="height: 130px;">${p.poCnt}</td>
 														<td class="product-subtotal" style="height: 130px;">${p.poPrice}</td>
-														<td class="product-subtotal" style="height: 130px;">${p.poBookDate}</td>
-														<td class="product-subtotal" style="height: 130px;">${p.poBizDelivery}</td>
+														<td class="product-subtotal" style="height: 130px;">
+														<fmt:formatDate value="${p.poBookDate}" pattern="yyyy-MM-dd HH:mm" />
+														</td>
+														<td class="product-subtotal" style="height: 130px;">${p.poBizDelivery}
+														<input type="hidden" id="type" value="${p.type}">
+														</td>
+														
 														<c:set var="totalPrice" scope="page"
 															value="${totalPrice+p.poPrice}" />
 														<c:set var="totalDeliveryPrice" scope="page"
 															value="${totalDeliveryPrice+p.poBizDelivery}" />
+													</tr>
+												</c:forEach>
+												<c:forEach var="co" items="${coList}" varStatus="status">
+													<tr>
+														<td class="product-thumbnail"
+															style="padding-top: 5px; padding-bottom: 5px;"><a
+															href="#"><img src="/resources/img/product/3.jpg"
+																style="height: 120px; width: 120px;" alt=""></a></td>
+														<td class="product-name" style="height: 130px;">
+															<p style="font-weight: bold;">${co.mbBizName}</p> <span>${co.pbName}(구매수량
+																: ${co.poCnt}개)</span>
+															<br>시트 : ${co.coSheet}, 토핑 : ${co.coTopping}, 크림  : ${co.coCream}
+															<br> 사이즈 : ${co.coSize} 
+														</td>
+														<td class="product-price" style="height: 130px;"><span
+															class="amount">${co.pbPrice}</span></td>
+														<td class="product-subtotal" style="height: 130px;">${co.poCnt}</td>
+														<td class="product-subtotal" style="height: 130px;">${co.poPrice}</td>
+														<td class="product-subtotal" style="height: 130px;">
+														<fmt:formatDate value="${co.poBookDate}" pattern="yyyy-MM-dd HH:mm" />
+														</td>
+														<td class="product-subtotal" style="height: 130px;">${co.poBizDelivery}
+														<input type="hidden" id="type" value="${co.type}">
+														</td>
+														
+														<c:set var="totalPrice" scope="page"
+															value="${totalPrice+co.poPrice}" />
+														<c:set var="totalDeliveryPrice" scope="page"
+															value="${totalDeliveryPrice+co.poBizDelivery}" />
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -353,6 +394,7 @@
 									<div class="checkout-form-list height">
 										<label>배송 메모<span class="required">*</span></label> <input
 											class="input_height" type="text" id="recMemo" placeholder="">
+											
 									</div>
 								</div>
 								<hr>
@@ -363,10 +405,10 @@
 
 
 							<!-- (결제 정보 시작, 픽업 선택할 때 말고 배송 선택할 때만 뜨도록 해야함) -->
-							<div class="row">
+						<!-- 	<div class="row">
 								<h3>결제 수단</h3>
 								<div class="col-md-12 col-sm-12 col-xs-12">
-									<div class="table-content table-responsive">
+									<div class="table-content tabl,e-responsive">
 										<table>
 											<tbody>
 												<tr>
@@ -416,27 +458,19 @@
 													<td class="product-name">2018.03.32 18:22:44</td>
 
 												</tr>
-												<!-- <tr>
-														<td colspan="2">
-															<div class="checkout-form-list create-acc"
-																style="margin-bottom: 0px">
-																<input id="cbox" type="checkbox"> <label>다음에도
-																	이 결제 수단을 사용하시겠습니까?</label>
-															</div>
-														</td>
-													</tr> -->
+												
 											</tbody>
 										</table>
 									</div>
 
 								</div>
-							</div>
+							</div> -->
 							<!-- (결제 정보 끝) -->
 
 							<br> <br> <br>
 							<!-- 버튼 시작 -->
 							<div class="row">
-								<div class="col-md-4" style="width: 20%; margin-left: 30%">
+								<div class="col-md-4 col-sm-5 col-xs-5" style="width: 20%; margin-left: 30%">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 
@@ -446,7 +480,7 @@
 									</div>
 								</div>
 
-								<div class="col-md-4" style="width: 20%;">
+								<div class="col-md-4 col-sm-5 col-xs-5" style="width: 20%;">
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 										<div class="pink_button">
@@ -498,7 +532,7 @@
 	IMP.init('imp18428701');
 
 	$(function() {
-
+		alert($("#next").val());
 		$("#accountTransfer").on('change', function() {
 			console.log($("#accountTransfer").is(':checked'));
 			console.log($("#naverPay").is(':checked'));
@@ -531,17 +565,17 @@
 				alert('배송 메모를 입력하세요');
 				$("#recMemo").focus();
 				event.preventDefault();
-			} else if ($("#accountTransfer").is(':checked') == false
+			}/*  else if ($("#accountTransfer").is(':checked') == false
 					&& $("#creditCard").is(':checked') == false
 					&& $("#virtualAccount").is(':checked') == false
 					&& $("#naverPay").is(':checked') == false) {
 				alert('결제 수단을 입력하세요');
 				event.preventDefault();
-			} else {
+			} */ else {
 				event.preventDefault();
-				var PG;
-				var Pay_Method;
-				 if ($("#creditCard").is(':checked') == true) {//필수정보 누락
+				var PG= 'kakao';
+				var Pay_Method= 'card';
+				/*  if ($("#creditCard").is(':checked') == true) {//필수정보 누락
 					PG = 'danal';
 					Pay_Method = 'card';
 				} else if ($("#accountTransfer").is(':checked') == true) {//등록되지 않은 가맹점
@@ -553,44 +587,8 @@
 				} else if ($("#naverPay").is(':checked') == true) {
 					PG = 'kakao';
 					Pay_Method = 'card';
-				} 
-				/*  $.ajax({
-						url : "/payment.ca", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
-						type : 'POST',
-							data : {
-							imp_uid : 'test',
-							totalPrice : '<c:out value="${total}"/>',
-							method : PG,
-							recName : $("#recName").val(),
-							recCP : $("#recCP").val(),
-							recPost : $("#recPost").val(),
-							recBasicAddr : $("#recBasicAddr").val(),
-							recDetailAddr : $("#recDetailAddr").val(),
-							recMemo : $("#recMemo").val()
-							
-						//기타 필요한 데이터가 있으면 추가 전달
-						} ,
-						success : 
-							function(data) {
-								//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-								if (data == "ok") {
-									var msg = '결제가 완료되었습니다.';
-									msg += '\n이 내용은 테스트 용도 입니다.';
-									alert(msg);
-								} else {
-									alert('아직 제대로 결제가 되지 않았습니다.');
-									//[3] 아직 제대로 결제가 되지 않았습니다.
-									//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-								}
-								location.href="/checkoutSuccess.ca";
-						},
-						error : function(data) {
-							console.log(data);
-							//alert("잘못 입력하셨습니다." + data);
-						} 
-					});
- */
-				
+				} */
+					
 				 IMP.request_pay(
 								{
 									pg : PG,
@@ -603,10 +601,20 @@
 								
 								},
 								function(rsp) {
+									var URL =null;
+									if($("#next").val()=="mix"){
+										URL = "/payment.ca";
+									}else if($("#next").val()=="directPayment"){
+										//alert("next=productDirect");
+										URL = "/directPayment.ca";
+									}else if($("#next").val()=="directCustomPayment"){
+										URL = "/directCustomPayment.ca";
+									}
+									alert(URL);
 									if (rsp.success) {
 										//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 										$.ajax({
-													url : "/payment.ca", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+													url : URL, //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
 													type : 'POST',
 													dataType : 'text',
 													data : {
@@ -619,6 +627,7 @@
 														recBasicAddr : $("#recBasicAddr").val(),
 														recDetailAddr : $("#recDetailAddr").val(),
 														recMemo : $("#recMemo").val()
+														
 														
 													//기타 필요한 데이터가 있으면 추가 전달
 													} ,
@@ -647,28 +656,7 @@
 														//console.log(data);
 														alert("잘못 입력하셨습니다." + data);
 													} 
-												})/* .done(
-														function(data) {
-															//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-															if (everythings_fine) {
-																var msg = '결제가 완료되었습니다.';
-																msg += '\n고유ID : '
-																		+ rsp.imp_uid;
-																msg += '\n상점 거래ID : '
-																		+ rsp.merchant_uid;
-																msg += '\결제 금액 : '
-																		+ rsp.paid_amount;
-																msg += '카드 승인번호 : '
-																		+ rsp.apply_num;
-
-																alert(msg);
-															} else {
-																alert('아직 제대로 결제가 되지 않았습니다.');
-																//[3] 아직 제대로 결제가 되지 않았습니다.
-																//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-															}
-															location.href="/checkoutSuccess.ca";
-														}); */
+												});
 									} else {
 										var msg = '결제에 실패하였습니다.';
 										msg += '에러내용 : ' + rsp.error_msg;

@@ -1,9 +1,6 @@
 package com.dal.likeycakey.member.model.vo;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+
 
 import org.springframework.stereotype.Component;
 
@@ -33,6 +30,82 @@ public class Member implements java.io.Serializable{
 	private int blackCnt;
 	private MemberLike memberLike;
 	private BizMember bizMember;
+	
+	private int bizDelivery;
+	private String bizName;
+	public BizMember getBizMember() {
+		return bizMember;
+	}
+
+	public void setBizMember(BizMember bizMember) {
+		this.bizMember = bizMember;
+	}
+
+	public int getBizDelivery() {
+		return bizDelivery;
+	}
+
+	public void setBizDelivery(int bizDelivery) {
+		this.bizDelivery = bizDelivery;
+	}
+
+	public String getBizName() {
+		return bizName;
+	}
+
+	public void setBizName(String bizName) {
+		this.bizName = bizName;
+	}
+
+	public String getBizPN() {
+		return bizPN;
+	}
+
+	public void setBizPN(String bizPN) {
+		this.bizPN = bizPN;
+	}
+
+	public String getBizNum() {
+		return bizNum;
+	}
+
+	public void setBizNum(String bizNum) {
+		this.bizNum = bizNum;
+	}
+
+	public String getMasterName() {
+		return masterName;
+	}
+
+	public void setMasterName(String masterName) {
+		this.masterName = masterName;
+	}
+
+	public String getBizDeliveryYN() {
+		return bizDeliveryYN;
+	}
+
+	public void setBizDeliveryYN(String bizDeliveryYN) {
+		this.bizDeliveryYN = bizDeliveryYN;
+	}
+
+	public String getBizCustomYN() {
+		return bizCustomYN;
+	}
+
+	public void setBizCustomYN(String bizCustomYN) {
+		this.bizCustomYN = bizCustomYN;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	private String bizPN;
+	private String bizNum;
+	private String masterName;
+	private String bizDeliveryYN;
+	private String bizCustomYN;
 
 	public Member() {
 		
@@ -44,6 +117,10 @@ public class Member implements java.io.Serializable{
 		this.passwd = passwd;
 	}
 	
+	
+	
+	
+
 	public Member(String id, String passwd, String name, int code, String email, String post, String addressBasic,
 			String addressDetail, String phone, String photo) {
 		super();
