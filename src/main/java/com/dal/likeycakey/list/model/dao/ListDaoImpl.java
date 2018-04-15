@@ -66,11 +66,43 @@ public class ListDaoImpl implements ListDao {
 	}
 	
 	@Override
-	public ArrayList<ProductBoard> selectCakeListwithOrder(FilterList filterlist, int currentPage, int limit){
-		System.out.println("listDao의 selectCakeListwithOrder(filterlist)입니다.");
+	public ArrayList<ProductBoard> selectCakeListwithOrder1(String inputsearch, int currentPage, int limit){
+		System.out.println("listDao의 selectCakeListwithOrder1(inputsearch)입니다.");
 		int offset = (currentPage - 1) * limit;
 		RowBounds rows = new RowBounds(offset, limit);
-		return new ArrayList<ProductBoard>(sqlSession.selectList("productBoard.selectCakeListwo", filterlist, rows));
+		return new ArrayList<ProductBoard>(sqlSession.selectList("productBoard.selectCakeListwo1", inputsearch, rows));
+	}
+	
+	@Override
+	public ArrayList<ProductBoard> selectCakeListwithOrder2(String inputsearch, int currentPage, int limit){
+		System.out.println("listDao의 selectCakeListwithOrder2(inputsearch)입니다.");
+		int offset = (currentPage - 1) * limit;
+		RowBounds rows = new RowBounds(offset, limit);
+		return new ArrayList<ProductBoard>(sqlSession.selectList("productBoard.selectCakeListwo2", inputsearch, rows));
+	}
+	
+	@Override
+	public ArrayList<ProductBoard> selectCakeListwithOrder3(String inputsearch, int currentPage, int limit){
+		System.out.println("listDao의 selectCakeListwithOrder3(inputsearch)입니다.");
+		int offset = (currentPage - 1) * limit;
+		RowBounds rows = new RowBounds(offset, limit);
+		return new ArrayList<ProductBoard>(sqlSession.selectList("productBoard.selectCakeListwo3", inputsearch, rows));
+	}
+	
+	@Override
+	public ArrayList<ProductBoard> selectCakeListwithOrder4(String inputsearch, int currentPage, int limit){
+		System.out.println("listDao의 selectCakeListwithOrder4(inputsearch)입니다.");
+		int offset = (currentPage - 1) * limit;
+		RowBounds rows = new RowBounds(offset, limit);
+		return new ArrayList<ProductBoard>(sqlSession.selectList("productBoard.selectCakeListwo4", inputsearch, rows));
+	}
+	
+	@Override
+	public ArrayList<ProductBoard> selectCakeListwithOrder5(String inputsearch, int currentPage, int limit){
+		System.out.println("listDao의 selectCakeListwithOrder5(inputsearch)입니다.");
+		int offset = (currentPage - 1) * limit;
+		RowBounds rows = new RowBounds(offset, limit);
+		return new ArrayList<ProductBoard>(sqlSession.selectList("productBoard.selectCakeListwo5", inputsearch, rows));
 	}
 	
 	@Override
