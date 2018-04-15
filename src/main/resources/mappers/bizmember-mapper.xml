@@ -29,6 +29,10 @@
 		SELECT MASTER_NAME FROM MEMBER_BIZ WHERE M_ID=#{id}
 	</select>
 	
+	<select id="selectNameList" parameterType="String" resultType="String">
+		SELECT BIZ_NAME FROM MEMBER_BIZ WHERE M_ID=#{id}
+	</select>
+	
 	<!-- 사업자 회원정보 수정 -->
 	<update id="updateMypage" parameterType="bizMember" flushCache="true" statementType="PREPARED">
 		UPDATE MEMBER_BIZ

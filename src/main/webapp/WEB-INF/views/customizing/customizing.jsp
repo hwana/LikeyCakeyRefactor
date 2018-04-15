@@ -4,6 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<c:set var="customlist" value="${requestScope.customlist }"/>
+<c:set var="namelist" value="${requestScope.namelist }"/>
+<c:set var="photolist" value="${requestScope.photolist }"/>
+<c:set var="creamlist" value="${requestScope.creamlist }"/>
+<c:set var="sheetlist" value="${requestScope.sheetlist }"/>
+<c:set var="toppinglist" value="${requestScope.toppinglist }"/>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -53,17 +60,18 @@
 							<div class="tab-content">
 								<div id="grid" class="shop-left pt-35 tab-pane fade in active">
 									<div class="shop-tab-area">
+										<c:forEach var="custom" items="${customlist }" varStatus="loop">
 										<!-- Single Product Start -->
 										<div class="col-md-6 col-sm-6">
 											<div class="single-product style-two mb-50 young-bot-margin	">
 												<div class="young-custom-logo">
-													<img src="/resources/img/young/after.png" alt="" />
+													<img src="/resources/img/young/${photolist[loop.index] }.jpg" alt="" />
 												</div>
 												<div class="young-custom-exp">
-													<h4><a href="single-product.html"><font color="9bcaba"><strong>오후의 빵집</strong></font> </a></h4>
-													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 시트 : </span></div>
-													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 토핑 : </span></div>
-													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 크림 : </span></div>
+													<h4><a href="single-product.html"><font color="9bcaba"><strong>${namelist[loop.index] }</strong></font> </a></h4>
+													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 시트 : ${sheetlist[loop.index] }</span></div>
+													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 토핑 : ${toppinglist[loop.index] }</span></div>
+													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 크림 : ${creamlist[loop.index] }</span></div>
 												</div>
 												<div class="young-custom-button">
 													<p><strong>보러가기</strong></p>
@@ -71,60 +79,7 @@
 											</div>
 										</div>
 										<!-- Single Product End -->
-										<!-- Single Product Start -->
-										<div class="col-md-6 col-sm-6">
-											<div class="single-product style-two mb-50 young-bot-margin	">
-												<div class="young-custom-logo">
-													<img src="/resources/img/young/paris.png" alt="" />
-												</div>
-												<div class="young-custom-exp">
-													<h4><a href="single-product.html"><font color="9bcaba"><strong>오후의 빵집</strong></font> </a></h4>
-													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 시트 : </span></div>
-													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 토핑 : </span></div>
-													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 크림 : </span></div>
-												</div>
-												<div class="young-custom-button">
-													<p><strong>보러가기</strong></p>
-												</div>
-											</div>
-										</div>
-										<!-- Single Product End -->
-										<!-- Single Product Start -->
-										<div class="col-md-6 col-sm-6">
-											<div class="single-product style-two mb-50 young-bot-margin	">
-												<div class="young-custom-logo">
-													<img src="/resources/img/young/dore.png" alt="" />
-												</div>
-												<div class="young-custom-exp">
-													<h4><a href="single-product.html"><font color="9bcaba"><strong>오후의 빵집</strong></font> </a></h4>
-													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 시트 : </span></div>
-													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 토핑 : </span></div>
-													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 크림 : </span></div>
-												</div>
-												<div class="young-custom-button">
-													<p><strong>보러가기</strong></p>
-												</div>
-											</div>
-										</div>
-										<!-- Single Product End -->
-										<!-- Single Product Start -->
-										<div class="col-md-6 col-sm-6">
-											<div class="single-product style-two mb-50 young-bot-margin	">
-												<div class="young-custom-logo">
-													<img src="/resources/img/young/sam.png" alt="" />
-												</div>
-												<div class="young-custom-exp">
-													<h4><a href="single-product.html"><font color="9bcaba"><strong>오후의 빵집</strong></font> </a></h4>
-													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 시트 : </span></div>
-													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 토핑 : </span></div>
-													<div><i class="fa fa-paper-plane"></i><span>&nbsp;제공 크림 : </span></div>
-												</div>
-												<div class="young-custom-button">
-													<p><strong>보러가기</strong></p>
-												</div>
-											</div>
-										</div>
-										<!-- Single Product End -->
+										</c:forEach>
 									</div>
 								</div>
 							</div>
@@ -158,7 +113,7 @@
 														<span><img src="/resources/img/young/touslesjours.png" alt="" /></span>
 					                				    <div>BAKERY</div>
 					                        			<p class="young-host-profile-box-name">${input_vendor }</p>
-					                        			<p class="young-host-profile-box-exp">안녕하세요~ ${input_vendor }입니다.</p>
+					                        			<p class="young-host-profile-box-exp">안녕하세요~ 뚜레주르 입니다.</p>
 					                    	        </div>
 												</div>
 											</div>
@@ -172,7 +127,7 @@
 														<span><img src="/resources/img/young/after.png" alt="" /></span>
 					                				    <div>BAKERY</div>
 					                        			<p class="young-host-profile-box-name">${input_vendor }</p>
-					                        			<p class="young-host-profile-box-exp">안녕하세요~ ${input_vendor }입니다.</p>
+					                        			<p class="young-host-profile-box-exp">오늘도 당신의 오후를 따뜻하게 하는 오후의 빵집</p>
 					                    	        </div>
 												</div>
 											</div>
@@ -186,7 +141,7 @@
 														<span><img src="/resources/img/young/paris.png" alt="" /></span>
 					                				    <div>BAKERY</div>
 					                        			<p class="young-host-profile-box-name">${input_vendor }</p>
-					                        			<p class="young-host-profile-box-exp">안녕하세요~ ${input_vendor }입니다.</p>
+					                        			<p class="young-host-profile-box-exp">파리의 맛을 그대로</p>
 					                    	        </div>
 												</div>
 											</div>
@@ -200,7 +155,7 @@
 														<span><img src="/resources/img/young/sam.png" alt="" /></span>
 					                				    <div>BAKERY</div>
 					                        			<p class="young-host-profile-box-name">${input_vendor }</p>
-					                        			<p class="young-host-profile-box-exp">안녕하세요~ ${input_vendor }입니다.</p>
+					                        			<p class="young-host-profile-box-exp">은송이가 하는 삼송빵</p>
 					                    	        </div>
 												</div>
 											</div>
@@ -214,7 +169,7 @@
 														<span><img src="/resources/img/young/dore.png" alt="" /></span>
 					                				    <div>BAKERY</div>
 					                        			<p class="young-host-profile-box-name">${input_vendor }</p>
-					                        			<p class="young-host-profile-box-exp">안녕하세요~ ${input_vendor }입니다.</p>
+					                        			<p class="young-host-profile-box-exp">도리도리 도레도레</p>
 					                    	        </div>
 												</div>
 											</div>
@@ -225,10 +180,10 @@
 											<div class="single-product style-two mb-50">
 												<div class="right-area pt-35">
 													<div class="young-host-profile-box"	>
-														<span><img src="/resources/img/young/touslesjours.png" alt="" /></span>
+														<span><img src="/resources/img/young/crown.png" alt="" /></span>
 					                				    <div>BAKERY</div>
 					                        			<p class="young-host-profile-box-name">${input_vendor }</p>
-					                        			<p class="young-host-profile-box-exp">안녕하세요~ ${input_vendor }입니다.</p>
+					                        			<p class="young-host-profile-box-exp">안녕하세요 왕관입니다</p>
 					                    	        </div>
 												</div>
 											</div>
