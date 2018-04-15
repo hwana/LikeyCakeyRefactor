@@ -301,6 +301,12 @@
 	width : 20%;
 }
 
+.young-nav-menu-grid2 {
+	float : left;
+	width : 30%;
+}
+
+
 .young-custom-logo img {
  	backface-visibility: hidden;
   	transition: opacity 1s ease 0s, transform 1s ease 0s;

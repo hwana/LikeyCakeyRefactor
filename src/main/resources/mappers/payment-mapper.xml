@@ -272,6 +272,31 @@
 		
 	</select>
 	
+	
+	<select id="countProductOrder" resultType="_int">
+		SELECT 
+			COUNT(*) 
+		FROM 
+			PRODUCT_ORDER
+		where
+			m_id = #{m_id}
+		and
+			S_NUM =1
+		
+	</select>
+	
+	<select id="countCustomOrder" resultType="_int">
+		SELECT 
+			COUNT(*) 
+		FROM 
+			CUSTOM_ORDER
+		where
+			m_id = #{m_id}
+		and
+			S_NUM =1
+		
+	</select>
+	
 	<select id="selectBuyList" resultMap="resultPayment">
 		SELECT
 			PO.P_O_NUM, <!-- 주문번호 -->

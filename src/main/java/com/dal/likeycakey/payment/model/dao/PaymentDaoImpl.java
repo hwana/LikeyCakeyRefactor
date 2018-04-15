@@ -140,6 +140,18 @@ public class PaymentDaoImpl implements PaymentDao {
 		return sqlSession.update("PaymentMapper.updateDirectCustomOrder",payment);
 	}
 
+	@Override
+	public int countProductOrder(String m_id) throws Exception {
+		System.out.println("paymentDao: countProductOrder 도착");
+		return sqlSession.selectOne("PaymentMapper.countProductOrder", m_id);
+	}
+
+	@Override
+	public int countCustomOrder(String m_id) throws Exception {
+		System.out.println("paymentDao: countCustomOrder 도착");
+		return sqlSession.selectOne("PaymentMapper.countCustomOrder", m_id);
+	}
+
 
 
 

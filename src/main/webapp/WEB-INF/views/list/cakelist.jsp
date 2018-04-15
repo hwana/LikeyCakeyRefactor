@@ -57,9 +57,12 @@
 						<div class="col-md-12">
 							<!--NAV PILL-->
 							<div class="shop-tab-pill">
-								<div class="nav-menu-grid">
+								<div class="young-nav-menu-grid2">
 									<ul class="nav nav-pills">
-										<h5>${input_search} (으)로 검색한 결과입니다.(총 ${cakeCount}개 )</h5>
+									<c:set var="pp" value="#"/>
+									<c:if test="${!pp eq input_search}">
+									<h5>${input_search} (으)로 검색한 결과입니다.(총 ${cakeCount}개 )</h5>
+									</c:if>
 									</ul>
 								</div>
 								<div class="show-more text-center">
@@ -135,19 +138,19 @@
 										<label for="young_sorting_filterin">${orderfilter }&nbsp;<i class="fa fa-angle-down"></i></label> 
 									</c:if>
 									<select id="young_sorting_filterin" >
-										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=1&input_search=${input_search }">
+										<option onclick="location.href = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=1&input_search=${input_search }">
 												최신 업로드 순
 										</option>
-										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=2&input_search=${input_search }">
+										<option onclick="location.href = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=2&input_search=${input_search }">
 												베스트 케이크 순
 										</option>
-										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=3&input_search=${input_search }">
+										<option onclick="location.href = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=3&input_search=${input_search }">
 												가격 낮은 순
 										</option>
-										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=4&input_search=${input_search }">
+										<option onclick="location.href = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=4&input_search=${input_search }">
 												가격 높은 순
 										</option>
-										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=5&input_search=${input_search }">
+										<option onclick="location.href = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=5&input_search=${input_search }">
 												이용후기 많은 순
 										</option>
 									</select>
@@ -166,21 +169,21 @@
 											<div class="col-md-4 col-sm-6">
 												<div class="single-product style-two mb-50">
 													<div class="young-single-img">
-														<a href="#"><img src="resources/img/product/${cake.pImg}.jpg"/></a>
+														<a href="detail.ca?pbNum=${cake.pbNum}"><img src="resources/img/product/${cake.pImg}.jpg"/></a>
 														<span class="pro-level">당일</span>
-														<div class="hover-content text-center">
+														<!-- <div class="hover-content text-center">
 															<ul>
-<!-- 																<li><a href="#" class="icon_refresh"></a></li>
--->																<li><a href="#" class="icon_cart_alt "></a></li>
+																<li><a href="#" class="icon_refresh"></a></li>
+																<li><a href="#" class="icon_cart_alt "></a></li>
 																<li><a href="#" class="icon_heart_alt"></a></li>
-																<!-- <li>
+																<li>
 																	<a title="Quick View" href="#" data-toggle="modal" data-target="#productModal" class="icon_search"></a>
-																</li> -->
+																</li>
 															</ul>
-														</div>
+														</div> -->
 													</div>
 													<div class="young-product-details mt-20">
-														<h4><a href="single-product.html">${cake.pName }</a></h4>
+														<h4><a href="detail.ca?pbNum=${cake.pbNum}">${cake.pName }</a></h4>
 														<div class="young-product-details-tag">
 															<i class="fa fa-map-marker"></i>
 															<span class="young-product-details-tag-place"><c:out value="${list[loop.index]}"/></span>
@@ -552,12 +555,13 @@
             </div>
         </div>
         <!--End of Quickview Product-->	
-		<script>  
-	   $("#young_sorting_filterin").change(function()
-		{
-    		document.location.href = $(this).val();
-		});
-	   </script>	 
+
+	   <script>  
+      $("#young_sorting_filterin").change(function()
+      {
+          document.location.href = $(this).val();
+      });
+      </script>
 		<!-- all js here -->
         <script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
         <script src="/resources/js/bootstrap.min.js"></script>

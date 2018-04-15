@@ -60,17 +60,21 @@
         <![endif]-->
 	<!-- Header Area Start -->
 	<header></header>
+	
+		<c:if test="${fn:contains(pageContext.request.requestURL,'buyList')}">
+			<%@ include file="../default/header.jsp"%>
+			 <section class="page-content-wrapper pt-100 pb-40">
+		
+				<div class="checkout-area">
+					<div class="container">
+						<div class="row">
+							<form action="#">
+		</c:if>
 	<!-- Header Area End -->
 	<!-- Page Content Wraper Area Start -->
-	<!-- <section class="page-content-wrapper pt-100 pb-40">
 
-		<div class="checkout-area">
-			<div class="container">
-				<div class="row">
-					<form action="#">
- -->
 						<div class="checkbox-form">
-
+<c:if test="${fn:contains(pageContext.request.requestURL,'buyList')}">
 					<!-- 결제 방법 창 -->
 					<div class="row">
 								<h2 style=" width:20%; display: inline-block; font-weight:500;">구매 내역</h2>
@@ -81,8 +85,11 @@
 					<!-- 결제 방법 창 -->
 			<br><br>
 							<!-- 구매 내역 시작 -->
+			</c:if>
 							<div class="row">
+							<c:if test="${fn:contains(pageContext.request.requestURL,'buyList')}">
 								<h3>구매 내역 정보</h3>
+								</c:if>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<form action="#">
 									
@@ -118,7 +125,7 @@
 														<div class="pink_button">
 															<input type="button" value="상품문구 변경" 
 															onclick='window.open("/poTextUpdatetView.ca?poNum=${o.poNum}","상품 문구 변경","width=500,height=300,location=no,status=no,scrollbars=yes")'
-															style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
+															style="height:20px; width:120px; margin-top:5px; padding-left:10px; padding-right:10px;">
 														</div>
 														</c:if>
 														<!-- 상품 문구 변경 버튼 끝 -->
@@ -324,15 +331,14 @@
 						
 
 						</div>
-
-					<!-- </form>
+<c:if test="${fn:contains(pageContext.request.requestURL,'buyList')}">
+					 </form>
 				</div>
 			</div>
 		</div>
-	</section> -->
-	<!-- Page Content Wraper Area End -->
-	<!-- Fotter Area Start -->
-
+	</section>
+		<%@ include file="../default/footer.jsp"%>
+</c:if>
 
 
 	<!-- all js here -->
@@ -353,10 +359,8 @@
 		
 		<script type="text/javascript">
 		$(function() {
-		
 			//1.구매 취소//
 			$("#orderDelete").click(function() {
-								
 								$.ajax({
 									url : "poDelete.ca",
 									type : "post",
@@ -378,9 +382,7 @@
 								return false;
 
 							}); //click
-
 			//1.구매 취소 끝//
-
 		});
 	</script>
 </body>

@@ -60,7 +60,7 @@ $(function(){
 					}
 					values += "<div class='rbox_mine'>"
 						   + "<input type='hidden' value='"+ json[i].prNum +"' class='reviewNum'>"
-						   + "<span class='pf_img' style='background-image: url(/resources/img/client/1.png)'></span>"
+						   + "<span class='pf_img' style='background-image: url(/resources/img/member/김영렬.jpg)'></span>"
 						   + "<strong class='guest_name'>"+ json[i].id+"</strong>"
 						   + "<p class='p_review'>"+ json[i].prContent +"</p>"
 						   + "<div class='space_list swiper_list photo_review'>"

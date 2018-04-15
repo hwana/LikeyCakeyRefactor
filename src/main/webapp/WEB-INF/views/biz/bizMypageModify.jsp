@@ -128,30 +128,13 @@ input[type="file"] {
 										<div class="form-group">
 											<label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
 											<div class="col-sm-6">
-												<div class="input-group">
+											
 													<input type="tel" class="form-control" id="inputNumber"
-														placeholder="- 포함하여 입력하세요"  name="phone" value = "${member.phone }"/> <span
-														class="input-group-btn">
-														<button class="btn verifycode">인증번호 전송</button>
-													</span>
-												</div>
+														placeholder="- 포함하여 입력하세요"  name="phone" value = "${member.phone }"/> 
+												
 											</div>
 										</div>
-										<div class="form-group">
-											<label class="col-sm-3 control-label" for="inputNumberCheck">인증번호
-												확인</label>
-											<div class="col-sm-6">
-												<div class="input-group">
-													<input class="form-control" id="inputNumberCheck"
-														type="text" placeholder="인증번호"> <span
-														class="input-group-btn">
-														<button class="btn verifycode" type="button">
-															인증번호 확인</button>
-													</span>
-												</div>
-												<p class="help-block">전송된 인증번호를 입력해주세요.</p>
-											</div>
-										</div>
+										
 
 										<div class="form-group">
 											<div class="col-sm-12 text-center">

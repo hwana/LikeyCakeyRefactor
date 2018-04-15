@@ -16,7 +16,6 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao memberDao;
 
-	
 
 	// 로그인하기위한 서비스
 	@Override
@@ -43,7 +42,7 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberDao.insertMember(m);
 		return result;
 	}
-	
+
 	// update
 	@Override
 	public int updateMember(Member m) throws Exception {

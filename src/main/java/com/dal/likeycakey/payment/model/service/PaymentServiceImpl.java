@@ -136,6 +136,18 @@ public class PaymentServiceImpl implements PaymentService {
 		return paymentDao.updateDirectCustomOrder(payment);
 	}
 
+	@Override
+	public int countProductOrder(String m_id) throws Exception {
+		System.out.println("PaymentServiceImpl : countProductOrder 도착");
+		return paymentDao.countProductOrder(m_id);
+	}
+
+	@Override
+	public int countCustomOrder(String m_id) throws Exception {
+		System.out.println("PaymentServiceImpl : countCustomOrder 도착");
+		return paymentDao.countCustomOrder(m_id);
+	}
+
 
 
 
