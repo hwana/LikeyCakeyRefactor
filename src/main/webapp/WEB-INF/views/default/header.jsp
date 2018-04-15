@@ -55,7 +55,19 @@
 							<a class="sign-button" href = "mem_choice.ca">Sign-Up</a><a class="sign-button" href = "bizLogin.ca">Log-in</a> 
 						</div>
 					</c:if>
-					
+
+						<c:if test="${!empty member}">
+
+						<div class="sign-wrapper">
+							<span class="mr-10" style="color:white">안녕하세요, ${member.name} 님 </span>
+							<c:if test="${member.code == 2}">
+								<a class="sign-button" href="logout.ca">Log-out</a><a class="sign-button" href="memberMypage.ca">My Page</a>
+							</c:if>
+							<c:if test="${member.code == 3}">
+								<a class="sign-button" href = "logout.ca">Log-out</a><a class="sign-button" href = "bizMypageModify.ca">My Page</a>
+							</c:if> 	
+						</div>
+					</c:if>
 					<div class="col-md-3 col-sm-12">
 						<div class="logo-area text-center text-uppercase res-logo-sm">
 							<a href="home.ca"><img src="/resources/img/icon/logo.png"
@@ -63,6 +75,7 @@
 						</div>
 					</div>
 					<div class="col-md-9 col-sm-12">
+					
 						<div class="main-menu lemon-bg">
 							<nav>
 								<ul id="nav">
@@ -120,7 +133,7 @@
 											<li><a href="customlist.ca"><i
 													class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
 										</ul></li>
-									<li><a href="contact.html">MY PAGE</a></li>
+									
 									<li><a href="notice.ca">NOTICE</a></li>
 									<li><a href="homeqna.ca">Q & A</a></li>
 								</ul>
@@ -231,12 +244,11 @@
 		<div class="banner-area pb-90 pt-160 bg-2">
 			<div class="container">
 				<div class="row">
-					<div class="banner-content text-center text-white">
-						<h1>Detail View</h1>
+					<div class="banner-content text-center text-white ptb-70">
+						<h1></h1>
 						<ul>
-							<li><a href="index.html">cake</a> <span
-								class="arrow_carrot-right "></span></li>
-							<li>Detail View</li>
+							<li></li>
+							<li></li>
 						</ul>
 					</div>
 				</div>

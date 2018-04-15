@@ -115,7 +115,11 @@
 					<c:if test="${!empty member}">
 
 						<div class="sign-wrapper">
-							<span>안녕하세요, ${member.name} 님 </span>
+							<span class="mr-10" style="color:white">안녕하세요, ${member.name} 님 </span>
+							<c:if test="${member.code == 1}">
+								<a class="sign-button" href="logout.ca">Log-out</a>
+								<a class="sign-button" href="adminMemberList.ca">Member Page</a>
+							</c:if>
 							<c:if test="${member.code == 2}">
 								<a class="sign-button" href="logout.ca">Log-out</a><a class="sign-button" href="memberMypage.ca">My Page</a>
 							</c:if>
@@ -177,13 +181,13 @@
 												<a href="${headercake}"><i class="arrow_carrot-right"></i>아이스크림 케이크</a>
 											</li>
 										</ul></li>
-									<li><a href="hostpage.ca">SHOP</a>
+									<li><a href="hostinfo.ca?input_vendor_id=tous">SHOP</a>
 										<ul>
 											<li><a href="hostpage.ca"><i
 													class="arrow_carrot-right"></i> 케이크 가게 모아보기</a></li>
 										</ul></li>
 
-									<li><a href="#">CUSTOMIZING</a>
+									<li><a href="customlist.ca">CUSTOMIZING</a>
 										<ul>
 											<li><a href="hostpage.ca"><i
 													class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
@@ -201,8 +205,7 @@
 											<li><a href="bizMypageModify.ca">BIZ PAGE</a></li>
 										</c:if>
 									</c:if>
-									
-									
+								
 									<li><a href="notice.ca">NOTICE</a></li>
 									<li><a href="homeqna.ca">Q &amp; A</a></li>
 								</ul>

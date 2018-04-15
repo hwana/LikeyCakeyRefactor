@@ -514,7 +514,7 @@
 
 				<div class="host_area" id="_host_map">
 					<div
-						style="background-image: url(resources/img/member/${pBiz.mPhoto}.jpg);"
+						style="background-image: url(resources/img/member/${pBiz.mPhoto});"
 						class="pf_left"></div>
 					<div class="pf_right">
 						<strong class="pf_host">HOST</strong> <span class="pf_name">${pBiz.bizName}</span>
