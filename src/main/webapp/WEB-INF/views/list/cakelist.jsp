@@ -555,6 +555,7 @@
             </div>
         </div>
         <!--End of Quickview Product-->	
+
 	   <script>  
       $("#young_sorting_filterin").change(function()
       {
