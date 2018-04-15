@@ -1,6 +1,10 @@
 select * from member;
 SELECT * FROM MEMBER_BIZ;
 select * from HOME_QNA;
+-- type컬럼 삭제하기
+alter table product_order drop column type; 
+alter table custom_order drop column type;
+
 
 -- MEMBER_BIZ의 MEMBER_CODE를 자동으로 업데이트 해주는 트리거
 create or replace TRIGGER TRG_MEMCODE
@@ -1277,3 +1281,20 @@ ALTER TABLE PRODUCT_ORDER RENAME COLUMN BIZ_DERIVERY to BIZ_DELIVERY;
 
 alter table MEMBER_BIZ modify(BIZ_CUSTOM_YN varchar2(10));
 alter table MEMBER_BIZ modify(BIZ_DELIVERY_YN varchar2(10));
+
+
+-- 타입 컬럼 추가
+alter table product_order add(p_o_type NUMBER);
+alter table custom_order add(c_o_type NUMBER);
+
+
+
+INSERT INTO STATUS (S_NUM, S_STATUS) VALUES(0,'구매취소');
+
+
+-- 상품 QNA 컬럼 추가 상세페이지 원글 참조 번호 P_B_NUM
+ALTER TABLE P_QNA_COM ADD(P_B_NUM NUMBER);
+
+ALTER TABLE P_QNA_COM
+ADD CONSTRAINTS FK_P_QNA_PBNUM FOREIGN KEY (P_B_NUM)
+REFERENCES PRODUCT_BOARD(P_B_NUM);
