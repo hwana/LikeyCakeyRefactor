@@ -1,8 +1,7 @@
 package com.dal.likeycakey.payment.model.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
-
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -59,6 +58,14 @@ public class Payment implements java.io.Serializable {
 	private int    s_num;	//주문 진행 상태
 	private String s_status; //주문 현황
 	
+	private String bizDeliveryYN; 	//배송 가능 여부
+	
+	private int type;// 타입
+	
+	private String coSize; //케이크 사이즈
+	private String coTopping; //선택 토핑
+	private String coCream;// 선택 크림
+	private String coSheet; //선택 시트
 	
 	
 	
@@ -67,7 +74,56 @@ public class Payment implements java.io.Serializable {
 	
 	
 
-	
+
+
+	public String getCoSize() {
+		return coSize;
+	}
+
+	public void setCoSize(String coSize) {
+		this.coSize = coSize;
+	}
+
+	public String getCoTopping() {
+		return coTopping;
+	}
+
+	public void setCoTopping(String coTopping) {
+		this.coTopping = coTopping;
+	}
+
+	public String getCoCream() {
+		return coCream;
+	}
+
+	public void setCoCream(String coCream) {
+		this.coCream = coCream;
+	}
+
+	public String getCoSheet() {
+		return coSheet;
+	}
+
+	public void setCoSheet(String coSheet) {
+		this.coSheet = coSheet;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public String getBizDeliveryYN() {
+		return bizDeliveryYN;
+	}
+
+	public void setBizDeliveryYN(String bizDeliveryYN) {
+		this.bizDeliveryYN = bizDeliveryYN;
+	}
+
 	public String getS_status() {
 		return s_status;
 	}
@@ -202,10 +258,13 @@ public class Payment implements java.io.Serializable {
 	}
 
 	public void setPoDate(Date poDate) {
+		
+		 
 		this.poDate = poDate;
 	}
 
 	public Date getPoBookDate() {
+		
 		return poBookDate;
 	}
 
