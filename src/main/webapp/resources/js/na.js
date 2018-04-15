@@ -2,10 +2,8 @@
 
 $(function(){
 	
-	
 	var pbNum = $('#pbNum').val();
 	console.log('게시글 번호는 ' + pbNum);
-	
 //리뷰 select start -----------------------
 	$.ajax({
 		url : "reviewList.ca",
@@ -26,6 +24,7 @@ $(function(){
 			console.log("총 리뷰글 수는 : " + total);
 			var allPage = Math.ceil(total/rowsize);
 			console.log("총 페이지 수는 : " + allPage);
+			console.log(json[1].id);
 			
 			var values = $('.rlist > .tab-content').html();
 			// 이용 후기 개수 표시
@@ -48,8 +47,12 @@ $(function(){
 					values += "<div id=reviewPage"+page+" class='tab-pane fade'>"; 
 				for(var o = 0; o<rowsize; o++){
 					//console.log("total은 : " + total);
-					//console.log("i는 : " + i);
+					console.log("i는 : " + i);
+					if(i==total){
+						break;
+					}
 					values += "<div class='rbox_mine'>"
+						   + "<input type='hidden' value='"+ json[i].prNum +"' class='reviewNum'>"
 						   + "<span class='pf_img' style='background-image: url(/resources/img/client/1.png)'></span>"
 						   + "<strong class='guest_name'>"+ json[i].id+"</strong>"
 						   + "<p class='p_review'>"+ json[i].prContent +"</p>"
@@ -69,6 +72,7 @@ $(function(){
 					       + "</div>"
 					       + "</div>"
 					       + "<div class='rbox_info_base'>"
+					       + 	"<a class='review-reply-insert-btn'>&nbsp;댓글 달기 &nbsp;<i class='fa fa-comment mr-10'></i></a>"
 				    	   + 	"<span class='time_info'>"+ json[i].prDate+"</span>"
 					       + "</div>"
 					       + "<span class='rate_area'> <span class='blind'>평점&nbsp;</span>";
@@ -86,12 +90,16 @@ $(function(){
 					// 사업자 댓글이 있을 경우 추가
 					if(json[i].prcNum){
 					    values += "<div class='rbox_reply'>"
+							   + "<input type='hidden' value='"+ json[i].prNum +"' class='prNum'>"
 							   + "<p class='p_tit_reply'>"
 							   + "<em>"+ $('#bizName').text() +"</em>님의 댓글"
 							   + "</p>"
 							   + "<p class='p_review'>"+ json[i].prcContent +"</p>"
 							   + "<div class='rbox_info_base'>"
 							   + "<p class='time_info'>"+ json[i].prcDate +"</p>"
+							   + "<span class='reply-btn'>"
+							   +	"<a href='#replyOpen' class='replyUpdate mr-10'>수정</a><a class='replyDelete'>삭제</a>"
+							   + "</span>"
 							   + "</div>"
 							   + "</div>"; 
 					}
@@ -155,6 +163,7 @@ $(function(){
 		
 			$('.paging').html(pageValues);
 
+			// 페이지 번호 클릭 - 페이징 처리
 			$('.reviewNum').click(function(e){
 				e.preventDefault;
 				var curPg = parseInt($('.reviewNum.active').text().replace('[','').replace(']',''));
@@ -165,36 +174,291 @@ $(function(){
 				$($(this).attr('class', 'reviewNum active'))
 				
 			});
+		
 			
+// 리뷰 댓글 등록 버튼 누르기 START ************************************************************
+			var replyOpen = $("#replyOpen");
+			
+			$('.review-reply-insert-btn').click(function(e){
+				e.preventDefault();
+				$('.modal-title').text('댓글 등록하기');
+				$('.btn-reply-submit').text('등록');
+				$('.replyContent').val('');
+				$('.reply-prNum').val($(this).parent().parent().children('.reviewNum').val());
+				replyOpen.fadeIn("slow");
+			});
+// 리뷰 댓글 등록 버튼 누르기 END ************************************************************
+
+			
+// 리뷰 댓글 등록, 수정 START ************************************************************
+			var replyUpdate = $(".replyUpdate");
+			 
+			// 리뷰 수정 클릭 시 모달창 open
+			$(document).on("click", '.replyUpdate' ,function(e){
+			//replyUpdate.click(function(e){
+				e.preventDefault();  
+				replyOpen.fadeIn("slow");
+				$('.modal-title').text('댓글 수정하기');
+				$('.btn-reply-submit').text('수정');
+				$('.replyContent').val($(this).parent().parent().parent().children('.p_review').text());
+			    $('.reply-prNum').val($(this).parent().parent().parent().children('.prNum').val());			
+		    });
+			
+			// 수정 모달창 OPEN 메소드
+			function updateModalOpen(selector){
+				replyOpen.fadeIn("slow");
+				$('.replyContent').val(selector.parent().parent().parent().children('.p_review').text());
+			    $('.reply-prNum').val(selector.parent().parent().parent().children('.prNum').val());			
+			}
+			
+			// 취소 버튼 클릭
+			$('.btn-reply-close').click(function(e){
+				e.preventDefault();  
+				replyOpen.fadeOut("slow");
+			});
+			
+			// 문자 길이 200자 제한 - 몇자인지 표시
+			$('.replyContent').keyup(function(){
+				var replyLength = $('.replyContent').val().length;
+				$('.reply-length').text(replyLength);
+			
+			});
+			
+			// 수정, 등록 버튼 클릭 - 리뷰댓글 테이블 update
+			$('.btn-reply-submit').click(function(e){
+				var prNum  = $('.reply-prNum').val();
+				
+				// 댓글 수정 일시
+				if($('.btn-reply-submit').text()==="수정"){
+					$.ajax({
+						url : "replyHandle.ca",
+						type : "post",
+						data : {
+							'pbNum' : parseInt(pbNum),
+							'prNum' : parseInt(prNum),
+							'prcContent' : $('.replyContent').val(),
+							'reviewFunction' : "수정"
+						},
+						success : function(result) {
+							if(result="ok") {
+								alert('댓글 수정이 완료되었습니다.');
+								$('input[value*='+ prNum +'][class="prNum"]').parent().children('.p_review').text($('.replyContent').val());
+								replyOpen.fadeOut("slow");
+							}
+								
+						},
+						error : function(request,status,error) {
+							console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						}
+					});
+				// 댓글 등록 일때
+				} else if($('.btn-reply-submit').text()==="등록") {
+					//alert("여기인가요? prNum은 " + prNum + "타입은? " + typeof prNum + "pbNum은? " + pbNum + "타입은? " + typeof pbNum);
+					
+					$.ajax({
+						url : "replyHandle.ca",
+						type : "post",
+						data : {
+							'pbNum' : parseInt(pbNum),
+							'prNum' : parseInt(prNum),
+							'prcContent' : $('.replyContent').val(),
+							'reviewFunction' : "등록"
+						},
+						success : function(result) {
+							if(result="ok") {
+								alert('댓글 등록이 완료되었습니다.');
+								
+								/*location.reload();
+								$('div[class="tab-pane fade active in"]').attr('class', 'tab-pane fade');
+								$('input [type="hidden"][class="prNum"][value*="'+prNum+'"]').parent().parent().attr('class', 'tab-pane fade active in');*/
+								// 오늘날짜
+								var today = new Date();
+								var dd = today.getDate();
+								var mm = today.getMonth()+1; //January is 0!
+								var yyyy = today.getFullYear();
+								today = yyyy+'/'+mm+'/'+dd
+
+								
+								 var reviewAfter = "<div class='rbox_reply'>"
+									   + "<input type='hidden' value='"+ prNum +"' class='prNum'>"
+									   + "<p class='p_tit_reply'>"
+									   + "<em>"+ $('#bizName').text() +"</em>님의 댓글"
+									   + "</p>"
+									   + "<p class='p_review'>"+ $('.replyContent').val() +"</p>"
+									   + "<div class='rbox_info_base'>"
+									   + "<p class='time_info'>"+ today +"</p>"
+									   + "<span class='reply-btn'>"
+									   +	"<a href='#replyOpen' class='replyUpdate mr-10'>수정</a><a class='replyDelete'>삭제</a>"
+									   + "</span>"
+									   + "</div>"
+									   + "</div>"; 
+								 
+								$('input[value*='+ prNum +'][class="reviewNum"]').parent().after(reviewAfter);
+								replyOpen.fadeOut("slow");
+								
+								
+							}
+								
+						},
+						error : function(request,status,error) {
+							console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						}
+					});
+				}
+				
+			});
+			
+			
+			
+// 리뷰 댓글 수정 END ************************************************************
+
+			
+// 리뷰 댓글 삭제 START ************************************************************
+			$(document).on('click', '.replyDelete', function(e){
+				e.preventDefault();
+				if(confirm('댓글을 정말 삭제하시겠습니까?')){
+					var prNum  = $(this).parent().parent().parent().children('.prNum').val();
+					$.ajax({
+						url : "replyHandle.ca",
+						type : "post",
+						data : {
+							'pbNum' : parseInt(pbNum),
+							'prNum' : parseInt(prNum),
+							'reviewFunction' : "삭제"
+						},
+						success : function(result) {
+							if(result="ok") {
+								alert('댓글 삭제가 완료되었습니다.');
+								$('input[value*='+ prNum +'][class="prNum"]').parent().remove();
+								replyOpen.fadeOut("slow");
+							}
+								
+						},
+						error : function(request,status,error) {
+							console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						}
+					});
+				}
+				
+			});
+// 리뷰 댓글 삭제 END ************************************************************
+		  
 		},
 		error : function(request,status,error) {
 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 		
 	});
+// 리뷰 select end -----------------------
+
 	
-//리뷰 select end -----------------------
+	function post_to_url(path, params, method) {
+	    method = method || "post"; // Set method to post by default, if not specified.
+	 
+	    // The rest of this code assumes you are not using a library.
+	    // It can be made less wordy if you use one.
+	    var form = document.createElement("form");
+	    form.setAttribute("method", method);
+	    form.setAttribute("action", path);
+	 
+	    for(var key in params) {
+	        var hiddenField = document.createElement("input");
+	        hiddenField.setAttribute("type", "hidden");
+	        hiddenField.setAttribute("name", key);
+	        hiddenField.setAttribute("value", params[key]);
+	 
+	        form.appendChild(hiddenField);
+	    }
+	 
+	    document.body.appendChild(form);
+	    form.submit();
+	}	
 	
+	
+// 장바구니 담기 start ----------------------	
 	$('#addCart').click(function(e){
 		e.preventDefault();
-		$.ajax({
-			url : "productAddCart.ca",
-			type : "post",
-			dataType : "json",
-			data : {
-				'pbNum' : pbNum,
-				
-				
-			},
+		var id = $('.memberId').val();
+		id = 'user1';
+		
+		//날짜 형식 판별
+		var datePattern = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
+		var bookDate = $('#productReserve').val();
+		
+		var addText = $('#productAddText').val();
+		var cakeCnt = $('.cart-plus-minus-box').val();
+		
+		// 장바구니 담기 유효성 검사
+		if(!id){
+			alert('회원만 가능한 서비스 입니다. 로그인 페이지로 이동하시겠습니까?');
+			return false;
+		} else if(!$('#productReserve').val()){
+			alert('예약 날짜를 선택해 주세요.');
+			$('#productReserve').focus();
+			return false;
+		} else if(!datePattern.test(bookDate)) {
+			alert('달력을 이용해 날짜를 선택해 주세요.');
+			$('#productReserve').focus();
+			return false;
+		}else if($('.cart-plus-minus-box').val()==0){
+			alert('상품 개수를 입력해 주세요.');
+			$('.cart-plus-minus-box').focus();
+			return false;
+		} else {
+			console.log('pbNum 타입은 : ' +  parseInt(pbNum));
+			console.log('id 타입은 : ' +  id);
+			console.log('deliver 타입은 : ' +  parseInt($('.delivery').text()));
+			console.log('bookDate 타입은 : ' +  bookDate.replace(/-/gi,''));
+			console.log('cnt 타입은 : ' +  parseInt(cakeCnt));
+			console.log('total 타입은 : ' +  parseInt($('.totalPrice').text().replace('원', '')));
+			console.log('addText' +  addText);
 			
-			success : function(pReview){
-			}	
-		});
-		
+	/*		post_to_url("productAddCart.ca", {
+				'pbNum' : parseInt(pbNum),
+				'id' : id,
+				'bizDelivery' : parseInt($('.delivery').text().replace('원', '')),
+				'poBookDate' :  bookDate.replace(/-/gi,''),
+				'poCnt' : parseInt(cakeCnt),
+				'poPrice' : parseInt($('.totalPrice').text().replace('원', '')),
+				'poText' : addText
+			});*/
+			
+			
+			$.ajax({
+				url : "productAddCart.ca",
+				type : "post",
+				data : {
+						'pbNum' : parseInt(pbNum),
+						'id' : id,
+						'bizDelivery' : parseInt($('.delivery').text().replace('원', '')),
+						'poBookDate' :  bookDate.replace(/-/gi,''),
+						'poCnt' : parseInt(cakeCnt),
+						'poPrice' : parseInt($('.totalPrice').text().replace('원', '')),
+						'poText' : addText
+				},
+				success : function(result){
+					if(result=="ok"){
+						if(confirm('장바구니 담기에 성공했습니다. 장바구니로 이동하시겠습니까?')){
+							location.href="cartList.ca";
+						}
+					} else {
+						alert('장바구니 담기 실패');
+					}
+					
+				},
+				error : function(request,status,error) {
+					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+		}
 	});
+// 장바구니 담기 end ----------------------	
 	
+	
+	
+	
+// 좋아요 추가 제거 start ------------------
 	$('.heart').click(function(){
-		
 		var currentPage = $('.currentPage').val();
 		if(currentPage.match(/home.jsp/)){
 			var pbNum = $(this).parent().parent().parent().children('#pbNum').val();
@@ -270,7 +534,7 @@ $(function(){
 			}
 		}
 	});
-	
+// 좋아요 추가 제거 end ------------------
 	
 });
     	

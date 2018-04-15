@@ -41,4 +41,9 @@ public class MemberServiceImpl implements MemberService {
 		return findid;
 	}
 
+	@Override
+	public Member selectMemberInfo(String id) {
+		return memberDao.selectMemberInfo(id);
+	}
+
 }

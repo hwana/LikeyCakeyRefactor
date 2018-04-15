@@ -53,5 +53,10 @@
 		WHERE M_ID = #{id}
 	</update>
 	
+	<!-- 멤버 정보 멤버 id로 불러오기 -->
+	<select id="selectMemberInfo" parameterType="String" resultMap="resultMember">
+		SELECT * FROM MEMBER WHERE M_ID=#{id}
+	</select>
+	
 </mapper>
 

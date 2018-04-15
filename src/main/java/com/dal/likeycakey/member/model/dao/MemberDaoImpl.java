@@ -55,4 +55,9 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println("일반회원 로그인");
 		return sqlSession.selectOne("Member.loginCheck", new Member(id, passwd));
 	}
+
+	@Override
+	public Member selectMemberInfo(String id) {
+		return sqlSession.selectOne("Member.selectMemberInfo", id);
+	}
 }
