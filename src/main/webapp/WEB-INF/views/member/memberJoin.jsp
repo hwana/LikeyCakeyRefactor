@@ -218,7 +218,7 @@ html>body>section>div>div>div>form span>.btn-in {
 					<form class="form-horizontal" action="memberInsert.ca"
 						method="post" name="memberJoin">
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputId">아이디</label>
+							<label class="col-sm-3 control-label" for="inputId" style="line-height:36px;">아이디</label>
 							<div class="col-sm-6">
 								<div class="input-group">
 									<input type="text" class="form-control" id="inputId" name="id"
@@ -235,7 +235,7 @@ html>body>section>div>div>div>form span>.btn-in {
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
+							<label class="col-sm-3 control-label" for="inputPassword"  style="line-height:36px;">비밀번호</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputPassword" type="password"
 									placeholder="숫자, 영어를 조합하여 6~20자리의 비밀번호를 입력해주세요." name="passwd">
@@ -244,7 +244,7 @@ html>body>section>div>div>div>form span>.btn-in {
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호
+							<label class="col-sm-3 control-label" for="inputPasswordCheck" style="line-height:36px;">비밀번호
 								확인</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputPasswordCheck"
@@ -257,56 +257,63 @@ html>body>section>div>div>div>form span>.btn-in {
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputName">이름</label>
+							<label class="col-sm-3 control-label" for="inputName" style="line-height:36px;">이름</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="inputName"
 									type="text" placeholder="이름" name="name" />
 							</div>
 						</div>
-
-
+						
+						<!-- 휴대폰 -->
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputCp">휴대폰번호</label>
+							<label class="col-sm-3 control-label" for="inputPhone" style="line-height:36px;">휴대폰번호</label>
 							<div class="col-sm-6">
-								<div class="input-group">
-									<input type="tel" class="form-control" id="inputPhone"
-										placeholder="-(대시)를 입력해 주세요" name="phone" /> <span
-										class="input-group-btn"> <input
-										class="btn btn-success btn-in"
-										style="border: 0; height: 50px;" type="button" value="인증번호 전송">
-									</span>
-								</div>
+								<input class="form-control" type="tel" placeholder="-(대시)를 입력해주세요"
+									name="phone" id="inputPhone">
 							</div>
 						</div>
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputNumberCheck">인증번호
+							<label class="col-sm-3 control-label" for="inputEmail" style="line-height:36px;">이메일</label>
+							<div class="col-sm-6">
+								<div class="input-group">
+									<input type="text" class="form-control" id="inputEmail"
+										placeholder="이메일" name="email" /> <span
+										class="input-group-btn"> <input
+										class="btn btn-success btn-in"
+										style="border: 0; height: 50px;" type="button" value="인증번호 전송"
+										onclick = "checkMail()">
+									</span>
+								</div>
+							</div>
+						</div>
+						
+							<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputEmailCheck" style="line-height:36px;">인증번호
 								확인</label>
 							<div class="col-sm-6">
 								<div class="input-group">
-									<input class="form-control" id="inputCpCheck" type="text"
+									<input class="form-control" id="inputEmailCheck" type="text"
 										placeholder="인증번호"> <span class="input-group-btn">
+										
 										<input type="button" class="btn btn-success btn-in"
-										style="border: 0; height: 50px;" value="인증번호 확인">
+										style="border: 0; height: 50px;" value="인증번호 확인"
+										onclick = "checkJoinCode()">
 									</span>
 								</div>
 								<p class="help-block">전송된 인증코드를 입력해주세요.</p>
 							</div>
 						</div>
-
-
-						<!-- 이메일 -->
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
-							<div class="col-sm-6">
-								<input class="form-control" type="text" placeholder="이메일"
-									name="email" id="inputEmail">
-							</div>
-						</div>
+						
+						
+						
+						
+						
+						
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputAddrnum">
+							<label class="col-sm-3 control-label" for="inputAddrnum" style="line-height:36px;">
 								우편번호 </label>
 							<div class="col-sm-6">
 								<div class="input-group">
@@ -323,7 +330,7 @@ html>body>section>div>div>div>form span>.btn-in {
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputAddrB">기본주소</label>
+							<label class="col-sm-3 control-label" for="inputAddrB" style="line-height:36px;">기본주소</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text" placeholder="기본주소"
 									id="inputAddrB" name="addressBasic">
@@ -333,7 +340,7 @@ html>body>section>div>div>div>form span>.btn-in {
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputAddrD">상세주소</label>
+							<label class="col-sm-3 control-label" for="inputAddrD" style="line-height:36px;">상세주소</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text" id="inputAddrD"
 									placeholder="나머지 주소를 입력해주세요" name="addressDetail">
@@ -354,7 +361,7 @@ html>body>section>div>div>div>form span>.btn-in {
 
 						<!-- 사진등록 -->
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputPhoto">사진등록</label>
+							<label class="col-sm-3 control-label" for="inputPhoto" style="line-height:36px;">사진등록</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="file" id="inputFile">
 							</div>

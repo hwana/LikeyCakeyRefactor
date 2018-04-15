@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="productqna">
+	<resultMap type="Productqna" id="resultProductqna">
+		<id property="pqNum" column="P_Q_NUM" />
+		<result property="id" column="M_ID" />
+		<result property="pqContent" column="P_Q_CONTENT" />
+		<result property="pqDate" column="P_Q_DATE" />
+		<result property="pbNum" column="P_B_NUM" />
+	</resultMap>
+
+	<!-- 게시글 등록 -->
+	<insert id="insertPost" parameterType="hashmap">
+		insert into PRODUCT_QNA (P_Q_NUM, M_ID, P_Q_CONTENT, P_Q_DATE, P_B_NUM)
+		values(#{pqNum}, #{id}, #{pqContent}, SYSDATE, #{pbNum})
+	</insert>
+
+
+
+
+
+
+
+</mapper>

@@ -244,7 +244,6 @@ h3 {
 	}
 </script>
 
-
 <div class="container" id="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
@@ -305,7 +304,7 @@ h3 {
 										<a href="bizJoin.ca" class="forgot-password">회원가입</a>
 									</div>
 									<div class="col-xs-5 text-left">
-										<a href="#" class="forgot-password">아이디/비밀번호 찾기</a>
+										<a href="findIdPw.ca" class="forgot-password">아이디/비밀번호 찾기</a>
 									</div>
 								</div>
 

@@ -367,12 +367,4 @@ public class BizController {
 
 		return "biz/uploadComplete";
 	}
-
-	// 사업자 아이디 패스워드 찾는 페이지
-	@RequestMapping(value = "findIdPw.ca", method = RequestMethod.GET)
-	public String findIdPw() {
-
-		return "biz/findIdPw";
-	}
-
 }

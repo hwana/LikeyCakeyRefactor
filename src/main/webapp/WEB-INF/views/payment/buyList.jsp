@@ -157,6 +157,14 @@
 														</c:if>
 														<!-- 구매취소 버튼 끝 -->
 														
+														<!-- 리뷰쓰기 버튼 시작 -->
+														<div class="pink_button">
+															<a href="memberBuylist.ca">
+																<input type="button" value="리뷰쓰기" style="height:20px; width:100px; margin-top:5px; padding-left:10px; padding-right:10px;">
+															</a>
+														</div>
+														<!-- 리뷰쓰기 버튼 끝 -->
+														
 														</td>
 													</tr>
 													<tr style="border-bottom:solid grey 2px;">
@@ -177,7 +185,6 @@
 														</c:if>
 														<!-- 배송지 수정 버튼 끝 -->
 												
-												</div>
 												
 														</td>
 													</tr>

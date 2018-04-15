@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 // @Controller 를 사용하기 위한 import
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,22 +44,42 @@ public class MemberController {
 	}
 
 	// find id & pw page only for move
-	@RequestMapping(value = "findIdpw.ca", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "findIdPw.ca", method = { RequestMethod.GET, RequestMethod.POST })
 	public String moveFindid(Model model) {
 		return "biz/findIdPw";
 	}
 
-	// find id & pw
+	
+	// 아이디 찾기
 	@ResponseBody
-	@RequestMapping(value = "findingId.ca", method = RequestMethod.POST)
-	public void findingId(ModelAndView mv, HttpSession session, Member member, HttpServletResponse response)
+	@RequestMapping(value = "findingId.ca", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	public String findingId(@ModelAttribute Member m, Model model , HttpServletResponse response)
+			throws Exception {
+		
+		System.out.println(m.toString());
+
+		ArrayList <String> ur_id = memberService.findId(m);
+		System.out.println(ur_id.toString());
+		System.out.println(ur_id.get(0));
+		String findId = "{\"id \":\""+ur_id+"\"}";
+
+		System.out.println(findId);
+
+		return findId;
+	}
+	
+	
+	// 비번 찾기
+	@ResponseBody
+	@RequestMapping(value = "findingPw.ca", method = RequestMethod.POST)
+	public void findingPw(ModelAndView mv, HttpSession session, Member member, HttpServletResponse response)
 			throws Exception {
 		PrintWriter out = response.getWriter();
 		// 데이터베이스에 저장된 아이디와 비밀번호를 입력된 아이디와 비밀번호를 비교하여 결과값을 result에 저장
-		member = memberService.findId(member.getId(), member.getPasswd());
-
+		// member = memberService.findPw(member.getPasswd(), member.getPasswd());
 	}
 
+	
 	// 아이디 중복확인
 	@RequestMapping(value = "mdupid.ca", method = RequestMethod.POST)
 	public void dupid(ModelAndView mv, @RequestParam("id") String id, HttpServletResponse response) throws IOException {
@@ -72,6 +93,8 @@ public class MemberController {
 		out.flush();
 		out.close();
 	}
+
+	
 
 	// 일반회원 INSERT 해주는 부분
 	@RequestMapping(value = "memberInsert.ca", method = RequestMethod.POST)
@@ -238,5 +261,8 @@ public class MemberController {
 	public String onlymovebuylist(Model model) {
 		return "member/memberBuylist";
 	}
+	
+	
+	
 
 }

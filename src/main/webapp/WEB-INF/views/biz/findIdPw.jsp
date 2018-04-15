@@ -13,52 +13,29 @@
 
 <%@ include file="../default/header.jsp"%>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		// 아이디 찾기
-		$("#forgot-find-id").click(function(){
-			var email = $('#email').val();
-		 	var name = $('#name').val();
+<script>
+$(document).on('click','#findId',function(){
+	var name = $('#name').val();
+ 	var email = $('#email').val();
+ 	var postData = {'name' : name , 'email' : email};
 
-		 	var postData = {'email' : email , 'name' : name};
+	$.ajax({
+        url:'findingId.ca',
+        type:'POST',
+        data: postData,
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType : "json",
 
-			$.ajax({
-		        url:'findingId.ca',
-		        type:'POST',
-		        data: postData,
-		        dataType : "json",
+        success:function(data){
+        	var ur_id = data.id;
+       	 	$("#urId").append("<h1>"+"회원님의 정보로 등록된 아이디는 : "+ur_id+" 입니다.</h1>")
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown){
+        	alert('정보를 다시 입력해주시길 바랍니다.' );
+        }
+    });
+});
 
-		        success:function(data){
-		       	 	$("#found_id").append("<h1>"+"회원님의 정보로 등록된 이메일은 : "+ data +" 입니다.</h1>")
-		        },
-		        error: function (XMLHttpRequest, textStatus, errorThrown){
-		        	alert('정보를 다시 입력해주시길 바랍니다.' );
-		        }
-		    });
-		}); // 아이디 찾기 끝
-		
-		
-		$("#forgot-find-pw").click(function(){
-			var id = $('#id').val();
-		 	var name = $('#name').val();
-
-		 	var postData = {'email' : email , 'name' : name};
-
-			$.ajax({
-		        url:'findingId.ca',
-		        type:'POST',
-		        data: postData,
-		        dataType : "json",
-
-		        success:function(data){
-		       	 	$("#found_id").append("<h1>"+"회원님의 정보로 등록된 이메일은 : "+ data +" 입니다.</h1>")
-		        },
-		        error: function (XMLHttpRequest, textStatus, errorThrown){
-		        	alert('정보를 다시 입력해주시길 바랍니다.' );
-		        }
-		    });
-		}); // 아이디 찾기 끝
-	});//ready
 </script>
 
 <div class="container" id="container">
@@ -105,14 +82,15 @@
 									<div class="col-xs-8 col-xs-offset-2">
 										<input type="button" name="login-submit"
 											tabindex="4" class="form-control btn btn-login login-submit" value="아이디 찾기"
-											id="forgot-find-id">
+											id="findId">
 									</div>
 								</div>
+								<div id="urId"></div>
 							</form>
 
 							
 							<!-- 비밀번호를 찾기 위한 폼 -->
-							<form id="pw-find" action="loginCheck2.ca" method="post"
+							<form id="pw-find" action="findingPw.ca" method="post"
 								role="form" style="display: none;" class="form-horizontal">
 
 								<div class="form-group">
