@@ -50,109 +50,146 @@ html>body>section>div>div>div>form span>.btn-in {
 
 <!-- 유효성 검사를 위한 자바스크립트 -->
 <script type="text/javascript"
-		src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
-
+	src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
 
 <!-- 주소 API -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-    function findPost() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	function findPost() {
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var fullAddr = ''; // 최종 주소 변수
-                var extraAddr = ''; // 조합형 주소 변수
+						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var fullAddr = ''; // 최종 주소 변수
+						var extraAddr = ''; // 조합형 주소 변수
 
-                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    fullAddr = data.roadAddress;
+						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+							fullAddr = data.roadAddress;
 
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    fullAddr = data.jibunAddress;
-                }
+						} else { // 사용자가 지번 주소를 선택했을 경우(J)
+							fullAddr = data.jibunAddress;
+						}
 
-                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-                if(data.userSelectedType === 'R'){
-                    //법정동명이 있을 경우 추가한다.
-                    if(data.bname !== ''){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있을 경우 추가한다.
-                    if(data.buildingName !== ''){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-                }
+						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+						if (data.userSelectedType === 'R') {
+							//법정동명이 있을 경우 추가한다.
+							if (data.bname !== '') {
+								extraAddr += data.bname;
+							}
+							// 건물명이 있을 경우 추가한다.
+							if (data.buildingName !== '') {
+								extraAddr += (extraAddr !== '' ? ', '
+										+ data.buildingName : data.buildingName);
+							}
+							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
+									+ ')' : '');
+						}
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('inputAddrnum').value = data.zonecode; //5자리 새우편번호 사용
-                document.getElementById('inputAddrB').value = fullAddr;
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						document.getElementById('inputAddrnum').value = data.zonecode; //5자리 새우편번호 사용
+						document.getElementById('inputAddrB').value = fullAddr;
 
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById('inputAddrD').focus();
-            }
-        }).open();
-    }
-    
-    
-	// 비밀번호 확인
-	function checkPwd(){
-		  var pw1 = $("#inputPassword").val();
-		  var pw2 = $("#inputPasswordCheck").val();
-		  var pwcheck = $("#pwcheck").val();
-		  var pwP = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; // 비밀번호
-		  
-		  if(pw1!=null && pw2!=null){
-			  if(!pwP.test($("#inputPassword").val())) {
-					alert("비밀번호 형식은 영어, 숫자포함 6~20 자리 입니다.");
-					$("#inputPassword").val("");
-					$("#inputPassword").focus();
-					return false;
-			  } else {
-				  if(pw1 != pw2){
-				   		document.getElementById('pwcheck_change').style.color = "red";
-				   		document.getElementById('pwcheck_change').innerHTML = "동일한 암호를 입력하세요.";
-				   		pwcheck = false;
-				   		return pwcheck;
-				  	} else {
-				   		document.getElementById('pwcheck_change').style.color = "blue";
-				   		document.getElementById('pwcheck_change').innerHTML = "암호가 동일합니다.";
-				   		pwcheck = true;
-				   		return true;
-				  	}
-			  }
-		 }
+						// 커서를 상세주소 필드로 이동한다.
+						document.getElementById('inputAddrD').focus();
+					}
+				}).open();
 	}
 	
-	// 아이디 중복확인 클릭 시 
-	$("#check_id").click(function() {
-		$.ajax({
-			url : "mdupid.ca",
-			data : {
-				id : $("#inputId").val()
-			},
-			dataType : "text",
-			type : "post",
-			success : function(value) {
-				if (value == "ok") {
-					$('#checkMsg').html('<p style="color:blue">사용가능한 아이디입니다.</p>');							
-					$('input[name=name]').focus();
+	// 이용약관을 펼쳐볼 수 있는 토글
+	function openDiv() {
+		 $("#yak_div").toggle();
+	}
+
+	// 비밀번호 확인
+	function checkPwd() {
+		var pw1 = $("#inputPassword").val();
+		var pw2 = $("#inputPasswordCheck").val();
+		var pwcheck = $("#pwcheck").val();
+		var pwP = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; // 비밀번호
+
+		if (pw1 != null && pw2 != null) {
+			if (!pwP.test($("#inputPassword").val())) {
+				alert("비밀번호 형식은 영어, 숫자포함 6~20 자리 입니다.");
+				$("#inputPassword").val("");
+				$("#inputPassword").focus();
+				return false;
+			} else {
+				if (pw1 != pw2) {
+					document.getElementById('pwcheck_change').style.color = "red";
+					document.getElementById('pwcheck_change').innerHTML = "동일한 암호를 입력하세요.";
+					pwcheck = false;
+					return pwcheck;
 				} else {
-					$('#checkMsg').html('<p style="color:red">중복된 아이디입니다.</p>');
-					alert("이미 존재하는 아이디입니다. 아이디를 다시 설정하세요");
-					$('#inputId').select();
+					document.getElementById('pwcheck_change').style.color = "blue";
+					document.getElementById('pwcheck_change').innerHTML = "암호가 동일합니다.";
+					pwcheck = true;
+					return true;
 				}
-			},
-			error : function(value) {
-				alert("잘못 입력하셨습니다." + value);
 			}
-		});
-		return false;
-	}); // click
+		}
+	}
+</script>
+
+<script>
+	$(document)
+			.ready(
+					function() {
+						$("#check_id")
+								.click(
+										function() {
+											$
+													.ajax({
+														url : "dupid.ca",
+														data : {
+															id : $("#inputId")
+																	.val()
+														},
+														dataType : "text",
+														type : "post",
+														success : function(
+																value) {
+															if (value == "ok") {
+																var idcheck = $(
+																		'#idcheck')
+																		.val();
+																document
+																		.getElementById('idcheck_change').style.color = "blue";
+																document
+																		.getElementById('idcheck_change').innerHTML = "사용가능한 아이디입니다.";
+																alert("사용가능한 아이디입니다.");
+																$(
+																		'input[name=passwd]')
+																		.focus();
+																idcheck = true;
+																return idcheck;
+															} else {
+																var idcheck = $(
+																		'#idcheck')
+																		.val();
+																document
+																		.getElementById('idcheck_change').style.color = "red";
+																document
+																		.getElementById('idcheck_change').innerHTML = "이미 존재하는 아이디입니다.";
+																alert("이미 존재하는 아이디입니다. 아이디를 다시 설정하세요");
+																$('#inputId')
+																		.select();
+																idcheck = false;
+																return idcheck;
+															}
+														},
+														error : function(value) {
+															alert("잘못 입력하셨습니다."
+																	+ value);
+														}
+													});
+											return false;
+										}); //click
+					}); //ready
 </script>
 
 
@@ -178,26 +215,27 @@ html>body>section>div>div>div>form span>.btn-in {
 							회원가입 <small>[Likey Cakey 일반 회원]</small>
 						</h1>
 					</div>
-					<form class="form-horizontal" action="memberInsert.ca" method="post">
+					<form class="form-horizontal" action="memberInsert.ca"
+						method="post" name="memberJoin">
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputId">아이디</label>
+							<label class="col-sm-3 control-label" for="inputId" style="line-height:36px;">아이디</label>
 							<div class="col-sm-6">
 								<div class="input-group">
 									<input type="text" class="form-control" id="inputId" name="id"
-										placeholder="아이디" /> <span class="input-group-btn">
-										<input class="btn btn-success btn-in" style="border:0; height:50px;"
-											id="check_id" type="button" value="중복확인">
-										<!-- 아이디를 중복확인 하였는지에 대한 상태 확인 -->
-										<input type="hidden" id="idcheck" value="false">
+										placeholder="아이디" /> <span class="input-group-btn"> <input
+										class="btn btn-success btn-in"
+										style="border: 0; height: 50px;" id="check_id" type="button"
+										value="중복확인"> <!-- 아이디를 중복확인 하였는지에 대한 상태 확인 --> <input
+										type="hidden" id="idcheck" value="false">
 									</span>
 								</div>
-								<div id="checkMsg"></div>
+								<p class="help-block" id="idcheck_change">※ 아이디 중복확인을 해주세요</p>
 							</div>
 						</div>
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
+							<label class="col-sm-3 control-label" for="inputPassword"  style="line-height:36px;">비밀번호</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputPassword" type="password"
 									placeholder="숫자, 영어를 조합하여 6~20자리의 비밀번호를 입력해주세요." name="passwd">
@@ -206,7 +244,7 @@ html>body>section>div>div>div>form span>.btn-in {
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호
+							<label class="col-sm-3 control-label" for="inputPasswordCheck" style="line-height:36px;">비밀번호
 								확인</label>
 							<div class="col-sm-6">
 								<input class="form-control" id="inputPasswordCheck"
@@ -214,69 +252,77 @@ html>body>section>div>div>div>form span>.btn-in {
 								<p class="help-block" id="pwcheck_change">비밀번호를 한번 더 입력해주세요.</p>
 							</div>
 						</div>
-						
+
 						<input type="hidden" id="pwcheck" value="false">
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputName">이름</label>
+							<label class="col-sm-3 control-label" for="inputName" style="line-height:36px;">이름</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="inputName" type="text"
-									placeholder="이름" name="name" />
+								<input type="text" class="form-control" id="inputName"
+									type="text" placeholder="이름" name="name" />
+							</div>
+						</div>
+						
+						<!-- 휴대폰 -->
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputPhone" style="line-height:36px;">휴대폰번호</label>
+							<div class="col-sm-6">
+								<input class="form-control" type="tel" placeholder="-(대시)를 입력해주세요"
+									name="phone" id="inputPhone">
 							</div>
 						</div>
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputCp">휴대폰번호</label>
+							<label class="col-sm-3 control-label" for="inputEmail" style="line-height:36px;">이메일</label>
 							<div class="col-sm-6">
 								<div class="input-group">
-									<input type="tel" class="form-control" id="inputPhone"
-										placeholder="-(대시)를 입력해 주세요" name="phone" /> 
-										<span class="input-group-btn">
-										<input class="btn btn-success btn-in" style="border:0; height:50px;" 
-											   type="button" value="인증번호 전송">
+									<input type="text" class="form-control" id="inputEmail"
+										placeholder="이메일" name="email" /> <span
+										class="input-group-btn"> <input
+										class="btn btn-success btn-in"
+										style="border: 0; height: 50px;" type="button" value="인증번호 전송"
+										onclick = "checkMail()">
 									</span>
 								</div>
 							</div>
 						</div>
-
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputNumberCheck">인증번호
+						
+							<div class="form-group">
+							<label class="col-sm-3 control-label" for="inputEmailCheck" style="line-height:36px;">인증번호
 								확인</label>
 							<div class="col-sm-6">
 								<div class="input-group">
-									<input class="form-control" id="inputCpCheck" type="text"
+									<input class="form-control" id="inputEmailCheck" type="text"
 										placeholder="인증번호"> <span class="input-group-btn">
-										<input type="button" class="btn btn-success btn-in" style="border:0; height:50px;"
-											value="인증번호 확인">
+										
+										<input type="button" class="btn btn-success btn-in"
+										style="border: 0; height: 50px;" value="인증번호 확인"
+										onclick = "checkJoinCode()">
 									</span>
 								</div>
 								<p class="help-block">전송된 인증코드를 입력해주세요.</p>
 							</div>
 						</div>
-
-
-						<!-- 이메일 -->
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputEmail">이메일</label>
-							<div class="col-sm-6">
-								<input class="form-control" type="text" placeholder="이메일"
-									name="email" id="inputEmail">
-							</div>
-						</div>
+						
+						
+						
+						
+						
+						
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputAddrnum">
+							<label class="col-sm-3 control-label" for="inputAddrnum" style="line-height:36px;">
 								우편번호 </label>
 							<div class="col-sm-6">
 								<div class="input-group">
 									<input class="form-control" id="inputAddrnum" type="text"
 										placeholder="우편번호" name="post"> <span
-										class="input-group-btn">
-										<input type="button" class="btn btn-success btn-in" style="border:0; height:50px;"
-											id="post_find" value="우편찾기"  onclick="findPost()">
+										class="input-group-btn"> <input type="button"
+										class="btn btn-success btn-in"
+										style="border: 0; height: 50px;" id="post_find" value="우편찾기"
+										onclick="findPost()">
 									</span>
 								</div>
 							</div>
@@ -284,17 +330,17 @@ html>body>section>div>div>div>form span>.btn-in {
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputAddrB">기본주소</label>
+							<label class="col-sm-3 control-label" for="inputAddrB" style="line-height:36px;">기본주소</label>
 							<div class="col-sm-6">
-								<input class="form-control" type="text" placeholder="기본주소" id ="inputAddrB"
-									name="addressBasic">
+								<input class="form-control" type="text" placeholder="기본주소"
+									id="inputAddrB" name="addressBasic">
 							</div>
 						</div>
 
 
 
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputAddrD">상세주소</label>
+							<label class="col-sm-3 control-label" for="inputAddrD" style="line-height:36px;">상세주소</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text" id="inputAddrD"
 									placeholder="나머지 주소를 입력해주세요" name="addressDetail">
@@ -315,7 +361,7 @@ html>body>section>div>div>div>form span>.btn-in {
 
 						<!-- 사진등록 -->
 						<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputPhoto">사진등록</label>
+							<label class="col-sm-3 control-label" for="inputPhoto" style="line-height:36px;">사진등록</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="file" id="inputFile">
 							</div>
@@ -326,23 +372,55 @@ html>body>section>div>div>div>form span>.btn-in {
 							<label class="col-sm-3 control-label" for="inputAgree">약관
 								동의</label>
 							<div class="col-sm-6" data-toggle="buttons">
-								<label class="btn btn-warning active"> <input id="agree"
-									type="checkbox" autocomplete="off"> <span
-									class="fa fa-check"></span>
-								</label> <a href="#">이용약관</a>에 동의합니다.
+								<input id="agree" name="agree" type="checkbox" class="col-sm-3" style="width : 20px; height:20px;" 
+								checked> 
+								&nbsp;&nbsp;<input type="button" id="agree_btn" value="이용약관 확인" style="width:100px; height:30px; background-color : white; border : 0px;"
+								onclick="openDiv()">
 							</div>
 						</div>
+						
+						<div class="form-group" id="yak_div" style="display:none">
+							<label class="col-sm-3 control-label" for="inputExp"></label>
+							<div class="col-sm-6">
+								<textarea rows="20" cols="150">가. 수집하는 개인정보의 항목첫째, 회사는 회원가 입, 원활한 고객상담, 각종 서비스의 제공을 위해 최초 회원가입 당시 아래와 같은 최소한의 개인정보를 필수항목으로 수집하고 있습니다.
+								
+								&lt;회원가입&gt;
+- 이름, 생년월일, 성별, 아이디, 비밀번호, 별명, 연락처(메일주소, 휴대폰 번호 중 선택), 가입인증정보
+만14세 미만 아동 회원가입 
+- 이름, 생년월일, 성별, 법정대리인 정보, 아이디, 비밀번호, 연락처 (메일주소, 휴대폰 번호 중 선택), 가입인증정보
+단체아이디 회원가입 
+- 단체아이디, 회사명, 대표자명, 대표 전화번호, 대표 이메일 주소, 단체주소, 관리자 아이디, 관리자 연락처, 관리자 부서/직위
+- 선택항목 : 대표 홈페이지, 대표 팩스번호
+둘째, 서비스 이용과정이나 사업처리 과정에서 아래와 같은 정보들이 자동으로 생성되어 수집될 수 있습니다.
+- IP Address, 쿠키, 방문 일시, 서비스 이용 기록, 불량 이용 기록
+셋째, 네이버 아이디를 이용한 부가 서비스 및 맞춤식 서비스 이용 또는 이벤트 응모 과정에서 해당 서비스의 이용자에 한해서만 개인정보 추가 수집이 발생할 수 있으며, 이러한 경우 별도의 동의를 받습니다. 
+넷째, 성인컨텐츠, 유료/게임 등 일부 서비스 이용시 관련 법률 준수를 위해 본인인증이 필요한 경우, 아래와 같은 정보들이 수집될 수 있습니다. 
+- 이름, 생년월일, 성별, 중복가입확인정보(DI), 암호화된 동일인 식별정보(CI), 휴대폰 번호(선택), 아이핀 번호(아이핀 이용시), 내/외국인 정보
+다섯째, 유료 서비스 이용 과정에서 아래와 같은 결제 정보들이 수집될 수 있습니다. 
+- 신용카드 결제시 : 카드사명, 카드번호 등
+- 휴대전화 결제시 : 이동전화번호, 통신사, 결제승인번호 등
+- 계좌이체시 : 은행명, 계좌번호 등
+- 상품권 이용시 : 상품권 번호
+나. 개인정보 수집방법회사는 다음과 같은 방법으로 개인정보를 수집합니다. 
+- 홈페이지, 서면양식, 팩스, 전화, 상담 게시판, 이메일, 이벤트 응모, 배송요청
+- 협력회사로부터의 제공 
+- 생성정보 수집 툴을 통한 수집
+   </textarea>
+							</div>
+						</div>
+						
+						
+						
+						
+						
+						
 						<div class="form-group">
 							<div class="col-sm-12 text-center">
 								<input class="btn btn-primary" type="submit" id="join"
-									style="background-color: #f6c6c9;
-										   border : 0px;
-										   width : 200px;" 
-									value="회원가입">
-								<input type="reset" class="btn btn-danger" id="cancel"
-									style="background-color: #9bcaba;
-										   border:0px;
-										   width : 200px;" 
+									style="background-color: #f6c6c9; border: 0px; width: 200px;"
+									value="회원가입"> <input type="reset"
+									class="btn btn-danger" id="cancel"
+									style="background-color: #9bcaba; border: 0px; width: 200px;"
 									value="가입 취소">
 							</div>
 						</div>

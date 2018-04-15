@@ -21,8 +21,15 @@
 	</insert>
 	
 	<!-- 게시글 리스트 불러오기 -->
-	<select id="listAll" resultType="Homeqna">
+	<select id="listAll" resultMap="resultHomeqna">
 		SELECT H_Q_NUM, H_Q_TITLE, H_Q_CONTENT, M_ID, H_Q_DATE FROM HOME_QNA
+		ORDER BY H_Q_NUM DESC, H_Q_DATE DESC
+	</select>
+	
+	<!-- 게시글 리스트 마이페이지에서 불러오기 -->
+	<select id="m_listAll" resultMap="resultHomeqna">
+		SELECT H_Q_NUM, H_Q_TITLE, H_Q_CONTENT, M_ID, H_Q_DATE FROM HOME_QNA
+		WHERE M_ID = #{id}
 		ORDER BY H_Q_NUM DESC, H_Q_DATE DESC
 	</select>
 	

@@ -256,4 +256,5 @@ public class Member implements java.io.Serializable{
 		this.memberLike = memberLike;
 	}
 
+
 }

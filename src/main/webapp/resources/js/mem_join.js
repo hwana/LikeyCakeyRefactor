@@ -10,6 +10,9 @@ $(document)
 										var telP = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/; // 전화번호
 										var emailP = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/ // 이메일
 										var pwP = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; // 비밀번호
+										
+										var agree = $("input:checkbox[name='agree']").is(":checked");
+									    
 										// alert("ok");
 										if ($("#inputPhoto").val() == "") {
 											alert("사진을 업로드 하세요.");
@@ -83,7 +86,7 @@ $(document)
 										} else if ($("#inputEmail").val() == "") {
 											alert("이메일을 입력하세요");
 											$("#inputEmail").focus();
-
+											return false;
 										} else if (!emailP
 												.test($("#inputEmail").val())) {
 											alert("올바른 이메일 형식으로 입력하십시오.");
@@ -95,9 +98,16 @@ $(document)
 											$("#inputPassword").val("");
 											$("#inputPasswordCheck").val("");
 											$("#inputPassword").focus();
-										} 
-										
-										
+											return false;
+										} else if($("#idcheck").val() == false){
+											alert("아이디 중복확인을 해주세요");
+											$("#inputId").focus();
+											return false;
+										} else if(!agree){
+											alert("약관 미동의시 가입이 불가능합니다");
+											$("#agree").focus();
+											return false;
+										}
 										else {
 											alert("회원가입이 완료되었습니다.");
 											return true;

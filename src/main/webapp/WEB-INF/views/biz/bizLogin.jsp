@@ -5,6 +5,7 @@
 <!-- 카카오 로그인을 위한 API 경로지정 -->
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <!-- for naver login api -->
 <script src="http://code.jquery.com/jquery-1.7.js"></script>
 <script
@@ -13,6 +14,22 @@
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"></script>
 <script type="text/javascript" src="jquery.cookie.js"></script>
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"
+	charset="utf-8"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<style type="text/css">
+html, div, body, h3 {
+	margin: 0;
+	padding: 0;
+}
+
+h3 {
+	display: inline-block;
+	padding: 0.6em;
+}
+</style>
 
 <!-- <script type='text/javascript'>
 	//<![CDATA[
@@ -227,76 +244,93 @@
 	}
 </script>
 
-
 <div class="container" id="container">
- 	<div class="row">
- 		<div class="col-md-6 col-md-offset-3">
- 			<div class="panel panel-login" id="panel-login">
- 				<div class="panel-heading" id="panel-heading">
- 					<div class="row">
- 						<div class="col-xs-12">
- 							<a href="#" id="biz-member-link">로그인</a>
- 						</div>
- 					</div>
- 					<hr>
- 				</div>
- 
- 
- 				<div class="panel-body">
- 					<div class="row">
- 						<div class="col-lg-12">
- 							<form id="register-form" action="loginCheck2.ca" method="post"
- 								role="form"  class="form-horizontal">
- 
- 								<div class="form-group">
- 									<label class="col-xs-3 text-right" id="id">아이디</label>
- 
- 									<div class="col-xs-8">
- 
- 										<input type="text" name="id" tabindex="1" id="username"
- 											class="form-control username" placeholder="아이디를 입력하세요.">
- 
- 									</div>
- 
- 
- 
- 									<label class="col-xs-3 text-right">비밀번호</label>
- 									<div class="col-xs-8">
- 
- 
- 										<input type="password" name="passwd" tabindex="2"
- 											class="form-control" placeholder="비밀번호를 입력하세요.">
- 									</div>
- 								</div>
- 								<div class="col-xs-12 message"
- 									style="text-align: center; color: red; margin-bottom: 10px;"></div>
- 								<div class="row">
- 									<div class="col-xs-8 col-xs-offset-2">
- 
- 										<input type="button" name="login-submit" tabindex="4"
- 											class="form-control btn btn-login login-submit"
- 											id="biz_login" value="로그인">
- 									</div>
- 								</div>
- 								<div class="row text-center">
- 									<input type="checkbox" class="remember" name="remember">
- 									<label for="remember"> 아이디 저장하기</label>
- 								</div>
- 
- 								<div class="row">
- 									<div class="col-xs-5 text-right">
- 										<a href="bizJoin.ca" class="forgot-password">회원가입</a>
- 									</div>
- 									<div class="col-xs-5 text-left">
- 										<a href="#" class="forgot-password">아이디/비밀번호 찾기</a>
- 									</div>
- 								</div>
- 
- 								<div id="kakao-logged-group"></div>
- 								<div id="kakao-profile"></div>
- 								<%@include file="../member/naverLogin.jsp"%>
- 
- 							</form>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="panel panel-login" id="panel-login">
+				<div class="panel-heading" id="panel-heading">
+					<div class="row">
+						<div class="col-xs-12">
+							<a href="#" id="biz-member-link">로그인</a>
+						</div>
+					</div>
+					<hr>
+				</div>
+
+
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-12">
+							<form id="register-form" action="loginCheck2.ca" method="post"
+								role="form" style="display: none;" class="form-horizontal">
+
+								<div class="form-group">
+									<label class="col-xs-3 text-right" id="id">아이디</label>
+
+									<div class="col-xs-8">
+
+										<input type="text" name="id" tabindex="1" id="username"
+											class="form-control username" placeholder="아이디를 입력하세요.">
+
+									</div>
+
+
+
+									<label class="col-xs-3 text-right">비밀번호</label>
+									<div class="col-xs-8">
+
+
+										<input type="password" name="passwd" tabindex="2"
+											class="form-control" placeholder="비밀번호를 입력하세요.">
+									</div>
+								</div>
+								<div class="col-xs-12 message"
+									style="text-align: center; color: red; margin-bottom: 10px;"></div>
+								<div class="row">
+									<div class="col-xs-8 col-xs-offset-2">
+
+										<input type="button" name="login-submit" tabindex="4"
+											class="form-control btn btn-login login-submit"
+											id="biz_login" value="로그인">
+									</div>
+								</div>
+								<div class="row text-center">
+									<input type="checkbox" class="remember" name="remember">
+									<label for="remember"> 아이디 저장하기</label>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-5 text-right">
+										<a href="bizJoin.ca" class="forgot-password">회원가입</a>
+									</div>
+									<div class="col-xs-5 text-left">
+										<a href="findIdPw.ca" class="forgot-password">아이디/비밀번호 찾기</a>
+									</div>
+								</div>
+
+								<div id="kakao-logged-group"></div>
+								<div id="kakao-profile"></div>
+								<%-- <%@include file="../member/naverLogin.jsp"%> --%>
+
+								<!-- naver login -->
+								<!-- 네이버 로그인 화면으로 이동 시키는 URL -->
+								<!-- 네이버 로그인 화면에서 ID, PW를 올바르게 입력하면 callback 메소드 실행 요청 -->
+								<div id="naverIdLogin"></div>
+								<!-- 버튼이 들어갈 위치 선언. ID는 반드시 지정된 값으로 설정하여야 합니다.-->
+
+								<script type="text/javascript">
+								var naverLogin = new naver.LoginWithNaverId(
+								{
+									clientId: "{zWIQFmZiGAZ2qCOwYWjl}",
+									callbackUrl: "{http://192.168.219.103:8088/home.ca}",
+									loginButton: {color: "green", type: 2, height: 50} /* 로그인 버튼의 타입을 지정 */
+								}
+								);
+	
+							   /* 설정정보를 초기화하고 연동을 준비 */
+								naverLogin.init();
+								</script>
+							</form>
 
 							<!-- API 간편 로그인 - kakao -->
 							<!-- 						<div style="margin: 0 auto">
