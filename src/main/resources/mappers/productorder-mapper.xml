@@ -26,10 +26,10 @@
 	<insert id="insertProductAddCart" parameterType="ProductOrder">
 		INSERT INTO PRODUCT_ORDER
 		(P_O_NUM, P_B_NUM, S_NUM, M_ID, BIZ_DELIVERY, P_O_DATE, P_O_BOOKDATE, P_O_CNT, P_O_PRICE, P_O_TEXT,
-		 P_O_REC_NAME, P_O_REC_CP, P_O_REC_POST, P_O_REC_BASIC_ADDR, P_O_REC_DETAIL_ADDR)
+		 P_O_REC_NAME, P_O_REC_CP, P_O_REC_POST, P_O_REC_BASIC_ADDR, P_O_REC_DETAIL_ADDR, P_O_TYPE)
 		VALUES 
 		(SEQ_P_O_NUM.NEXTVAL, #{pbNum}, 1, #{id}, #{poBizDelivery}, SYSDATE, #{poBookDate}, #{poCnt}, #{poPrice}, #{poText}, 
-		 #{poRecName}, #{poRecCp}, #{poRecPost}, #{poRecBasicAddr}, #{poRecDetailAddr})
+		 #{poRecName}, #{poRecCp}, #{poRecPost}, #{poRecBasicAddr}, #{poRecDetailAddr}, 1)
 	</insert>
 
 </mapper>

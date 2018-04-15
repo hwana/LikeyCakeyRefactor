@@ -71,12 +71,6 @@ public class MemberDaoImpl implements MemberDao {
 		return new ArrayList<Homeqna>(sqlSession.selectList("homeqna.m_listAll", m));
 	}
 
-	// 이메일인증
-	@Override
-	public void insertEmailConfirm(String id, String key) {
-		// TODO Auto-generated method stub
-
-	}
 	
 	@Override
 	public Member selectMemberInfo(String id) {

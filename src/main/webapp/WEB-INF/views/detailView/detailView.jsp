@@ -283,7 +283,7 @@
 	<hr class="ml-100 mr-100">
 	
 <!-- 상품 디테일 시작 -->
-		<div class="detail-text-box mt-100 mb-100 ml-150 mr-150">
+		<div class="detail-text-box mt-100 mb-100 ml-150 mr-150" style="width:70%;">
 			<h2 class="detail-title">${pDetail.pName}</h2>
 			<h3 class="detail-intro mtb-40">상품 소개</h3>
 			
@@ -367,7 +367,8 @@
 			</div>
 
 <!-- 지도  시작 -->
-			<div id="map" style="width:840px;height:400px; pointer-events:auto;"></div>
+<!-- &libraries=services -->
+			<div id="map" style="width:1060px;height:400px; pointer-events:auto;"></div>
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36cabc0a509368e0120f98820eb971c0&libraries=services"></script>
 			<script>
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -513,14 +514,14 @@
 
 				<div class="host_area" id="_host_map">
 					<div
-						style="background-image: url(https://scloud.pstatic.net/20161202_47/14806634454930axmA_PNG/015.png);"
+						style="background-image: url(resources/img/member/${pBiz.mPhoto}.jpg);"
 						class="pf_left"></div>
 					<div class="pf_right">
 						<strong class="pf_host">HOST</strong> <span class="pf_name">${pBiz.bizName}</span>
 						<p class="pf_txt">맛있는 케이크가 많은 곳 [${pBiz.bizName}] 입니다.</p>
 					</div>
 				</div>
-				<a href="#"> <span class="btn-inner"> 호스트 페이지로 이동  <i class="fa fa-arrow-right ml-10"></i></span>
+				<a href="hostinfo.ca?input_vendor_id=${pBiz.id}"> <span class="btn-inner"> 호스트 페이지로 이동  <i class="fa fa-arrow-right ml-10"></i></span>
 				</a>
 
 			</div>

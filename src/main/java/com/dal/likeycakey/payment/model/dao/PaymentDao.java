@@ -58,5 +58,9 @@ public interface PaymentDao {
 	public int updateCustomOrder(Payment payment) throws Exception;
 
 	public ArrayList<Payment> selectCustomBuyList(String m_id) throws Exception;
+
+	public int countProductOrder(String m_id) throws Exception;
+
+	public int countCustomOrder(String m_id) throws Exception;
 }
 

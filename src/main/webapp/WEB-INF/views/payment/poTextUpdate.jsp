@@ -83,7 +83,7 @@ th{
 				
 									<div class="country-button" >
 										<div class="pink_button">
-											<input type="button" value="닫기" onclick='self.close()' style="width:20%; margin-right:5%">
+											<input type="button" value="수정" id="textUpdate" style="width:20%; margin-left:5%">
 												<input type="button" value="닫기" onclick='self.close()' style="width:20%; margin-left:5%">
 										</div>
 									</div> 

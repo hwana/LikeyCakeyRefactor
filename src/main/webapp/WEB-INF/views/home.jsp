@@ -136,18 +136,47 @@
 							<nav>
 								<ul id="nav">
 									<li><a href="home.ca">Home</a></li>
-									<li><a href="cakelist.ca">CAKE</a>
+									<li>
+										<c:url var="headercake" value="cakeSearch.ca">
+											<c:param name="page" value="1"/>
+											<c:param name="input_search" value="#"/>
+											<c:param name="simple_filter" value=""/>
+										</c:url>
+										<a href="${headercake}">CAKE</a>
 										<ul>
-											<li><a href="shop.html"><i
-													class="arrow_carrot-right"></i> 모든 케이크</a></li>
-											<li><a href="shop-grid.html"><i
-													class="arrow_carrot-right"></i> 빵 케이크</a></li>
-											<li><a href="shop-list.html"><i
-													class="arrow_carrot-right"></i> 떡 케이크</a></li>
-											<li><a href="single-product.html"><i
-													class="arrow_carrot-right"></i> 아이스크림 케이크</a></li>
+											<li>
+												<c:url var="headercake" value="cakeSearch.ca">
+													<c:param name="page" value="1"/>
+													<c:param name="input_search" value="#"/>
+													<c:param name="simple_filter" value=""/>
+												</c:url>
+												<a href="${headercake}"><i class="arrow_carrot-right"></i>모든 케이크</a>
+											</li>
+											<li>
+												<c:url var="headercake" value="cakeSearch.ca">
+													<c:param name="page" value="1"/>
+													<c:param name="input_search" value="빵"/>
+													<c:param name="simple_filter" value=""/>
+												</c:url>
+												<a href="${headercake}"><i class="arrow_carrot-right"></i>빵 케이크</a>
+											</li>
+											<li>
+												<c:url var="headercake" value="cakeSearch.ca">
+													<c:param name="page" value="1"/>
+													<c:param name="input_search" value="떡"/>
+													<c:param name="simple_filter" value=""/>
+												</c:url>
+												<a href="${headercake}"><i class="arrow_carrot-right"></i>떡 케이크</a>
+											</li>
+											<li>
+												<c:url var="headercake" value="cakeSearch.ca">
+													<c:param name="page" value="1"/>
+													<c:param name="input_search" value="아이스크림"/>
+													<c:param name="simple_filter" value="아이스"/>
+												</c:url>
+												<a href="${headercake}"><i class="arrow_carrot-right"></i>아이스크림 케이크</a>
+											</li>
 										</ul></li>
-
 									<li><a href="hostpage.ca">SHOP</a>
 										<ul>
 											<li><a href="hostpage.ca"><i
@@ -180,11 +209,11 @@
 							</nav>
 							<!-- Product Cart -->
 							<div class="menu-right-area">
-								<a href="#" class="mini-cart-icon"> <i class="icon_cart_alt"></i>
-									<span>2</span>
+								<a href="cartList.ca" class="mini-cart-icon"> <i class="icon_cart_alt"></i>
+								<!-- 	<span>2</span> -->
 								</a>
-								<div class="top-cart-content">
-									<!-- Cart Single -->
+								<!-- <div class="top-cart-content">
+									Cart Single
 									<div class="media header-middle-checkout">
 										<div class="media-left check-img">
 											<a href="#"> <img alt=""
@@ -201,8 +230,8 @@
 											<p>1 x $111.00</p>
 										</div>
 									</div>
-									<!-- Cart Single -->
-									<!-- Cart Single -->
+									Cart Single
+									Cart Single
 									<div class="media header-middle-checkout">
 										<div class="media-left check-img">
 											<a href="#"> <img alt=""
@@ -219,14 +248,14 @@
 											<p>3 x $125.00</p>
 										</div>
 									</div>
-									<!-- Cart Single -->
+									Cart Single
 									<div class="actions">
 										<button type="button" title="Checkout-botton"
 											class="Checkout-botton">
 											<span>Checkout</span>
 										</button>
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<!-- Product Cart -->
 						</div>
@@ -682,7 +711,7 @@
 				<!-- Instragram Fedd Single -->
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="instragam-single">
-						<a href="#"><img src="/resources/img/instragram/1.jpg" alt="" /></a>
+						<a><img src="/resources/img/instragram/1.jpg" alt="" /></a>
 						<h3 class="tag-text">
 							<a>#고소한</a>
 						</h3>
@@ -690,7 +719,7 @@
 							<a class="popup-instragram"
 								href="/resources/img/instragram/1.jpg"></a>
 							<h3 class="tag-text">
-								<a>#고소한</a>
+								<a href="cakeSearch.ca?input_search=%23고소한" style="cursor:pointer;">#고소한</a>
 							</h3>
 						</div>
 					</div>
@@ -699,7 +728,7 @@
 				<!-- Instragram Fedd Single -->
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="instragam-single">
-						<a href="#"><img src="/resources/img/instragram/2.jpg" alt="" /></a>
+						<a><img src="/resources/img/instragram/2.jpg" alt="" /></a>
 						<h3 class="tag-text">
 							<a>#상큼한</a>
 						</h3>
@@ -707,7 +736,7 @@
 							<a class="popup-instragram"
 								href="/resources/img/instragram/1.jpg"></a>
 							<h3 class="tag-text">
-								<a>#상큼한</a>
+								<a href="cakeSearch.ca?input_search=%23상큼한" style="cursor:pointer;">#상큼한</a>
 							</h3>
 						</div>
 					</div>
@@ -716,7 +745,7 @@
 				<!-- Instragram Fedd Single -->
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="instragam-single">
-						<a href="#"><img src="/resources/img/instragram/3.jpg" alt="" /></a>
+						<a><img src="/resources/img/instragram/3.jpg" alt="" /></a>
 						<h3 class="tag-text">
 							<a>#생크림</a>
 						</h3>
@@ -724,7 +753,7 @@
 							<a class="popup-instragram"
 								href="/resources/img/instragram/1.jpg"></a>
 							<h3 class="tag-text">
-								<a>##생크림</a>
+								<a href="cakeSearch.ca?input_search=%23생크림" style="cursor:pointer;">#생크림</a>
 							</h3>
 						</div>
 					</div>
@@ -733,7 +762,7 @@
 				<!-- Instragram Fedd Single -->
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="instragam-single">
-						<a href="#"><img src="/resources/img/instragram/4.jpg" alt="" /></a>
+						<a><img src="/resources/img/instragram/4.jpg" alt="" /></a>
 						<h3 class="tag-text">
 							<a>#무스</a>
 						</h3>
@@ -741,7 +770,7 @@
 							<a class="popup-instragram"
 								href="/resources/img/instragram/1.jpg"></a>
 							<h3 class="tag-text">
-								<a>#무스</a>
+								<a href="cakeSearch.ca?input_search=%23무스" style="cursor:pointer;">#무스</a>
 							</h3>
 						</div>
 					</div>

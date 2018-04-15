@@ -109,15 +109,15 @@
 												<a href="${headercake}"><i class="arrow_carrot-right"></i>아이스크림 케이크</a>
 											</li>
 										</ul></li>
-									<li><a href="hostpage.ca">SHOP</a>
+									<li><a href="hostinfo.ca?input_vendor_id=tous">SHOP</a>
 										<ul>
-											<li><a href="shop.html"><i
+											<li><a href="hostinfo.ca?input_vendor_id=tous"><i
 													class="arrow_carrot-right"></i> 케이크 가게 모아보기</a></li>
 										</ul></li>
 
-									<li><a href="#">CUSTOMIZING</a>
+									<li><a href="customlist.ca">CUSTOMIZING</a>
 										<ul>
-											<li><a href="shop.html"><i
+											<li><a href="customlist.ca"><i
 													class="arrow_carrot-right"></i> 커스터마이징 케이크</a></li>
 										</ul></li>
 									<li><a href="contact.html">MY PAGE</a></li>
@@ -127,11 +127,11 @@
 							</nav>
 							<!-- Product Cart -->
 							<div class="menu-right-area">
-								<a href="#" class="mini-cart-icon"> <i class="icon_cart_alt"></i>
-									<span>2</span>
+								<a href="cartList.ca" class="mini-cart-icon"> <i class="icon_cart_alt"></i>
+									<!-- <span>2</span> -->
 								</a>
-								<div class="top-cart-content">
-									<!-- Cart Single -->
+								<!-- <div class="top-cart-content">
+									Cart Single
 									<div class="media header-middle-checkout">
 										<div class="media-left check-img">
 											<a href="#"> <img alt=""
@@ -148,8 +148,8 @@
 											<p>1 x $111.00</p>
 										</div>
 									</div>
-									<!-- Cart Single -->
-									<!-- Cart Single -->
+									Cart Single
+									Cart Single
 									<div class="media header-middle-checkout">
 										<div class="media-left check-img">
 											<a href="#"> <img alt=""
@@ -166,14 +166,14 @@
 											<p>3 x $125.00</p>
 										</div>
 									</div>
-									<!-- Cart Single -->
+									Cart Single
 									<div class="actions">
 										<button type="button" title="Checkout-botton"
 											class="Checkout-botton">
 											<span>Checkout</span>
 										</button>
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<!-- Product Cart -->
 						</div>

@@ -52,10 +52,10 @@
         <!-- Page Content Wraper Area Start -->
 		<div class="page-content-wrapper login-area" style="background-color:white">
 			<!-- Support Area Start -->
-			<section class="service-area default-bg ptb-100">
+			<section class="service-areg ptb-100">
 			<!-- SECTION TITEL -->
 				<div class="section-titel style-two text-center mb-115 text-uppercase">
-					<h3>회원 유형을 선택해주세요</h3>
+					<h3 style="background: white;">회원 유형을 선택해주세요</h3>
 				</div>
 				<!-- SECTION TITEL -->
 				<div class="container">
