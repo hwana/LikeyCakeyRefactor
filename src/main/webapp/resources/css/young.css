@@ -295,3 +295,47 @@
 .young-lesspadding {
 	padding-top : 10px;
 }
+
+.young-nav-menu-grid {
+	float : left;
+	width : 20%;
+}
+
+.young-custom-logo img {
+ 	backface-visibility: hidden;
+  	transition: opacity 1s ease 0s, transform 1s ease 0s;
+  	height: 100px;
+  	width: 100px;
+  	float : left;
+}
+
+.young-custom-exp {
+	margin-left : 10px;
+	padding-left : 10px;
+	height : 100px;
+	float : left;
+	width : 50%;
+}
+
+.young-custom-button {
+	float : right;
+	background-color : #9bcaba;
+	width : 20%;
+	height : 50px;
+	text-align : center;
+	margin-top : 25px;
+	border-radius : 30px;
+}
+
+.young-custom-button p {
+	vertical-align : middle;	
+	color : white;
+	margin-top : 13px;
+}
+
+.young-bot-margin {
+	margin-bottom : 20px;
+	max-height : 110px;
+	position : relative;
+	padding-right : 20px;
+}
