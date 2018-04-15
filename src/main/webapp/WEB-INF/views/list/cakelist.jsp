@@ -135,19 +135,19 @@
 										<label for="young_sorting_filterin">${orderfilter }&nbsp;<i class="fa fa-angle-down"></i></label> 
 									</c:if>
 									<select id="young_sorting_filterin" >
-										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&input_search=${input_search }&simple_filter=${simplefilter}&orderfilter=1">
+										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=1&input_search=${input_search }">
 												최신 업로드 순
 										</option>
-										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&input_search=${input_search }&simple_filter=${simplefilter}&orderfilter=2">
+										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=2&input_search=${input_search }">
 												베스트 케이크 순
 										</option>
-										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&input_search=${input_search }&simple_filter=${simplefilter}&orderfilter=3">
+										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=3&input_search=${input_search }">
 												가격 낮은 순
 										</option>
-										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&input_search=${input_search }&simple_filter=${simplefilter}&orderfilter=4">
+										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=4&input_search=${input_search }">
 												가격 높은 순
 										</option>
-										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&input_search=${input_search }&simple_filter=${simplefilter}&orderfilter=5">
+										<option onclick="location = this.value;" value="cakeSort.ca?page=${currentPage }&orderfilter=5&input_search=${input_search }">
 												이용후기 많은 순
 										</option>
 									</select>

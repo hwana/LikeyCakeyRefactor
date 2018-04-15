@@ -137,16 +137,69 @@
 		SELECT P_NAME FROM PRODUCT_BOARD WHERE P_B_NUM = #{pbNum}
 	</select>
 	
-	<select id="selectCakeListwo" parameterType="FilterList" resultMap="resultProductBoard">
-				SELECT * FROM PRODUCT_BOARD 
-					WHERE (P_NAME LIKE '%' || #{inputsearch} || '%')
-				   OR (P_B_MINI_TITLE LIKE '%' || #{inputsearch} || '%')
-				   OR (P_B_MINI_CONTENT LIKE '%' || #{inputsearch} || '%')
-				   OR (P_B_CONTENT LIKE '%' || #{inputsearch} || '%')
-				   OR (P_B_WARN LIKE '%' || #{inputsearch} || '%')
-				   OR (P_B_TAG LIKE '%' || #{inputsearch} || '%')
-				
-			ORDER BY #{orderfilter}
+	<select id="selectCakeListwo1" parameterType="String" resultMap="resultProductBoard">
+			SELECT * FROM (
+			SELECT * FROM PRODUCT_BOARD 
+				WHERE P_NAME LIKE '%' || #{inputsearch} || '%'
+			  	OR P_B_MINI_TITLE LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_MINI_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_WARN LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_TAG LIKE '%' || #{inputsearch} || '%'
+				ORDER BY P_B_NUM DESC
+			)	
+	</select>
+	
+	<select id="selectCakeListwo2" parameterType="String" resultMap="resultProductBoard">
+			SELECT * FROM (
+			SELECT * FROM PRODUCT_BOARD 
+				WHERE P_NAME LIKE '%' || #{inputsearch} || '%'
+			  	OR P_B_MINI_TITLE LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_MINI_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_WARN LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_TAG LIKE '%' || #{inputsearch} || '%'
+				ORDER BY P_B_LIKE DESC
+			)	
+	</select>
+	
+	<select id="selectCakeListwo3" parameterType="String" resultMap="resultProductBoard">
+			SELECT * FROM (
+			SELECT * FROM PRODUCT_BOARD 
+				WHERE P_NAME LIKE '%' || #{inputsearch} || '%'
+			  	OR P_B_MINI_TITLE LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_MINI_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_WARN LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_TAG LIKE '%' || #{inputsearch} || '%'
+				ORDER BY P_PRICE ASC
+			)	
+	</select>
+	
+	<select id="selectCakeListwo4" parameterType="String" resultMap="resultProductBoard">
+			SELECT * FROM (
+			SELECT * FROM PRODUCT_BOARD 
+				WHERE P_NAME LIKE '%' || #{inputsearch} || '%'
+			  	OR P_B_MINI_TITLE LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_MINI_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_WARN LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_TAG LIKE '%' || #{inputsearch} || '%'
+				ORDER BY P_PRICE DESC
+			)	
+	</select>
+	
+	<select id="selectCakeListwo5" parameterType="String" resultMap="resultProductBoard">
+			SELECT * FROM (
+			SELECT * FROM PRODUCT_BOARD 
+				WHERE P_NAME LIKE '%' || #{inputsearch} || '%'
+			  	OR P_B_MINI_TITLE LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_MINI_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_CONTENT LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_WARN LIKE '%' || #{inputsearch} || '%'
+			   	OR P_B_TAG LIKE '%' || #{inputsearch} || '%'
+				ORDER BY P_B_READCNT DESC
+			)	
 	</select>
 
 </mapper>
