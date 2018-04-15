@@ -6,5 +6,7 @@ public interface MemberDao {
 	public int deleteMember(String id) throws Exception;
 	public Member forLogin(String id, String passwd) throws Exception;
 	public int selectMember(String id);
+	public String findId(Member m) throws Exception;
+	public Member selectMemberInfo(String id);
 	public Member findId(String email, String name) throws Exception;
 }

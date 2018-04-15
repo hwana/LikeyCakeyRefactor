@@ -30,21 +30,18 @@
         <link rel="stylesheet" href="/resources/css/shortcode/shortcodes.css">
         <link rel="stylesheet" href="/resources/css/style.css">
         <link rel="stylesheet" href="/resources/css/responsive.css"> -->
-        <link rel="stylesheet" href="/resources/css/na.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
-       	<link rel="stylesheet" href="/resources/css/young.css">
-        <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
-	
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+        <link rel="stylesheet" href="/resources/css/na.css">
+       	<link rel="stylesheet" href="/resources/css/young.css">
+	
+        <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
 		<script src="/resources/js/na.js"></script>
 		
 		<script type="text/javascript">
-
-		
 		$(function(){
 
-			
 // 상품 개수 start			
 			var pPrice = parseInt($('.prce-stock').children('h4').text().replace("\\","").replace(",",""), 10);
 			$('.dec').click(function(e){
@@ -80,24 +77,19 @@
 
 			  var callOpen = $("#callOpen");
 			  var callLink = $(".callLink");
-			  var whiteContent = $(".white_content");
-			  var marginLeft = whiteContent.outerWidth()/2;
-			  var marginTop = whiteContent.outerHeight()/2; 
 
 			  callLink.click(function(e){
 				e.preventDefault();  
 				callOpen.fadeIn("slow");
-				//whiteContent.css({"margin-top" : -marginTop, "margin-left" : -marginLeft});
-			    //$(this).blur();
-			   // $(".btn-call-close").focus(); 
 			    return false;
 			  });
 
 			  $(".btn-call-close").click(function(e){
 				  e.preventDefault();  
 				  callOpen.fadeOut("slow");
-				  //callLink.focus();
 			  });	
+			  
+			  
 			  
 // 전화 걸기 모달 창  end --------------------------------------
 			
@@ -139,6 +131,8 @@
 					
 			<c:set var="pDetail" value="${requestScope.productDetail}"/>
 			<c:set var="pBiz" value="${requestScope.productDetailBiz}"/>
+			<!-- 댓글 달기 버튼 id 비교할 hidden태그 -->
+			<input type="hidden" value="${pBiz.id}" class="pBizId"/>
 			
 					<div class="col-md-6">
 						<div class="singlepro-left">
@@ -219,6 +213,22 @@
 									<input class="detail-text mt-10" id="productAddText" placeholder="케이크에 추가하실 문구를 입력해주세요." type="text">
 									</div>
 									
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
+        <script>
+        $(function() {
+    		//datepicker 한국어로 사용하기 위한 언어설정
+    		$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+    		//시작일.
+    		$('.cake-reserve').datepicker({
+    			dateFormat : "yy-mm-dd", // 날짜의 형식
+    			changeMonth : true, // 월을 이동하기 위한 선택상자 표시여부
+    			minDate : 1, // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
+    			maxDate: "+1m +1w" 
+    		});
+    		});
+        </script>
+									
 									<div class="detail-input">
 									<label for="fromDate">예약 날짜</label> 
 									<input class="cake-reserve detail-text mt-10" id="productReserve" placeholder="예약 날짜를 선택해 주세요." type="text" id="cake-reserve">
@@ -245,7 +255,7 @@
 												<c:set var="delivery" value="배송 불가능한 상품입니다."/>
 											</c:otherwise>
 										</c:choose>
-									<label style="clear:none; margin-left:20px;">${delivery}</label>
+									<label class="delivery" style="clear:none; margin-left:20px;">${delivery}</label>
 									</span>
 									</div>
 									
@@ -333,9 +343,9 @@
 						</a>
 					</div>
 						
-						<div id="callOpen">
-						<div class="mask">
-						</div>
+						<div class="modalOpen" id="callOpen">
+							<div class="mask">
+							</div>
 						<div class="white_content">
 							  <div>
 							  	<p class="pop_guide_txt mb-30">
@@ -400,49 +410,100 @@
 		});    
 			</script>
 <!-- shop 소개 끝 -->
-	
 		<div class="detail-text-box mt-150"> </div>
-<!-- 상품 디테일 끝 -->
 
 
 <!-- 리뷰 시작 -->
-		
-		<div class="detail-text-box mt-100 mb-100">
-		<h2 class="detail-intro">
-				이용 후기 <strong class="review-cnt mint">4개</strong>
-				<i class="fa fa-circle ml-10 mr-10" style="font-size: 0.2em; color:#999999; vertical-align: middle"></i> 
-				평균 평점 <strong class="review-average mint">5.0</strong>
-		</h2>
+			<div class="detail-text-box width-80 mt-100 mb-100">
+				<h2 class="detail-intro">
+					이용 후기 <strong class="review-cnt mint">4개</strong> 
+					<i class="fa fa-circle ml-10 mr-10" style="font-size: 0.2em; color: #999999; 
+					   vertical-align: middle"></i>
+					평균 평점 <strong class="review-average mint">0점</strong>
+				</h2>
 
-		<div>
-			<ul class="review_list" id="review_list">
-				<li class="rlist ">
-					<div class="tab-content">
-				
-				
-					</div>				
-				</li>
-			</ul>
-				<div class="paging text-center">
-				
+				<div>
+					<ul class="review_list" id="review_list">
+						<li class="rlist ">
+							<div class="tab-content"></div>
+						</li>
+					</ul>
+					<div class="paging text-center"></div>
 				</div>
-
 			</div>
-	</div>
 
-<!-- 리뷰 끝 -->
+			<div class="modalOpen" id="replyOpen">
+				<div class="mask"></div>
+				<div class="white_content">
+					<div>
+						<h4 style="text-align: left;" class="modal-title">댓글 수정하기</h4>
+						<hr style="margin: 0">
+						<input type="hidden" class='reply-prNum'>
+						<div class="modal-caption">
+							<label class="ml-10"> 댓글 </label>
+							<div class="reply-length-wrap">
+								<em class="reply-length">0</em>자/<em>200</em>자
+							</div>
+						</div>
+						<textarea name="" class="replyContent"
+							placeholder="등록할 댓글을 입력해주세요." maxlength="200">
+												</textarea>
+						<div class="reply-btn-relative">
+							<div class="reply-btn-wrap">
+								<button type="button" class="btn btn-reply-close"
+									style="background-color: #9a9a9a">취소</button>
+								<button type="button" class="btn btn-reply-submit">수정</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 리뷰 끝 -->
 		
 <!-- 문의 시작 -->
-		<div class="detail-text-box mb-70" id="qna" style="">
+<!-- 		<div class="detail-text-box width-80 mb-70" id="qna" style="">
 			<h2 class="detail-intro">
-				Q&amp;A&nbsp; <strong><em>0</em>개</strong>  		
-				<!-- 모달창 처리하기  -->
+				Q&amp;A&nbsp; <strong><em class="qna-cnt">0</em>개</strong>  		
+				모달창 처리하기 
 				<a href="#" class="btn_qna_write"><i class="fa fa-pencil mr-10"></i> <span>질문 작성하기</span></a>
 			</h2>
-			<div class="ptb-150">
-				<p class="qna_result">등록된 질문이 아직 없습니다.</p>
-			</div>
-		</div>
+
+				<div>
+					<ul class="review_list" id="review_list">
+						<li class="rlist ">
+							<div class="tab-content">
+								<div class='rbox_mine'>
+									<input type='hidden' value='"+ json[i].prNum +"'
+										class='reviewNum'> <span class='pf_img'
+										style='background-image: url(/resources/img/client/1.png)'></span>
+									<strong class='guest_name'></strong>
+									<p class='p_review'></p>
+									<div class='rbox_info_base'>
+										<a class='review-reply-insert-btn'>&nbsp;댓글 달기 &nbsp;<i
+											class='fa fa-comment mr-10'></i></a> <span class='time_info'>2018.03.31</span>
+									</div>
+								</div>
+								<div class='rbox_reply'>
+									<input type='hidden' value='"+ json[i].prNum +"' class='prNum'>
+									<p class='p_tit_reply'>
+										<em>뚜레주르</em>님의 댓글
+									</p>
+									<p class='p_review'>굳굳</p>
+									<div class='rbox_info_base'>
+										<p class='time_info'>2018/04/13</p>
+										<span class='reply-btn'> <a href='#replyOpen'
+											class='replyUpdate mr-10'>수정</a><a class='replyDelete'>삭제</a>
+										</span>
+									</div>
+								</div>
+								<p class="qna_result">등록된 질문이 아직 없습니다.</p>
+							</div>
+						</li>
+					</ul>
+					<div class="paging text-center"></div>
+				</div>
+			</div> -->
 <!-- 문의 끝 -->
 		
 		
@@ -529,31 +590,7 @@
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/main.js"></script>
         <script src="/resources/js/Form.js"></script> -->
-       
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
         
-        <script>
-        $(function() {
-    		//datepicker 한국어로 사용하기 위한 언어설정
-    		$.datepicker.setDefaults($.datepicker.regional['ko']);
-
-    		// 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
-    		// 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
-
-    		//시작일.
-    		$('#cake-reserve').datepicker({
-    			dateFormat : "yy/mm/dd", // 날짜의 형식
-    			changeMonth : true, // 월을 이동하기 위한 선택상자 표시여부
-    			minDate : 1, // 선택할수있는 최소날짜, ( 0 : 오늘 이전 날짜 선택 불가)
-    			maxDate: "+1m +1w" 
-    		});
-
-    		$("#ake-reserve").on("change", function() {
-    			start = $(this).val();
-    			start_array = start.split("-")[2];
-    		});
-
-    		});
-        </script>
+      
     </body>
 </html>

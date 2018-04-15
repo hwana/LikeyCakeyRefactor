@@ -46,6 +46,15 @@
 		<div class="menu-area mt-60">
 			<div class="container">
 				<div class="row">
+			
+				<!-- 로그인, 회원가입 / 로그아웃, 마이페이지 -->
+					<c:set var="member" value="${sessionScope.member}" />
+					<c:if test="${empty member}">
+						<div class="sign-wrapper">
+							<a class="sign-button" href = "mem_choice.ca">Sign-Up</a><a class="sign-button" href = "bizLogin.ca">Log-in</a> 
+						</div>
+					</c:if>
+					
 					<div class="col-md-3 col-sm-12">
 						<div class="logo-area text-center text-uppercase res-logo-sm">
 							<a href="home.ca"><img src="/resources/img/icon/logo.png"

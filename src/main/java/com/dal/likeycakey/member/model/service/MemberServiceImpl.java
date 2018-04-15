@@ -44,4 +44,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.findId(email, name);
 	}
 
+	@Override
+	public Member selectMemberInfo(String id) {
+		return memberDao.selectMemberInfo(id);
+	}
+
 }
