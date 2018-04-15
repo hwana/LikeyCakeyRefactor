@@ -82,7 +82,7 @@ public class BizController {
 		if (session.getAttribute("member") != null) {
 			session.invalidate();
 		}
-		mv.setViewName("home");
+		mv.setViewName("redirect:home.ca");
 
 		return mv;
 	}

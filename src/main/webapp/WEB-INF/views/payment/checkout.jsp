@@ -186,6 +186,7 @@
         <![endif]-->
 	<!-- Header Area Start -->
 	<header></header>
+	<%@ include file="../default/header.jsp"%>
 	<!-- Header Area End -->
 	<!-- Page Content Wraper Area Start -->
 	<section class="page-content-wrapper pt-100 pb-40">
@@ -238,7 +239,7 @@
 													<tr>
 														<td class="product-thumbnail"
 															style="padding-top: 5px; padding-bottom: 5px;"><a
-															href="#"><img src="/resources/img/product/3.jpg"
+															href="#"><img src="/resources/img/product/${p.pbImg }.jpg"
 																style="height: 120px; width: 120px;" alt=""></a></td>
 														<td class="product-name" style="height: 130px;">
 															<p style="font-weight: bold;">${p.mbBizName}</p> 
@@ -401,71 +402,10 @@
 							</div>
 							<!-- (배송지 정보 끝, 픽업 선택할 때 말고 배송 선택할 때만 뜨도록 해야함) -->
 
-							<br> <br> <br>
+					
 
 
-							<!-- (결제 정보 시작, 픽업 선택할 때 말고 배송 선택할 때만 뜨도록 해야함) -->
-						<!-- 	<div class="row">
-								<h3>결제 수단</h3>
-								<div class="col-md-12 col-sm-12 col-xs-12">
-									<div class="table-content tabl,e-responsive">
-										<table>
-											<tbody>
-												<tr>
-													<td class="product-thumbnail eceff8">결제 방법</td>
-													<td class="product-name">
-														<div class="create-acc" style="margin-bottom: 0px">
-															<div class="radio_wrap">
-																<input type="radio" name="pay"
-																	style="height: 12.22px; margin: 0px;"
-																	id="accountTransfer"> 계좌이체 <input type="radio"
-																	name="pay" style="height: 12.22px; margin: 0px;"
-																	id="creditCard"> 신용카드 <input type="radio"
-																	name="pay" style="height: 12.22px; margin: 0px;"
-																	id="virtualAccount"> 가상계좌 <input type="radio"
-																	name="pay" style="height: 12.22px; margin: 0px;"
-																	id="naverPay"> 카카오페이
-															</div>
-														</div>
-													</td>
-
-												</tr>
-												<tr id="bank" class="hidden">
-													<td class="product-thumbnail eceff8">입금은행</td>
-													<td class="product-name">
-														<div class="select">
-															<select style="height: 30px">
-																<option value="volvo">입금 은행을 선택해 주세요.
-																<option value="mercedes">하나 은행
-																<option value="audi">농협
-																<option value="audi2">국민 은행
-																<option value="audi3">신한 은행
-																<option value="audi4">Colombia
-																<option value="audi5">Dominican Republic
-															</select>
-														</div>
-
-													</td>
-
-												</tr>
-												<tr id="accountHolder" class="hidden">
-													<td class="product-thumbnail eceff8">예금주</td>
-													<td class=""><input type="text" placeholder=""
-														style="height: 30px; width: 200px; background-color: #eceff8"></td>
-												</tr>
-												<tr id="due" class="hidden">
-													<td class="product-thumbnail eceff8">입금기한</td>
-													<td class="product-name">2018.03.32 18:22:44</td>
-
-												</tr>
-												
-											</tbody>
-										</table>
-									</div>
-
-								</div>
-							</div> -->
-							<!-- (결제 정보 끝) -->
+						
 
 							<br> <br> <br>
 							<!-- 버튼 시작 -->
@@ -475,7 +415,7 @@
 										<label><span class="required"></span></label>
 
 										<div class="pink_button">
-											<input type="submit" value="취소">
+											<input type="button" value="취소" onclick="location.href='cartList.ca'">
 										</div>
 									</div>
 								</div>
@@ -532,7 +472,7 @@
 	IMP.init('imp18428701');
 
 	$(function() {
-		alert($("#next").val());
+		//alert($("#next").val());
 		$("#accountTransfer").on('change', function() {
 			console.log($("#accountTransfer").is(':checked'));
 			console.log($("#naverPay").is(':checked'));
@@ -610,7 +550,7 @@
 									}else if($("#next").val()=="directCustomPayment"){
 										URL = "/directCustomPayment.ca";
 									}
-									alert(URL);
+								//	alert(URL);
 									if (rsp.success) {
 										//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 										$.ajax({
@@ -645,12 +585,12 @@
 																msg += '카드 승인번호 : '
 																		+ rsp.apply_num;
 																alert(msg);
+															location.href="/checkoutSuccess.ca";
 															} else {
 																alert('아직 제대로 결제가 되지 않았습니다.');
 																//[3] 아직 제대로 결제가 되지 않았습니다.
 																//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 															}
-															location.href="/checkoutSuccess.ca";
 													},
 													error : function(data) {
 														//console.log(data);

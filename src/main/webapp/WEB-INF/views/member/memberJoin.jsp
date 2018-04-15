@@ -277,35 +277,14 @@ html>body>section>div>div>div>form span>.btn-in {
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="inputEmail" style="line-height:36px;">이메일</label>
 							<div class="col-sm-6">
-								<div class="input-group">
+								
 									<input type="text" class="form-control" id="inputEmail"
-										placeholder="이메일" name="email" /> <span
-										class="input-group-btn"> <input
-										class="btn btn-success btn-in"
-										style="border: 0; height: 50px;" type="button" value="인증번호 전송"
-										onclick = "checkMail()">
-									</span>
-								</div>
+										placeholder="이메일" name="email" /> 
+								
 							</div>
 						</div>
 						
-							<div class="form-group">
-							<label class="col-sm-3 control-label" for="inputEmailCheck" style="line-height:36px;">인증번호
-								확인</label>
-							<div class="col-sm-6">
-								<div class="input-group">
-									<input class="form-control" id="inputEmailCheck" type="text"
-										placeholder="인증번호"> <span class="input-group-btn">
-										
-										<input type="button" class="btn btn-success btn-in"
-										style="border: 0; height: 50px;" value="인증번호 확인"
-										onclick = "checkJoinCode()">
-									</span>
-								</div>
-								<p class="help-block">전송된 인증코드를 입력해주세요.</p>
-							</div>
-						</div>
-						
+							
 						
 						
 						

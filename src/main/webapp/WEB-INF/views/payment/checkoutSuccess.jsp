@@ -55,7 +55,8 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 	<!-- Header Area Start -->
-	<header></header>
+	
+	<%@ include file="../default/header.jsp"%>
 	<!-- Header Area End -->
 	<!-- Page Content Wraper Area Start -->
 	<section class="page-content-wrapper pt-100 pb-40">
@@ -145,7 +146,9 @@
 													</tr>
 													<tr>
 														<td class="product-thumbnail eceff8">결제 일시</td>
-														<td class="product-name">${payment.pay_date}</td>
+														<td class="product-name">
+														<fmt:formatDate value="${payment.pay_date}" pattern="yyyy-MM-dd HH:mm" />
+														</td>
 
 													</tr>
 													
@@ -157,11 +160,7 @@
 								</div>
 							</div>
 							<!-- (결제 정보 끝) -->
-	입금 선택하신 은행을 확인하시고 입금해 주세요. 입금자와 주문자명이 일치하지 않아도 입금이 가능합니다.
-	입금기한 내 입금하지 않으면 주문이 전체 자동취소 처리됩니다.
-	입금시 은행 별 이체 수수료가 발생될 수 이 ㅆ습니다.
-	은행에 따라 서비스 이용불가시간에는 입금이 어려우니, 입금전 반드시 해당 은행으이 서비스 이용시간을 확인 후 이용해 주세요.
-	자세한 구매 내역 확인 및 배송지 변경 등의 서비스는 사이트 우측 상단의 마이페이지>구매내역에서 이용 가능합니다.						
+				
 	
 							<br> <br> <br>
 								<!-- 버튼 시작 -->
@@ -171,7 +170,7 @@
 										<label><span class="required"></span></label>
 
 										<div class="pink_button">
-											<input type="button" value="쇼핑 계속하기">
+											<input type="button" value="쇼핑 계속하기" onclick="location.href='home.ca'">
 										</div>
 									</div>
 								</div>
@@ -201,91 +200,7 @@
 	<!-- Page Content Wraper Area End -->
 	<!-- Fotter Area Start -->
 	<footer>
-		<!-- Footer Top Area End -->
-		<div class="fotter-area dark-gray-bg ptb-100">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3 col-sm-4 col-xs-12">
-						<div class="address-area res-mb-sm-30">
-							<a href="/resources/index.html">shopzon</a>
-							<p>Lorem ipsum dolor sit amet, consemi cteta dipisi cing
-								elit, sed do eiusmod tempor.</p>
-							<div class="contact-social mt-40">
-								<ul>
-									<li><a href="#" class="social_facebook "></a></li>
-									<li><a href="#" class="social_twitter "></a></li>
-									<li><a href="#" class="social_googleplus"></a></li>
-									<li><a href="#" class="social_linkedin "></a></li>
-									<li><a href="#" class="social_instagram "></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-4 col-xs-12 xs-res-mrbtm">
-						<div class="footer-menu res-mb-sm-30">
-							<h4>MY ACCOUNT</h4>
-							<ul>
-								<li><a href="#">FAQs</a></li>
-								<li><a href="#">Payments</a></li>
-								<li><a href="#">Track Your Order</a></li>
-								<li><a href="#">Return Polcy</a></li>
-								<li><a href="#">Warranty</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-3 hidden-sm hidden-xs">
-						<div class="footer-menu">
-							<h4>SHOP GUIDE</h4>
-							<ul>
-								<li><a href="#">Hot Sale</a></li>
-								<li><a href="#">Best Sellar</a></li>
-								<li><a href="#">Suppliers</a></li>
-								<li><a href="#">Our Store</a></li>
-								<li><a href="#">Deal of The Day</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-4 col-xs-12 xs-res-mrbtm">
-						<div class="footer-menu">
-							<h4>CONTACT INFO</h4>
-							<div class="contact-details">
-								<ul>
-									<li><span class="icon_pin"></span>
-										<p>Lusmod tempor incididunt</p></li>
-									<li><span class="icon_mail"></span>
-										<p>Lusmod incidiunt wesbvu</p></li>
-									<li><span class="icon_phone "></span>
-										<p>(256) 987 654 321</p></li>
-									<li><span class="icon_clock_alt"></span>
-										<p>8.00 am-6.00 pm</p></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Footer Top Area End -->
-		<!-- Footer Bottom Area Start -->
-		<div class="footer-bottom-area black-bg">
-			<div class="container">
-				<div class="row ">
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<p>
-							Copyright &copy; 2017.Company name All rights reserved.More
-							Templates <a href="http://www.cssmoban.com/" target="_blank"
-								title="模板之家">模板之家</a> - Collect from <a
-								href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a><a
-								target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-						</p>
-					</div>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<img src="/resources/img/icon/payment.png" alt="" />
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Footer Bottom Area End -->
+		<%@ include file="../default/footer.jsp"%>
 	</footer>
 	<!-- Fotter Area End -->
 

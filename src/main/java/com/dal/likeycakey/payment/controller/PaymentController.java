@@ -218,19 +218,23 @@ public class PaymentController {
 			payment.setRecDetailAddr(recDetailAddr);
 			payment.setRecMemo(recMemo);
 			
-			
+			System.out.println(payment.getM_id()+", "+payment.getImp_uid()+", "+payment.getPay_method()+", "+payment.getRecCP());
+			System.out.println(payment.getPay_price()+", "+payment.getRecPost()+", "+payment.getRecName()+", "+payment.getRecMemo());
 			//1. 결제 테이블에 삽입하기
 			
 			int result = paymentService.insertPayment(payment);// 결제 테이블에 삽입하고
 			System.out.println("결제 테이블 삽입 성공: result=" + result);
 			
-			
+			int cnt = paymentService.countProductOrder(payment.getM_id());	
 			//2. 주문 테이블 정보 업데이트 하기
+			if(cnt>0)
 			result = paymentService.updateProductOrder(payment);			
 			// 주문 테이블, 상태를 결제 완료로!!, 결제 넘버는 최종 결제 넘버로!!, 거기에다가 그그그 배송 메모랑 그런것도 해야함..그러네.. 업데이트 하기~~
 			System.out.println("주문 테이블 업데이트 성공: result=" + result);
 			
+			cnt=paymentService.countCustomOrder(payment.getM_id());	
 			//2. 주문 테이블 정보 업데이트 하기
+			if(cnt>0)
 			result = paymentService.updateCustomOrder(payment);			
 			// 주문 테이블, 상태를 결제 완료로!!, 결제 넘버는 최종 결제 넘버로!!, 거기에다가 그그그 배송 메모랑 그런것도 해야함..그러네.. 업데이트 하기~~
 			System.out.println("주문 테이블 업데이트 성공: result=" + result);
@@ -243,10 +247,7 @@ public class PaymentController {
 			out.flush();
 			out.close();
 			
-			
-			/*
-			 * Member member = adminService.selectOne(id);//업데이트 한 멤버만 정보 다시 받아오기
-			 */ /* mv.setViewName("redirect:home.do"); */
+		
 			mv.setViewName("payment/cart");
 		} catch (Exception e) {
 			mv.setViewName("payment/cart");

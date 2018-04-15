@@ -53,7 +53,6 @@
 		var checkAll;
 		var delMembers = new Array();
 		$("button[name=updateMember]").click(function() {
-			alert("hello");
 			$.ajax({
 				url : "adminMemberUpdate.ca",
 				data : {

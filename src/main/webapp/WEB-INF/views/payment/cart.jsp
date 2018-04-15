@@ -99,7 +99,7 @@
 					var type = $(this).closest("tr").find(
 					"input[name=type]").val();
 
-					alert("카트 삭제를 실행합니다." + poNumber);
+					alert("카트 삭제를 실행합니다.");
 					$.ajax({
 						url : "cartDelete.ca",
 						type : "post",
@@ -129,7 +129,7 @@
 		$("#checkout").click(
 				function() {
 					var length = ${fn:length(list)};
-					alert(length);
+					//alert(length);
 					if(length==0){
 						alert("결제할 상품이 없습니다.");
 					}else{
@@ -154,6 +154,7 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 	<!-- Header Area Start -->
+	<%@ include file="../default/header.jsp"%>
 	<header></header>
 	<!-- Header Area End -->
 	<!-- Page Content Wraper Area Start -->
@@ -206,7 +207,7 @@
 													<c:forEach var="p" items="${list}" varStatus="status">
 														<tr>
 															<td class="product-thumbnail"><a href="#"><img
-																	src="/resources/img/product/3.jpg" alt=""></a></td>
+																	src="/resources/img/product/${p.pbImg }.jpg" alt=""></a></td>
 															<td class="product-name">
 																<p style="font-weight: bold;">${p.mbBizName}</p> <span>${p.pbName}(구매수량
 																	${p.poCnt}개)</span> <input class="hidden" name="poNum"
@@ -290,7 +291,7 @@
 													<div class="pink_button">
 														<input type="button" id="checkout" value="구매하기"
 															style="width: 200px;"> <input type="button"
-															value="쇼핑 계속하기" style="width: 200px;">
+															value="쇼핑 계속하기" style="width: 200px;" onclick="location.href='home.ca'">
 														<!--  <a href="#" style="width:200px; text-align:center">쇼핑 계속하기</a> -->
 													</div>
 

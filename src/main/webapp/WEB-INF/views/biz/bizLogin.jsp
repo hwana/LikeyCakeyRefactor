@@ -262,7 +262,7 @@ h3 {
 					<div class="row">
 						<div class="col-lg-12">
 							<form id="register-form" action="loginCheck2.ca" method="post"
-								role="form" style="display: none;" class="form-horizontal">
+								role="form"  class="form-horizontal">
 
 								<div class="form-group">
 									<label class="col-xs-3 text-right" id="id">아이디</label>
