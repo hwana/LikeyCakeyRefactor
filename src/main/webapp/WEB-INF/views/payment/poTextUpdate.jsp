@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<c:set var="member" value="${sessionScope.member}" />
+<c:set var="poNum" value="${requestScope.poNum}" />
 <!DOCTYPE html>
 <html>
 
@@ -35,9 +36,10 @@
 <link rel="stylesheet" href="/resources/css/jquery-ui.css">
 <link rel="stylesheet" href="/resources/css/shortcode/shortcodes.css">
 <link rel="stylesheet" href="/resources/css/style.css">
-<script src="js/vendor/modernizr-2.8.3.min.js">
-	
-</script>
+<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+<!-- 추가해야하는 js 벤더 -->
+<script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
+<!-- 추가해야하는 js 벤더 끝-->
 <style>
 body {
 	text-align: center; /* Quirks Mode 를 위한 가운데 정렬 */
@@ -61,7 +63,6 @@ th{
 </head>
 <body>
 
-	<section class="page-content-wrapper pt-100 pb-40" style="padding-top: 0px;">
 		<!-- coupon-area start -->
 
 		<div class="container">
@@ -69,162 +70,26 @@ th{
 
 				<!-- Page Content Wraper Area Start -->
 				<section class="page-content-wrapper pt-100 pb-40"
-					style="padding-top: 0px;">
-					<!-- ㅇㅇㅇ -->
-					<div class="checkbox-form">
-
-						<!-- ㅇㅇㅇ
- -->
-
-						<!-- 배송 현황 이미지 시작 -->
-						<div class="delivery-img">
-							<div class="testimonial-area ptb-100 bg-1"
-								style="padding-top: 120px; padding-bottom: 50px; width: 100%">
-								<div class="container">
-									<div class="row">
-										<div
-											class="testimonial-gallery owl-carousel owl-theme owl-loaded owl-drag">
-
-											<div class="owl-stage-outer">
-												<div class="owl-stage"
-													style="transform: translate3d(-1170px, 0px, 0px); transition: 0s; width: 3705px;">
-
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 배송 현황 이미지 끝-->
-					
+					style="padding-top: 0px;padding-left: 5%; padding-right: 5%;">
+					<br><br>
+					<p>수정할 문구를 입력해 주세요.</p>
 					<br>
-						<!--  기본 정보 시작 -->
-						<div class="derivery-area">
-							<h3 style="text-align: left">배송 기본 정보</h3>
-						
-
-
-							<div class="col-md-6">
-								<div class="review-right">
-
-									<form action="mail.php" method="post">
-										<div class="table-content table-responsive">
-											<table>
-
-												<tbody>
-													<tr>
-														<th class="product-thumbnail eceff8">보내는 분</th>
-														<td>김은송</td>
-
-													</tr>
-													<tr>
-														<th class="product-thumbnail eceff8">받는 분</th>
-														<td>송지연</td>
-													</tr>
-													<tr>
-														<th class="product-thumbnail eceff8">주소</th>
-														<td>대한민국 서울시 강남구</td>
-
-													</tr>
-
-													<tr>
-														<th class="product-thumbnail eceff8">상품정보</th>
-														<td>[무료배송]알뜰 협탁 12종/4종</td>
-
-													</tr>
-
-													<tr>
-														<th class="product-thumbnail eceff8">택배사</th>
-														<td>천일택배</td>
-
-													</tr>
-
-													<tr>
-														<th class="product-thumbnail eceff8">운송장 번호</th>
-														<td>51293849047362</td>
-
-													</tr>
-
-												</tbody>
-											</table>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-
-
-						<!--  기본 정보 끝 -->
-
-<br>
-<br>
-						<!--  상세 정보 시작 -->
-						<div class="derivery-area">
-							<h3 style="text-align: left">배송 상세 정보</h3>
-							
-							<div class="col-md-6">
-								<div class="review-right">
-									<form action="mail.php" method="post">
-										<div class="table-content table-responsive">
-											<table>
-												<thead>
-													<tr>
-														<th class="product-thumbnail eceff8">
-														
-														처리일시
-														</th>
-													
-														<th class="product-thumbnail eceff8">현재위치</th>
-														<th class="product-thumbnail eceff8">배송상태</th>
-														<th class="product-thumbnail eceff8">배송기사 연락처</th>
-
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>2018-02-19 21:58</td>
-													
-														<td>포천송우</td>
-														<td>집하</td>
-														<td> 031-54303729<</td>
-													</tr>
-													<tr>
-														<td>2018-02-19 07:28</td>
-												
-														<td>영화배송</td>
-														<td>배송중(입고)</td>
-														<td>010-2200-7075</td>
-													</tr>
-													
-												</tbody>
-											</table>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--  상세 정보 끝 -->
-
-					<br> <br> <br> <br>
-					
-					
+					<input id="poText" type="text" name="poText">
+					<input type="hidden" name="poNum" value="${poNum}">
+				
+	<br><br><br>
 						<!-- 버튼 시작 -->
 							<div class="row">
-								<div class="col-md-4">
-									<div class="country-button" style="margin-left: 40%; margin-right:40%;">
-										<label><span class="required"></span></label>
-
+				
+									<div class="country-button" >
 										<div class="pink_button">
-											<input type="button" value="닫기" onclick='self.close()'>
+											<input type="button" value="닫기" onclick='self.close()' style="width:20%; margin-right:5%">
+												<input type="button" value="닫기" onclick='self.close()' style="width:20%; margin-left:5%">
 										</div>
-									</div>
-								</div>
+									</div> 
+						
 
 							</div>
-
-
 							<!-- 버튼 끝 -->
 					
 					
@@ -234,8 +99,47 @@ th{
 		</div>
 
 		<!-- checkout-area end -->
-	</section>
 
+<script>
+$(function() {
+
+			$("#textUpdate").on(
+					'click',
+					function() {
+						if ($("#poText").val() == '') {
+							alert('문구를 입력하세요');
+							$("#poText").focus();
+							event.preventDefault();
+						} else {
+							//업데이트 시작			
+							$.ajax({
+								url : "poTextUpdate.ca",
+								type : "post",
+								data :{
+									poText : $("#poText").val(),
+									poNum : '<c:out value="${poNum}"/>'
+								},
+								success : function(value) {//
+									if (value == "ok") {
+										alert("문구 변경에 성공했습니다.");
+										window.opener.location.reload();//부모창 재로딩, window.opener는 자식창을 열어준 창에 접근하는 접근자!
+										self.close();
+										//location.reload();
+									} else {
+										alert("문구 변경에 실패했습니다.");
+									}
+								},
+								error : function(value) {
+									alert("잘못 입력하셨습니다." + value);
+								}
+							});//AJAX
+							return false;
+
+						}//else
+
+					});//recPostUpdateForm
+		});//function()
+	</script>
 
 	<!-- all js here -->
 	<script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>

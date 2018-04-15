@@ -6,6 +6,7 @@
 
 
 <c:set var="list" value="${requestScope.list}" />
+<c:set var="coList" value="${requestScope.coList}" />
 <c:set var="member" value="${sessionScope.member}" />
 <c:set var="totalPrice" scope="page" />
 <c:set var="totalDeliveryPrice" scope="page" />
@@ -60,7 +61,8 @@
 							"input[name=poCount]").val();
 					var pbPrice = $(this).closest("tr").find(
 							"input[name=pbPrice]").val();
-
+					var type = $(this).closest("tr").find(
+					"input[name=type]").val();
 					/* alert("수량 업데이트를 실행합니다." + poNumber + poCount + pbPrice); */
 					$.ajax({
 						url : "cartUpdate.ca",
@@ -68,7 +70,8 @@
 						data : {
 							poNumber : poNumber,
 							poCount : poCount,
-							pbPrice : pbPrice
+							pbPrice : pbPrice,
+							type : type
 						},
 						success : function(value) {//
 							if (value == "ok") {
@@ -93,13 +96,16 @@
 				function() {
 					var poNumber = $(this).closest("tr").find("input[name=poNum]")
 							.val();
+					var type = $(this).closest("tr").find(
+					"input[name=type]").val();
 
 					alert("카트 삭제를 실행합니다." + poNumber);
 					$.ajax({
 						url : "cartDelete.ca",
 						type : "post",
 						data : {
-							poNumber : poNumber
+							poNumber : poNumber,
+							type : type
 						},
 						success : function(value) {//
 							if (value == "ok") {
@@ -198,10 +204,7 @@
 												</thead>
 												<tbody>
 													<c:forEach var="p" items="${list}" varStatus="status">
-
 														<tr>
-
-
 															<td class="product-thumbnail"><a href="#"><img
 																	src="/resources/img/product/3.jpg" alt=""></a></td>
 															<td class="product-name">
@@ -209,6 +212,8 @@
 																	${p.poCnt}개)</span> <input class="hidden" name="poNum"
 																value="${p.poNum}"> <input class="hidden"
 																name="pbPrice" value="${p.pbPrice}">
+																<input class="hidden"
+																name="type" value="${p.type}">
 															</td>
 															<td class="product-price"><span class="amount">${p.pbPrice}</span>
 															</td>
@@ -221,10 +226,50 @@
 
 															<c:set var="totalPrice" scope="page"
 																value="${totalPrice+p.poPrice}" />
-															<td class="product-subtotal">${p.poBookDate}</td>
+															<td class="product-subtotal">
+															<fmt:formatDate value="${p.poBookDate}" pattern="yyyy-MM-dd HH:mm" />
+															</td>
 															<td class="product-subtotal" name="BizDelivery">${p.poBizDelivery}</td>
 															<c:set var="totalDeliveryPrice" scope="page"
 																value="${totalDeliveryPrice+p.poBizDelivery}" />
+															<td class="product-remove"><a href="#"
+																name="deleteButton"><i class="fa fa-times"></i></a></td>
+														</tr>
+													</c:forEach>
+													<c:forEach var="co" items="${coList}" varStatus="status">
+														<tr>
+															<td class="product-thumbnail"><a href="#"><img
+																	src="/resources/img/product/3.jpg" alt=""></a></td>
+															<td class="product-name">
+																<p style="font-weight: bold;">${co.mbBizName}</p> <span>${co.pbName}(구매수량
+																	${co.poCnt}개)</span> 
+																	<br>시트 : ${co.coSheet}, 토핑 : ${co.coTopping}, 크림  : ${co.coCream}
+															<br> 사이즈 : ${co.coSize}
+																	<input class="hidden" name="poNum"
+																value="${co.poNum}"> <input class="hidden"
+																name="pbPrice" value="${co.pbPrice}">
+																<input class="hidden"
+																name="type" value="${co.type}">
+															</td>
+															<td class="product-price"><span class="amount">${co.pbPrice}</span>
+															</td>
+															<td class="product-quantity"><input type="number"
+																id="poCnt" name="poCount" min="1" max="3"
+																value="${co.poCnt}"></td>
+
+															<td class="product-subtotal" id="poPrice"
+																name="smallTotalPrice">${co.poPrice}</td>
+
+															<c:set var="totalPrice" scope="page"
+																value="${totalPrice+co.poPrice}" />
+															<td class="product-subtotal">
+															<fmt:formatDate value="${co.poBookDate}" pattern="yyyy-MM-dd HH:mm" />
+															</td>
+															<td class="product-subtotal" name="BizDelivery">
+															
+															${co.poBizDelivery}</td>
+															<c:set var="totalDeliveryPrice" scope="page"
+																value="${totalDeliveryPrice+co.poBizDelivery}" />
 															<td class="product-remove"><a href="#"
 																name="deleteButton"><i class="fa fa-times"></i></a></td>
 														</tr>

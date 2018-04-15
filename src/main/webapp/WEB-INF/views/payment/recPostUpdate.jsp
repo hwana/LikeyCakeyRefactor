@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="member" value="${sessionScope.member}" />
-<c:set var="poNum" value="${requestScope.pNum}" />
+<c:set var="poNum" value="${requestScope.poNum}" />
+
 <!DOCTYPE html>
 <html>
 
@@ -22,7 +23,6 @@
 
 
 <link rel="stylesheet" href="/resources/css/eunsong.css">
-<link rel="stylesheet" href="/resources/css/eunsong.css">
 <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
 <link rel="stylesheet" href="/resources/css/elegant-font.css">
 <link rel="stylesheet"
@@ -37,8 +37,11 @@
 <link rel="stylesheet" href="/resources/css/shortcode/shortcodes.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <script src="js/vendor/modernizr-2.8.3.min.js">
-	
 </script>
+<!-- 추가해야하는 js 벤더 -->
+<script src="/resources/js/vendor/jquery-1.12.4.min.js"></script>
+<!-- 추가해야하는 js 벤더 끝-->
+	
 <!-- 주소 라이브러리 추가 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <!-- 주소 라이브러리 추가 끝 -->
@@ -121,10 +124,11 @@ th {
 </head>
 <body>
 
-	<section class="page-content-wrapper pt-100 pb-40"
-		style="padding-top: 0px;">
+	<!-- <section class="page-content-wrapper pt-100 pb-40"
+		style="padding-top: 0px;"> -->
 		<!-- coupon-area start -->
 		<form action="recPostUpdate.ca" id="recPostUpdateForm">
+			<input type="hidden" value="${poNum}" id="poNum" name="poNum">
 			<div class="container">
 				<div class="row">
 
@@ -132,7 +136,7 @@ th {
 					<section class="page-content-wrapper pt-100 pb-40"
 						style="padding-top: 0px;">
 						<!-- ㅇㅇㅇ -->
-						<div class="checkbox-form">
+						<div class="checkbox-form" style="padding-left: 5%; padding-right: 5%;">
 
 							<!-- ㅇㅇㅇ
  -->
@@ -144,6 +148,7 @@ th {
 							<div class="row">
 								<h3>
 									배송지 정보
+									
 									<!-- 주문자 정보와 동일 시작 -->
 									<div class="checkout-form-list create-acc"
 										style="margin-bottom: 0px; float: right">
@@ -155,7 +160,7 @@ th {
 								<div class="col-md-12">
 									<div class="checkout-form-list height">
 										<label style="float: left">수령인<span class="required">*</span></label>
-										<input class="input_height" id="recName" type="text"
+										<input class="input_height" id="recName" type="text" name="recName"
 											placeholder="">
 									</div>
 								</div>
@@ -163,7 +168,7 @@ th {
 								<div class="col-md-12">
 									<div class="checkout-form-list height">
 										<label style="float: left">연락처<span class="required">*</span></label>
-										<input class="input_height" id="recCP" type="text"
+										<input class="input_height" id="recCP" type="text" name="recCP"
 											placeholder="">
 									</div>
 								</div>
@@ -172,7 +177,7 @@ th {
 								<div class="col-md-8">
 									<div class="checkout-form-list height">
 										<label style="float: left">배송지<span class="required">*</span></label><input
-											class="input_height" type="text" placeholder="우편번호"
+											class="input_height" type="text" placeholder="우편번호" name="recPost"
 											id="recPost">
 									</div>
 								</div>
@@ -182,7 +187,7 @@ th {
 										<label><span class="required"></span></label>
 
 										<div class="pink_button">
-											<input class="input_height" type="submit" value="우편번호"
+											<input class="input_height" type="button" value="우편번호"
 												id="postSearch" onclick="DaumPostcode()">
 										</div>
 									</div>
@@ -191,14 +196,14 @@ th {
 
 								<div class="col-md-12">
 									<div class="checkout-form-list" style="margin-bottom: 10px;">
-										<input class="input_height" type="text" placeholder="기본주소"
+										<input class="input_height" type="text" placeholder="기본주소" name="recBasicAddr"
 											id="recBasicAddr">
 									</div>
 								</div>
 
 								<div class="col-md-12">
 									<div class="checkout-form-list" style="margin-bottom: 15px;">
-										<input type="text" class="input_height" id="recDetailAddr"
+										<input type="text" class="input_height" id="recDetailAddr" name="recDetailAddr"
 											placeholder="상세주소">
 									</div>
 								</div>
@@ -207,51 +212,36 @@ th {
 								<div class="col-md-12">
 									<div class="checkout-form-list height">
 										<label style="float: left">배송 메모<span class="required">*</span></label>
-										<input class="input_height" type="text" id="recMemo"
+										<input class="input_height" type="text" id="recMemo" name="recMemo"
 											placeholder="">
 									</div>
 								</div>
-								<hr>
+								
 							</div>
 							<!-- (배송지 정보 끝, 픽업 선택할 때 말고 배송 선택할 때만 뜨도록 해야함) -->
-
-							<br> <br> <br> <br>
 
 
 							<!-- 버튼 시작 -->
 							<div class="row">
-								<div class="col-md-4" style="width: 20%; margin-left: 20%">
+								 <!-- <div class="col-md-4 col-sm-5 col-xs-5"> -->
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 										<div class="pink_button">
-											<input type="submit" value="수정">
+											<input type="submit" value="수정" style="width:20%; margin-right:5%">
+											<input type="button" value="닫기" onclick='self.close()' style="width:20%; margin-left:5%">
 										</div>
 									</div>
-								</div>
-								<div class="col-md-4" style="width: 20%; margin-right: 20%">
-									<div class="country-button">
-										<label><span class="required"></span></label>
-										<div class="pink_button">
-											<input type="button" value="닫기" onclick='self.close()'>
-										</div>
-									</div>
-								</div>
-
+								<!-- </div> -->
 							</div>
 							<!-- 버튼 끝 -->
 
 						</div>
-
-
-
-
-
 					</section>
 				</div>
 			</div>
 		</form>
 		<!-- checkout-area end -->
-	</section>
+	<!-- </section> -->
 
 
 	<!-- all js here -->
@@ -302,27 +292,21 @@ th {
 							event.preventDefault();
 						} else {
 							//업데이트 시작			
-							
-							alert("주소지를 변경합니다" + <c:out value=${poNum}/>);
+							//.serialize를 사용하여 폼에 저장된 모든 데이터를 가져온다.
+							var form_data = $("#recPostUpdateForm").serialize();
 							$.ajax({
 								url : "recPostUpdate.ca",
 								type : "post",
-								data : {
-									id : ${member.m_id},
-									poNum : ${poNum},
-									recName : $("#recName").val(),
-									recCP : $("#recCP").val(),
-									recPost : $("#recPost").val(),
-									recBasicAddr : $("#recBasicAddr").val(),
-									recDetailAddr : $("#recDetailAddr").val(),
-									recMemo : $("#recMemo").val()
-								},
+								data : form_data,
 								success : function(value) {//
 									if (value == "ok") {
-										alert("삭제에 성공했습니다.");
-										location.reload();
+										alert("주소지 변경에 성공했습니다.");
+										window.opener.location.reload();//부모창 재로딩, window.opener는 자식창을 열어준 창에 접근하는 접근자!
+
+										self.close();
+										//location.reload();
 									} else {
-										alert("삭제에 실패했습니다.");
+										alert("주소지 변경에 실패했습니다.");
 									}
 								},
 								error : function(value) {
@@ -338,7 +322,7 @@ th {
 	</script>
 	<script type="text/javascript">
 		$(function() {
-				alert("dd"+"<c:out value='${poNum}'/>");
+			
 			//1.주문자 정보와 동일한 주소 시작//
 			$("#originalAddress")
 					.click(
