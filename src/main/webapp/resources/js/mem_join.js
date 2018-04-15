@@ -1,32 +1,6 @@
 $(document)
 		.ready(
 				function() {
-					$("#check_id").click(function() {
-						$.ajax({
-							url : "dupid.ca",
-							data : {
-								id : $("#inputId").val()
-							},
-							type : "post",
-							success : function(data) {
-								if ($.trim(data) == 0) {
-									alert("사용가능한 아이디입니다.");
-									$('#checkMsg').html('<p style="color:blue">사용가능한 아이디입니다.</p>');							
-									$('input[name=name]').focus();
-								} else {
-									$('#checkMsg').html('<p style="color:red">중복된 아이디입니다.</p>');
-									alert("이미 존재하는 아이디입니다. 아이디를 다시 설정하세요");
-									$('#inputId').select();
-								}
-							},
-							error : function(value) {
-								alert("잘못 입력하셨습니다." + value);
-								console.log('Error:', data);
-							}
-						});
-						return false;
-					}); // id check click
-					
 					
 					// 회원가입 클릭 시 유효성 검사
 					$("#join")
@@ -116,7 +90,15 @@ $(document)
 											$("#inputEmail").val("");
 											$("#inputEmail").focus();
 											return false;
-										} else {
+										} else if($("#pwcheck").val() == false){
+											alert("비밀번호를 동일하게 입력해주세요");
+											$("#inputPassword").val("");
+											$("#inputPasswordCheck").val("");
+											$("#inputPassword").focus();
+										} 
+										
+										
+										else {
 											alert("회원가입이 완료되었습니다.");
 											return true;
 										}

@@ -171,7 +171,7 @@
 									
 									
 									<li><a href="notice.ca">NOTICE</a></li>
-									<li><a href="contact.html">Q &amp; A</a></li>
+									<li><a href="homeqna.ca">Q &amp; A</a></li>
 								</ul>
 							</nav>
 							<!-- Product Cart -->

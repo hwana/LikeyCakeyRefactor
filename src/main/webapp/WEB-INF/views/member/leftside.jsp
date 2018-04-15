@@ -21,9 +21,6 @@
 													class="zmdi zmdi-chevron-right"></i>상품 Q&A</a></li>
 											<li style="border-bottom: 0px;"><a href="m_like_list.ca"><i
 													class="zmdi zmdi-chevron-right"></i>좋아요 목록</a></li>
-											<li style="border-bottom: 0px;"><a
-												href="m_my_postscript.ca"><i
-													class="zmdi zmdi-chevron-right"></i>내가 쓴 후기</a></li>
 										</ul>
 									</div>
 								</div>

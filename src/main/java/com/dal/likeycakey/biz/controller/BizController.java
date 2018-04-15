@@ -40,7 +40,6 @@ public class BizController {
 	}
 
 	// 로그인 체크
-
 	@RequestMapping(value = "loginCheck2.ca", method = RequestMethod.POST)
 	public void loginCheck(ModelAndView mv, HttpSession session, Member member, HttpServletResponse response) {
 
