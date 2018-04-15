@@ -65,7 +65,7 @@
 										<div class="col-md-6 col-sm-6">
 											<div class="single-product style-two mb-50 young-bot-margin	">
 												<div class="young-custom-logo">
-													<img src="/resources/img/young/${photolist[loop.index] }.jpg" alt="" />
+													<img src="/resources/img/member/${photolist[loop.index] }" alt="" />
 												</div>
 												<div class="young-custom-exp">
 													<h4><a href="single-product.html"><font color="9bcaba"><strong>${namelist[loop.index] }</strong></font> </a></h4>
