@@ -31,7 +31,7 @@
 		FROM PRODUCT_REVIEW R , P_REVIEW_COM C
         WHERE  R.P_R_NUM = C.P_R_NUM(+)
         AND R.P_B_NUM=#{pbNum}
-        ORDER BY R.P_R_NUM DESC
+        ORDER BY R.P_R_DATE DESC
 	</select>
 	
 	<update id="updatePReviewReply" parameterType="ProductReview">
