@@ -136,4 +136,10 @@ public class ListDaoImpl implements ListDao {
 		System.out.println("listDao의 selectReviewCakeList입니다");
 		return sqlSession.selectOne("productBoard.selectReviewCakeList", pbNum);
 	}
+	
+	@Override
+	public String selectVendorImg(String inputvendor) {
+		System.out.println("listDao의 selectInputVendor입니다." );
+		return sqlSession.selectOne("Member.selectVendorImg", inputvendor);
+	}
 }

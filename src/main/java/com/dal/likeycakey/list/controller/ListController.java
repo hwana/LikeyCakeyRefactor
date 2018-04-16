@@ -248,6 +248,10 @@ public class ListController {
 			vendorlocationlist.add(listService.selectVendorLocationList(vendorcakelist.get(i).getId()));
 		}
 		
+		// 케이크 이미지 추가하기
+		String vendorimg;
+		vendorimg = listService.selectVendorImg(inputvendor);
+		
 		// 리뷰를 쓴 유저의 이미지 불러오기
 		ArrayList<String> reviewimglist = new ArrayList<String>();
 		for(int i=0; i<vendorreviewlist.size(); i++) {
@@ -314,6 +318,9 @@ public class ListController {
 		} else {
 			System.out.println("이 상점의 리뷰가 없거나 조회 실패");
 		}
+		
+		//mv에 달기
+		mv.addObject("vendorimg", vendorimg);
 				
 		return mv;
 	}

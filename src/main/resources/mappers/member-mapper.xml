@@ -62,5 +62,9 @@
 		SELECT M_PHOTO FROM MEMBER WHERE M_ID=#{id}
 	</select>
 	
+	<select id="selectVendorImg" parameterType="String" resultType="String">
+		SELECT M_PHOTO FROM MEMBER WHERE M_ID=#{inputvendor}
+	</select>
+	
 </mapper>
 

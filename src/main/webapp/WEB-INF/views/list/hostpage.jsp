@@ -18,6 +18,7 @@
 <c:set var="vendorreviewlist" value="${requestScope.vendorreviewlist }"/>
 <c:set var="vendorlocationlist" value="${requestScope.vendorlocationlist}"/>
 <c:set var="reviewimglist" value="${requestScope.reviewimglist }"/>
+<c:set var="vendorimg" value="${requestScope.vendorimg }"/>
 <c:set var="reviewcakelist" value="${requestScope.reviewcakelist }"/>
 <c:set var="input_vendor" value="${requestScope.input_vendor}"/>
 <c:set var="member" value="${sessionScope.member}"/>
@@ -67,7 +68,7 @@
 						<div class="col-md-4">
 							<div class="right-area pt-35">
 								<div class="young-host-profile-box" style="transition: transform 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) 0s; transform: translateY(0px);">
-									<span><img src="/resources/img/young/" alt="" /></span>
+									<span><img src="/resources/img/member/${vendorimg }" alt="" /></span>
                 				    <div>BAKERY</div>
                         			<p class="young-host-profile-box-name">${input_vendor }</p>
                         			<p class="young-host-profile-box-exp">안녕하세요~ ${input_vendor }입니다.</p>
