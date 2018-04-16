@@ -110,7 +110,7 @@
 											<div class="single-product style-two mb-50">
 												<div class="right-area pt-35">
 													<div class="young-host-profile-box"	>
-														<span><img src="/resources/img/young/touslesjours.png" alt="" /></span>
+														<span><a href = "hostinfo.ca?input_vendor_id=tous"><img src="/resources/img/young/touslesjours.png" alt="" /></a></span>
 					                				    <div>BAKERY</div>
 					                        			<p class="young-host-profile-box-name">${input_vendor }</p>
 					                        			<p class="young-host-profile-box-exp">안녕하세요~ 뚜레주르 입니다.</p>

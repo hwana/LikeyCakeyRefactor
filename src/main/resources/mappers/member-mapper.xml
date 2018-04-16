@@ -69,6 +69,17 @@
        M_DETAIL_ADDR = #{addressDetail}, M_PHOTO = #{photo}
        WHERE M_ID = #{id}
     </update>
+    
+    <!-- password 정보수정 -->
+    <update id="updatePassword" parameterType="Member" flushCache="true" statementType="PREPARED">
+    	UPDATE MEMBER
+    	SET M_PW = #{passwd}
+    	WHERE M_ID = #{id}
+    </update>
+    
+    <select id="selectVendorImg" parameterType="String" resultType="String">
+      SELECT M_PHOTO FROM MEMBER WHERE M_ID=#{inputvendor}
+   </select>
 	
 </mapper>
 

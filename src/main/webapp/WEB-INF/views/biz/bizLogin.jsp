@@ -77,7 +77,7 @@ h3 {
 									});
 						}
 
-						function createKakaotalkLogin() {
+						/* function createKakaotalkLogin() {
 							$(
 									"#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn")
 									.remove();
@@ -99,7 +99,7 @@ h3 {
 								});
 							});
 							$("#kakao-logged-group").prepend(loginBtn)
-						}
+						} */
 
 						function createKakaotalkLogout() {
 							$(
