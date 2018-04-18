@@ -13,53 +13,53 @@ import org.springframework.stereotype.Repository;
 
 @Repository("adminDao")
 public class AdminDaoImpl implements AdminDao {
-	
-	@Autowired
-	private SqlSessionTemplate sqlSession;
-	
-	@Override
-	public int getListCount() throws Exception{
-		System.out.println("adminDao.getListCount 도착");
-		return sqlSession.selectOne("AdminMapper.getListCount");
-		
-	}
+   
+   @Autowired
+   private SqlSessionTemplate sqlSession;
+   
+   @Override
+   public int getListCount() throws Exception{
+      System.out.println("adminDao.getListCount 도착");
+      return sqlSession.selectOne("AdminMapper.getListCount");
+      
+   }
 
-	@Override
-	public ArrayList<Member> selectList() throws Exception{
-		System.out.println("adminDao.selectList 도착");
+   @Override
+   public ArrayList<Member> selectList() throws Exception{
+      System.out.println("adminDao.selectList 도착");
 
-		return new ArrayList<Member>(sqlSession.selectList("AdminMapper.selectList"));
-	}
-	
-	@Override
-	public Member selectOne(String id) throws Exception{
-		System.out.println("adminDao.selectOne 도착");
-		return (Member)(sqlSession.selectOne("AdminMapper.selectOne", id));
-	}
-	
-	@Override
-	public int updateMember(Member m) throws Exception{
-		return sqlSession.update("AdminMapper.updateMember",m);		
-		
-	}
-	
-	@Override
-	public int deleteMember(String id) throws Exception{
-		
-		return sqlSession.delete("AdminMapper.deleteMember",id);
-	}
+      return new ArrayList<Member>(sqlSession.selectList("AdminMapper.selectList"));
+   }
+   
+   @Override
+   public Member selectOne(String id) throws Exception{
+      System.out.println("adminDao.selectOne 도착");
+      return (Member)(sqlSession.selectOne("AdminMapper.selectOne", id));
+   }
+   
+   @Override
+   public int updateMember(Member m) throws Exception{
+      return sqlSession.update("AdminMapper.updateMember",m);      
+      
+   }
+   
+   @Override
+   public int deleteMember(String id) throws Exception{
+      
+      return sqlSession.update("AdminMapper.deleteMember",id);
+   }
 
-	@Override
-	public int deleteTotalMember() throws Exception{
-		// TODO Auto-generated method stub
-		return sqlSession.delete("AdminMapper.deleteTotalMember");
-	}
+   @Override
+   public int deleteTotalMember() throws Exception{
+      // TODO Auto-generated method stub
+      return sqlSession.update("AdminMapper.deleteTotalMember");
+   }
 
-	@Override
-	public ArrayList<Member> selectBizList() throws Exception {
-		// TODO Auto-generated method stub
-		return new ArrayList<Member>(sqlSession.selectList("AdminMapper.selectBizList"));
-	}
-	
+   @Override
+   public ArrayList<Member> selectBizList() throws Exception {
+      // TODO Auto-generated method stub
+      return new ArrayList<Member>(sqlSession.selectList("AdminMapper.selectBizList"));
+   }
+   
 
 }

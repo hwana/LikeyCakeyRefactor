@@ -264,6 +264,10 @@ public class ListController {
 			reviewcakelist.add(listService.selectReviewCakeList(vendorreviewlist.get(i).getPbNum()));
 		}
 		
+		// 케이크 이미지 추가하기
+	      String vendorimg;
+	      vendorimg = listService.selectVendorImg(inputvendor);
+		
 		// 총 페이지 수
 		int maxpagecake = (vendorcakeCount + limitcake - 1) / limitcake;
 		int maxpagereview = (vendorreviewCount + limitreview - 1) / limitreview;
@@ -318,10 +322,17 @@ public class ListController {
 		} else {
 			System.out.println("이 상점의 리뷰가 없거나 조회 실패");
 		}
+<<<<<<< HEAD
 		
 		//mv에 달기
 		mv.addObject("vendorimg", vendorimg);
 				
+=======
+			
+		//mv에 달기
+	      mv.addObject("vendorimg", vendorimg);
+	      
+>>>>>>> refs/heads/master
 		return mv;
 	}
 	

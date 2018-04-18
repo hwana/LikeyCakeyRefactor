@@ -841,11 +841,12 @@
 					<div class="col-md-12 item">
 						<div class="client-slider-single text-center">
 							<div class="client-content">
-								<img src="/resources/img/client/1.png" alt="" />
+								<img src="/resources/img/client/na.png" alt=""/>
 								<h3>Hyunsun Na</h3>
 								<h5>LikeyCakey 팀원</h5>
 								<div class="sin-text">
-									<p>울트라 킹왕짱 웹 마스터</p>
+									<p>써니써니 현써니<br>
+									감각적인 개발자! 개발은 감! 미래의 웹마스터! 기대해주세요</p>
 								</div>
 							</div>
 						</div>
@@ -855,14 +856,11 @@
 					<div class="col-md-12 item">
 						<div class="client-slider-single text-center">
 							<div class="client-content">
-								<img src="/resources/img/client/2.png" alt="" />
-								<h3>KA-Mamun</h3>
-								<h5>Beauty- Expart</h5>
+								<img src="/resources/img/client/young.png" alt="" />
+								<h3>Youngyul Kim</h3>
+								<h5>LikeyCakey 팀원</h5>
 								<div class="sin-text">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. ercitation ullamco laboris nisi ut aliquip ex ea
-										co.</p>
+									<p>여리여리 영려리<br></p>
 								</div>
 							</div>
 						</div>
@@ -872,14 +870,11 @@
 					<div class="col-md-12 item">
 						<div class="client-slider-single text-center">
 							<div class="client-content">
-								<img src="/resources/img/client/1.png" alt="" />
-								<h3>Nirob Khan</h3>
-								<h5>Beauty- Expart</h5>
+								<img src="/resources/img/client/hwan.png" alt="" />
+								<h3>Hwanhee Kim</h3>
+								<h5>LikeyCakey 팀원</h5>
 								<div class="sin-text">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. ercitation ullamco laboris nisi ut aliquip ex ea
-										co.</p>
+									<p>퐈니퐈니 김퐈니<br></p>
 								</div>
 							</div>
 						</div>
@@ -889,14 +884,25 @@
 					<div class="col-md-12 item">
 						<div class="client-slider-single text-center">
 							<div class="client-content">
-								<img src="/resources/img/client/2.png" alt="" />
-								<h3>Salim Rana</h3>
-								<h5>Beauty- Expart</h5>
+								<img src="/resources/img/client/song.png" alt="" />
+								<h3>Jiyeong Song</h3>
+								<h5>LikeyCakey 팀장</h5>
 								<div class="sin-text">
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do eiusmod tempor incididunt ut labore et dolore
-										magna aliqua. ercitation ullamco laboris nisi ut aliquip ex ea
-										co.</p>
+									<p>여니여니 지여니<br></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Client Single -->
+					<!-- Client Single -->
+					<div class="col-md-12 item">
+						<div class="client-slider-single text-center">
+							<div class="client-content">
+								<img src="/resources/img/client/eun.png" alt="" />
+								<h3>Eunsong Kim</h3>
+								<h5>LikeyCakey 팀원</h5>
+								<div class="sin-text">
+									<p>송이송이 은송이<br></p>
 								</div>
 							</div>
 						</div>

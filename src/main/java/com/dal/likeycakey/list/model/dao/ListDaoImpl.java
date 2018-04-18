@@ -138,8 +138,15 @@ public class ListDaoImpl implements ListDao {
 	}
 	
 	@Override
+<<<<<<< HEAD
 	public String selectVendorImg(String inputvendor) {
 		System.out.println("listDao의 selectInputVendor입니다." );
 		return sqlSession.selectOne("Member.selectVendorImg", inputvendor);
 	}
+=======
+	   public String selectVendorImg(String inputvendor) {
+	      System.out.println("listDao의 selectInputVendor입니다." );
+	      return sqlSession.selectOne("Member.selectVendorImg", inputvendor);
+	   }
+>>>>>>> refs/heads/master
 }

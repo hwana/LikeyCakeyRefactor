@@ -22,6 +22,7 @@
 <c:set var="reviewcakelist" value="${requestScope.reviewcakelist }"/>
 <c:set var="input_vendor" value="${requestScope.input_vendor}"/>
 <c:set var="member" value="${sessionScope.member}"/>
+<c:set var="vendorimg" value="${requestScope.vendorimg }"/>
 
 <!doctype html>
 <html class="no-js" lang="zxx">

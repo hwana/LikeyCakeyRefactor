@@ -368,7 +368,7 @@
 
 <!-- 지도  시작 -->
 <!-- &libraries=services -->
-			<div id="map" style="width:1060px;height:400px; pointer-events:auto;"></div>
+			<div id="map" style="width:80%;height:400px; pointer-events:auto;"></div>
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36cabc0a509368e0120f98820eb971c0&libraries=services"></script>
 			<script>
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -521,7 +521,7 @@
 						<p class="pf_txt">맛있는 케이크가 많은 곳 [${pBiz.bizName}] 입니다.</p>
 					</div>
 				</div>
-				<a href="hostinfo.ca?input_vendor_id=${pBiz.id}"> <span class="btn-inner"> 호스트 페이지로 이동  <i class="fa fa-arrow-right ml-10"></i></span>
+				<a href="hostinfo.ca?input_vendor_id=${pBiz.id }"> <span class="btn-inner"> 호스트 페이지로 이동  <i class="fa fa-arrow-right ml-10"></i></span>
 				</a>
 
 			</div>
