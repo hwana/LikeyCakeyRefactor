@@ -58,5 +58,22 @@
 		SELECT * FROM MEMBER WHERE M_ID=#{id}
 	</select>
 	
+	<!-- 일반 회원정보 수정 -->
+ 	<update id="updateMember" parameterType="Member">
+ 		UPDATE MEMBER
+		SET M_CP = #{phone}, M_POST = #{post}, M_BASIC_ADDR = #{addressBasic},	
+ 		M_DETAIL_ADDR = #{addressDetail}, M_PHOTO = #{photo}
+ 		WHERE M_ID = #{id}
+ 	</update>
+ 	
+ 	<!-- 패스워드 수정 -->	
+	<update id="updatePassword" parameterType="Member" flushCache="true"	
+		statementType="PREPARED">	
+		UPDATE MEMBER	
+		SET M_PW = #{passwd}	
+		WHERE M_ID = #{id}	
+	</update>	
+
+	
 </mapper>
 

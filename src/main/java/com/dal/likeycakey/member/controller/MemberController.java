@@ -178,8 +178,9 @@ public class MemberController {
 		try {
 			int result = memberService.updatePassword(m);
 			session.setAttribute("member", m);
-			mv.setViewName("redirect:memberPw.ca");
 			System.out.println("비밀번호 수정 성공");
+			mv.setViewName("redirect:memberPw.ca");
+			
 		} catch (Exception e) {
 			System.out.println("비밀번호 수정 실패");
 		}
