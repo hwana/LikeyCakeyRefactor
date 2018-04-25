@@ -13,21 +13,20 @@ import org.springframework.stereotype.Repository;
 
 @Repository("adminDao")
 public class AdminDaoImpl implements AdminDao {
-	
-	@Autowired
-	private SqlSessionTemplate sqlSession;
-	
-	@Override
-	public int getListCount() throws Exception{
-		System.out.println("adminDao.getListCount 도착");
-		return sqlSession.selectOne("AdminMapper.getListCount");
-		
-	}
+   
+   @Autowired
+   private SqlSessionTemplate sqlSession;
+   
+   @Override
+   public int getListCount() throws Exception{
+      System.out.println("adminDao.getListCount 도착");
+      return sqlSession.selectOne("AdminMapper.getListCount");
+      
+   }
 
-	@Override
-	public ArrayList<Member> selectList() throws Exception{
-		System.out.println("adminDao.selectList 도착");
-
+   @Override
+   public ArrayList<Member> selectList() throws Exception{
+      System.out.println("adminDao.selectList 도착");
 		return new ArrayList<Member>(sqlSession.selectList("AdminMapper.selectList"));
 	}
 	
@@ -49,11 +48,17 @@ public class AdminDaoImpl implements AdminDao {
 		return sqlSession.update("AdminMapper.deleteMember",id);
 	}
 
+   
+
+
+
 	@Override
 	public int deleteTotalMember() throws Exception{
 		// TODO Auto-generated method stub
 		return sqlSession.update("AdminMapper.deleteTotalMember");
 	}
+
+
 
 	@Override
 	public ArrayList<Member> selectBizList() throws Exception {
@@ -79,5 +84,6 @@ public class AdminDaoImpl implements AdminDao {
 		return new ArrayList<Member>(sqlSession.selectList("AdminMapper.bizMember"));
 	}
 	
+
 
 }

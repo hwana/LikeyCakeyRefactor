@@ -25,4 +25,5 @@ public interface ListDao {
 	public String selectVendorLocationList(String inputvendor);
 	public String selectReviewImgList(String id);
 	public String selectReviewCakeList(int pbNum);
+	public String selectVendorImg(String inputvendor);
 }

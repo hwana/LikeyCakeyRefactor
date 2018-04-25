@@ -60,25 +60,25 @@ $(function(){
 					}
 					values += "<div class='rbox_mine'>"
 						   + "<input type='hidden' value='"+ json[i].prNum +"' class='reviewNum'>"
-						   + "<span class='pf_img' style='background-image: url(/resources/img/member/김영렬.jpg)'></span>"
+						   + "<span class='pf_img' style='background-image: url(/resources/img/member/default_user.jpg)'></span>"
 						   + "<strong class='guest_name'>"+ json[i].id+"</strong>"
-						   + "<p class='p_review'>"+ json[i].prContent +"</p>"
-						   + "<div class='space_list swiper_list photo_review'>"
-						   + "<div class='flex_wrap column3 fluid'>"
-						   + "<article class='box box_space'>"
-						   +	"<div class='inner'>"
-						   + 		"<a href='/resources/img/single-product/1.jpg' class='_review_img_link' target='_blank'"
-						   +		         "data-img-path='/resources/img/single-product/1.jpg'>"
-					       + 			"<div class='img_box'>"
-						   +			"<span class='img' style='background-image: url(/resources/img/single-product/1.jpg)'></span>"
-						   + 			"<span class='border'></span>"
-					       + 			"</div>"
-					       + 		"</a>"
-					       + 	"</div>"
-					       + "</article>"
-					       + "</div>"
-					       + "</div>"
-					       + "<div class='rbox_info_base'>";
+						   + "<p class='p_review'>"+ json[i].prContent +"</p>";
+				 if(json[i].prFile!=null){
+					 values += "<div class='space_list swiper_list photo_review'>"
+					 + "<div class='flex_wrap column3 fluid'>"
+					 + "<article class='box box_space'>"
+					 +	"<div class='inner'>"
+					 + 			"<div class='img_box'>"
+					 +			"<span class='img' style='background-image: url(/resources/img/cake/" + json[i].prFile +")'></span>"
+					 + 			"<span class='border'></span>"
+					 + 			"</div>"
+					 + 		"</a>"
+					 + 	"</div>"
+					 + "</article>"
+					 + "</div>"
+					 + "</div>";
+				 }
+					values += "<div class='rbox_info_base'>";
 					// 현재 접속중인 id와 게시물 작성자(사업자)의 아이디가 같으면 댓글 등록하기 버튼 달기
 					if($('.pBizId').val()===id && !json[i].prcNum){
 					values += 	"<a class='review-reply-insert-btn'>&nbsp;댓글 달기 &nbsp;<i class='fa fa-comment mr-10'></i></a>";

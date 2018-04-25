@@ -100,5 +100,10 @@ public class ListServiceImpl implements ListService {
 	public String selectReviewCakeList(int pbNum) {
 		return listDao.selectReviewCakeList(pbNum);
 	}
+	
+	@Override
+	   public String selectVendorImg(String inputvendor) {
+	      return listDao.selectVendorImg(inputvendor);
+	   }
 }
 

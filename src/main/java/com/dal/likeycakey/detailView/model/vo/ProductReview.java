@@ -2,8 +2,9 @@ package com.dal.likeycakey.detailView.model.vo;
 
 import java.sql.Date;
 
-
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
 public class ProductReview implements java.io.Serializable{
@@ -14,6 +15,7 @@ public class ProductReview implements java.io.Serializable{
    private int pbNum; // 리뷰 게시글이 참조하는 게시글 번호
    private String id; // 리뷰 글쓴 회원 아이디
    private String prContent; //리뷰 글 내용
+   @JsonFormat(pattern="yyyy/MM/dd")
    private Date prDate; // 리뷰 글 작성일
    private int prLike; // 리뷰 좋아요 수
    private int prBlack; // 리뷰 신고 수
@@ -21,6 +23,7 @@ public class ProductReview implements java.io.Serializable{
    private int prStar; // 리뷰 별점
    private int prcNum; // 리뷰 댓글 번호
    private String prcContent; // 리뷰 댓글 내용
+   @JsonFormat(pattern="yyyy/MM/dd")
    private Date prcDate; // 리뷰 댓글 작성일
 
    public ProductReview() {
