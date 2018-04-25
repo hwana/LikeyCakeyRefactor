@@ -25,7 +25,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dal.likeycakey.admin.model.service.AdminService;
 import com.dal.likeycakey.member.model.vo.Member;
 
-
 @Controller
 public class AdminController {
 
@@ -35,15 +34,27 @@ public class AdminController {
 	/* 1_1. 관리자_멤버 리스트 셀렉트 */
 	@RequestMapping(value = "/adminMemberList.ca", method = RequestMethod.GET)
 	public ModelAndView adminMemberList(Member m, @RequestParam(value = "page", required = false) Integer page,
-			ModelAndView mv) {
+			@RequestParam("orderfilter") int orderfilter, ModelAndView mv) {
 
 		System.out.println("adminmemberList mapping도착");
-
+		int type = 1;
+		type = orderfilter;
+	
 		try {
-
-
-			ArrayList<Member> list = adminService.selectList();
-
+			ArrayList<Member> list = null;
+			if (type == 3) {// 활동
+				list = adminService.activeMember();
+			} else if (type == 6) {// 탈퇴
+				list = adminService.selectList();
+			} else if (type == 7) {// 일반
+				list = adminService.nomalMember();
+			} else if (type == 8) {// 관리자
+				list = adminService.selectList();
+			} else if (type == 9) {// 사업
+				list = adminService.bizMember();
+			} else {
+				list = adminService.selectList();
+			}
 
 			System.out.println("adminMemberList : list.size=" + list.size());
 			if (list != null && list.size() > 0) {
@@ -117,11 +128,11 @@ public class AdminController {
 
 		try {
 			PrintWriter out = response.getWriter();
-			System.out.println("deleteMember="+deleteMembers);
-			
+			System.out.println("deleteMember=" + deleteMembers);
+
 			ArrayList<String> delMembers = new ArrayList<String>(Arrays.asList(deleteMembers.split(",")));
-			System.out.println("delMembers.size()="+delMembers.size());
-			
+			System.out.println("delMembers.size()=" + delMembers.size());
+
 			int result = 0;
 			for (int i = 0; i < delMembers.size(); i++) {
 				System.out.println((String) delMembers.get(i));
@@ -175,7 +186,7 @@ public class AdminController {
 			ArrayList<Member> list = adminService.selectBizList();
 
 			// 총 페이지수 계산 : 목록이 최소 1개일 때 1page로 처리하기
-	
+
 			System.out.println("adminBizList : list.size=" + list.size());
 			if (list != null && list.size() > 0) {
 
@@ -196,22 +207,20 @@ public class AdminController {
 
 		return mv;
 	}
-	
-/*	@RequestMapping(value = "/adminBizList.ca", method = RequestMethod.GET)
-	public ModelAndView adminBizList(ModelAndView mv) {
 
-		System.out.println("adminBizList mapping도착");
-
-		try {
-			 bizService.insertBiz(bm); 
-			mv.setViewName("redirect:home.do");
-		} catch (Exception e) {
-			mv.setViewName("admin/adminBizList");
-		}
-
-		return mv;
-
-	}*/
+	/*
+	 * @RequestMapping(value = "/adminBizList.ca", method = RequestMethod.GET)
+	 * public ModelAndView adminBizList(ModelAndView mv) {
+	 * 
+	 * System.out.println("adminBizList mapping도착");
+	 * 
+	 * try { bizService.insertBiz(bm); mv.setViewName("redirect:home.do"); } catch
+	 * (Exception e) { mv.setViewName("admin/adminBizList"); }
+	 * 
+	 * return mv;
+	 * 
+	 * }
+	 */
 
 	/* 2_2. 관리자_사업장 수정 */
 	@RequestMapping(value = "/adminBizUpdate.ca", method = RequestMethod.GET)
@@ -243,7 +252,5 @@ public class AdminController {
 		return mv;
 
 	}
-	
-	
 
 }

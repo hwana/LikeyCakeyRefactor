@@ -83,6 +83,27 @@
 		}); //click
 
 		//1. 한명만 업데이트 하는 ajax 코드 끝//
+		
+		$("#typeNumber").click(function() {
+			$.ajax({
+				url : "adminMemberUpdate.ca",
+				dataType : "text",
+				type : "post",
+				success : function(value) {//
+					if (value == "ok") {
+						alert("수정에 성공했습니다.");
+					} else {
+						alert("수정에 실패했습니다.");
+					}
+				},
+				error : function(value) {
+					alert("잘못 입력하셨습니다." + value);
+				}
+			});//AJAX
+			return false;
+		}); //click
+
+		//1. 한명만 업데이트 하는 ajax 코드 끝//
 
 		//2. 체크박스 전체 선택하는 jQuery 코드 시작//
 		$("#checkAll").click(function() {
@@ -124,16 +145,16 @@
 		$("#adminDelete").click(function() {
 			console.log("adminDelete 클릭");
 			if(checkAll){
-					alert("전체 삭제를 실행합니다.");
+					alert("전체 탈퇴를 실행합니다.");
 				$.ajax({
 					url : "adminMemberTotalDelete.ca",
 					type : "post",
 					success : function(value) {//
 						if (value == "ok") {
-							alert("전체 삭제에 성공했습니다.");
+							alert("전체 탈퇴에 성공했습니다.");
 							location.reload();
 						} else {
-							alert("전체 삭제에 실패했습니다.");
+							alert("전체 탈퇴에 실패했습니다.");
 						}
 					},
 					error : function(value) {
@@ -142,9 +163,9 @@
 				});//AJAX
 				return false;				
 			}else if(delMembers.length == 0){
-				alert("삭제할 회원을 선택해주세요.");
+				alert("탈퇴시킬 회원을 선택해주세요.");
 			}else{
-				alert("선택 삭제를 실행합니다.");
+				alert("선택 탈퇴를 실행합니다.");
 				jQuery.ajaxSettings.traditional = true;
 				$.ajax({
 					url : "adminMemberDelete.ca",
@@ -155,10 +176,10 @@
 					type : "post",
 					success : function(value) {//
 						if (value == "ok") {
-							alert("선택 삭제에 성공했습니다.");
+							alert("선택 탈퇴에 성공했습니다.");
 							location.reload();
 						} else {
-							alert("선택 삭제에 실패했습니다.");
+							alert("선택 탈퇴에 실패했습니다.");
 						}
 					},
 					error : function(value) {
@@ -169,6 +190,12 @@
 			}
 		});
 		//4. 삭제 버튼을 눌렀을 때, checkAll이 treu면 전체 삭제로 가고, false면 일부 삭제로 간다. 경로 조정 가능? 
+				
+		 $("#sorting").change(function()
+			      {
+			 		//	alert($(this).val());
+			          document.location.href = $(this).val();
+		});
 
 	}); //ready
 </script>
@@ -225,16 +252,17 @@ td {
 
 									<!-- 회원 상태 설명 시작 -->
 									<div class="checkout-form-list create-acc" style="margin-bottom: 0px; float: right">
-										 <select style="height:30px;">
-											<option value="volvo">분류 번호 순
-											<option value="saab">신고 당한 횟수 순
-											<option value="mercedes">활동 회원만
-											<option value="audi">경고 회원만
-											<option value="audi">블록 회원만
-											<option value="audi">탈퇴 회원만
-											<option value="audi">일반회원만
-											<option value="audi">관리자만
-											<option value="audi">사업자만
+										 <select style="height:30px;" id="sorting">
+										 	<option id="typeNumber" value="adminMemberList.ca?orderfilter=1">정렬
+											<option id="typeNumber" value="adminMemberList.ca?orderfilter=1">분류 번호 순
+											<option id="blackCnt" value="adminMemberList.ca?orderfilter=2">신고 당한 횟수 순
+											<option id="activeMember" value="adminMemberList.ca?orderfilter=3">활동 회원만
+											<option id="warningMember" value="adminMemberList.ca?orderfilter=4">경고 회원만
+											<option id="blockedMember" value="adminMemberList.ca?orderfilter=5">블록 회원만
+											<option id="unregisterMember" value="adminMemberList.ca?orderfilter=6">탈퇴 회원만
+											<option id="nomalMember" value="adminMemberList.ca?orderfilter=7">일반회원만
+											<option  id="adminMember" value="adminMemberList.ca?orderfilter=8">관리자만
+											<option  id="bizMember" value="adminMemberList.ca?orderfilter=9">사업자만
 										</select>
 									</div>
 									<!-- 회원 상태 설명 끝 -->
@@ -242,7 +270,7 @@ td {
 								</h3>
 								<div class="checkout-form-list create-acc"
 										style="margin-bottom: 0px; float: right; margin-right:15px">
-										<label style="color: #9bcaba">1.일반 2.경고 3.블랙리스트 4.탈퇴</label>
+										<label style="color: #9bcaba">1.활동 2.경고 3.블랙리스트 4.탈퇴</label>
 								</div>
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<form action="adminMemberDelete.ca" method="post">
@@ -301,15 +329,9 @@ td {
 																	</div>
 																</div>
 															</td>
-
 														</tr>
 														<!--  회원 1 끝 -->
-
 													</c:forEach>
-
-
-
-
 												</tbody>
 											</table>
 										</div>
@@ -327,20 +349,12 @@ td {
 									<div class="country-button" style="">
 										<label><span class="required"></span></label>
 										<div class="pink_button">
-											<input type="button" id="adminDelete" value="선택한 회원 삭제하기">
+											<input type="button" id="adminDelete" value="선택한 회원 탈퇴 처리">
 										</div>
 									</div>
 								</div>
 
-								<!-- <div class="col-md-4" style="width: 20%">
-									<div class="country-button" style="">
-										<label><span class="required"></span></label>
-										<div class="pink_button">
-											<input type="submit" value="전체 수정하기">
-										</div>
-									</div>
-
-								</div> -->
+								
 
 							</div>
 
@@ -359,91 +373,7 @@ td {
 	<!-- Page Content Wraper Area End -->
 	<!-- Fotter Area Start -->
 	<footer>
-		<!-- Footer Top Area End -->
-		<div class="fotter-area dark-gray-bg ptb-100">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3 col-sm-4 col-xs-12">
-						<div class="address-area res-mb-sm-30">
-							<a href="/resources/index.html">shopzon</a>
-							<p>Lorem ipsum dolor sit amet, consemi cteta dipisi cing
-								elit, sed do eiusmod tempor.</p>
-							<div class="contact-social mt-40">
-								<ul>
-									<li><a href="#" class="social_facebook "></a></li>
-									<li><a href="#" class="social_twitter "></a></li>
-									<li><a href="#" class="social_googleplus"></a></li>
-									<li><a href="#" class="social_linkedin "></a></li>
-									<li><a href="#" class="social_instagram "></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-4 col-xs-12 xs-res-mrbtm">
-						<div class="footer-menu res-mb-sm-30">
-							<h4>MY ACCOUNT</h4>
-							<ul>
-								<li><a href="#">FAQs</a></li>
-								<li><a href="#">Payments</a></li>
-								<li><a href="#">Track Your Order</a></li>
-								<li><a href="#">Return Polcy</a></li>
-								<li><a href="#">Warranty</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-3 hidden-sm hidden-xs">
-						<div class="footer-menu">
-							<h4>SHOP GUIDE</h4>
-							<ul>
-								<li><a href="#">Hot Sale</a></li>
-								<li><a href="#">Best Sellar</a></li>
-								<li><a href="#">Suppliers</a></li>
-								<li><a href="#">Our Store</a></li>
-								<li><a href="#">Deal of The Day</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-4 col-xs-12 xs-res-mrbtm">
-						<div class="footer-menu">
-							<h4>CONTACT INFO</h4>
-							<div class="contact-details">
-								<ul>
-									<li><span class="icon_pin"></span>
-										<p>Lusmod tempor incididunt</p></li>
-									<li><span class="icon_mail"></span>
-										<p>Lusmod incidiunt wesbvu</p></li>
-									<li><span class="icon_phone "></span>
-										<p>(256) 987 654 321</p></li>
-									<li><span class="icon_clock_alt"></span>
-										<p>8.00 am-6.00 pm</p></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Footer Top Area End -->
-		<!-- Footer Bottom Area Start -->
-		<div class="footer-bottom-area black-bg">
-			<div class="container">
-				<div class="row ">
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<p>
-							Copyright &copy; 2017.Company name All rights reserved.More
-							Templates <a href="http://www.cssmoban.com/" target="_blank"
-								title="模板之家">模板之家</a> - Collect from <a
-								href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a><a
-								target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-						</p>
-					</div>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<img src="/resources/img/icon/payment.png" alt="" />
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Footer Bottom Area End -->
+	
 	</footer>
 	<!-- Fotter Area End -->
 

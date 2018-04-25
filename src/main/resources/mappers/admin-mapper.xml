@@ -43,6 +43,42 @@
 	</select>
 	
 	
+	<select id="activeMember" resultMap="resultAdminMember">
+		SELECT 
+			* 
+		FROM 
+			(SELECT 
+				* 
+			FROM
+				MEMBER 
+			where
+				m_status=1)
+	</select>
+	
+	<select id="nomalMember" resultMap="resultAdminMember">
+		SELECT 
+			* 
+		FROM 
+			(SELECT 
+				* 
+			FROM
+				MEMBER 
+			where
+				m_num=2)
+	</select>
+	
+	<select id="bizMember" resultMap="resultAdminMember">
+		SELECT 
+			* 
+		FROM 
+			(SELECT 
+				* 
+			FROM
+				MEMBER 
+			where
+				m_num=3)
+	</select>
+	
 	<select id="selectBizList" resultMap="resultAdminMember">
 		SELECT 
 			* 
@@ -75,17 +111,21 @@
 			M_ID = #{id}
 	</update>
 	
-	
-	<delete id="deleteTotalMember" parameterType="string" flushCache="true" statementType="PREPARED">
-	DELETE FROM MEMBER
-  </delete>
-  
-  <delete id="deleteMember" flushCache="true" statementType="PREPARED">
-		DELETE 
-		FROM
+ 	
+	<update id="deleteTotalMember" flushCache="true" statementType="PREPARED">
+		UPDATE 
 			MEMBER
+		SET
+			M_STATUS = 4
+  </update>
+  
+  <update id="deleteMember" parameterType="string" flushCache="true" statementType="PREPARED">
+		UPDATE 
+			MEMBER
+		SET
+			M_STATUS = 4
 		WHERE
 			M_ID = #{id}
-	</delete>
+	</update> 
 
 </mapper>

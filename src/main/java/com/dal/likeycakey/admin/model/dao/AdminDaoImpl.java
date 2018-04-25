@@ -46,19 +46,37 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int deleteMember(String id) throws Exception{
 		
-		return sqlSession.delete("AdminMapper.deleteMember",id);
+		return sqlSession.update("AdminMapper.deleteMember",id);
 	}
 
 	@Override
 	public int deleteTotalMember() throws Exception{
 		// TODO Auto-generated method stub
-		return sqlSession.delete("AdminMapper.deleteTotalMember");
+		return sqlSession.update("AdminMapper.deleteTotalMember");
 	}
 
 	@Override
 	public ArrayList<Member> selectBizList() throws Exception {
 		// TODO Auto-generated method stub
 		return new ArrayList<Member>(sqlSession.selectList("AdminMapper.selectBizList"));
+	}
+
+	@Override
+	public ArrayList<Member> activeMember() throws Exception {
+		// TODO Auto-generated method stub
+		return new ArrayList<Member>(sqlSession.selectList("AdminMapper.activeMember"));
+	}
+
+	@Override
+	public ArrayList<Member> nomalMember() throws Exception {
+		// TODO Auto-generated method stub
+		return new ArrayList<Member>(sqlSession.selectList("AdminMapper.nomalMember"));
+	}
+
+	@Override
+	public ArrayList<Member> bizMember() throws Exception {
+		// TODO Auto-generated method stub
+		return new ArrayList<Member>(sqlSession.selectList("AdminMapper.bizMember"));
 	}
 	
 

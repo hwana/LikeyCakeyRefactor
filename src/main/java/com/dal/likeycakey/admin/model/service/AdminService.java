@@ -22,5 +22,11 @@ public interface AdminService {
 	public int deleteMember(String id) throws Exception;
 
 	public ArrayList<Member> selectBizList() throws Exception;
+
+	public ArrayList<Member> activeMember() throws Exception;
+
+	public ArrayList<Member> nomalMember() throws Exception;
+
+	public ArrayList<Member> bizMember() throws Exception;
 	
 }

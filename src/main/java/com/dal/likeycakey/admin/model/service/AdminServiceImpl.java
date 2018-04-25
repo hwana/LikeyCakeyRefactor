@@ -51,6 +51,24 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return adminDao.selectBizList();
 	}
+
+	@Override
+	public ArrayList<Member> activeMember() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.activeMember();
+	}
+
+	@Override
+	public ArrayList<Member> nomalMember() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.nomalMember();
+	}
+
+	@Override
+	public ArrayList<Member> bizMember() throws Exception {
+		// TODO Auto-generated method stub
+		return adminDao.bizMember();
+	}
 	
 	
 
