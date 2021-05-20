@@ -449,7 +449,7 @@
 							 </c:if> 
 							 
 									<div class="hover-content text-center" id="pbNumWrap">
-										<input type="hidden" id="pbNum" value="${newArrival.pbNum}" >
+										<input type="hidden" class="pbNum" value="${newArrival.pbNum}" >
 										<ul>
 											<li></li>
 											<li></li>
@@ -529,7 +529,7 @@
 									<span class="pro-level">당일</span>
 							 </c:if> 
 									<div class="hover-content text-center" id="pbNumWrap">
-										<input type="hidden" id="pbNum" value="${bestSellerList.pbNum}" >
+										<input type="hidden" class="pbNum" value="${bestSellerList.pbNum}" >
 										<ul>
 											<li></li>
 											<c:choose>
@@ -608,7 +608,7 @@
 											<span class="pro-level">당일</span>
 									 </c:if> 
 									<div class="hover-content text-center" id="pbNumWrap">
-										<input type="hidden" id="pbNum" value="${bestLikeyList.pbNum}" >
+										<input type="hidden" class="pbNum" value="${bestLikeyList.pbNum}" >
 										<ul>
 											<li><a href="#" class="icon_cart_alt "></a></li>
 											<c:choose>

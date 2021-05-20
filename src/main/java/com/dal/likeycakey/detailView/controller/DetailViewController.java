@@ -69,10 +69,8 @@ import com.dal.likeycakey.member.model.vo.Member;
 		@ResponseBody
 		public ArrayList<ProductReview> selectReviewList(@RequestParam("pbNum") String pbNum ,HttpServletResponse response) throws IOException {
 			
-			System.out.println("게시글 번호는 " + pbNum);
 			ArrayList<ProductReview> pReviewList  = pbService.selectReviewList(pbNum);
-			System.out.println("리뷰 개수는 : " + pReviewList.size());
-			
+
 			return pReviewList;
 		}
 		
@@ -105,7 +103,6 @@ import com.dal.likeycakey.member.model.vo.Member;
 		
 		try {
 			Date bookDate = new SimpleDateFormat("yyyyMMdd").parse(poBookDate);
-			System.out.println(bookDate);
 			productOrder.setPbNum(pbNum);
 			productOrder.setId(id);
 			productOrder.setPoBizDelivery(bizDelivery);
@@ -120,7 +117,6 @@ import com.dal.likeycakey.member.model.vo.Member;
 			productOrder.setPoRecDetailAddr(member.getAddressDetail());
 		
 		} catch (ParseException e) {
-			System.out.println("예약 날짜 parsing 실패!");
 			e.printStackTrace();
 		}
 		
@@ -128,9 +124,7 @@ import com.dal.likeycakey.member.model.vo.Member;
 			if(result == 1) {
 				PrintWriter out = response.getWriter();
 				out.print("ok");
-				System.out.println("장바구니 담기 성공");
 			} else {
-				System.out.println("실패");
 			}
 		}
 		
@@ -146,7 +140,6 @@ import com.dal.likeycakey.member.model.vo.Member;
 			productReview.setPrNum(prNum);
 			
 			int result = 0;
-			System.out.println("리뷰 댓글 상태는? " + rf);
 			if(rf.equals("등록")) {
 				productReview.setPrcContent(prcContent);
 				result = pbService.insertPReviewReply(productReview);
@@ -161,10 +154,8 @@ import com.dal.likeycakey.member.model.vo.Member;
 			if(result==1) {
 				PrintWriter out = response.getWriter();
 				out.print("ok");
-				System.out.println("리뷰 댓글 "+ rf +" 성공");
-				
+
 			} else {
-				System.out.println("리뷰 댓글 "+ rf +" 실패");
 			}
 		}
 	

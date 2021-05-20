@@ -34,9 +34,7 @@ public class BizServiceImpl implements BizService {
 	
 	@Override
 	public Member loginCheck(String id, String passwd) throws Exception {
-		System.out.println("SERVICE="+id);
-		System.out.println("SERVICE="+passwd);
-		
+
 		return bizDao.loginCheck(id, passwd);
 
 	}
@@ -48,7 +46,6 @@ public class BizServiceImpl implements BizService {
 
 	@Override
 	public int insertProductBoard(ProductBoard productBoard)  {
-		System.out.println("bizService의 insertProductBoard입니다");
 		return bizDao.insertProductBoard(productBoard);
 	}
 

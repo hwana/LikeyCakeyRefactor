@@ -19,7 +19,6 @@ public class MemberDaoImpl implements MemberDao {
 	// member insert 할 수 있는 DAO
 	@Override
 	public int insertMember(Member m) throws Exception {
-		System.out.println("일반 회원가입");
 		int result = sqlSession.insert("Member.insertMember", m);
 		return result;
 	}
@@ -28,7 +27,6 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Member findId(String email, String name) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("아이디 찾기 dao 진입");
 		return sqlSession.selectOne("Member.findId", new Member(email, name));
 	}
 
@@ -41,7 +39,6 @@ public class MemberDaoImpl implements MemberDao {
 	// member update 할 수 있는 DAO
 	@Override
 	public int updateMember(Member m) throws Exception {
-		System.out.println("회원정보 업데이트 다오");
 		return sqlSession.update("Member.updateMember", m);
 	}
 
@@ -54,7 +51,6 @@ public class MemberDaoImpl implements MemberDao {
 	// 로그인 할 수 있는 DAO
 	@Override
 	public Member forLogin(String id, String passwd) throws Exception {
-		System.out.println("일반회원 로그인");
 		return sqlSession.selectOne("Member.loginCheck", new Member(id, passwd));
 	}
 
@@ -67,7 +63,6 @@ public class MemberDaoImpl implements MemberDao {
 	// 게시글 리스트 불러오기
 	@Override
 	public ArrayList<Homeqna> homeqlist(Member m) throws Exception {
-		System.out.println("WELCOME TO DAO 홈큐 리스트");
 		return new ArrayList<Homeqna>(sqlSession.selectList("homeqna.m_listAll", m));
 	}
 

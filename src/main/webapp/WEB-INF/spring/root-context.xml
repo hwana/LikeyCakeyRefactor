@@ -15,12 +15,12 @@
 	</bean>
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- DataSource 등록은 서버연동과 같이 이루어져야 하므로, root에서 하는 것이 옳다. -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<!-- destroy-method 는 주어진 세션을 자동으로 close 하라는 뜻 -->
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
-		<property name="username" value="likeycakey" />
+		<property name="username" value="c##likeycakey" />
 		<property name="password" value="likeycakey" />
 	</bean>
 	<bean id="transactionManager"

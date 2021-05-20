@@ -29,11 +29,8 @@ public class HomeqnaController {
 	// home qna 리스트를 불러오는 컨트롤러
 	@RequestMapping(value="homeqna.ca")
 	public ModelAndView list() throws Exception {
-		System.out.println("list 도착");
-		
+
 		ArrayList<Homeqna> list = homeqnaService.listAll();		
-		System.out.println(list.size());
-		System.out.println(list.get(0).getId());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list); // 데이터를 저장
 		mv.setViewName("qna/homeQna"); // 뷰를 homeQna.jsp로 설정
@@ -50,7 +47,6 @@ public class HomeqnaController {
 	@RequestMapping (value="insertHomeqna.ca", method= RequestMethod.POST)
 	public String insertHomeqna(@ModelAttribute Homeqna hq) throws Exception {
 		homeqnaService.insertHomeqna(hq);
-		System.out.println("홈페이지 문의글 등록 컨트롤러");
 		return "redirect:homeqna.ca";
 	}
 	

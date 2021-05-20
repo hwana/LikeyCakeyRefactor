@@ -37,27 +37,22 @@ public class AdminController {
 	public ModelAndView adminMemberList(Member m, @RequestParam(value = "page", required = false) Integer page,
 			ModelAndView mv) {
 
-		System.out.println("adminmemberList mapping도착");
-
 		try {
 
 
 			ArrayList<Member> list = adminService.selectList();
 
 
-			System.out.println("adminMemberList : list.size=" + list.size());
 			if (list != null && list.size() > 0) {
 
 				mv.addObject("list", list).setViewName("admin/adminMemberList");
 			} else {
-				System.out.println("adminMemberList : list가 안 들고 와짐");
 				mv.addObject("error", "adminMemberList : 게시글 전체 조회 실패");
 				mv.setViewName("admin/adminMemberList");
 			}
 
 		} catch (Exception e) {
 
-			System.out.println("adminMemberList에서 에러남");
 			mv.addObject("error", "게시글 전체 조회 실패");
 
 			mv.setViewName("admin/adminMemberList");
@@ -74,7 +69,6 @@ public class AdminController {
 			@RequestParam("mphone") String mphone, @RequestParam("mstatus") String mstatus,
 			@RequestParam("mblackCnt") String mblackCnt, HttpServletResponse response) {
 
-		System.out.println("adminMemberUpdate mapping도착");
 
 		try {
 			/*
@@ -82,15 +76,10 @@ public class AdminController {
 			 * mid);
 			 */
 			PrintWriter out = response.getWriter();
-			System.out.println("print");
-			System.out.println(mcode + " " + mid + " " + mpasswd + " " + mname + " " + memail + " " + mphone + " "
-					+ mstatus + " " + mblackCnt);
 			Member member = new Member(Integer.parseInt(mcode), mid, mpasswd, mname, memail, mphone,
 					Integer.parseInt(mstatus), Integer.parseInt(mblackCnt));
-			System.out.println("멤버 초기화?");
 
 			int result = adminService.updateMember(member);// 멤버 업데이트 하고z
-			System.out.println("멤버 업데이트 성공: result=" + result);
 			if (result > 0)
 				out.print("ok");
 			else
@@ -113,30 +102,23 @@ public class AdminController {
 	/* 1_3. 관리자_멤버 선택 삭제 */
 	@RequestMapping(value = "/adminMemberDelete.ca", method = RequestMethod.POST)
 	public void adminMemberDelete(@RequestParam("delMembers") String deleteMembers, HttpServletResponse response) {
-		System.out.println("adminMemberDelete mapping도착");
 
 		try {
 			PrintWriter out = response.getWriter();
-			System.out.println("deleteMember="+deleteMembers);
-			
+
 			ArrayList<String> delMembers = new ArrayList<String>(Arrays.asList(deleteMembers.split(",")));
-			System.out.println("delMembers.size()="+delMembers.size());
-			
+
 			int result = 0;
 			for (int i = 0; i < delMembers.size(); i++) {
-				System.out.println((String) delMembers.get(i));
 				result = adminService.deleteMember((String) delMembers.get(i));// 멤버 업데이트 하고z
 			}
-			System.out.println("멤버 선택 삭제 성공: result=" + result);
 
-			System.out.println(result);
 			if (result > 0)
 				out.print("ok");
 			else
 				out.print("no");
 
 		} catch (Exception e) {
-			System.out.println("adminMemberDelete에서 에러발생");
 
 		}
 
@@ -146,11 +128,9 @@ public class AdminController {
 	@RequestMapping(value = "/adminMemberTotalDelete.ca", method = RequestMethod.POST)
 	public void adminMemberTotalDelete(HttpServletResponse response) {
 
-		System.out.println("adminMemberTotalDelete mapping도착");
 		try {
 			PrintWriter out = response.getWriter();
 			int result = adminService.deleteTotalMember();// 멤버 업데이트 하고z
-			System.out.println("멤버 업데이트 성공: result=" + result);
 			if (result > 0)
 				out.print("ok");
 			else
@@ -169,26 +149,22 @@ public class AdminController {
 	public ModelAndView adminBizList(Member m, @RequestParam(value = "page", required = false) Integer page,
 			ModelAndView mv) {
 
-		System.out.println("adminBizList mapping도착");
 
 		try {
 			ArrayList<Member> list = adminService.selectBizList();
 
 			// 총 페이지수 계산 : 목록이 최소 1개일 때 1page로 처리하기
 	
-			System.out.println("adminBizList : list.size=" + list.size());
 			if (list != null && list.size() > 0) {
 
 				mv.addObject("list", list).setViewName("admin/adminBizList");
 			} else {
-				System.out.println("adminBizList : list가 안 들고 와짐");
 				mv.addObject("error", "adminBizList : 게시글 전체 조회 실패");
 				mv.setViewName("admin/adminBizList");
 			}
 
 		} catch (Exception e) {
 
-			System.out.println("adminBizList에서 에러남");
 			mv.addObject("error", "게시글 전체 조회 실패");
 
 			mv.setViewName("admin/adminBizList");
@@ -200,7 +176,6 @@ public class AdminController {
 /*	@RequestMapping(value = "/adminBizList.ca", method = RequestMethod.GET)
 	public ModelAndView adminBizList(ModelAndView mv) {
 
-		System.out.println("adminBizList mapping도착");
 
 		try {
 			 bizService.insertBiz(bm); 
@@ -217,7 +192,6 @@ public class AdminController {
 	@RequestMapping(value = "/adminBizUpdate.ca", method = RequestMethod.GET)
 	public ModelAndView adminBizUpdate(Member m, ModelAndView mv) {
 
-		System.out.println("adminBizUpdate mapping도착");
 		try {
 			/* bizService.insertBiz(bm); */
 			mv.setViewName("redirect:home.do");
@@ -232,7 +206,6 @@ public class AdminController {
 	@RequestMapping(value = "/adminBizDelete.ca", method = RequestMethod.GET)
 	public ModelAndView adminBizDelete(Member m, ModelAndView mv) {
 
-		System.out.println("adminBizDelete mapping도착");
 		try {
 			/* bizService.insertBiz(bm); */
 			mv.setViewName("redirect:home.do");

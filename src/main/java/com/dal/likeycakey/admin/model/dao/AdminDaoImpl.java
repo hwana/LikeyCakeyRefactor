@@ -19,21 +19,18 @@ public class AdminDaoImpl implements AdminDao {
    
    @Override
    public int getListCount() throws Exception{
-      System.out.println("adminDao.getListCount 도착");
       return sqlSession.selectOne("AdminMapper.getListCount");
       
    }
 
    @Override
    public ArrayList<Member> selectList() throws Exception{
-      System.out.println("adminDao.selectList 도착");
 
       return new ArrayList<Member>(sqlSession.selectList("AdminMapper.selectList"));
    }
    
    @Override
    public Member selectOne(String id) throws Exception{
-      System.out.println("adminDao.selectOne 도착");
       return (Member)(sqlSession.selectOne("AdminMapper.selectOne", id));
    }
    

@@ -49,10 +49,7 @@ public class ListController {
 			else {
 				cakeCount = listService.getCakeCount(inputsearch);
 			}
-			System.out.println("태그관련케이크 개수 : " + cakeCount);
 		} catch (Exception e){
-			System.out.println("태그관련케이크 개수를 불러오는데 실패 ");
-			System.out.println(e);
 		}
 		
 		// 케이크 불러오기
@@ -84,7 +81,6 @@ public class ListController {
 	    
 		if (cakelist != null && cakelist.size() > 0) {
 			
-			System.out.println("케이크 조회 가져오기 성공");
 			mv.addObject("input_search", inputsearch)
 			.addObject("cakelist", cakelist)
 			.addObject("currentPage", currentPage)
@@ -97,7 +93,6 @@ public class ListController {
 			mv.setViewName("list/cakelist");
 			
 		} else {
-			System.out.println("케이크 조회 실패");
 			mv.addObject("input_search", inputsearch);
 			mv.setViewName("list/cakelist");
 		}
@@ -128,10 +123,7 @@ public class ListController {
 		// 전체 목록 갯수와 해당 페이지별 목록을 리턴
 		try {
 			cakeCount = listService.getCakeCount(inputsearch);
-			System.out.println("태그관련케이크 개수 : " + cakeCount);
 		} catch (Exception e){
-			System.out.println("태그관련케이크 개수를 불러오는데 실패 ");
-			System.out.println(e);
 		}
 		
 		// 케이크 불러오기
@@ -167,7 +159,6 @@ public class ListController {
 	    
 		if (cakelist != null && cakelist.size() > 0) {
 			
-			System.out.println("케이크 조회 가져오기 성공");
 			mv.addObject("input_search", inputsearch)
 			.addObject("cakelist", cakelist)
 			.addObject("currentPage", currentPage)
@@ -179,7 +170,6 @@ public class ListController {
 			mv.setViewName("list/cakelist");
 			
 		} else {
-			System.out.println("케이크 조회 실패");
 			mv.addObject("input_search", inputsearch);
 			mv.setViewName("list/cakelist");
 		}
@@ -227,11 +217,7 @@ public class ListController {
 		try {
 			vendorcakeCount = listService.getVendorCakeCount(inputvendor);
 			vendorreviewCount = listService.getVendorReviewCount(inputvendor);
-			System.out.println("이 상점의 케이크 개수 : " + vendorcakeCount);
-			System.out.println("이 상점의 리뷰 개수 : " + vendorreviewCount);
 		} catch (Exception e){
-			System.out.println("이 상점의 케이크 개수를 불러오는데 실패 ");
-			System.out.println(e);
 		}
 		
 		// 케이크 불러오기
@@ -284,7 +270,6 @@ public class ListController {
 	    
 		if (vendorcakelist != null && vendorcakelist.size() > 0) {
 			
-			System.out.println("이 상점의 모든 케이크 가져오기 성공");
 			mv.addObject("input_vendor", inputvendor)
 			.addObject("vendorcakelist", vendorcakelist)
 			.addObject("pagecake_current", pagecake_current)
@@ -297,14 +282,12 @@ public class ListController {
 			mv.setViewName("list/hostpage");
 			
 		} else {
-			System.out.println("이 상점의 케이크가 없거나 조회 실패");
 			mv.addObject("input_vendor", inputvendor);
 			mv.setViewName("list/hostpage");
 		}
 		
 		if (vendorreviewlist != null && vendorreviewlist.size() > 0) {
 			
-			System.out.println("이 상점의 모든 리뷰 가져오기 성공");
 			mv.addObject("vendorreviewlist", vendorreviewlist)
 			.addObject("pagereview_current", pagereview_current)
 			.addObject("maxpagereview", maxpagereview)
@@ -316,7 +299,6 @@ public class ListController {
 			.addObject("reviewcakelist", reviewcakelist);
 			
 		} else {
-			System.out.println("이 상점의 리뷰가 없거나 조회 실패");
 		}
 			
 		//mv에 달기

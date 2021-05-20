@@ -133,7 +133,6 @@ public class BizController {
 			String root = request.getSession().getServletContext().getRealPath("resources");
 			// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 			String savePath = root + "\\img\\member";
-			System.out.println("이미지가 저장되는 곳은 " + savePath);
 
 			if (file != null && !file.isEmpty()) {
 				if (!new File(savePath).exists()) {
@@ -143,17 +142,13 @@ public class BizController {
 				String originFileName = file.getOriginalFilename();
 				File fileupload = new File(savePath + "\\" + originFileName);
 				file.transferTo(fileupload);
-				System.out.println("이미지 저장 완료");
 				m.setPhoto(originFileName.substring(0, originFileName.lastIndexOf('.')));
 			}
 			int result = bizService.insertBiz(m);
 			int result2 = bizService.insertBiz2(bm);
 			mv.setViewName("redirect:home.ca");
-			System.out.println("비즈멤버등록성공");
 		} catch (Exception e) {
 			mv.setViewName("redirect:home.ca");
-			System.out.println(e);
-			System.out.println("비즈멤버등록실패");
 		}
 
 		return mv;
@@ -189,7 +184,6 @@ public class BizController {
 				// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 				String savePath = root + "\\img\\member";
 
-				System.out.println("이미지가 저장되는 곳은 " + savePath);
 
 				if (!new File(savePath).exists()) {
 					new File(savePath).mkdir();
@@ -206,10 +200,8 @@ public class BizController {
 			int result2 = bizService.bizModify2(bm);
 			session.setAttribute("member", m);
 			mv.setViewName("redirect:home.ca");
-			System.out.println("비즈 마이페이지 수정 성공");
 
 		} catch (Exception e) {
-			System.out.println("비즈 마이페이지 수정 실패" + e);
 		}
 		return mv;
 	}
@@ -246,12 +238,10 @@ public class BizController {
 			@RequestParam(name = "inputtag5", required = false) String inputtag5, ModelAndView mv,
 			ProductBoard productBoard) throws IOException {
 
-		System.out.println("cakeInsert.ca입니다(배송비 꼭 숫자 넣어주세요!!!!)");
 		// 해당 컨테이너의 구동중인 웹 애플리케이션의 루트 경로 알아냄
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 		String savePath = root + "\\img\\product";
-		System.out.println("이미지가 저장되는 곳은 " + savePath);
 
 		if (file != null && !file.isEmpty()) {
 			if (!new File(savePath).exists()) {
@@ -290,13 +280,10 @@ public class BizController {
 		productBoard.setPbTag(inputtag);
 
 		// 상품정보
-		System.out.println(" 상품정보 : " + productBoard);
 
 		if (bizService.insertProductBoard(productBoard) > 0) {
-			System.out.println("프로덕트 케이크 넣기 성공");
 			mv.setViewName("biz/productCakeUpload");
 		} else {
-			System.out.println("프로덕트 케이크 넣기 실패");
 			mv.addObject("error", "게시 원글 등록 서비스 실패!");
 			mv.setViewName("biz/productCakeUpload");
 		}
@@ -546,11 +533,9 @@ public class BizController {
 			customboard.setCbTag(inputtag);
 			bizService.customBoardInsert(customboard);
 
-			System.out.println("커스텀 케이크 보드 insert 성공!");
 			mv.setViewName("redirect:uploadComplete.ca");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("커스텀 케이크 보드 insert 실패...   " + e);
 		}
 
 		return mv;

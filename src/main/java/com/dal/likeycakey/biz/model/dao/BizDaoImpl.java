@@ -26,7 +26,6 @@ public class BizDaoImpl implements BizDao {
 	
 	@Override
 	public int insertBiz1(Member m) throws Exception {
-		System.out.println("here is DAO insertBiz1");
 		int result = sqlSession.insert("Member.insertMember", m);
 		return result;
 
@@ -34,8 +33,6 @@ public class BizDaoImpl implements BizDao {
 	
 	@Override
 	public int insertBiz2(BizMember bm) throws Exception {
-		System.out.println("here is DAO insertBiz2");
-		System.out.println(bm.getBizName());
 		int result2 = sqlSession.insert("bizMember.insertMember", bm);
 		return result2;
 	}
@@ -43,11 +40,7 @@ public class BizDaoImpl implements BizDao {
 	@Override
 
 	public Member loginCheck(String id, String passwd) throws Exception {
-		System.out.println("여기도착");
-		
-		System.out.println("DAO="+id);
-		System.out.println("DAO="+passwd);
-	
+
 		return sqlSession.selectOne("Member.loginCheck", new Member(id, passwd));
 
 	}
@@ -59,7 +52,6 @@ public class BizDaoImpl implements BizDao {
 	
 	@Override
 	public int insertProductBoard(ProductBoard productBoard)  {
-		System.out.println("bizDao의 insertProductBoard입니다");
 		return sqlSession.insert("productBoard.insertProductBoard", productBoard);
 	}
 

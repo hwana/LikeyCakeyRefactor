@@ -45,3 +45,9 @@ buildNumber.properties
 /.project
 /pom.xml
 /.springBeans
+
+.idea
+cake.iml
+src/main/webapp/WEB-INF/lib/jakarta-taglibs-standard-1.1.2
+
+

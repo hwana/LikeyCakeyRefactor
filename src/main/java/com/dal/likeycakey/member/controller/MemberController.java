@@ -56,14 +56,10 @@ public class MemberController {
 	public String findingId(@ModelAttribute Member m, Model model , HttpServletResponse response)
 			throws Exception {
 		
-		System.out.println(m.toString());
 
 		ArrayList <String> ur_id = memberService.findId(m);
-		System.out.println(ur_id.toString());
-		System.out.println(ur_id.get(0));
 		String findId = "{\"id \":\""+ur_id+"\"}";
 
-		System.out.println(findId);
 
 		return findId;
 	}
@@ -105,7 +101,6 @@ public class MemberController {
 			String root = request.getSession().getServletContext().getRealPath("resources");
 			// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 			String savePath = root + "\\img\\member";
-			System.out.println("이미지가 저장되는 곳은 " + savePath);
 
 			if (file != null && !file.isEmpty()) {
 				if (!new File(savePath).exists()) {
@@ -117,14 +112,10 @@ public class MemberController {
 				m.setPhoto(originFileName.substring(0, originFileName.lastIndexOf('.')));
 			}
 			memberService.insertMember(m);
-			System.out.println("일반회원 가입 성공");
 			int result = memberService.insertMember(m);
 			mv.setViewName("redirect:home.ca");
-			System.out.println("일반회원 : 등록성공");
 		} catch (Exception e) {
 			mv.setViewName("redirect:home.ca");
-			System.out.println(e);
-			System.out.println("일반회원 : 등록실패");
 		}
 		return mv;
 	}
@@ -179,9 +170,7 @@ public class MemberController {
 			int result = memberService.updatePassword(m);
 			session.setAttribute("member", m);
 			mv.setViewName("redirect:memberPw.ca");
-			System.out.println("비밀번호 수정 성공");
 		} catch (Exception e) {
-			System.out.println("비밀번호 수정 실패");
 		}
 		return mv;
 	}
@@ -205,7 +194,6 @@ public class MemberController {
 				// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 				String savePath = root + "\\img\\member";
 
-				System.out.println("이미지가 저장되는 곳은 " + savePath);
 
 				if (!new File(savePath).exists()) {
 					new File(savePath).mkdir();
@@ -221,10 +209,8 @@ public class MemberController {
 			int result = memberService.updateMember(m);
 			session.setAttribute("member", m);
 			mv.setViewName("redirect:memberMypage.ca");
-			System.out.println("일반회원 정보 수정 성공");
 
 		} catch (Exception e) {
-			System.out.println("일반회원 정보 수정 실패" + e);
 		}
 		return mv;
 	}
@@ -238,7 +224,6 @@ public class MemberController {
 	// home qna
 	@RequestMapping(value = "m_home_qna.ca")
 	public ModelAndView homeq(Member m) throws Exception {
-		System.out.println("홈큐 컨트롤러 도착");
 		ArrayList<Homeqna> list = memberService.homeqlist(m);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list); // 데이터를 저장

@@ -34,11 +34,10 @@ public class HomeController{
 	public ModelAndView home(ModelAndView mv, HttpServletRequest request) {
 		
 		
-		System.out.println("home.ca : home controller 도착");
 		// 오늘의 상품
 		ProductBoard todaysCake = todaysCake();
 		// 오늘의 상품 Biz셀렉트
-		BizMember todaysBiz = selectBizMember(todaysCake.getId());
+//		BizMember todaysBiz = selectBizMember(todaysCake.getId());
 		// New Arrival 리스트
 		ArrayList<ProductBoard> newArrivalList = newArrivalList();
 		// New Arrival 사업장 주소 리스트
@@ -69,7 +68,7 @@ public class HomeController{
 		}
 		
 		mv.addObject("todaysCake", todaysCake)
-		.addObject("todaysBiz", todaysBiz)
+//		.addObject("todaysBiz", todaysBiz)
 		.addObject("newArrivalList", newArrivalList)
 		.addObject("newArrivalAddr", newArrivalAddr)
 		.addObject("bestSellerList", bestSellerList)
@@ -105,7 +104,6 @@ public class HomeController{
 		}
 		
 		json.put("list", jarr);
-		System.out.println(json.toJSONString());
 		response.setContentType("application/json");
 		
 		PrintWriter out = response.getWriter();
@@ -195,8 +193,7 @@ public class HomeController{
 	@RequestMapping("addHeart.ca")
 	public void addHeart(@RequestParam(value="pbNum") String pbNum, @RequestParam(value="id") String id,
 						HttpServletResponse response) throws IOException {
-		System.out.println("addHaert 메소드 도착 / 게시물 번호는 : " + pbNum + "/아이디는 : " + id);
-		
+
 		int updateLikeyBoard = pbService.updateLikeyBoard(pbNum);
 		int insertHeartMember = pbService.insertHeartMember(pbNum, id);
 		
@@ -207,7 +204,6 @@ public class HomeController{
 			
 			json.put("result", "success");
 			json.put("pbNum", pbNum);
-			System.out.println("하트 추가 성공 : " + json.toJSONString());
 			response.setContentType("application/json");
 			PrintWriter out = response.getWriter();
 			out.print(json.toJSONString());
@@ -222,8 +218,7 @@ public class HomeController{
 	@RequestMapping("subtractHeart.ca")
 	public void subtractHeart(@RequestParam(value="pbNum") String pbNum, @RequestParam(value="id") String id,
 							  HttpServletResponse response) throws IOException {
-		System.out.println("subtractHeart 메소드 도착 / 게시물 번호는 : " + pbNum + "/아이디는 : " + id);
-		
+
 		int updateSubtractLikeyBoard = pbService.updateSubtractLikeyBoard(pbNum);
 		int deleteHeartMember = pbService.deleteHeartMember(pbNum, id);
 		
@@ -234,7 +229,6 @@ public class HomeController{
 			json.put("result","success");
 			json.put("pbNum", pbNum);
 			
-			System.out.println("하트 삭제 성공 : " + json.toJSONString());
 			response.setContentType("application/json");
 			PrintWriter out = response.getWriter();
 			out.print(json.toJSONString());
